@@ -1,11 +1,350 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Academia</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrowdGym</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins';
+    box-sizing: border-box;
+  }
+
+  :root {
+    --cor-principal: #f57419;
+    --cor-secundaria: #105ff1;
+    --cor-bg: #ffffff;
+    --cor-bg2: #000000;
+    --cor-bg3: #b4b9ce;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--cor-bg);
+  }
+
+  .formLogin {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-bg);
+    border-radius: 7px;
+    padding: 40px;
+    padding-bottom: 80px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px;
+    width: 500px;
+    height: 700px;
+  }
+
+
+
+  .formLogin h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
+  }
+
+  .formLogin p {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--cor-bg2);
+    margin-bottom: 25px;
+  }
+
+  .formLogin input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid var(--cor-bg2);
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+  }
+
+
+  .formLogin label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .btn {
+    color: var(--cor-bg2);
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+    margin-bottom: 100px;
+    border-radius: 30px;
+  }
+
+
+
+  .btn:after {
+
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--cor-secundaria);
+    transition: all .60s;
+  }
+
+  .btn:hover{
+    background-color: var(--cor-principal);
+    color: var(--cor-bg);
+  }
+  .btn:hover::after{
+    width: 100%;
+  }
+
+
+
+
+  #acessar {
+    margin-bottom: 20px;
+
+  }
+
+  .titulo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .titulo h1 {
+    font-size: 60px;
+    font-family: monospace;
+  }
+
+  footer {
+    width: 100%;
+    color: var(--cor-bg);
+  }
+
+  .footer-link {
+    text-decoration: none;
+    color: var(--cor-bg);
+  }
+
+  #footer_content {
+    background-color: var(--cor-principal);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3rem 3.5rem;
+  }
+
+  #footer_contacts h1 {
+    margin-bottom: 0.75rem;
+  }
+
+  #footer_social_media {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  #footer_social_media .footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    transition: all 0.4s;
+  }
+
+  #footer_social_media .footer-link i {
+    font-size: 1.25rem;
+  }
+
+  #footer_social_media .footer-link:hover {
+    opacity: 0.8;
+
+  }
+
+  #instagram {
+    background: linear-gradient(#7f37c9, #ff2992, #ff9807);
+  }
+
+  #facebook {
+    background: #4267b3;
+  }
+
+  #whatsapp {
+    background: #25d366;
+  }
+
+  .footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+  }
+
+  #footer_subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  #footer_subscribe p {
+    color: var(--cor-bg);
+  }
+
+  #input_group {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-bg);
+    border-radius: 4px;
+  }
+
+  #input_group input {
+    all: unset;
+    padding: 0.75rem;
+    width: 100%;
+
+  }
+
+  #input_group button {
+    background-color: var(--cor-secundaria);
+    border: none;
+    padding: 0px 1.25rem;
+    font-size: 1.125rem;
+    height: 100%;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  #input_group button:hover {
+    background-color: var(--cor-bg3);
+  }
+
+  #footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-secundaria);
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+  }
+
+  .contatos h1 {
+    text-align: center;
+    font-size: 1.6rem;
+
+  }
+</style>
+
 <body>
-    
+
+  <!-- cadastro -->
+  <div class="page">
+    <form method="POST" class="formLogin">
+      <div class="titulo">
+        <h1>Crowd Gym</h1>
+      </div>
+      <h2>Cadastre-se</h2>
+      <br />
+      <label for="email">nome da academia</label>
+      <input type="email" placeholder="Inserir nome da academia" autofocus="true" />
+
+      <label for="email">E-mail da academia</label>
+      <input type="email" placeholder="Inserir e-mail" autofocus="true" />
+
+      <label for="password">Senha</label>
+      <input type="password" placeholder="Inserir senha" />
+
+      <label for="password">Código para cadastrar</label>
+      <input type="password" placeholder="código único liberado após assinar o Crowd Gym" />
+      <input type="submit" value="Criar conta" class="btn" />
+    </form>
+  </div>
+  <!-- /cadastro -->
+  <div class="contatos">
+    <h1>Assine o CrowdGym</h1>
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer_content">
+      <div id="footer_contacts">
+        <h1>CrowdGym</h1>
+        <p>It's all about your dreams</p>
+
+        <div id="footer_social_media">
+          <a href="#" class="footer-link" id="instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+
+        </div>
+      </div>
+      <ul class="footer_list">
+        <li>
+          <h3>Contatos</h3>
+        </li>
+        <li>
+          <p href="#" class="footer-link">+55 (11)98745-6321</p>
+        </li>
+        <li>
+          <p href="#" class="footer-link">EntreEmContato@crowdgym.com</p>
+        </li>
+        <li>
+          <p href="#" class="footer-link">Das 8:00 as 20:00</p>
+        </li>
+
+
+      </ul>
+      <div id="footer_subscribe">
+        <h3>Assine</h3>
+        <p>Digite aqui seu email para que entremos em contato</p>
+        <div id="input_group">
+          <input type="email" id="email">
+          <button>
+            <i class="fa-regular fa-envelope"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div id="footer_copyright">
+      &#169
+      2024 all rights reserved
+    </div>
+  </footer>
+
+  <!-- /Footer -->
+
 </body>
+
 </html>
