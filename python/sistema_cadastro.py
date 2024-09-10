@@ -7,10 +7,10 @@ from tkinter import messagebox
 def conectar_banco():
     try:
         conexao = mysql.connector.connect(
-            host='localhost',  
-            user='root',  
-            password='',  
-            database='academia'
+            host='localhost', # Endereço do servidor MySQL  
+            user='root', # Usuário do MySQL  
+            password='', # Senha do MySQL 
+            database='academia' # Nome do banco de dados
         )
         if conexao.is_connected():
             cursor = conexao.cursor()
