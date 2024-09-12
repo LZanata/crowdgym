@@ -114,3 +114,23 @@ body {
   .esqueci a {
     font-size: 15px;
   }
+  .botoes{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+.botoes a{
+    /**/
+    display: flex;
+    justify-content: center;
+    background-color: #f57419;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 15px;
+    height: 20px;
+}
+.botoes a:hover{
+    color: #fff;
+}

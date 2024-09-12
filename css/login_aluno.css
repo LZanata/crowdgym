@@ -1,5 +1,5 @@
 body {
-    
+    /*estiliza os elementos do body*/
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
@@ -8,6 +8,7 @@ body {
 }
 
 .page {
+    /*faz o formulario de login ficar centralizado no meio da tela e muda o tamanho dele*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +20,7 @@ body {
 }
 
 .formLogin {
+    /*faz os inputs ficarem organizados dentro do formulario e com um espaçamneto dos cantos*/
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -32,6 +34,7 @@ body {
 }
 
 .formLogin h1 {
+    /*muda o tamanho do titulo de login*/
     padding: 0;
     margin: 0;
     font-weight: 500;
@@ -39,6 +42,7 @@ body {
 }
 
 .formLogin p {
+    /*deixa o paragrafo na linha, muda o tamnho e cor e coloca uma margem da parte de baixo*/
     display: inline-block;
     font-size: 14px;
     color: rgb(0, 0, 0);
@@ -46,6 +50,7 @@ body {
 }
 
 .formLogin input {
+    /*estiliza o campo de texto mudando o tamanho*/
     padding: 15px;
     font-size: 14px;
     border: 1px solid #ccc;
