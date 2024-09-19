@@ -1,4 +1,5 @@
 body {
+    /*estiliza os elementos do body*/
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
@@ -6,6 +7,7 @@ body {
 }
 
 .page {
+    /*faz o formulario de login ficar centralizado no meio da tela e muda o tamanho dele*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,6 +19,7 @@ body {
 }
 
 .formLogin {
+    /*estiliza o formulario e faz os inputs ficarem organizados dentro do formulario e com um espaçamento dos cantos*/
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -30,6 +33,7 @@ body {
 }
 
 .formLogin h1 {
+    /*muda o tamanho do titulo crowd gym na tela do login*/
     padding: 0;
     margin: 0;
     font-weight: 500;
@@ -37,6 +41,7 @@ body {
 }
 
 .formLogin p {
+    /*deixa o paragrafo na linha, muda o tamnho e cor e coloca uma margem da parte de baixo*/
     display: inline-block;
     font-size: 14px;
     color: rgb(0, 0, 0);
@@ -44,6 +49,7 @@ body {
 }
 
 .formLogin input {
+    /*estiliza o campo de texto mudando o tamanho, borda e margem*/
     padding: 15px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -56,15 +62,18 @@ body {
 
 
 .formLogin input:focus {
+    /*deixa a borda do input com outra cor e estilo*/
     border: 1px solid #f57419;
 }
 
 .formLogin label {
+    /*muda o tamanho do titulo em cima do input; email, senha etc*/
     font-size: 14px;
     font-weight: 600;
 }
 
 .formLogin a {
+    /*coloca um estilo nos botoes de acessar, criar conta e no botao de esqueci a senha*/
     display: inline-block;
     margin-bottom: 20px;
     font-size: 13px;
@@ -73,60 +82,41 @@ body {
 }
 
 .formLogin a:hover {
+    /*faz o botao de esqueci a senha ficar laranja quando passar o mouse*/
     color: #f57419;
 }
 
-.btn {
-    background-color: #f57419;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    border: none !important;
-    transition: all linear 160ms;
-    cursor: pointer;
-    margin: 0 !important;
-    margin-bottom: 100px;
-    border-radius: 30px;
-
-}
-
-.btn:hover {
-
-    background-color: #f57419;
-
-}
-
-#acessar {
-    margin-bottom: 20px;
-
-}
-
 .titulo {
+    /*faz o titulo crowd gym ficar centralizado no formulario*/
     display: flex;
     justify-content: center;
 }
 
 .titulo h1 {
+    /*muda o tamanho de estilo do titulo*/
     font-size: 60px;
     font-family: monospace;
 }
 
 .esqueci {
+    /*faz o botao esqueci a senha ficar no canto direito*/
     display: flex;
     justify-content: end;
 }
 
 .esqueci a {
+    /*muda o tamanho do botao esqueci a senha*/
     font-size: 15px;
 }
 .botoes{
+    /*faz os botoes acessar e criar conta ficarem centralizados e um embaixo do outro*/
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
 }
 .botoes a{
-    /**/
+    /*estiliza os botoes acessar e criar conta*/
     display: flex;
     justify-content: center;
     background-color: #f57419;
@@ -137,5 +127,6 @@ body {
     height: 20px;
 }
 .botoes a:hover{
+    /*faz o texto dos botoes continuarem brancos depois de passar o mouse*/
     color: #fff;
 }
