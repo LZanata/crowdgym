@@ -1,29 +1,40 @@
+/*configuração padrão*/
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-.nav-bar{
-    background-color: #333;
+/*Alterações da logo*/
+.logo {
+    text-align: center;
 }
-
-.nav-bar li{
+/*Posiciona os li do nav um ao lado do outro*/
+nav li{
     display: inline-block;
 }
-
-.nav-bar li a{
+/*Personaliza oque está dentro do li*/
+nav li a{
     display: inline-block;
-    color: #fff;
+    color: #000000;
     text-decoration: none;
     padding: 15px;
 }
-
-.logo {
-    display: flex;
-    align-items: center;
+/*Altera a cor quando passar o mouse por cima*/
+nav li a:hover{
+    background-color: #ff9360;
 }
-
-.logo h1{
-    color: #fff;
+/*Posiciona a lista para baixo e personaliza a lista*/
+.dropdown-list{
+    position: absolute;
+    box-shadow: 0 0 2px black;
+    display: none;
+}
+/*Exibi a lista na vertical*/   
+.dropdown-list a{
+  display: block;
+  color: black;
+}
+/*Configuração para passar o mouse e exibir a lista*/
+.dropdown:hover .dropdown-list{
+    display: block;
 }
