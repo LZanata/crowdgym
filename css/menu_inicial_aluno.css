@@ -95,13 +95,17 @@ nav li a:hover{
     display: block;
 }
 
+/*Configurações da Tabela*/
 .chart-container {
+    margin-top: 80px;
     width: 80%;
+    height: 320px;
     max-width: 800px;
 }
 
 /* formatação do footer*/
 footer {
+    margin-top: 40px;
     width: 100%;
     color: var(--cor-bg);
   }
