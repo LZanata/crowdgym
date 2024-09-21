@@ -53,13 +53,13 @@
         </div>
       </nav>
     </header>
+
     <main>
       <!--Aqui terá um gráfico semanal de quantas horas o aluno treinou durante todos os dias da semana- o ultimo dia e horario que o aluno foi e saiu da academia -->
-
+   <section>
       <div class="chart-container">
         <canvas id="meuGrafico"></canvas>
     </div>
-    
     <!-- Importando a biblioteca Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -95,6 +95,18 @@
             }
         });
     </script>
+    <div class="info">
+      <div class="last-train">
+        <h2>Ultimo Treino Realizado</h2>
+      </div>
+      <div class="time-arrive">
+        <h2>Horário de Chegada</h2>
+      </div>
+      <div class="time-left">
+        <h2>Horário de Saída</h2>
+      </div>
+    </div>
+    </section>
     </main>
     <footer>
       <div id="footer_copyright">

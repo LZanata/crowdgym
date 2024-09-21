@@ -103,9 +103,20 @@ nav li a:hover{
     max-width: 800px;
 }
 
+/*Espaçamento entre a sessão*/
+section {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 5rem;
+}
+
+/*Ajuste da div das informações do treino*/
+.info{
+    margin-top: 80px;
+}
+
 /* formatação do footer*/
 footer {
-    margin-top: 40px;
     width: 100%;
     color: var(--cor-bg);
   }
