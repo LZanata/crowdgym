@@ -1,39 +1,63 @@
-/*configuração padrão*/
+/*Zerando os componentes*/
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/*Posiciona os elementos da tela*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
+}
+
 /*Alterações da logo*/
 .logo {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 60px;
 }
+
+/*Alterações do usuario*/
+.user{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
 /*Posiciona os li do nav um ao lado do outro*/
 nav li{
     display: inline-block;
 }
+
 /*Personaliza oque está dentro do li*/
 nav li a{
     display: inline-block;
+    font-size: 50px;
     color: #000000;
     text-decoration: none;
     padding: 15px;
 }
+
 /*Altera a cor quando passar o mouse por cima*/
 nav li a:hover{
     background-color: #ff9360;
 }
+
 /*Posiciona a lista para baixo e personaliza a lista*/
 .dropdown-list{
     position: absolute;
     box-shadow: 0 0 2px black;
     display: none;
 }
+
 /*Exibi a lista na vertical*/   
 .dropdown-list a{
   display: block;
   color: black;
 }
+
 /*Configuração para passar o mouse e exibir a lista*/
 .dropdown:hover .dropdown-list{
     display: block;
