@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minhas Academias</title>
-</head>
-<body>
+    <link rel="stylesheet" href="css/academias_aluno.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
     <header>
-          <!--Quando clicar nesta opção tem que aparecer as academias que ele está matriculado no sistema e quando clicar na academia deverá mostrar os dados de quantas pessoas estão treinando e os planos assinados nesta academia. -->
+      <!--Quando clicar nesta opção tem que aparecer as academias que ele está matriculado no sistema e quando clicar na academia deverá mostrar os dados de quantas pessoas estão treinando e os planos assinados nesta academia. -->
+      <nav>
+        <!--Menu para alterar as opções de tela-->
+        <div class="list">
+          <ul>
+            <li class="dropdown">
+              <a href="#"><i class="bi bi-list"></i></a>
+
+              <div class="dropdown-list">
+                <a href="aluno_menu_inicial.html">Menu Inicial</a>
+                <a href="aluno_minhas_academias.html">Minhas Academias</a>
+                <a href="#">Buscar Academias</a>
+                <a href="aluno_dados_pagamento.html">Dados de Pagamento</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Ajuda e Suporte</a>
+                <a href="tela_inicio.html">Sair</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
+        <div class="logo">
+          <h1>Crowd Gym</h1>
+        </div>
+        <!--Opção para alterar as configurações de usuário-->
+        <div class="user">
+          <ul>
+            <li class="user-icon">
+              <a href=""><i class="bi bi-person-circle"></i></a>
+
+              <div class="dropdown-icon">
+                <a href="#">Alterar Nome</a>
+                <a href="#">Alterar Email</a>
+                <a href="#">Alterar Senha</a>
+                <a href="#">Alterar Tema</a>
+                <a href="#">Sair da Conta</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
-</body>
+  </body>
 </html>
