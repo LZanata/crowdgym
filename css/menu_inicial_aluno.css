@@ -110,9 +110,28 @@ section {
     padding: 1.5rem 5rem;
 }
 
-/*Ajuste da div das informações do treino*/
+/*Ajustes da div das informações do treino*/
 .info{
-    margin-top: 80px;
+    display: block;
+    margin-top: 100px;
+}
+
+.info h2{
+    font-size: 25px;
+}
+
+.info p{
+    font-size: 20px;
+}
+
+/*Ajuste da div das informações do ultimo treino*/
+.last-train{
+    margin-bottom: 50px;
+}
+
+/*Ajuste da div das informações do horario de chegada*/
+.time-arrive{
+    margin-bottom: 50px;
 }
 
 /* formatação do footer*/
