@@ -94,3 +94,12 @@ nav li a:hover{
 .user-icon:hover .dropdown-icon{
     display: block;
 }
+
+section{
+    text-align: center;
+    padding: 30px;
+}
+
+.mygym h1{
+    
+}
