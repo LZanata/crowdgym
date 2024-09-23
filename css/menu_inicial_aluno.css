@@ -1,5 +1,5 @@
 /*Padronizando os componentes*/
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,12 +21,12 @@ nav {
 }
 
 /*Posiciona os li do nav um ao lado do outro*/
-nav li{
+nav li {
     display: inline-block;
 }
 
 /*Personaliza oque está dentro do a do li*/
-nav li a{
+nav li a {
     display: inline-block;
     font-size: 50px;
     color: #000000;
@@ -36,62 +36,62 @@ nav li a{
 }
 
 /*Altera a cor quando passar o mouse por cima da lista*/
-nav li a:hover{
+nav li a:hover {
     background-color: #FFF9F3;
 }
 
 /*Posiciona a lista para baixo e personaliza a lista*/
-.dropdown-list{
+.dropdown-list {
     position: absolute;
     background-color: #ffffff;
     box-shadow: 0 0 2px black;
     display: none;
 }
 
-/*Posiciona a lista na vertical e personaliza as opções da lista*/   
-.dropdown-list a{
-  display: block;
-  color: black;
-  font-size: 20px;
-}
-
-/*Configuração para passar o mouse e exibir a lista*/
-.dropdown:hover .dropdown-list{
-    display: block;
-}
-
-/*Alterações do usuario*/
-.user{
-    display: flex;
-    align-items: center
-}
-
-/*Personaliza oque está no a do user*/
-.user a{
-    font-size: 40px;
-    color: #000000;
-    text-decoration: none;
-    padding: 15px; 
-    margin-top: 15px;
-}
-
-/*Posiciona a lista para baixo e personaliza a lista*/
-.dropdown-icon{
-    position: absolute;
-    background-color: #ffffff;
-    box-shadow: 0 0 2px black;
-    display: none; 
-}
-
-/*Posiciona a lista na vertical e personaliza as opções da lista*/ 
-.dropdown-icon a{
+/*Posiciona a lista na vertical e personaliza as opções da lista*/
+.dropdown-list a {
     display: block;
     color: black;
     font-size: 20px;
 }
 
 /*Configuração para passar o mouse e exibir a lista*/
-.user-icon:hover .dropdown-icon{
+.dropdown:hover .dropdown-list {
+    display: block;
+}
+
+/*Alterações do usuario*/
+.user {
+    display: flex;
+    align-items: center
+}
+
+/*Personaliza oque está no a do user*/
+.user a {
+    font-size: 40px;
+    color: #000000;
+    text-decoration: none;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+/*Posiciona a lista para baixo e personaliza a lista*/
+.dropdown-icon {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px black;
+    display: none;
+}
+
+/*Posiciona a lista na vertical e personaliza as opções da lista*/
+.dropdown-icon a {
+    display: block;
+    color: black;
+    font-size: 20px;
+}
+
+/*Configuração para passar o mouse e exibir a lista*/
+.user-icon:hover .dropdown-icon {
     display: block;
 }
 
@@ -111,26 +111,26 @@ section {
 }
 
 /*Ajustes da div das informações do treino*/
-.info{
+.info {
     display: block;
     margin-top: 100px;
 }
 
-.info h2{
+.info h2 {
     font-size: 25px;
 }
 
-.info p{
+.info p {
     font-size: 20px;
 }
 
 /*Ajuste da div das informações do ultimo treino*/
-.last-train{
+.last-train {
     margin-bottom: 50px;
 }
 
 /*Ajuste da div das informações do horario de chegada*/
-.time-arrive{
+.time-arrive {
     margin-bottom: 50px;
 }
 
@@ -138,7 +138,10 @@ section {
 footer {
     width: 100%;
     color: var(--cor-bg);
-  }
+    position: fixed;
+    bottom: 0;
+    
+}
 
 /*formata o texto do e o centraliza copyright*/
 #footer_copyright {
@@ -148,5 +151,12 @@ footer {
     font-size: 0.9rem;
     padding: 1.5rem;
     font-weight: 100;
-  }
+}
 
+@media screen and (min-width: 1600px) {
+    section {
+        padding: 1.5rem 13rem;
+
+    }
+
+}
