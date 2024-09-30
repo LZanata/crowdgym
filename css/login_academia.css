@@ -132,3 +132,29 @@ body {
   /*faz o texto dos botoes continuarem brancos depois de passar o mouse*/
   color: #fff;
 }
+
+@media screen and (max-width: 640px) {
+  .formLogin {
+    height: 60%;
+    width: 60%;
+  }
+
+}
+
+@media screen and (max-width: 494px) {
+  .titulo h1 {
+    font-size: 50px;
+  }
+
+}
+
+@media screen and (max-width: 412px) {
+  .formLogin {
+    padding-bottom: 130px;
+  }
+
+  .titulo h1 {
+    font-size: 35px;
+  }
+
+}

@@ -1,30 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-* {
+body {
+  /*estiliza os elementos do body*/
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'poppins';
-  box-sizing: border-box;
-}
-/* Váriaveis das cores do site */
-:root {
-  --cor-principal: #f57419;
-  --cor-secundaria: #105ff1;
-  --cor-bg: #ffffff;
-  --cor-bg2: #000000;
-  --cor-bg3: #b4b9ce;
+  color: #000000
 }
 
-
-/* Formatação do Formulário */
-/*centraliza o titulo*/
-.titulo {
-  display: flex;
-  justify-content: center;
-}
-/* centraliza o formulário*/
 .page {
+  /*faz o formulario de login ficar centralizado no meio da tela e muda o tamanho dele*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,25 +15,25 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: var(--cor-bg);
+  background-color: #ffffff;
 }
-/* organiza os itens dentro do formulário */
+
 .formLogin {
+  /*estiliza o formulario e faz os inputs ficarem organizados dentro do formulario e com um espaçamento dos cantos*/
   display: flex;
   flex-direction: column;
-  background-color: var(--cor-bg);
+  background-color: #fff;
   border-radius: 7px;
   padding: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 290px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
   gap: 5px;
   width: 500px;
-  height: 950px;
+  height: 500px;
 }
 
-
-/* formatação dos textos dentro do form*/
 .formLogin h1 {
+  /*muda o tamanho do titulo crowd gym na tela do login*/
   padding: 0;
   margin: 0;
   font-weight: 500;
@@ -58,188 +41,121 @@
 }
 
 .formLogin p {
+  /*deixa o paragrafo na linha, muda o tamnho e cor e coloca uma margem da parte de baixo*/
   display: inline-block;
   font-size: 14px;
-  color: var(--cor-bg2);
+  color: rgb(0, 0, 0);
   margin-bottom: 25px;
 }
-/* /formatação dos textos dentro do form*/
 
-/*formata os inputs dentro do form*/
 .formLogin input {
-  padding: 15px;
+  /*estiliza o campo de texto mudando o tamanho, borda e margem*/
+  padding: 10px;
   font-size: 14px;
-  border: 1px solid var(--cor-bg2);
-  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
   margin-top: 5px;
   border-radius: 4px;
   transition: all linear 160ms;
   outline: none;
 }
 
-/*formata a fonte dentro do label*/
+
+.formLogin input:focus {
+  /*deixa a borda do input com outra cor e estilo*/
+  border: 1px solid #f57419;
+}
+
 .formLogin label {
+  /*muda o tamanho do titulo em cima do input; email, senha etc*/
   font-size: 14px;
   font-weight: 600;
 }
 
-/* /Formatação do Formulário */
-
-
-/* Formatação dos botões*/
-
-/* Centraliza o botão*/
-.botoes{
-    display: flex;
-    align-content: center ;
-    flex-direction: column;
+.formLogin a {
+  /*coloca um estilo nos botoes de acessar, criar conta e no botao de esqueci a senha*/
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #555;
+  transition: all linear 160ms;
 }
-/* formata o texto dentro do botão*/
 
+.formLogin a:hover {
+  /*faz o botao de esqueci a senha ficar laranja quando passar o mouse*/
+  color: #f57419;
+}
+
+
+
+.titulo {
+  /*faz o titulo crowd gym ficar centralizado no formulario*/
+  display: flex;
+  justify-content: center;
+}
+
+.titulo h1 {
+  /*muda o tamanho de estilo do titulo*/
+  font-size: 60px;
+  font-family: monospace;
+}
+
+.esqueci {
+  /*faz o botao esqueci a senha ficar no canto direito*/
+  display: flex;
+  justify-content: end;
+}
+
+.esqueci a {
+  /*muda o tamanho do botao esqueci a senha*/
+  font-size: 15px;
+}
+.botoes{
+  /*faz os botoes acessar e criar conta ficarem centralizados e um embaixo do outro*/
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
 .botoes a{
-    display: flex;
-    justify-content: center;
-    background-color: var(--cor-principal);
-    text-decoration: none;
-    color: var(--cor-bg);
-    border-radius: 4px;
-    padding: 15px;
-    transition: 0.5s ease;
+  /*estiliza os botoes acessar e criar conta*/
+  display: flex;
+  justify-content: center;
+  background-color: #f57419;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 4px;
+  padding: 15px;
+  height: 20px;
+}
+.botoes a:hover{
+  /*faz o texto dos botoes continuarem brancos depois de passar o mouse*/
+  color: #fff;
+}
+
+
+@media screen and (max-width: 640px) {
+  .formLogin {
+      height: 60%;
+      width: 60%;
   }
 
-.botoes:hover{
-  opacity: 0.9;
 }
 
-/* /Formatação dos botões*/
-
-/*formata o texto 'Assine o CrowdGym'*/
-.contatos h1 {
-  text-align: center;
-  font-size: 1.6rem;
-}
-
-/* formatação do footer*/
-
-footer {
-  width: 100%;
-  color: var(--cor-bg);
-}
-
-/*tira a decoração das imagens e da a cor do texto*/
-.footer-link {
-  text-decoration: none;
-  color: var(--cor-bg);
-}
-
-/*centraliza as colunas do footer*/
-#footer_content {
-  background-color: var(--cor-principal);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 3rem 3.5rem;
-}
-/*da uma margem ao título dos contatos*/
-#footer_contacts h1 {
-  margin-bottom: 0.75rem;
-}
-/*separa os itens de midia*/
-#footer_social_media {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-/*centraliza os icones de midias*/
-#footer_social_media .footer-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
-  transition: all 0.4s;
-  font-size: 1.25rem;
-  text-align: center;
-}
-/* altera o tamanho dos icones de midia*/
-#footer_social_media .footer-link i {
-  font-size: 1.25rem;
-}
-/*altera a opacidade do icone de midia ao passar o mouse pro cima do icone*/
-#footer_social_media .footer-link:hover {
-  opacity: 0.8;
+@media screen and (max-width: 494px) {
+  .titulo h1 {
+      font-size: 50px;
+  }
 
 }
-/*formata o fundo dos icones de midia social*/
-#instagram {
-  background: linear-gradient(#7f37c9, #ff2992, #ff9807);
-}
 
-#facebook {
-  background: #4267b3;
-}
-.whatsapp i{
-  background: #25d366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
-  transition: all 0.4s;
-  font-size: 1.25rem;
-  text-align: center;
-}
+@media screen and (max-width: 412px) {
+  .formLogin {
+      padding-bottom: 270px;
+  }
 
-/*formata o fundo dos icones do instagram facebook e whatsapp*/
-
-/*separa */
-.footer_list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  list-style: none;
-}
-
-#input_group {
-  display: flex;
-  align-items: center;
-  background-color: var(--cor-bg);
-  border-radius: 4px;
-}
-/* /formata a coluna de assine*/
-
-
-#input_group input {
-  all: unset;
-  padding: 0.75rem;
-  width: 100%;
+  .titulo h1 {
+      font-size: 35px;
+  }
 
 }
-/*formata o botão de envio do email*/
-#input_group button {
-  background-color: var(--cor-secundaria);
-  border: none;
-  padding: 0px 1.25rem;
-  font-size: 1.125rem;
-  height: 100%;
-  border-radius: 0px 4px 4px 0px;
-  cursor: pointer;
-  transition: 0.5s ease;
-}
-/*muda a cor do botão ao passar o mouse por cima*/
-#input_group button:hover {
-  background-color: var(--cor-bg3);
-}
-/*formata o texto do e o centraliza copyright*/
-#footer_copyright {
-  display: flex;
-  justify-content: center;
-  background-color: var(--cor-secundaria);
-  font-size: 0.9rem;
-  padding: 1.5rem;
-  font-weight: 100;
-}
-
-
-/* /formatação do footer*/

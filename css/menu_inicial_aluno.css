@@ -158,5 +158,23 @@ footer {
         padding: 1.5rem 13rem;
 
     }
+    .chart-container{
+        height: 500px;
+        width: 100%;
+    }
+    .info{
+        margin-right: 150px;
+        height: 500px;
+    }
+    .info h2{
+        font-size: 40px;
+    }
+    .last-train{
+        margin-bottom: 80px;
+        margin-top: 50px;
+    }
+    .time-arrive{
+        margin-bottom: 80px;
+    }
 
 }
