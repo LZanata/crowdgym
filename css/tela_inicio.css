@@ -10,7 +10,7 @@ body{
     }
     h1{
         /*muda o tamanho e estilo do titulo*/
-        font-size: 170px;
+        font-size: 120px;
         font-family: monospace;
     }
 
@@ -21,6 +21,7 @@ body{
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
+        
         margin-top: 90px;
     }
 
@@ -58,12 +59,23 @@ body{
         size: 2rem;
     }
 
-    a:after {
+    .btentrar1:after {
         /*muda a cor do botao quando passa o mouse em cima e coloca uma transicao para preencher o botao em um tempo delimitado*/
         position: absolute;
         content: "";
         top: 0;
         left: 0;
+        width: 0;
+        height: 100%;
+        background: #f57419;
+        transition: all .60s;
+    }
+    .btentrar2:after {
+        /*muda a cor do botao quando passa o mouse em cima e coloca uma transicao para preencher o botao em um tempo delimitado*/
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
         width: 0;
         height: 100%;
         background: #f57419;
@@ -78,4 +90,56 @@ body{
     a:hover:after {
         /*faz a transicao ocupar todo o espaco do botao*/
         width: 100%;
+    }
+
+    @media screen and (max-width: 640px) {
+        h1{
+            font-size: 100px;
+        }
+
+        .entrar{
+            width: 80%;
+            display: flex;
+            align-items: center;
+        }
+        
+        a{
+            height: 90px;
+            line-height: 30px;
+            width: 250px;
+        }
+        a span{
+            padding-top: 1000px;
+        }
+        
+    }
+
+    @media screen and (min-width: 641px) {
+        h1{
+            font-size: 120px;
+        }
+        .entrar{
+            display: flex;
+            align-content: center;
+            width: 90%;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .entrar{
+            width: 50%
+        }
+        
+    }
+    @media screen and (max-width: 510px) {
+        h1{
+            font-size: 80px;
+        }
+        
+    }
+    @media screen and (max-width: 412px) {
+        h1{
+            font-size: 60px;
+        }
+        
     }
