@@ -1,6 +1,6 @@
 const ctx = document.getElementById('meuGrafico').getContext('2d');
     
-        const meuGrafico = new Chart(ctx, {
+        const tabelaHorasSemanal = new Chart(ctx, {
             type: 'bar', // Tipo de gráfico: barras
             data: {
                 labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'], // Etiquetas (semanas)
