@@ -3,34 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tela Principal Academia</title>
-  </head>
-  <body>
-    <header>      
-      <!--Colocar o simbolo do Crowd Gym na parte de cima da tela e quando passar o mouse por cima vai aparecer as opções para outras telas-->
-      <h1>Crowd Gym</h1>
+    <title>Menu Inicial Gerente</title>
+    <link rel="stylesheet" href="css/gerente/menu_inicial.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+</head>
+<body>
+  <header>
+    <nav>
+      <!--Menu para alterar as opções de tela-->
+      <div class="list">
+        <ul>
+          <li class="dropdown">
+            <a href="#"><i class="bi bi-list"></i></a>
 
-      <!--Opções de tela:-->
-      <div class="menuprincipal">
-        <h1>Menu Inicial</h1>
-        <!--Opção para entrar no menu inicial(no caso, está tela)-->
+            <div class="dropdown-list">
+              <a href="gerente_menu_inicial.html">Menu Inicial</a>
+              <a href="aluno_minhas_academias.html">Planos e Assinaturas</a>
+              <a href="aluno_buscar_academias.html">Gráficos</a>
+              <a href="aluno_dados_pagamento.html">Cadastros</a>
+              <a href="aluno_sobre_nos.html">Sobre Nós</a>
+              <a href="aluno_suporte.html">Ajuda e Suporte</a>
+              <a href="tela_inicio.html">Sair</a>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="fluxos">
-        <h1>Gráficos</h1>
+      <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
+      <div class="logo">
+        <h1>Crowd Gym</h1>
       </div>
-      <div class="alunos">
-        <h1>Alunos</h1>
+      <!--Opção para alterar as configurações de usuário-->
+      <div class="user">
+        <ul>
+          <li class="user-icon">
+            <a href=""><i class="bi bi-person-circle"></i></a>
+
+            <div class="dropdown-icon">
+              <a href="#">Editar Perfil</a>
+              <a href="#">Editar Endereço</a>
+              <a href="#">Alterar Tema</a>
+              <a href="#">Sair da Conta</a>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="planos">
-        <h1>Planos</h1>
-      </div>
-      <div class="configuracoes">
-        <h1>Configurações</h1>
-      </div>
-      <div class="suporte">
-        <h1> Ajuda e Suporte</h1>
-      </div>
-    </header>
+    </nav>
+  </header>
+
     <main>
       <!--Aqui é onde vai ficar a parte do Menu Inicial-->
       <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação de Alunos Recentes(aparecerá os 3 ultimos alunos que entraram recentemente)-->
