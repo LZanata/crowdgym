@@ -77,10 +77,10 @@ nav li a:hover {
 
 /*Posiciona a lista para baixo e personaliza a lista*/
 .dropdown-icon {
+    display: none;
     position: absolute;
     background-color: #ffffff;
     box-shadow: 0 0 2px black;
-    display: none;
 }
 
 /*Posiciona a lista na vertical e personaliza as opções da lista*/
