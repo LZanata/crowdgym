@@ -39,12 +39,9 @@ body{
         letter-spacing: 2px;
         text-align: center;
         position: relative;
-        transition: all .35s;
-       
-        
-        
-        
+        transition: all .35s;    
     }
+
     .btentrar1{
         /*coloca um espaco entre os botoes*/
         margin-right: 70px;
@@ -70,6 +67,7 @@ body{
         background: #f57419;
         transition: all .60s;
     }
+    
     .btentrar2:after {
         /*muda a cor do botao quando passa o mouse em cima e coloca uma transicao para preencher o botao em um tempo delimitado*/
         position: absolute;

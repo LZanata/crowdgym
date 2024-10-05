@@ -52,7 +52,8 @@ nav li a:hover {
 .dropdown-list a {
     display: block;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
+    transition: background .4s;
 }
 
 /*Configuração para passar o mouse e exibir a lista*/
@@ -87,7 +88,8 @@ nav li a:hover {
 .dropdown-icon a {
     display: block;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
+    transition: background .4s;
 }
 
 /*Configuração para passar o mouse e exibir a lista*/
@@ -112,30 +114,4 @@ footer {
     font-size: 0.9rem;
     padding: 1.5rem;
     font-weight: 100;
-}
-
-@media screen and (min-width: 1600px) {
-    section {
-        padding: 1.5rem 13rem;
-
-    }
-    .chart-container{
-        height: 500px;
-        width: 100%;
-    }
-    .info{
-        margin-right: 150px;
-        height: 500px;
-    }
-    .info h2{
-        font-size: 40px;
-    }
-    .last-train{
-        margin-bottom: 80px;
-        margin-top: 50px;
-    }
-    .time-arrive{
-        margin-bottom: 80px;
-    }
-
 }
