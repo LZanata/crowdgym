@@ -99,7 +99,6 @@ nav li a:hover {
 
 /*Configurações da Tabela*/
 .chart-container {
-    justify-items: center;
     margin-top: 50px;
     width: 80%;
     height: 320px;
@@ -109,7 +108,7 @@ nav li a:hover {
 /*Espaçamento entre a sessão*/
 section {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 1.5rem 5rem;
 }
 

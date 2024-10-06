@@ -1,6 +1,6 @@
 const ctx = document.getElementById('quantidadeAlunos').getContext('2d');
     
-        const tabelaHorasSemanal = new Chart(ctx, {
+        const quantiaAluno = new Chart(ctx, {
             type: 'bar', // Tipo de gráfico: barras
             data: {
                 labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'], // Etiquetas (semanas)

@@ -1,5 +1,5 @@
 const ctx2 = document.getElementById('alunosMatriculados').getContext('2d');
-        const grafico2 = new Chart(ctx2, {
+        const alunoMatricula = new Chart(ctx2, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
