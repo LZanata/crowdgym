@@ -117,9 +117,7 @@ section {
 footer {
     width: 100%;
     color: var(--cor-bg);
-    position: relative;
     bottom: 0;
-    
 }
 
 /*formata o texto do e o centraliza copyright*/

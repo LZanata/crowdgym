@@ -9,6 +9,8 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
   />
+  <!-- Importando a biblioteca Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -58,18 +60,11 @@
       <section>
         <div class="chart-container">
           <canvas id="quantidadeAlunos"></canvas>
+          <canvas id="alunosMatriculados"></canvas>
       </div>
-      <!-- Importando a biblioteca Chart.js -->
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <!-- Importando a tabela no JavaScript-->
       <script src="js/gerente/quantidade_alunos.js"></script>
-      </section>
-      <section>
-        <div class="chart-container">
-          <canvas id="alunoMatricula"></canvas>
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="js/gerente/alunos_matriculados.js"></script>
+      <script src="js/gerente/alunos_matriculados.js"></script>
       </section>
     </main>
     <footer>

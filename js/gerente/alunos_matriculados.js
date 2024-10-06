@@ -1,30 +1,22 @@
-const ctx = document.getElementById('alunoMatricula').getContext('2d');
-    
-        const tabelaHorasSemanal = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfico: barras
+const ctx2 = document.getElementById('alunosMatriculados').getContext('2d');
+        const grafico2 = new Chart(ctx2, {
+            type: 'line',
             data: {
-                labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'], // Etiquetas (semanas)
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
                 datasets: [{
-                    label: 'Horas Treinadas',
-                    data: [1.5,,2,1.7,2.1,,2], // Quantidade de pessoas por semana
-                    backgroundColor: '#FFF9F3', // Cor das barras
-                    borderColor: '#f57419', // Cor das bordas das barras
-                    borderWidth: 1
+                    label: 'Alunos Matriculados',
+                    data: [800, 1700, 2500, 400, 1800, 2900],
+                    backgroundColor: '#FFF9F3',
+                    borderColor: '#f57419',
+                    borderWidth: 1,
+                    fill: true
                 }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true // Começar o eixo Y do zero
+                        beginAtZero: true
                     }
-                },
-                plugins: {
-                    legend: {
-                        display: true, // Exibir a legenda
-                        position: 'top'
-                    }
-                },
-                responsive: true, // Responsividade para dispositivos móveis
-                maintainAspectRatio: false
+                }
             }
         });
