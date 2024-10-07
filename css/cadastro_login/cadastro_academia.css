@@ -28,8 +28,8 @@ body {
   padding-bottom: 290px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
   gap: 5px;
-  width: 500px;
-  height: 500px;
+  width: 40%;
+  height: 500px ;
 }
 
 .formLogin h1 {
@@ -134,28 +134,27 @@ body {
 }
 
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 740px) {
   .formLogin {
       height: 60%;
       width: 60%;
   }
-
+  
 }
 
 @media screen and (max-width: 494px) {
   .titulo h1 {
       font-size: 50px;
   }
-
 }
 
 @media screen and (max-width: 412px) {
   .formLogin {
-      padding-bottom: 270px;
+    padding-top: 100px;
+    height: 72%;
   }
 
   .titulo h1 {
       font-size: 35px;
   }
-
 }
