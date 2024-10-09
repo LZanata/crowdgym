@@ -96,6 +96,7 @@ nav li a:hover {
 .user-icon:hover .dropdown-icon {
     display: block;
 }
+
 main{
     width: 100%;
     height: 100vh;
@@ -103,12 +104,60 @@ main{
     justify-content: center;
     align-items: center;
 }
+
 /*Configuração do container onde fica as divs*/
 .container {
-    width: 90%;
+    width: 80%;
     height: 80vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
+
+.userlist{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.form{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+.form-header{
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-header h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #F57419;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.input-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.input-box{
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.1rem; 
 }
 
 /* formatação do footer*/
