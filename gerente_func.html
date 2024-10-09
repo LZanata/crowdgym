@@ -63,9 +63,6 @@
               <div class="title">
                 <h1>Cadastro do Funcionário</h1>
               </div>
-              <div class="register-button">
-                <button><a href="#">Cadastrar</a></button>
-              </div>
             </div>
             <div class="input-group">
               <div class="input=box">
@@ -79,7 +76,7 @@
                 />
               </div>
               <div class="input=box">
-                <label for="email">Email</label>
+                <label for="email">E-mail</label>
                 <input
                   type="text"
                   name="email"
@@ -87,15 +84,6 @@
                   id="email"
                 />
               </div>
-              <div class="input=box">
-                <label for="number">Telefone</label>
-                <input
-                  type="tel"
-                  name="number"
-                  placeholder="Insira o telefone do funcionário"
-                  id="number"
-                  required
-                />
               </div>
               <div class="input=box">
                 <label for="cpf">CPF</label>
@@ -108,8 +96,8 @@
                 />
               </div>
               <div class="input=box">
-                <label for="idade">Data de Nascimento</label>
-                <input type="date" name="idade" value="" id="idade" required/>
+                <label for="cargo">Cargo</label>
+                <input type="text" name="cargo" placeholder="Insira o cargo do funcionario" id="cargo" required/>
               </div>
               <div class="input=box">
                 <label for="password">Senha</label>
@@ -117,7 +105,7 @@
                   type="password"
                   name="password"
                   placeholder="Digite a senha do funcionário"
-                  id="password"
+                  id="password" required
                 />
               </div>
               <div class="input=box">
@@ -126,10 +114,37 @@
                   type="password"
                   name="password"
                   placeholder="Digite a senha novamente"
-                  id="password"
+                  id="password" required
                 />
               </div>
             </div>
+           
+            <div class="gender-inputs">
+                <div class="gender-title">
+                    <h6>Genero</h6>
+                </div>
+
+                <div class="gender group">
+                    <div class="gender=input">
+                        <input type="radio" name="gender" id="female">
+                        <label for="female">Feminino</label>
+                    </div>
+
+                    <div class="gender=input">
+                        <input type="radio" name="gender" id="male">
+                        <label for="male">Masculino</label>
+                    </div>
+
+                    <div class="gender=input">
+                        <input type="radio" name="gender" id="others">
+                        <label for="others">Outros</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-button">
+                <button><a href="#">Cadastrar</a></button>
+              </div>
           </form>
         </div>
       </div>

@@ -97,19 +97,12 @@ nav li a:hover {
     display: block;
 }
 
-/*Configurações da Tabela*/
-.chart-container {
-    margin-top: 50px;
+/*Configuração do container onde fica as divs*/
+.container {
     width: 80%;
-    height: 320px;
-    max-width: 800px;
-}
-
-/*Espaçamento entre a sessão*/
-section {
+    height: 80vh;
     display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 5rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
 }
 
 /* formatação do footer*/
