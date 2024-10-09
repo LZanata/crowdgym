@@ -57,6 +57,43 @@
 
     <main>
       <div class="container">
+        <div class="userlist">
+          <div class="userlist-header">
+            <div class="userlist-title">
+              <h1>Funcionários Cadastrados</h1>
+            </div>
+          </div>
+         <div class="userlist-table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+              <!-- Aqui você irá preencher com os dados vindos do banco de dados -->
+              <?php
+              // Exemplo de conexão com o banco e listagem de usuários
+              include 'conexao.php';
+              $query = "SELECT id, nome, email FROM usuarios";
+              $result = mysqli_query($conexao, $query);
+  
+              while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>
+                          <td>{$row['nome']}</td>
+                          <td>
+                              <a href='detalhes.php?id={$row['id']}'>Ver Detalhes</a> |
+                              <a href='editar.php?id={$row['id']}'>Editar</a> |
+                              <a href='remover.php?id={$row['id']}'>Remover</a>
+                          </td>
+                      </tr>";
+              }
+              ?>
+          </tbody>
+        </table>
+         </div> 
+        </div>
         <div class="form">
           <form action="#">
             <div class="form-header">
@@ -143,7 +180,7 @@
             </div>
 
             <div class="register-button">
-                <button><a href="#">Cadastrar</a></button>
+               <input type="submit" value="Cadastrar">
               </div>
           </form>
         </div>
