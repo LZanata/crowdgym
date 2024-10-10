@@ -122,6 +122,7 @@ main{
     padding: 1rem;
 }
 
+/*Configuração da div que possui todas as outras divs do forms*/
 .form{
     width: 50%;
     display: flex;
@@ -131,12 +132,14 @@ main{
     padding: 3rem;
 }
 
+/*Configuração da div do cabeçalho*/
 .form-header{
     margin-bottom: 3rem;
     display: flex;
     justify-content: space-between;
 }
 
+/*Risco abaixo do titulo*/
 .form-header h1::after{
     content: '';
     display: block;
@@ -148,6 +151,7 @@ main{
     border-radius: 10px;
 }
 
+/*Customização do grupo dos inputs*/
 .input-group{
     display: flex;
     flex-wrap: wrap;
@@ -155,12 +159,14 @@ main{
     padding: 1rem 0;
 }
 
+/*Separando cada tela de input*/
 .input-box{
    display: flex;
    flex-direction: column;
    margin-bottom: 1.1rem; 
 }
 
+/*Customização do input*/
 .input-box input{
     margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
@@ -169,14 +175,17 @@ main{
     box-shadow: 1px 1px 6px #0000001c;
 }
 
+/*Customização do input ao passar o mouse nele*/
 .input-box input:hover{
     background-color: #eeeeee75;
 }
 
+/*Curstomização do input ao clicar nele*/
 .input-box input:focus-visible{
     outline: 1px solid #F57419;
 }
 
+/*Customização dos titulos dos inputs e do genero*/
 .input-box label,
 .gender-title h6{
     font-size: 0.75rem;
@@ -184,10 +193,12 @@ main{
     color: #000000c0;
 }
 
+/*Customização dos texto dentro do input*/
 .input-box input::placeholder{
     color: #000000be;
 }
 
+/*Estilização dos inputs do genero*/
 .gender-group{
     display: flex;
     justify-content: space-between;
@@ -195,27 +206,25 @@ main{
     padding: 0 0.5rem;
 }
 
+/*Alinhando o input*/
 .gender-input{
     display: flex;
     align-items: center;
 }
 
+/*Espaçamento entre as bolas e o texto*/
 .gender-input input{
     margin-right: 0.35rem;
 }
 
+/*Customização dos textos*/
 .gender-input label{
     font-size: 0.81rem;
     font-weight: 600;
     color: #000000c0;
 }
 
-.gender-input label{
-    font-size: 0.81rem;
-    font-weight: 600;
-    color: #000000c0;
-}
-
+/*Customização do botão*/
 .register-button input{
     width: 100%;
     margin-top: 2.5rem;
@@ -229,6 +238,7 @@ main{
     color: #fff;
 }
 
+/*Altera a cor ao passar o mouse encima do botão*/
 .register-button input:hover{
     background-color: #e77422;
 } 
