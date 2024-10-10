@@ -119,7 +119,13 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 1rem;
+}
+
+.userlist-title{
+    margin-bottom: 3rem;
+    display: flex;
 }
 
 /*Configuração da div que possui todas as outras divs do forms*/
@@ -136,7 +142,6 @@ main{
 .form-header{
     margin-bottom: 3rem;
     display: flex;
-    justify-content: space-between;
 }
 
 /*Risco abaixo do titulo*/
