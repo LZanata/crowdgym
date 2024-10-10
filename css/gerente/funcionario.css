@@ -97,6 +97,7 @@ nav li a:hover {
     display: block;
 }
 
+/*Configuração do main*/
 main{
     width: 100%;
     height: 100vh;
@@ -108,7 +109,7 @@ main{
 /*Configuração do container onde fica as divs*/
 .container {
     width: 90%;
-    height: 80vh;
+    height: 90vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
 }
