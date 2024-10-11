@@ -44,7 +44,7 @@
               <a href=""><i class="bi bi-person-circle"></i></a>
 
               <div class="dropdown-icon">
-                <a href="#">Perfil</a>
+                <a href="#" >Perfil</a>
                 <a href="#">Endereço</a>
                 <a href="#">Tema</a>
                 <a href="#">Sair</a>
@@ -68,7 +68,7 @@
             <tbody>
               <!-- Aqui você irá preencher com os dados vindos do banco de dados -->
               <?php
-              // Exemplo de conexão com o banco e listagem de usuários
+              // Conexão com o banco e listagem de usuários
               include 'conexao.php';
               $query = "SELECT id, nome, email FROM usuarios";
               $result = mysqli_query($conexao, $query);
@@ -77,9 +77,9 @@
                   echo "<tr>
                           <td>{$row['nome']}</td>
                           <td>
-                              <a href='detalhes.php?id={$row['id']}'>Ver Detalhes</a> |
-                              <a href='editar.php?id={$row['id']}'>Editar</a> |
-                              <a href='remover.php?id={$row['id']}'>Remover</a>
+                              <a href='detalhes.php?id={$row['id']}' id="details">Ver Detalhes</a> 
+                              <a href='editar.php?id={$row['id']}' id="edit">Editar</a> 
+                              <a href='remover.php?id={$row['id']}' id="remove">Remover</a>
                           </td>
                       </tr>";
               }
@@ -101,7 +101,7 @@
                 <input
                   type="text"
                   name="name"
-                  placeholder="Insira o nome do funcionário"
+                  placeholder="Digite o nome do funcionário"
                   id="name"
                   required
                 />
@@ -111,7 +111,7 @@
                 <input
                   type="text"
                   name="email"
-                  placeholder="Insira o email do funcionário"
+                  placeholder="Digite o email do funcionário"
                   id="email"
                 />
               </div>
@@ -120,14 +120,14 @@
                 <input
                   type="text"
                   name="cpf"
-                  placeholder="Insira o CPF do funcionário"
+                  placeholder="Digite o CPF do funcionário"
                   id="cpf"
                   required
                 />
               </div>
               <div class="input-box">
                 <label for="cargo">Cargo</label>
-                <input type="text" name="cargo" placeholder="Insira o cargo do funcionario" id="cargo" required/>
+                <input type="text" name="cargo" placeholder="Digite o cargo do funcionario" id="cargo" required/>
               </div>
               <div class="input-box">
                 <label for="password">Senha</label>
