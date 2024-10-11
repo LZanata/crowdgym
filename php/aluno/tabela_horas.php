@@ -1,9 +1,5 @@
 <?php
-// Conexão com o banco de dados
-$host = 'localhost';
-$dbname = 'crowdgym_db';
-$username = 'root';
-$password = '';
+include 'conexao.php';
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 

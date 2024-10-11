@@ -1,9 +1,5 @@
 <?php
-// Conexão com o banco de dados (MySQL)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "crowdgym_db";
+include 'conexao.php';
 
 // Cria conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
