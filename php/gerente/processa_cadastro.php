@@ -10,6 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
 
+    // Verifica se as senhas coincidem
+    if ($senha !== $confirma_senha) {
+        echo "Erro: As senhas não coincidem. Tente novamente.";
+        exit; // Interrompe a execução se as senhas não coincidirem
+    }
+
+    // Criptografa a senha
+    $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+    
     // Inserir os dados no banco de dados
     $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero) VALUES ('$nome', '$email', '$senha', '$cargo', '$data_contrat', '$genero')";
     if (mysqli_query($conexao, $query)) {
@@ -18,4 +27,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
     }
 }
+
 ?>
