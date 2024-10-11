@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero) VALUES ('$nome', '$email', '$senha', '$cargo', '$data_contrat', '$genero')";
-    
+    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero) VALUES ('$cpf','$nome', '$email', '$senha_hashed', '$cargo', '$data_contrat', '$genero')";
+
     if (mysqli_query($conexao, $query)) {
         echo "Usuário cadastrado com sucesso!";
     } else {
