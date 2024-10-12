@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "crowdgym_db";
+$banco = "crowdgym";
 
 // Cria a conexão
 $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
