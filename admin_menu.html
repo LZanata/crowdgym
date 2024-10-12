@@ -145,6 +145,10 @@
                 <input type="tel" name="telefone" placeholder="Digite o telefone da academia" id="telefone" required/>
               </div>
               <div class="input-box">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" maxlength="9" oninput="aplicarMascaraCEP(this)" placeholder="00000-000">
+              </div>
+              <div class="input-box">
                 <label for="estado">Estado:</label>
          <select id="estado" name="estado" onchange="atualizarCidades()">
             <option value="">Selecione um estado</option>

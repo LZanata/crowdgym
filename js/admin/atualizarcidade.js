@@ -47,3 +47,11 @@ function atualizarCidades() {
         });
     }
 }
+
+function aplicarMascaraCEP(input) {
+    let valor = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+    if (valor.length > 5) {
+        valor = valor.replace(/^(\d{5})(\d)/, "$1-$2"); // Aplica a máscara 00000-000
+    }
+    input.value = valor;
+}
