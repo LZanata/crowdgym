@@ -54,7 +54,7 @@
 
     <main>
       <div class="container">
-        <div class="form">
+        <div class="form-gerente">
           <form action="" method="POST">
             <div class="form-header">
               <div class="title">
@@ -117,6 +117,73 @@
 
             <div class="register-button">
                <input type="submit" value="Cadastrar Gerente">
+              </div>
+          </form>
+         </div>
+
+         <div class="form-academia">
+          <form action="" method="POST">
+            <div class="form-header">
+              <div class="title">
+                <h1>Cadastro de Academia</h1>
+              </div>
+            </div>
+            <div class="input-group">
+              <div class="input-box">
+                <label for="nome">Nome*</label>
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="Digite o nome do academia"
+                  id="nome"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <label for="email">E-mail*</label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Digite o email do academia"
+                  id="email"
+                />
+              </div>
+              <div class="input-box">
+                <label for="cpf">CPF*</label>
+                <input
+                  type="text"
+                  name="cpf"
+                  placeholder="Digite o CPF do academia"
+                  id="cpf"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <label for="telefone">Telefone*</label>
+                <input type="tel" name="telefone" placeholder="Digite o telefone do academia" id="telefone" required/>
+              </div>
+              <div class="input-box">
+                <label for="senha">Senha*</label>
+                <input
+                  type="password"
+                  name="senha"
+                  placeholder="Digite a senha do academia"
+                  id="senha" required
+                />
+              </div>
+              <div class="input-box">
+                <label for="confirma_senha">Confirme a Senha*</label>
+                <input
+                  type="password"
+                  name="confirma_senha"
+                  placeholder="Digite a senha novamente"
+                  id="confirma_senha" required
+                />
+              </div>
+            </div>
+
+            <div class="register-button">
+               <input type="submit" value="Cadastrar Academia">
               </div>
           </form>
          </div>

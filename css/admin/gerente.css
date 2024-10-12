@@ -108,14 +108,24 @@ main{
 
 /*Configuração do container onde fica as divs*/
 .container {
-    width: 40%;
+    width: 90%;
     height: 80vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
 }
 
 /*Configuração da div que possui todas as outras divs do forms*/
-.form{
+.form-gerente{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/*Configuração da div que possui todas as outras divs do forms*/
+.form-academia{
     width: 100%;
     display: flex;
     justify-content: start;
