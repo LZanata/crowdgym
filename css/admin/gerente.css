@@ -116,7 +116,7 @@ main{
 
 /*Configuração da div que possui todas as outras divs do forms*/
 .form-gerente{
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -126,7 +126,7 @@ main{
 
 /*Configuração da div que possui todas as outras divs do forms*/
 .form-academia{
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -159,6 +159,7 @@ main{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0 40px 0 40px;
     padding: 1rem 0;
 }
 
@@ -229,8 +230,8 @@ main{
 
 /*Customização do botão*/
 .register-button input{
-    width: 100%;
-    margin-top: 2.5rem;
+    width: 90%;
+    margin: 1rem 2rem 0 2rem;
     border: none;
     background-color: #F57419;
     padding: 0.62rem;
