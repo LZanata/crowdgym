@@ -146,7 +146,7 @@ main{
 .form-header h1::after{
     content: '';
     display: block;
-    width: 5rem;
+    width: 10rem;
     height: 0.3rem;
     background-color: #F57419;
     margin: 0 auto;
@@ -186,6 +186,25 @@ main{
 
 /*Curstomização do input ao clicar nele*/
 .input-box input:focus-visible{
+    outline: 1px solid #F57419;
+}
+
+/*Customização do select*/
+.input-box select{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do select ao passar o mouse nele*/
+.input-box select:hover{
+    background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.input-box select:focus-visible{
     outline: 1px solid #F57419;
 }
 
@@ -230,8 +249,8 @@ main{
 
 /*Customização do botão*/
 .register-button input{
-    width: 90%;
-    margin: 1rem 2rem 0 2rem;
+    width: 85%;
+    margin: 1rem 3rem 0 3rem;
     border: none;
     background-color: #F57419;
     padding: 0.62rem;
