@@ -18,10 +18,15 @@
     PR: [],
     PE: [],
     PI: [],
-    RJ: [],
+    RJ: ["Rio de Janeiro", "Niterói", "Petrópolis"],
     RN: [],
+    RS: [],
+    RO: [],
+    RR: [],
+    SC: [],
     SP: ["São Paulo", "Campinas", "Santos"],
-    RJ: ["Rio de Janeiro", "Niterói", "Petrópolis"]
+    SE: [],
+    TO: []
 };
 
 function atualizarCidades() {
