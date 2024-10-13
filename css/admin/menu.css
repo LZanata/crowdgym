@@ -209,8 +209,7 @@ main{
 }
 
 /*Customização dos titulos dos inputs e do genero*/
-.input-box label,
-.gender-title h6{
+.input-box label{
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
@@ -221,30 +220,9 @@ main{
     color: #000000be;
 }
 
-/*Estilização dos inputs do genero*/
-.gender-group{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.62rem;
-    padding: 0 0.5rem;
-}
-
-/*Alinhando o input*/
-.gender-input{
-    display: flex;
-    align-items: center;
-}
-
-/*Espaçamento entre as bolas e o texto*/
-.gender-input input{
-    margin-right: 0.35rem;
-}
-
-/*Customização dos textos*/
-.gender-input label{
-    font-size: 0.81rem;
-    font-weight: 600;
-    color: #000000c0;
+/*Customização do CEP para cobrir a parte direita da tela*/
+#cep-box{
+    margin-right: 100%;
 }
 
 /*Customização do botão*/

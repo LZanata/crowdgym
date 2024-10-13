@@ -144,12 +144,12 @@
                 <label for="telefone">Telefone*</label>
                 <input type="tel" name="telefone" placeholder="Digite o telefone da academia" id="telefone" required/>
               </div>
-              <div class="input-box">
-                <label for="cep">CEP:</label>
+              <div class="input-box" id="cep-box">
+                <label for="cep">CEP*</label>
                 <input type="text" id="cep" name="cep" maxlength="9" oninput="aplicarMascaraCEP(this)" placeholder="00000-000">
               </div>
               <div class="input-box">
-                <label for="estado">Estado:</label>
+                <label for="estado">Estado*</label>
          <select id="estado" name="estado" onchange="atualizarCidades()">
             <option value="">Selecione um estado</option>
             <option value="AC">Acre</option>
@@ -182,7 +182,7 @@
         </select>
               </div>
               <div class="input-box">
-                <label for="cidade">Cidade:</label>
+                <label for="cidade">Cidade*</label>
         <select id="cidade" name="cidade">
             <option value="">Selecione uma cidade</option>
         </select>
