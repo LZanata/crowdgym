@@ -12,6 +12,13 @@
     
     <script src="js/admin/validarsenha.js"></script>
     <script src="js/admin/atualizarcidade.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function() {
+        emailjs.init("service_zzwirtl"); // User ID do EmailJS
+    })();
+    </script>
+    <script src="js/cadastro_login/enviar_email.js"></script>
     <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
     <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5511941540243">
       <div class="rwb-tooltip">Fale conosco</div>
@@ -22,13 +29,13 @@
     <main>
     <div class="conteiner">
          <div class="form-academia">
-          <form action="php/cadastro_login/enviar_email.php" method="POST">
+          <form onsubmit="sendEmail(); return false;">
             <div class="form-header">
               <div class="title-main">
                 <h1>Crowd Gym</h1>
               </div>
               <div class="title-form">
-                <h2>Preencha o formulario para entrarmos em contato</h2>
+                <h2>Preencha o formulário para entrarmos em contato</h2>
               </div>
           </div>
             <div class="input-group">
