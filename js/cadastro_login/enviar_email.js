@@ -14,7 +14,7 @@ function sendEmail() {
         complemento: document.getElementById("complemento").value       
     };
 
-    emailjs.send('service_zzwirtl', 'seu_template_id', templateParams)
+    emailjs.send('service_zzwirtl', 'template_y90vtvb', templateParams)
         .then(function(response) {
             alert('E-mail enviado com sucesso!');
         }, function(error) {
