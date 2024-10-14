@@ -1,139 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cadastrar academia</title>
+    <link rel="stylesheet" href="css/cadastro_login/cadastro_academia.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    
+    <script src="js/admin/validarsenha.js"></script>
+    <script src="js/admin/atualizarcidade.js"></script>
+    <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
+    <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5511941540243">
+      <div class="rwb-tooltip">Fale conosco</div>
+      <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
+    </a>
+  </head>
+  <body>
+    <main>
+    <div class="conteiner">
+         <div class="form-academia">
+          <form action="" method="POST">
+            <div class="form-header">
+              <div class="title-main">
+                <h1>Crowd Gym</h1>
+              </div>
+              <div class="title-form">
+                <h2>Preencha o formulario para entrarmos em contato</h2>
+              </div>
+          </div>
+            <div class="input-group">
+              <div class="input-box">
+                <label for="nome">Nome da Academia*</label>
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="Digite o nome"
+                  id="nome"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <label for="nome">Nome do Gerente*</label>
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="Digite o nome"
+                  id="nome"
+                  required
+                />
+              </div>
+            
+              <div class="input-box">
+                <label for="telefone">Telefone da Academia*</label>
+                <input type="tel" name="telefone" placeholder="Digite o telefone " id="telefone" required/>
+              </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CrowdGym</title>
-  <link rel="stylesheet" href="css/cadastro_login/cadastro_academia.css">
-  <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
-<a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5511941540243">
-  <div class="rwb-tooltip">Fale conosco</div>
-  <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
-</a>
-</head>
+              <div class="input-box">
+                <label for="telefone">Telefone do Gerente*</label>
+                <input type="tel" name="telefone" placeholder="Digite o telefone" id="telefone" required/>
+              </div>
 
-<body>
-  
-</div>
+              <div class="input-box">
+                <label for="email">E-mail do Gerente*</label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Digite o email"
+                  id="email" required
+                />
+              </div>
+              <div class="input-box" id="cep-box">
+                <label for="cep">CEP*</label>
+                <input type="text" id="cep" name="cep" maxlength="9" oninput="aplicarMascaraCEP(this)" placeholder="00000-000" required>
+              </div>
+              <div class="input-box">
+                <label for="estado">Estado*</label>
+         <select id="estado" name="estado" onchange="atualizarCidades()">
+            <option value="">Selecione um estado</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select required>
+              </div>
+              <div class="input-box">
+                <label for="cidade">Cidade*</label>
+        <select id="cidade" name="cidade">
+            <option value="">Selecione uma cidade</option>
+        </select>
+              </div>
+              <div class="input-box">
+                <label for="bairro">Bairro*</label>
+                <input
+                  type="text"
+                  name="bairro"
+                  placeholder="Digite o nome do bairro"
+                  id="bairro" required
+                />
+              </div>
+              <div class="input-box">
+                <label for="rua">Rua*</label>
+                <input
+                  type="text"
+                  name="rua"
+                  placeholder="Digite o nome da rua"
+                  id="rua" required
+                />
+              </div>
+              <div class="input-box">
+                <label for="numero">Numero*</label>
+                <input
+                  type="number"
+                  name="numero"
+                  placeholder="Digite o numero"
+                  id="numero" required
+                />
+              </div>
+              <div class="input-box">
+                <label for="complemento">Complemento - opcional</label>
+                <input
+                  type="text"
+                  name="complemento"
+                  placeholder="Digite o complemento"
+                  id="complemento" required
+                />
+              </div>
+            </div>
 
-  <div class="page">
-    <form method="POST" class="formLogin">
-      <div class="titulo">
-        <h1>Crowd Gym</h1>
-
-      </div>
-      
-      <h2>Preencha o formulario para entrarmos em contato</h2>
-
-      <label for="nome">Nome da Academia*</label>
-      <input type="nome" placeholder="Inserir nome da academia" autofocus="true" />
-      <label for="nome">Nome do Gerente*</label>
-      <input type="nome" placeholder="Inserir nome do gerente" autofocus="true" />
-      <label for="email">E-mail*</label>
-      <input type="email" placeholder="Inserir email" autofocus="true" />
-      <label for="tel">Telefone*</label>
-      <input type="tel" placeholder="Inserir telefone" autofocus="true" />
-      <label for="Endereço">Endereço*</label>
-      <input type="text" placeholder="Inserir o CEP" autofocus="true" />
-      <label for="Endereço">Numero*</label>
-      <input type="text" placeholder="Inserir número do endereço" autofocus="true" />
-      <div class="botoes">
-        <a href="#">Enviar Formulário</a>
-      </div>
-    </form>
-  <!-- 
-  <div class="page">
-
-    <form method="POST" class="formLogin">
-      <div class="titulo">
-        <h1>Crowd Gym</h1>
-      </div>
-      <h2>Preencha o formulario para entrarmos em contato</h2>
-      <br />
-      <label for="nome-academia">Nome da academia*</label>
-      <input type="name" placeholder="Inserir nome da academia" autofocus="true" />
-
-      <label for="nome-gerente">Nome do gerente*</label>
-      <input type="name" placeholder="Inserir nome do gerente" autofocus="true" />
-
-      <label for="email">E-mail do gerente*</label>
-      <input type="email" placeholder="Inserir e-mail" autofocus="true" />
-
-      <label for="telefone">Telefone*</label>
-      <input type="number" placeholder="(**) *****-****" autofocus="true" />
-
-      <label for="Endereço">Endereço*</label>
-      <input type="text" placeholder="inserir o CEP" autofocus="true" />
-
-      <label for="Endereço">Numero*</label>
-      <input type="text" placeholder="Inserir número do endereço" autofocus="true" />
-
-      <div class="botoes">
-        <a href="#">Enviar Formulário</a>
-      </div>
-
-      <div></div>
-
-
-    </form> 
-  </div> -->
-  <!-- /cadastro -->
-
-  <!-- Footer 
-  
-  <footer>
-    <div id="footer_content">
-      <div id="footer_contacts">
-        <h1>CrowdGym</h1>
-        <p>Acesse nossas redes sociais</p>
-
-        <div id="footer_social_media">
-          <a href="#" class="footer-link" id="instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-
-
-
-          <a href="#" class="footer-link" id="facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-
-
+            <div class="register-button">
+               <input type="submit" value="Enviar Formulário">
+              </div>
+          </form>
+         </div>
         </div>
       </div>
-      <ul class="footer_list">
-        <li>
-          <h3>Contatos</h3>
-        </li>
-        <li>
-          <p href="#" class="footer-link">+55 (11)98745-6321</p>
-        </li>
-        <li>
-          <p href="#" class="footer-link">EntreEmContato@crowdgym.com</p>
-        </li>
-        <li>
-          <p href="#" class="footer-link">Das 8:00 as 20:00</p>
-        </li>
-
-
-      </ul>
-      <div class="whatsapp">
-        <h2>Entre em contato pelo nosso whatsapp</h2>
-        <a href="#" class="footer-link" id="whatsapp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-      </div>
     </div>
+  </main>
+  <footer>
     <div id="footer_copyright">
       &#169
       2024 FROM EASY SYSTEM LTDA
     </div>
   </footer>
-
-  -->
-
-</body>
-
+  </body>
 </html>

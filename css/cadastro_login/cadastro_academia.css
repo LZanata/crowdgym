@@ -1,170 +1,185 @@
-body {
-  /*estiliza os elementos do body*/
-  font-family: 'Inter', sans-serif;
+/*Padronizando os componentes*/
+* {
   margin: 0;
   padding: 0;
-  color: #000000;
-  
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
-
-.page {
-  /*faz o formulario de login ficar centralizado no meio da tela e muda o tamanho dele*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background-color: #ffffff;
-  width: 100%;
-}
-
-.formLogin {
-  /*estiliza o formulario e faz os inputs ficarem organizados dentro do formulario e com um espaçamento dos cantos*/
-  display: flex;
-  flex-direction: column;
+/*Configuração da div que possui todas as outras divs do forms*/
+.conteiner{
+  margin-top: 2%;
   background-color: #fff;
   border-radius: 7px;
-  padding: 40px;
-  padding-bottom: 290px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-  gap: 5px;
-  width: 40%;
-  height: 460px ;
+  width: 650px;
+  height: 830px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.formLogin h1 {
-  /*muda o tamanho do titulo crowd gym na tela do login*/
-  padding: 0;
-  margin: 0;
-  font-weight: 500;
-  font-size: 2.3em;
+.form-academia{
+  padding-top: 30px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.formLogin p {
-  /*deixa o paragrafo na linha, muda o tamnho e cor e coloca uma margem da parte de baixo*/
-  display: inline-block;
-  font-size: 14px;
-  color: rgb(0, 0, 0);
-  margin-bottom: 25px;
+@media screen and (max-width: 700px) {
+  .form-academia{
+    display: flex ;
+    flex-direction: column;
+    width: 300px;
+  }
+  .conteiner{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 300px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 }
 
-.formLogin input {
-  /*estiliza o campo de texto mudando o tamanho, borda e margem*/
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-  margin-top: 5px;
-  border-radius: 4px;
-  transition: all linear 160ms;
-  outline: none;
-}
-
-
-.formLogin input:focus {
-  /*deixa a borda do input com outra cor e estilo*/
-  border: 1px solid #f57419;
-}
-
-.formLogin label {
-  /*muda o tamanho do titulo em cima do input; email, senha etc*/
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.formLogin a {
-  /*coloca um estilo nos botoes de acessar, criar conta e no botao de esqueci a senha*/
-  display: inline-block;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: #555;
-  transition: all linear 160ms;
-}
-
-.formLogin a:hover {
-  /*faz o botao de esqueci a senha ficar laranja quando passar o mouse*/
-  color: #f57419;
-}
-
-
-
-.titulo {
-  /*faz o titulo crowd gym ficar centralizado no formulario*/
-  display: flex;
+/*Configuração da div do cabeçalho*/
+.form-header{
+  margin-bottom: 2rem;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-.titulo h1 {
-  /*muda o tamanho de estilo do titulo*/
-  font-size: 60px;
+/*Configuração da div do titulo*/
+.title-main{
+  padding-bottom: 1rem;
+}
+
+/*Alteração do tamanho de estilo do titulo*/
+.title-main h1{
+  font-size: 2.9rem;
   font-family: monospace;
 }
-
-.esqueci {
-  /*faz o botao esqueci a senha ficar no canto direito*/
-  display: flex;
-  justify-content: end;
+.title-form h2{
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+/*Risco abaixo do titulo*/
+.form-header h2::after{
+  content: '';
+  display: block;
+  width: 10rem;
+  height: 0.3rem;
+  background-color: #F57419;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 10px;
 }
 
-.esqueci a {
-  /*muda o tamanho do botao esqueci a senha*/
-  font-size: 15px;
-}
-.botoes{
-  /*faz os botoes acessar e criar conta ficarem centralizados e um embaixo do outro*/
+/*Customização do grupo dos inputs*/
+.input-group{
   display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 40px 0 40px;
+  padding: 1rem 0;
 }
-.botoes a{
-  /*estiliza os botoes acessar e criar conta*/
-  display: flex;
-  justify-content: center;
-  background-color: #f57419;
-  text-decoration: none;
+
+/*Separando cada tela de input*/
+.input-box{
+ display: flex;
+ flex-direction: column;
+ margin-bottom: 1.1rem; 
+}
+
+/*Customização do input*/
+.input-box input{
+  margin: 0.6rem 0;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do input ao passar o mouse nele*/
+.input-box input:hover{
+  background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.input-box input:focus-visible{
+  outline: 1px solid #F57419;
+}
+
+/*Customização do select*/
+.input-box select{
+  margin: 0.6rem 0;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do select ao passar o mouse nele*/
+.input-box select:hover{
+  background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.input-box select:focus-visible{
+  outline: 1px solid #F57419;
+}
+
+/*Customização dos titulos dos inputs e do genero*/
+.input-box label{
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #000000c0;
+}
+
+/*Customização dos texto dentro do input*/
+.input-box input::placeholder{
+  color: #000000be;
+}
+.register-button{
+  text-align: center;
+}
+/*Customização do botão*/
+.register-button input{
+  width: 200px;
+  border: none;
+  background-color: #F57419;
+  padding: 0.62rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.93rem;
   color: #fff;
-  border-radius: 4px;
-  padding: 15px;
-  height: 20px;
-}
-.botoes a:hover{
-  /*faz o texto dos botoes continuarem brancos depois de passar o mouse*/
-  color: #fff;
+  margin-bottom: 10px;
 }
 
+/*Altera a cor ao passar o mouse encima do botão*/
+.register-button input:hover{
+  background-color: #ff6a00;
+} 
 
-@media screen and (min-width: 1366px) {
-  .formLogin{
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
+/* formatação do footer*/
+footer {
+  width: 100%;
+  color: var(--cor-bg);
+  position: relative;
+  bottom: 0;
   
 }
 
-@media screen and (max-width: 740px) {
-  .formLogin {
-      height: 60%;
-      width: 60%;
-  }
-  
+/*formata o texto do e o centraliza copyright*/
+#footer_copyright {
+  display: flex;
+  justify-content: center;
+  background-color: var(--cor-secundaria);
+  font-size: 0.9rem;
+  padding: 1.5rem;
+  font-weight: 100;
 }
 
-@media screen and (max-width: 494px) {
-  .titulo h1 {
-      font-size: 50px;
-  }
-}
-
-@media screen and (max-width: 412px) {
-  .formLogin {
-    padding-top: 100px;
-    height: 72%;
-  }
-
-  .titulo h1 {
-      font-size: 35px;
-  }
-}
