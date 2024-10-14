@@ -1,3 +1,7 @@
+(function() {
+    emailjs.init("WVz7dwQpMd2PZrG4Y"); // User ID do EmailJS
+})();
+
 function sendEmail() {
     const templateParams = {
         nomeAcademia: document.getElementById("nomeAcademia").value,
