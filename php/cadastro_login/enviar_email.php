@@ -2,7 +2,16 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomeAcademia = $_POST['nomeAcademia'];
     $nomeGerente = $_POST['nomeGerente'];
+    $telefoneAcademia = $_POST['telefoneAcademia'];
+    $telefoneGerente = $_POST['telefoneGerente'];
     $email = $_POST['email'];
+    $cep = $_POST['cep'];
+    $estado = $_POST['estado'];
+    $cidade = $_POST['cidade'];
+    $bairro = $_POST['bairro'];
+    $rua = $_POST['rua'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
 
     
     $to = "lzanatabot@gmail.com";
