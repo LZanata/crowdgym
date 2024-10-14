@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $to = "lzanatabot@gmail.com";
     $subject = "Novo formulário preenchido por $nomeGerente";
-    $body = "Nome da Academia: $nomeAcademia\nNome do(a) Gerente: $nomeGerente\n\nEmail:\n$email";
+    $body = "Nome da Academia: $nomeAcademia\nNome do(a) Gerente: $nomeGerente\n\nEmail: $email\n\nTelefone da Academia:  $telefoneAcademia\n\nTelefone do Gerente: $telefoneGerente\n\n Email do Gerente: $email\n\n CEP: $cep\n\nEstado: $estado\n\nBairro: $bairro\n\nRua: $rua\n\nNúmero: $numero\n\nComplemento: $complemento";
     $headers = "De: $email";
     
     if (mail($to, $subject, $body, $headers)) {
