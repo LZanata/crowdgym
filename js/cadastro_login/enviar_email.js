@@ -21,6 +21,8 @@ function sendEmail() {
     emailjs.send('service_zzwirtl', 'template_y90vtvb', templateParams)
         .then(function(response) {
             alert('E-mail enviado com sucesso!');
+            // Redireciona para outra página após o envio bem-sucedido
+            window.location.href = 'tela_inicio.html';
         }, function(error) {
             alert('Falha ao enviar e-mail: ' + error.text);
         });
