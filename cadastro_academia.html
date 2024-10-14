@@ -78,7 +78,7 @@
               </div>
               <div class="input-box">
                 <label for="estado">Estado*</label>
-         <select id="estado" name="estado" onchange="atualizarCidades()">
+         <select id="estado" name="estado" onchange="atualizarCidades()" required>
             <option value="">Selecione um estado</option>
             <option value="AC">Acre</option>
             <option value="AL">Alagoas</option>
@@ -107,11 +107,11 @@
             <option value="SP">São Paulo</option>
             <option value="SE">Sergipe</option>
             <option value="TO">Tocantins</option>
-        </select required>
+        </select>
               </div>
               <div class="input-box">
                 <label for="cidade">Cidade*</label>
-        <select id="cidade" name="cidade">
+        <select id="cidade" name="cidade" required>
             <option value="">Selecione uma cidade</option>
         </select>
               </div>
@@ -121,7 +121,7 @@
                   type="text"
                   name="bairro"
                   placeholder="Digite o nome do bairro"
-                  id="bairro" required
+                  id="bairro"
                 />
               </div>
               <div class="input-box">
@@ -165,7 +165,7 @@
   <footer>
     <div id="footer_copyright">
       &#169
-      2024 FROM EASY SYSTEM LTDA
+      2024 CROWD GYM FROM EASY SYSTEM LTDA
     </div>
   </footer>
   </body>

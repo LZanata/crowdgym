@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
+
 /*Configuração da div que possui todas as outras divs do forms*/
 .conteiner{
   margin-top: 2%;
@@ -17,30 +18,12 @@
   margin-right: auto;
 }
 
+/*Configuração da DIV do forms*/
 .form-academia{
   padding-top: 30px;
   width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media screen and (max-width: 700px) {
-  .form-academia{
-    display: flex ;
-    flex-direction: column;
-    width: 300px;
-  }
-  .conteiner{
-    margin-top: 2%;
-    background-color: #fff;
-    border-radius: 7px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-    width: 300px;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
 }
 
 /*Configuração da div do cabeçalho*/
@@ -66,6 +49,7 @@
   font-size: 1.3rem;
   margin-left: 10px;
 }
+
 /*Risco abaixo do titulo*/
 .form-header h2::after{
   content: '';
@@ -183,3 +167,22 @@ footer {
   font-weight: 100;
 }
 
+/*Configuração da Responsividade*/
+@media screen and (max-width: 700px) {
+  .form-academia{
+    display: flex ;
+    flex-direction: column;
+    width: 300px;
+  }
+  .conteiner{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 300px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
