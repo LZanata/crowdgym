@@ -182,7 +182,7 @@ main{
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 40px 0 40px;
-    padding: 1rem 0;
+    padding: 1rem 0 0 0;
   }
   
   /*Separando cada tela de input*/
@@ -248,6 +248,9 @@ main{
     margin-right: 100%;
 }
 
+.days-title{
+    margin-bottom: 1rem;
+}
   .days-inputs{
     padding: 0 40px 0 40px;
   }
