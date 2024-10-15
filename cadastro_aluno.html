@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro_login/cadastro_aluno.css">
     <title>Cadastro Aluno</title>
+
+    <script src="js/cadastro_login/validar_senha.js"></script>
 </head>
 
 <body>
@@ -43,7 +45,7 @@
                         type="text"
                         name="email"
                         placeholder="Digite o email"
-                        id="email"
+                        id="email" required
                       />
                     </div>
                     <div class="input-box">
@@ -57,8 +59,8 @@
                       />
                     </div>
                     <div class="input-box">
-                        <label for="data_contrat">Data de Nascimento*</label>
-                        <input type="date" id="data_contrat" name="data_contrat" required>
+                        <label for="data_nascimento">Data de Nascimento*</label>
+                        <input type="date" id="data_nascimento" name="data_nascimento" required>
                       </div>
                     <div class="input-box">
                       <label for="senha">Senha*</label>
@@ -86,17 +88,17 @@
       
                       <div class="gender-group">
                           <div class="gender-input">
-                              <input type="radio" name="genero" id="feminino">
+                              <input type="radio" name="genero" id="feminino" required>
                               <label for="feminino">Feminino</label>
                           </div>
       
                           <div class="gender-input">                 
-                              <input type="radio" name="genero" id="masculino">
+                              <input type="radio" name="genero" id="masculino" required>
                               <label for="masculino">Masculino</label>
                           </div>
       
                           <div class="gender-input">
-                              <input type="radio" name="genero" id="outros">
+                              <input type="radio" name="genero" id="outros" required>
                               <label for="outros">Outros</label>
                           </div>
                       </div>
