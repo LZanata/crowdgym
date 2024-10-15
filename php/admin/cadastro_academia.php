@@ -12,17 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $estado = $_POST['estado'];
     $cep = $_POST['cep'];
 
-    // Verifica se as senhas coincidem
-    if ($senha !== $confirma_senha) {
-        echo "Erro: As senhas não coincidem. Tente novamente.";
-        exit; // Interrompe a execução se as senhas não coincidirem
-    }
-
-    // Criptografa a senha
-    $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero) VALUES ('$cpf','$nome', '$email', '$senha_hashed', '$cargo', '$data_contrat', '$genero')";
+    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep')";
 
     if (mysqli_query($conexao, $query)) {
         echo "Usuário cadastrado com sucesso!";
