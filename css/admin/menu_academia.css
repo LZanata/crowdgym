@@ -243,6 +243,11 @@ main{
     color: #000000be;
   }
 
+  /*Customização do CEP para cobrir a parte direita da tela*/
+#cep-box{
+    margin-right: 100%;
+}
+
   .gender-inputs{
     padding: 0 40px 0 40px;
   }
