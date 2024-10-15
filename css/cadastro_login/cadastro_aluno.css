@@ -28,30 +28,37 @@
   
   /*Configuração da div do cabeçalho*/
   .form-header{
-    margin-bottom: 2rem;
-    flex-direction: column;
+    margin-bottom: 1rem;
     justify-content: center;
     align-items: center;
     display: flex;
   }
   
   /*Configuração da div do titulo*/
-  .title-main{
+  .title{
     padding-bottom: 1rem;
   }
   
   /*Alteração do tamanho de estilo do titulo*/
-  .title-main h1{
+  .title h1{
     font-size: 2.9rem;
     font-family: monospace;
   }
-  .title-form h2{
+
+  .form-subheader{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .subtitle h2{
     font-size: 1.3rem;
-    margin-left: 10px;
+    margin-bottom: 0.5rem;
   }
   
   /*Risco abaixo do titulo*/
-  .form-header h2::after{
+  .form-subheader h2::after{
     content: '';
     display: block;
     width: 10rem;
@@ -220,31 +227,3 @@
     }
   
   }
-  
-
-
-@media screen and (max-width: 640px) {
-    .formLogin {
-        height: 60%;
-        width: 60%;
-    }
-
-}
-
-@media screen and (max-width: 494px) {
-    .titulo h1 {
-        font-size: 50px;
-    }
-
-}
-
-@media screen and (max-width: 412px) {
-    .formLogin {
-        padding-bottom: 130px;
-    }
-
-    .titulo h1 {
-        font-size: 35px;
-    }
-
-}
