@@ -1,0 +1,336 @@
+/*Padronizando os componentes*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/*Posiciona os elementos da tela*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
+}
+
+/*Alterações da logo*/
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+}
+
+/*Posiciona os li do nav um ao lado do outro*/
+nav li {
+    display: inline-block;
+}
+
+/*Personaliza oque está dentro do a do li*/
+nav li a {
+    display: inline-block;
+    font-size: 50px;
+    color: #000000;
+    text-decoration: none;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+/*Altera a cor quando passar o mouse por cima da lista*/
+nav li a:hover {
+    background-color: #FFF9F3;
+}
+
+/*Posiciona a lista para baixo e personaliza a lista*/
+.dropdown-list {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px black;
+    display: none;
+}
+
+/*Posiciona a lista na vertical e personaliza as opções da lista*/
+.dropdown-list a {
+    display: block;
+    color: black;
+    font-size: 15px;
+    transition: background .4s;
+}
+
+/*Configuração para passar o mouse e exibir a lista*/
+.dropdown:hover .dropdown-list {
+    display: block;
+}
+
+/*Alterações do usuario*/
+.user {
+    display: flex;
+    align-items: center
+}
+
+/*Personaliza oque está no a do user*/
+.user a {
+    font-size: 40px;
+    color: #000000;
+    text-decoration: none;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+/*Posiciona a lista para baixo e personaliza a lista*/
+.dropdown-icon {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px black;
+}
+
+/*Posiciona a lista na vertical e personaliza as opções da lista*/
+.dropdown-icon a {
+    display: block;
+    color: black;
+    font-size: 15px;
+    transition: background .4s;
+}
+
+/*Configuração para passar o mouse e exibir a lista*/
+.user-icon:hover .dropdown-icon {
+    display: block;
+}
+
+/*Configuração do main*/
+main{
+    width: 100%;
+    height: 105vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  
+  /*Configuração da div que possui todas as outras divs do forms*/
+  .container{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 620px;
+    height: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da DIV do forms*/
+  .form{
+    padding-top: 30px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da div do cabeçalho*/
+  .form-header{
+    margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  /*Configuração da div do titulo*/
+  .title{
+    padding-bottom: 1rem;
+  }
+  
+  /*Alteração do tamanho de estilo do titulo*/
+  .title h1{
+    font-size: 2.9rem;
+    font-family: monospace;
+  }
+
+  /*Alteração da div do subtitulo*/
+  .form-subheader{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /*Alteração do subtitulo*/
+  .subtitle h2{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle-main p{
+    margin-bottom: 1rem;
+  }
+  
+  /*Risco abaixo do titulo*/
+  .form-subheader h2::after{
+    content: '';
+    display: block;
+    width: 10rem;
+    height: 0.3rem;
+    background-color: #F57419;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  /*Customização do grupo dos inputs*/
+  .input-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 40px 0 40px;
+    padding: 1rem 0;
+  }
+  
+  /*Separando cada tela de input*/
+  .input-box{
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.1rem; 
+  }
+  
+  /*Customização do input*/
+  .input-box input{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+  }
+  
+  /*Customização do input ao passar o mouse nele*/
+  .input-box input:hover{
+    background-color: #eeeeee75;
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box input:focus-visible{
+    outline: 1px solid #F57419;
+  }
+  
+  /*Customização do select*/
+  .input-box select{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+  }
+  
+  /*Customização do select ao passar o mouse nele*/
+  .input-box select:hover{
+    background-color: #eeeeee75;
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box select:focus-visible{
+    outline: 1px solid #F57419;
+  }
+  
+  /*Customização dos titulos dos inputs e do genero*/
+  .input-box label,
+  .gender-title h1{
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+  }
+  
+  /*Customização dos texto dentro do input*/
+  .input-box input::placeholder{
+    color: #000000be;
+  }
+
+  .gender-inputs{
+    padding: 0 40px 0 40px;
+  }
+  /*Estilização dos inputs do genero*/
+  .gender-group{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.62rem;
+    padding: 0 0.5rem;
+  }
+
+  /*Alinhando o input*/
+  .gender-input{
+    display: flex;
+    align-items: center;
+  }
+
+  /*Espaçamento entre as bolas e o texto*/
+  .gender-input input{
+    margin-right: 0.35rem;
+  }
+
+  /*Customização dos textos*/
+  .gender-input label{
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #000000c0;
+  }
+
+  /*Centralização do botão de cadastro*/
+  .register-button{
+    text-align: center;
+    padding: 3rem;
+  }
+
+  /*Customização do botão*/
+  .register-button input{
+    width: 200px;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  /*Altera a cor ao passar o mouse encima do botão*/
+  .register-button input:hover{
+    background-color: #ff6a00;
+  } 
+  
+  /* formatação do footer*/
+  footer {
+    width: 100%;
+    color: var(--cor-bg);
+    position: relative;
+    bottom: 0;
+    
+  }
+  
+  /*formata o texto do e o centraliza copyright*/
+  #footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-secundaria);
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+  }
+  
+  /*Configuração da Responsividade*/
+  @media screen and (max-width: 700px) {
+    .form-academia{
+      display: flex ;
+      flex-direction: column;
+      width: 300px;
+    }
+    .conteiner{
+      margin-top: 2%;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+      width: 300px;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+  }

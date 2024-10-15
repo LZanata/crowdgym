@@ -106,44 +106,66 @@ main{
     align-items: center;
 }
 
-/*Configuração do container onde fica as divs*/
-.container {
-    width: 90%;
-    height: 105vh;
-    display: flex;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
-}
-
-/*Configuração da div que possui todas as outras divs do forms*/
-.form-gerente{
-    width: 50%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-/*Configuração da div que possui todas as outras divs do forms*/
-.form-academia{
-    width: 50%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-/*Configuração da div do cabeçalho*/
-.form-header{
-    margin-bottom: 2rem;
+  
+  /*Configuração da div que possui todas as outras divs do forms*/
+  .container{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 620px;
+    height: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da DIV do forms*/
+  .form{
+    padding-top: 30px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da div do cabeçalho*/
+  .form-header{
+    margin-bottom: 1rem;
     justify-content: center;
     align-items: center;
     display: flex;
-}
+  }
+  
+  /*Configuração da div do titulo*/
+  .title{
+    padding-bottom: 1rem;
+  }
+  
+  /*Alteração do tamanho de estilo do titulo*/
+  .title h1{
+    font-size: 2.9rem;
+    font-family: monospace;
+  }
 
-/*Risco abaixo do titulo*/
-.form-header h1::after{
+  /*Alteração da div do subtitulo*/
+  .form-subheader{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /*Alteração do subtitulo*/
+  .subtitle h2{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle-main p{
+    margin-bottom: 1rem;
+  }
+  
+  /*Risco abaixo do titulo*/
+  .form-subheader h2::after{
     content: '';
     display: block;
     width: 10rem;
@@ -152,111 +174,163 @@ main{
     margin: 0 auto;
     position: relative;
     border-radius: 10px;
-}
-
-/*Customização do grupo dos inputs*/
-.input-group{
+  }
+  
+  /*Customização do grupo dos inputs*/
+  .input-group{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 40px 0 40px;
     padding: 1rem 0;
-}
-
-/*Separando cada tela de input*/
-.input-box{
+  }
+  
+  /*Separando cada tela de input*/
+  .input-box{
    display: flex;
    flex-direction: column;
    margin-bottom: 1.1rem; 
-}
-
-/*Customização do input*/
-.input-box input{
+  }
+  
+  /*Customização do input*/
+  .input-box input{
     margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
-}
-
-/*Customização do input ao passar o mouse nele*/
-.input-box input:hover{
+  }
+  
+  /*Customização do input ao passar o mouse nele*/
+  .input-box input:hover{
     background-color: #eeeeee75;
-}
-
-/*Curstomização do input ao clicar nele*/
-.input-box input:focus-visible{
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box input:focus-visible{
     outline: 1px solid #F57419;
-}
-
-/*Customização do select*/
-.input-box select{
+  }
+  
+  /*Customização do select*/
+  .input-box select{
     margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
-}
-
-/*Customização do select ao passar o mouse nele*/
-.input-box select:hover{
+  }
+  
+  /*Customização do select ao passar o mouse nele*/
+  .input-box select:hover{
     background-color: #eeeeee75;
-}
-
-/*Curstomização do input ao clicar nele*/
-.input-box select:focus-visible{
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box select:focus-visible{
     outline: 1px solid #F57419;
-}
-
-/*Customização dos titulos dos inputs e do genero*/
-.input-box label{
+  }
+  
+  /*Customização dos titulos dos inputs e do genero*/
+  .input-box label,
+  .gender-title h1{
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
-}
-
-/*Customização dos texto dentro do input*/
-.input-box input::placeholder{
+  }
+  
+  /*Customização dos texto dentro do input*/
+  .input-box input::placeholder{
     color: #000000be;
-}
+  }
 
-/*Customização do CEP para cobrir a parte direita da tela*/
-#cep-box{
-    margin-right: 100%;
-}
+  .gender-inputs{
+    padding: 0 40px 0 40px;
+  }
+  /*Estilização dos inputs do genero*/
+  .gender-group{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.62rem;
+    padding: 0 0.5rem;
+  }
 
-/*Customização do botão*/
-.register-button input{
-    width: 85%;
-    margin: 1rem 3rem 0 3rem;
+  /*Alinhando o input*/
+  .gender-input{
+    display: flex;
+    align-items: center;
+  }
+
+  /*Espaçamento entre as bolas e o texto*/
+  .gender-input input{
+    margin-right: 0.35rem;
+  }
+
+  /*Customização dos textos*/
+  .gender-input label{
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #000000c0;
+  }
+
+  /*Centralização do botão de cadastro*/
+  .register-button{
+    text-align: center;
+    padding: 3rem;
+  }
+
+  /*Customização do botão*/
+  .register-button input{
+    width: 200px;
     border: none;
     background-color: #F57419;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.93rem;
-    font-weight: 500;
     color: #fff;
-}
-
-/*Altera a cor ao passar o mouse encima do botão*/
-.register-button input:hover{
+    margin-bottom: 10px;
+  }
+  
+  /*Altera a cor ao passar o mouse encima do botão*/
+  .register-button input:hover{
     background-color: #ff6a00;
-} 
-
-/* formatação do footer*/
-footer {
+  } 
+  
+  /* formatação do footer*/
+  footer {
     width: 100%;
     color: var(--cor-bg);
+    position: relative;
     bottom: 0;
-}
-
-/*formata o texto do e o centraliza copyright*/
-#footer_copyright {
+    
+  }
+  
+  /*formata o texto do e o centraliza copyright*/
+  #footer_copyright {
     display: flex;
     justify-content: center;
     background-color: var(--cor-secundaria);
     font-size: 0.9rem;
     padding: 1.5rem;
     font-weight: 100;
-}
+  }
+  
+  /*Configuração da Responsividade*/
+  @media screen and (max-width: 700px) {
+    .form-academia{
+      display: flex ;
+      flex-direction: column;
+      width: 300px;
+    }
+    .conteiner{
+      margin-top: 2%;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+      width: 300px;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+  }
