@@ -12,6 +12,7 @@
     <script src="js/admin/validarsenha.js"></script>
     <script src="js/admin/atualizarcidade.js"></script>
     <script src="js/admin/formatotelefone.js"></script>
+    <script src="js/admin/formatocpf.js"></script>
   </head>
   <body>
     <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
@@ -76,8 +77,8 @@
               </div>
               <div class="input-box">
                 <label for="telefone">Telefone*</label>
-                <input type="tel" name="telefone" placeholder="Digite o telefone" id="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
-                oninput="formatPhone(this)" required/>
+                <input type="tel" name="telefone" placeholder="(00) 00000-0000" id="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
+                oninput="formatTel(this)" required/>
               </div>
               <div class="input-box" id="cep-box">
                 <label for="cep">CEP*</label>
@@ -195,16 +196,16 @@
               <div class="input-box">
                 <label for="cpf">CPF*</label>
                 <input
-                  type="text"
-                  name="cpf"
-                  placeholder="Digite o CPF"
-                  id="cpf"
-                  required
-                />
+                type="text" id="cpf" name="cpf" placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                oninput="formatCPF(this)" 
+                maxlength="14"
+                required>
               </div>
               <div class="input-box">
                 <label for="telefone">Telefone*</label>
-                <input type="tel" name="telefone" placeholder="Digite o telefone" id="telefone" required/>
+                <input type="tel" name="telefone" placeholder="(00) 00000-0000" id="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
+                oninput="formatTel(this)" required/>
               </div>
               <div class="input-box">
                 <label for="senha">Senha*</label>
