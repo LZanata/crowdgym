@@ -114,7 +114,7 @@ main{
     border-radius: 7px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
     width: 620px;
-    height: 650px;
+    height: 90%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -275,7 +275,7 @@ main{
   /*Centralização do botão de cadastro*/
   .register-button{
     text-align: center;
-    padding: 3rem;
+    padding: 1rem;
   }
 
   /*Customização do botão*/

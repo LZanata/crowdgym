@@ -114,7 +114,7 @@ main{
     border-radius: 7px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
     width: 620px;
-    height: 50%;
+    height: 90%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -230,9 +230,9 @@ main{
     outline: 1px solid #F57419;
   }
   
-  /*Customização dos titulos dos inputs e do genero*/
+  /*Customização dos titulos dos inputs e do dia de funcionamento*/
   .input-box label,
-  .gender-title h1{
+  .days-title h6{
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
@@ -248,11 +248,11 @@ main{
     margin-right: 100%;
 }
 
-  .gender-inputs{
+  .days-inputs{
     padding: 0 40px 0 40px;
   }
-  /*Estilização dos inputs do genero*/
-  .gender-group{
+  /*Estilização dos inputs do dia de funcionamento*/
+  .days-group{
     display: flex;
     justify-content: space-between;
     margin-top: 0.62rem;
@@ -260,18 +260,18 @@ main{
   }
 
   /*Alinhando o input*/
-  .gender-input{
+  .days-input{
     display: flex;
     align-items: center;
   }
 
   /*Espaçamento entre as bolas e o texto*/
-  .gender-input input{
+  .days-input input{
     margin-right: 0.35rem;
   }
 
   /*Customização dos textos*/
-  .gender-input label{
+  .days-input label{
     font-size: 0.81rem;
     font-weight: 600;
     color: #000000c0;
@@ -280,7 +280,7 @@ main{
   /*Centralização do botão de cadastro*/
   .register-button{
     text-align: center;
-    padding: 3rem;
+    padding: 2.5rem 0 1rem 0;
   }
 
   /*Customização do botão*/
