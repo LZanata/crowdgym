@@ -114,7 +114,7 @@ main{
     border-radius: 7px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
     width: 620px;
-    height: 800px;
+    height: 50%;
     margin-left: auto;
     margin-right: auto;
   }

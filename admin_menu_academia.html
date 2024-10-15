@@ -44,7 +44,7 @@
               <a href=""><i class="bi bi-person-circle"></i></a>
 
               <div class="dropdown-icon">
-                <a href="#" >Perfil</a>
+                <a href="#">Perfil</a>
                 <a href="#">Endereço</a>
                 <a href="#">Tema</a>
                 <a href="#">Sair</a>
@@ -57,7 +57,7 @@
 
     <main>
       <div class="container">
-         <div class="form">
+        <div class="form">
           <form action="php/admin/cadastro_academia.php" method="POST">
             <div class="form-header">
               <div class="title">
@@ -77,51 +77,65 @@
               </div>
               <div class="input-box">
                 <label for="telefone">Telefone*</label>
-                <input type="tel" name="telefone" placeholder="(00) 00000-0000" id="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
-                oninput="formatTel(this)" required/>
+                <input
+                  type="tel"
+                  name="telefone"
+                  placeholder="(00) 00000-0000"
+                  id="telefone"
+                  pattern="\(\d{2}\)\s\d{4,5}-\d{4}"
+                  oninput="formatTel(this)"
+                  required
+                />
               </div>
               <div class="input-box" id="cep-box">
                 <label for="cep">CEP*</label>
-                <input type="text" id="cep" name="cep" maxlength="9" oninput="aplicarMascaraCEP(this)" placeholder="00000-000">
+                <input
+                  type="text"
+                  id="cep"
+                  name="cep"
+                  maxlength="9"
+                  oninput="aplicarMascaraCEP(this)"
+                  placeholder="00000-000"
+                />
               </div>
               <div class="input-box">
                 <label for="estado">Estado*</label>
-         <select id="estado" name="estado" onchange="atualizarCidades()">
-            <option value="">Selecione um estado</option>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
-        </select>
+                <select id="estado" name="estado" onchange="atualizarCidades()">
+                  <option value="">Selecione um estado</option>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                </select>
               </div>
               <div class="input-box">
                 <label for="cidade">Cidade*</label>
-        <select id="cidade" name="cidade">
-            <option value="">Selecione uma cidade</option>
-        </select>
+                <select id="cidade" name="cidade">
+                  <option value="">Selecione uma cidade</option>
+                </select>
               </div>
               <div class="input-box">
                 <label for="bairro">Bairro*</label>
@@ -129,7 +143,8 @@
                   type="text"
                   name="bairro"
                   placeholder="Digite o nome do bairro"
-                  id="bairro" required
+                  id="bairro"
+                  required
                 />
               </div>
               <div class="input-box">
@@ -147,7 +162,8 @@
                   type="number"
                   name="numero"
                   placeholder="Digite o numero"
-                  id="numero" required
+                  id="numero"
+                  required
                 />
               </div>
               <div class="input-box">
@@ -159,14 +175,109 @@
                   id="complemento"
                 />
               </div>
+              <div class="input-box">
+                <label for="abertura">Horário de Abertura - opcional</label>
+                <input
+                  type="time"
+                  id="abertura"
+                  name="abertura"
+                />
+              </div>
+              <div class="input-box">
+                <label for="fechamento">Horário de Fechamento - opcional</label>
+                <input
+                  type="time"
+                  id="fechamento"
+                  name="fechamento"
+                />
+              </div>
+            </div>
+
+            <div class="input-box"></div>
+
+            <div class="gender-inputs">
+              <div class="gender-title">
+                <h6>Dias de Funcionamento - opcional</h6>
+              </div>
+
+              <div class="gender-group">
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="domingo"
+                    name="dias_funcionamento[]"
+                    value="Domingo"
+                  />
+                  <label for="domingo">Domingo</label>
+                </div>
+
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="segunda"
+                    name="dias_funcionamento[]"
+                    value="Segunda-feira"
+                  />
+                  <label for="segunda">Segunda-feira</label>
+                </div>
+
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="terca"
+                    name="dias_funcionamento[]"
+                    value="Terça-feira"
+                  />
+                  <label for="terca">Terça-feira</label>
+                </div>
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="quarta"
+                    name="dias_funcionamento[]"
+                    value="Quarta-feira"
+                  />
+                  <label for="quarta">Quarta-feira</label>
+                </div>
+                </div>
+                <div class="gender-group">
+                  <div class="gender-input"> 
+                  <input
+                    type="checkbox"
+                    id="quinta"
+                    name="dias_funcionamento[]"
+                    value="Quinta-feira"
+                  />
+                  <label for="quinta">Quinta-feira</label>
+                </div>
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="sexta"
+                    name="dias_funcionamento[]"
+                    value="Sexta-feira"
+                  />
+                  <label for="sexta">Sexta-feira</label>
+                </div>
+                <div class="gender-input">
+                  <input
+                    type="checkbox"
+                    id="sabado"
+                    name="dias_funcionamento[]"
+                    value="Sábado"
+                  />
+                  <label for="sabado">Sábado</label>
+                </div>
+              </div>
+            </div>
             </div>
 
             <div class="register-button">
-               <input type="submit" value="Cadastrar Academia">
-              </div>
+              <input type="submit" value="Cadastrar Academia" />
+            </div>
           </form>
-         </div>
         </div>
+      </div>
     </main>
   </body>
 </html>
