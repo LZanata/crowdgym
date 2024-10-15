@@ -13,7 +13,7 @@
   border-radius: 7px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
   width: 650px;
-  height: 830px;
+  height: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -127,9 +127,17 @@
 .input-box input::placeholder{
   color: #000000be;
 }
+
+/*Customização do CEP para cobrir a parte direita da tela*/
+#cep-box{
+  margin-right: 100%;
+}
+
+/*Configuração do botão*/
 .register-button{
   text-align: center;
 }
+
 /*Customização do botão*/
 .register-button input{
   width: 200px;
