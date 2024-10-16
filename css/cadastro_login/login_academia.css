@@ -96,6 +96,7 @@ main{
 
 /*Customização do input*/
 .input-box input{
+  height: 3rem;
   margin: 0.6rem 0;
   padding: 0.8rem 1.2rem;
   border: none;
@@ -144,14 +145,28 @@ main{
   color: #000000be;
 }
 
+.esqueci {
+  /*faz o botao esqueci a senha ficar no canto direito*/
+  display: flex;
+  justify-content: end;
+  margin: 0 0 2rem 0;
+}
+
+.esqueci a {
+  /*muda o tamanho do botao esqueci a senha*/
+  font-size: 15px;
+  color: #555;
+}
+
 /*Configuração do botão*/
 .button{
   text-align: center;
 }
 
 /*Customização do botão*/
-.button input{
-  width: 200px;
+.button input{ 
+  width: 100%;
+  height: 3rem;
   border: none;
   background-color: #F57419;
   padding: 0.62rem;
@@ -184,18 +199,6 @@ footer {
   font-size: 0.9rem;
   padding: 1.5rem;
   font-weight: 100;
-}
-
-.esqueci {
-  /*faz o botao esqueci a senha ficar no canto direito*/
-  display: flex;
-  justify-content: end;
-}
-
-.esqueci a {
-  /*muda o tamanho do botao esqueci a senha*/
-  font-size: 15px;
-  color: #555;
 }
 
 /*Configuração da Responsividade*/
