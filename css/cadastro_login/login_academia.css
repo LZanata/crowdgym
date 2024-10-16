@@ -63,16 +63,17 @@ main{
 .form-subheader{
   display: flex;
   flex-direction: column;
-  margin: 40px;
+  margin: 0 40px 0 40px;
 }
 
 /*Alteração do subtitulo*/
 .subtitle h2{
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.subtitle-main p{
+.subtitle p{
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
