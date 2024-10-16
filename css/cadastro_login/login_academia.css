@@ -52,8 +52,11 @@ main{
 
 /*Alteração do tamanho de estilo do titulo*/
 .title h1{
-  font-size: 2.9rem;
   font-family: monospace;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 4rem;
 }
 
 /*Alteração da div do subtitulo*/
@@ -191,6 +194,7 @@ footer {
 .esqueci a {
   /*muda o tamanho do botao esqueci a senha*/
   font-size: 15px;
+  color: #555;
 }
 
 /*Configuração da Responsividade*/
