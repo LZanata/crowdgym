@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/cadastro_login/login_academia.css">
+    <link rel="stylesheet" href="css/cadastro_login/login_academia.css" />
     <title>Login academia</title>
   </head>
   <!--Parte do Login, obs: quando o usuário fizer login, ele será redirecionado para a página de acordo com a conta dele(funcionário ou de gerente)-->
@@ -17,16 +17,31 @@
         <h2>Login</h2>
         <p>Digite os dados de acesso no campo abaixo.</p>
         <label for="email">E-mail</label>
-        <input type="email" placeholder="Inserir e-mail" autofocus="true" />
-        <label for="password">Senha</label>
-        <input type="password" placeholder="Inserir senha" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Digite o email"
+          maxlength="255"
+          id="email"
+          autofocus="true"
+          required
+        />
+        <label for="senha">Senha</label>
+        <input
+          type="password"
+          name="senha"
+          placeholder="Digite a senha"
+          maxlength="45"
+          id="senha"
+          required
+        />
         <div class="esqueci">
           <a href="recuperar_senha.html">Esqueci minha senha</a>
         </div>
         <div class="botoes">
           <a href="#">Acessar conta</a>
           <a href="cadastro_academia.html">Assinar Crowd Gym</a>
-      </div>
+        </div>
       </form>
     </div>
   </body>
