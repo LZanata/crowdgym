@@ -23,7 +23,7 @@ main{
   border-radius: 7px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
   width: 620px;
-  height: 90%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -39,9 +39,10 @@ main{
 /*Configuração da div do cabeçalho*/
 .form-header{
   margin-bottom: 1rem;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
+  flex-direction: column;
 }
 
 /*Configuração da div do titulo*/
@@ -57,10 +58,9 @@ main{
 
 /*Alteração da div do subtitulo*/
 .form-subheader{
-  justify-content: center;
-  align-items: center;
   display: flex;
   flex-direction: column;
+  margin: 40px;
 }
 
 /*Alteração do subtitulo*/
@@ -73,23 +73,12 @@ main{
   margin-bottom: 1rem;
 }
 
-/*Risco abaixo do titulo*/
-.form-subheader h2::after{
-  content: '';
-  display: block;
-  width: 10rem;
-  height: 0.3rem;
-  background-color: #F57419;
-  margin: 0 auto;
-  position: relative;
-  border-radius: 10px;
-}
-
 /*Customização do grupo dos inputs*/
 .input-group{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   margin: 0 40px 0 40px;
   padding: 1rem 0 0 0;
 }
