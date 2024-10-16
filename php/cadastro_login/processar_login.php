@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['usuario_nome'] = $usuario['nome'];
 
         // Redirecionar para a página principal
-        header("Location: pagina_principal.php");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.html");
         exit();
     } else {
         echo "E-mail ou senha incorretos.";
