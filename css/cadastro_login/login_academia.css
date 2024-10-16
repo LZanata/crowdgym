@@ -160,7 +160,7 @@ main{
 
 /*Configuração do grupo de botões*/
 .button-group{
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 /*Configuração do botão*/
@@ -179,13 +179,30 @@ main{
   cursor: pointer;
   font-size: 0.93rem;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.button a{
+  width: 100%;
+  text-decoration: none;
+  height: 20px;
+  background-color: #F57419;
+  padding: 0.90rem 11.9rem 0.90rem 11.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.93rem;
+  color: #fff;
 }
 
 /*Altera a cor ao passar o mouse encima do botão*/
 .button input:hover{
   background-color: #ff6a00;
 } 
+
+/*Altera a cor ao passar o mouse encima do botão*/
+.button a:hover{
+  background-color: #ff6a00;
+}
 
 /* formatação do footer*/
 footer {

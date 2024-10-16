@@ -1,0 +1,270 @@
+/*Padronizando os componentes*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /*Configuração do main*/
+  main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  /*Configuração da div que possui todas as outras divs do forms*/
+  .container{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 620px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da DIV do forms*/
+  .form{
+    padding-top: 30px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /*Configuração da div do cabeçalho*/
+  .form-header{
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /*Configuração da div do titulo*/
+  .title{
+    padding-bottom: 1rem;
+  }
+  
+  /*Alteração do tamanho de estilo do titulo*/
+  .title h1{
+    font-family: monospace;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 4rem;
+  }
+  
+  /*Alteração da div do subtitulo*/
+  .form-subheader{
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px 0 40px;
+  }
+  
+  /*Alteração do subtitulo*/
+  .subtitle h2{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle p{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /*Customização do grupo dos inputs*/
+  .input-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 40px 0 40px;
+    padding: 1rem 0 0 0;
+  }
+  
+  /*Separando cada tela de input*/
+  .input-box{
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.1rem; 
+  }
+  
+  /*Customização do input*/
+  .input-box input{
+    height: 3rem;
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+  }
+  
+  /*Customização do input ao passar o mouse nele*/
+  .input-box input:hover{
+    background-color: #eeeeee75;
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box input:focus-visible{
+    outline: 1px solid #F57419;
+  }
+  
+  /*Customização do select*/
+  .input-box select{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+  }
+  
+  /*Customização do select ao passar o mouse nele*/
+  .input-box select:hover{
+    background-color: #eeeeee75;
+  }
+  
+  /*Curstomização do input ao clicar nele*/
+  .input-box select:focus-visible{
+    outline: 1px solid #F57419;
+  }
+  
+  /*Customização dos titulos dos inputs e do dia de funcionamento*/
+  .input-box label{
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+  }
+  
+  /*Customização dos texto dentro do input*/
+  .input-box input::placeholder{
+    color: #000000be;
+  }
+  
+  .esqueci {
+    /*faz o botao esqueci a senha ficar no canto direito*/
+    display: flex;
+    justify-content: end;
+    margin: 0 0 2rem 0;
+  }
+  
+  .esqueci a {
+    /*muda o tamanho do botao esqueci a senha*/
+    font-size: 15px;
+    color: #555;
+  }
+  
+  /*Configuração do grupo de botões*/
+  .button-group{
+    margin-bottom: 40px;
+  }
+  
+  /*Configuração do botão*/
+  .button{
+    text-align: center;
+  }
+  
+  /*Customização do botão*/
+  .button input{ 
+    width: 100%;
+    height: 3rem;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .button a{
+    width: 100%;
+    text-decoration: none;
+    height: 20px;
+    background-color: #F57419;
+    padding: 0.90rem 11.9rem 0.90rem 11.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: #fff;
+  }
+  
+  /*Altera a cor ao passar o mouse encima do botão*/
+  .button input:hover{
+    background-color: #ff6a00;
+  } 
+  
+  /*Altera a cor ao passar o mouse encima do botão*/
+  .button a:hover{
+    background-color: #ff6a00;
+  }
+  
+  /* formatação do footer*/
+  footer {
+    width: 100%;
+    color: var(--cor-bg);
+    position: relative;
+    bottom: 0;
+    
+  }
+  
+  /*formata o texto do e o centraliza copyright*/
+  #footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-secundaria);
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+  }
+  
+  /*Configuração da Responsividade*/
+  @media screen and (max-width: 700px) {
+    .form-academia{
+      display: flex ;
+      flex-direction: column;
+      width: 300px;
+    }
+    .conteiner{
+      margin-top: 2%;
+      background-color: #fff;
+      border-radius: 7px;
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+      width: 300px;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+  }
+  
+  @media screen and (max-width: 640px) {
+    .formLogin {
+      height: 60%;
+      width: 60%;
+    }
+  
+  }
+  
+  @media screen and (max-width: 494px) {
+    .titulo h1 {
+      font-size: 50px;
+    }
+  
+  }
+  
+  @media screen and (max-width: 412px) {
+    .formLogin {
+      padding-bottom: 130px;
+    }
+  
+    .titulo h1 {
+      font-size: 35px;
+    }
+  
+  }
