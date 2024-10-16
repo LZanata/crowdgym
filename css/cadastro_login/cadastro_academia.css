@@ -117,7 +117,8 @@
 }
 
 /*Customização dos titulos dos inputs e do genero*/
-.input-box label{
+.input-box label,
+.days-title h6{
   font-size: 0.75rem;
   font-weight: 600;
   color: #000000c0;
@@ -136,6 +137,39 @@
 /*Configuração do botão*/
 .register-button{
   text-align: center;
+}
+
+.days-title{
+  margin-bottom: 1rem;
+}
+.days-inputs{
+  padding: 0 40px 30px 40px;
+}
+
+/*Estilização dos inputs do dia de funcionamento*/
+.days-group{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.62rem;
+  padding: 0 0.5rem;
+}
+
+/*Alinhando o input*/
+.days-input{
+  display: flex;
+  align-items: center;
+}
+
+/*Espaçamento entre as bolas e o texto*/
+.days-input input{
+  margin-right: 0.35rem;
+}
+
+/*Customização dos textos*/
+.days-input label{
+  font-size: 0.81rem;
+  font-weight: 600;
+  color: #000000c0;
 }
 
 /*Customização do botão*/

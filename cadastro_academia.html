@@ -171,6 +171,59 @@
                   id="complemento"
                 />
               </div>
+              <div class="input-box">
+                <label for="abertura">Horário de Abertura*</label>
+                <input
+                  type="time"
+                  id="abertura"
+                  name="abertura" required
+                />
+              </div>
+              <div class="input-box">
+                <label for="fechamento">Horário de Fechamento*</label>
+                <input
+                  type="time"
+                  id="fechamento"
+                  name="fechamento" required
+                />
+              </div>
+            </div>
+            <div class="days-inputs">
+              <div class="days-title">
+                <h6>Dias de Funcionamento*</h6>
+              </div>
+
+              <div class="days-group">
+                <div class="days-input">
+                  <input
+                    type="radio"
+                    id="Segunda a Sexta"
+                    name="dia_semana"
+                    value="Segunda a Sexta" required
+                  />
+                  <label for="Segunda a Sexta">Segunda a Sexta</label>
+                </div>
+
+                <div class="days-input">
+                  <input
+                    type="radio"
+                    id="Segunda a Sábado"
+                    name="dia_semana"
+                    value="Segunda a Sábado" required
+                  />
+                  <label for="Segunda a Sábado">Segunda a Sábado</label>
+                </div>
+
+                <div class="days-input">
+                  <input
+                    type="radio"
+                    id="Todos os dias"
+                    name="dia_semana"
+                    value="Todos os dias" required
+                  />
+                  <label for="Todos os dias">Todos os dias</label>
+                </div>
+              </div>
             </div>
 
             <div class="register-button">
