@@ -158,6 +158,11 @@ main{
   color: #555;
 }
 
+/*Configuração do grupo de botões*/
+.button-group{
+  margin-bottom: 20px;
+}
+
 /*Configuração do botão*/
 .button{
   text-align: center;
