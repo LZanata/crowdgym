@@ -25,7 +25,7 @@
                 <a href="gerente_menu_inicial.html">Menu Inicial</a>
                 <a href="gerente_planos.html">Planos e Assinaturas</a>
                 <a href="gerente_graficos.html">Gráficos</a>
-                <a href="gerente_func.html">Funcionários</a>
+                <a href="gerente_func.php">Funcionários</a>
                 <a href="gerente_aluno.html">Alunos</a>
                 <a href="gerente_sobre_nos.html">Sobre Nós</a>
                 <a href="gerente_suporte.html">Ajuda e Suporte</a>
