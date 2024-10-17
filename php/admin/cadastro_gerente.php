@@ -14,13 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($senha !== $confirma_senha) {
         echo "Erro: As senhas não coincidem. Tente novamente.";
         exit; // Interrompe a execução se as senhas não coincidirem
-    } else {
+    }
+
+    // Hash da senha
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT); // Hash da senha
-    $query = "INSERT INTO gerente (cpf, nome, email, telefone, senha, Academia_id) VALUES ('$cpf','$nome', '$email', '$telefone', '$senha_hash', '$Academia_id')";
+    $query = "INSERT INTO gerente (cpf, nome, email, telefone, senha, Academia_id) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conexao, $query);
+    mysqli_stmt_bind_param($stmt, 'sssssi', $cpf, $nome, $email, $telefone, $senha_hash, $Academia_id);
 
-    if (mysqli_query($conexao, $query)) {
+    if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";
         // Redirecionar para outra página
         header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.html");
@@ -28,7 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
     }
-}
+
+    // Fecha o statement
+    mysqli_stmt_close($stmt);
 }
 
+// Fecha a conexão
+mysqli_close($conexao);
 ?>
