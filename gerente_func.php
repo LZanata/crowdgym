@@ -69,20 +69,19 @@
             <tbody>
               <!-- Aqui você irá preencher com os dados vindos do banco de dados -->
               <?php
-              // Conexão com o banco e listagem de usuários
-              include 'conexao.php';
-              $query = "SELECT id, nome, email FROM usuarios";
+              include 'php/gerente/conexao.php';
+              $query = "SELECT cpf, nome, email FROM funcionario";
               $result = mysqli_query($conexao, $query);
-  
+              
               while ($row = mysqli_fetch_assoc($result)) {
-                  echo "<tr>
-                          <td>{$row['nome']}</td>
+                  echo '<tr>
+                          <td>' . $row['nome'] . '</td>
                           <td>
-                              <a href='detalhes.php?id={$row['id']}' id="details">Ver Detalhes</a> 
-                              <a href='editar.php?id={$row['id']}' id="edit">Editar</a> 
-                              <a href='remover.php?id={$row['id']}' id="remove">Remover</a>
+                              <a href="detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                              <a href="editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                              <a href="remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
                           </td>
-                      </tr>";
+                        </tr>';
               }
               ?>
           </tbody>
