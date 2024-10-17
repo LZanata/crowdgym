@@ -1,3 +1,8 @@
+<?php
+include 'php/gerente/verifica_login.php';
+
+echo "Bem-vindo, " . $_SESSION['gerente_nome'] . "!";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
