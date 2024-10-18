@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirma_senha = $_POST['confirma_senha'];
-    $data_contrat = $_POST['data_nascimento'];
+    $data_nascimento = $_POST['data_nascimento'];
     $genero = $_POST['genero'];
 
     // Verifica se as senhas coincidem
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Inserir os dados no banco de dados
     $query = "INSERT INTO aluno (cpf, nome, email, senha, genero, data_nascimento) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssi', $cpf, $nome, $email, $senha_hash, $genero, $data_nascimento);
+    mysqli_stmt_bind_param($stmt, 'ssssss', $cpf, $nome, $email, $senha_hash, $genero, $data_nascimento);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";
