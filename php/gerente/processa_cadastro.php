@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO gerente (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_cpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_cpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $query);
     mysqli_stmt_bind_param($stmt, 'sssssssi', $cpf, $nome, $email, $senha_hash, $cargo, $data_contrat, $genero, $Gerente_cpf);
 
