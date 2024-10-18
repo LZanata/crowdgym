@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cargo = $_POST['cargo'];
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
-    $Academia_id = $_POST['Academia_id'];
+    $Gerente_cpf = $_POST['Gerente_cpf'];
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirma_senha) {
