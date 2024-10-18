@@ -72,16 +72,16 @@
               <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
               include 'php/gerente/conexao.php';
-              $query = "SELECT cpf, nome, email FROM funcionario";
+              $query = "SELECT id, nome, email FROM funcionario";
               $result = mysqli_query($conexao, $query);
 
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>
                           <td>' . $row['nome'] . ' - ' . '</td>
                           <td>
-                              <a href="gerente_detalhes.php?id=' . $row['cpf'] . '" id="details">Ver Detalhes</a> 
-                              <a href="editar.php?id=' . $row['cpf'] . '" id="edit">Editar</a> 
-                              <a href="remover.php?id=' . $row['cpf'] . '" id="remove">Remover</a>
+                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                              <a href="editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                              <a href="remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
                           </td>
                         </tr>';
               }
