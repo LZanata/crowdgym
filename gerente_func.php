@@ -148,8 +148,18 @@
                 />
               </div>
               <div class="input-box">
-                <label for="data_contrat">Data de Contratação</label>
+                <label for="data_contrat">Data de Contratação - opcional</label>
                 <input type="date" id="data_contrat" name="data_contrat" required>
+              </div>
+              <div class="input-box">
+                <label for="Gerente_cpf">CPF do Gerente*</label>
+                <input
+                  type="text"
+                  name="Gerente_cpf"
+                  placeholder="Digite o CPF"
+                  id="Gerente_cpf"
+                  required
+                />
               </div>
             </div>
             <div class="gender-inputs">

@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cargo = $_POST['cargo'];
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
+    $Academia_id = $_POST['Academia_id'];
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirma_senha) {
@@ -17,17 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit; // Interrompe a execução se as senhas não coincidirem
     }
 
-    // Criptografa a senha
-    $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+    // Hash da senha
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero) VALUES ('$cpf','$nome', '$email', '$senha_hashed', '$cargo', '$data_contrat', '$genero')";
+    $query = "INSERT INTO gerente (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_cpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conexao, $query);
+    mysqli_stmt_bind_param($stmt, 'sssssssi', $cpf, $nome, $email, $senha_hash, $cargo, $data_contrat, $genero, $Gerente_cpf);
 
-    if (mysqli_query($conexao, $query)) {
+    if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";
+        // Redirecionar para outra página
+        header("Location: http://localhost/Projeto_CrowdGym/gerente_func.php");
+        exit();
     } else {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
     }
+
+    // Fecha o statement
+    mysqli_stmt_close($stmt);
 }
 
+// Fecha a conexão
+mysqli_close($conexao);
 ?>
