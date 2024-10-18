@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cargo = $_POST['cargo'];
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
-    $Gerente_cpf = $_POST['Gerente_cpf'];
+    $Gerente_id = $_POST['Gerente_id'];
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirma_senha) {
@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_cpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssssi', $cpf, $nome, $email, $senha_hash, $cargo, $data_contrat, $genero, $Gerente_cpf);
+    mysqli_stmt_bind_param($stmt, 'sssssssi', $cpf, $nome, $email, $senha_hash, $cargo, $data_contrat, $genero, $Gerente_id);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";

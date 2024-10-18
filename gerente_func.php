@@ -149,13 +149,13 @@
               <input type="date" id="data_contrat" name="data_contrat" required>
             </div>
             <div class="input-box">
-              <label for="Gerente_cpf">CPF do Gerente*</label>
+              <label for="Gerente_id">Id do Gerente*</label>
               <input
-                type="text" id="Gerente_cpf" name="Gerente_cpf" placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                oninput="formatCPF(this)"
-                maxlength="14"
-                required>
+                  type="text"
+                  name="Gerente_id"
+                  placeholder="Digite o ID"
+                  id="Gerente_id" required
+                />
             </div>
           </div>
           <div class="gender-inputs">
