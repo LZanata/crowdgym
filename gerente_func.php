@@ -68,7 +68,7 @@
          <div class="userlist-table">
           <table>
             <tbody>
-              <!-- Aqui você irá preencher com os dados vindos do banco de dados -->
+              <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
               include 'php/gerente/conexao.php';
               $query = "SELECT cpf, nome, email FROM funcionario";
@@ -78,7 +78,7 @@
                   echo '<tr>
                           <td>' . $row['nome'] . ' - ' . '</td>
                           <td>
-                              <a href="detalhes.php?id=' . $row['cpf'] . '" id="details">Ver Detalhes</a> 
+                              <a href="gerente_detalhes.php?id=' . $row['cpf'] . '" id="details">Ver Detalhes</a> 
                               <a href="editar.php?id=' . $row['cpf'] . '" id="edit">Editar</a> 
                               <a href="remover.php?id=' . $row['cpf'] . '" id="remove">Remover</a>
                           </td>
