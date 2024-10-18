@@ -10,6 +10,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <script src="js/gerente/validar_senha.js"></script>
+    <script src="js/gerente/formatocpf.js"></script>
   </head>
   <body>
     <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
@@ -102,7 +103,7 @@
                   type="text"
                   name="nome"
                   placeholder="Digite o nome"
-                  id="nome"
+                  id="nome" maxlength="100"
                   required
                 />
               </div>
@@ -111,19 +112,18 @@
                 <input
                   type="text"
                   name="email"
-                  placeholder="Digite o email"
+                  placeholder="Digite o email" maxlength="255"
                   id="email"
                 />
               </div>
               <div class="input-box">
                 <label for="cpf">CPF*</label>
                 <input
-                  type="text"
-                  name="cpf"
-                  placeholder="Digite o CPF"
-                  id="cpf"
-                  required
-                />
+                type="text" id="cpf" name="cpf" placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                oninput="formatCPF(this)" 
+                maxlength="14"
+                required>
               </div>
               <div class="input-box">
                 <label for="cargo">Cargo*</label>
@@ -134,7 +134,7 @@
                 <input
                   type="password"
                   name="senha"
-                  placeholder="Digite a senha"
+                  placeholder="Digite a senha" maxlength="45"
                   id="senha" required
                 />
               </div>
@@ -143,7 +143,7 @@
                 <input
                   type="password"
                   name="confirma_senha"
-                  placeholder="Digite a senha novamente"
+                  placeholder="Digite a senha novamente" maxlength="45"
                   id="confirma_senha" required
                 />
               </div>
@@ -154,12 +154,11 @@
               <div class="input-box">
                 <label for="Gerente_cpf">CPF do Gerente*</label>
                 <input
-                  type="text"
-                  name="Gerente_cpf"
-                  placeholder="Digite o CPF"
-                  id="Gerente_cpf"
-                  required
-                />
+                type="text" id="Gerente_cpf" name="Gerente_cpf" placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                oninput="formatCPF(this)" 
+                maxlength="14"
+                required>
               </div>
             </div>
             <div class="gender-inputs">
