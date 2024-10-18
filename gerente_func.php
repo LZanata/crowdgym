@@ -78,9 +78,9 @@
                   echo '<tr>
                           <td>' . $row['nome'] . '</td>
                           <td>
-                              <a href="detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                              <a href="editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                              <a href="remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
+                              <a href="detalhes.php?id=' . $row['cpf'] . '" id="details">Ver Detalhes</a> 
+                              <a href="editar.php?id=' . $row['cpf'] . '" id="edit">Editar</a> 
+                              <a href="remover.php?id=' . $row['cpf'] . '" id="remove">Remover</a>
                           </td>
                         </tr>';
               }
