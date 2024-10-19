@@ -14,14 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dia_semana = $_POST['dia_semana'];
     $abertura = $_POST['abertura'];
     $fechamento = $_POST['fechamento'];
+    $Administrador_id = $_POST['Administrador_id'];
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
+    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento, Administrador_id) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento', '$Administrador_id')";
 
     if (mysqli_query($conexao, $query)) {
         echo "Usuário cadastrado com sucesso!";
         // Redirecionar para outra página
-        header("Location: http://localhost/Projeto_CrowdGym/admin_menu_gerente.html");
+        header("Location: http://localhost/Projeto_CrowdGym/admin_menu_gerente.php");
         exit();
     } else {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);

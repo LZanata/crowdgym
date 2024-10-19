@@ -87,6 +87,15 @@
                   required
                 />
               </div>
+              <div class="input-box">
+                <label for="Administrador_id">ID do Administrador*</label>
+                <input
+                  type="text"
+                  name="Administrador_id"
+                  placeholder="Digite o ID"
+                  id="Administrador_id" required
+                />
+              </div>
               <div class="input-box" id="cep-box">
                 <label for="cep">CEP*</label>
                 <input
@@ -96,15 +105,6 @@
                   maxlength="9"
                   oninput="aplicarMascaraCEP(this)"
                   placeholder="00000-000"
-                />
-              </div>
-              <div class="input-box">
-                <label for="Administrador_id">ID do Administrador*</label>
-                <input
-                  type="text"
-                  name="Administrador_id"
-                  placeholder="Digite o ID"
-                  id="Administrador_id" required
                 />
               </div>
               <div class="input-box">
