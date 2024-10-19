@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['gerente_nome'] = $row['nome'];
             
             // Redireciona para a página do gerente
-            header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.html");
+            header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.php");
             exit();
         } else {
             echo "Senha incorreta. Tente novamente.";
