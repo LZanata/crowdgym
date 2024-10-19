@@ -20,10 +20,22 @@
         /*faz o titulo ficar mais abaixo na tela*/
         margin-top: 5.5rem;
     }
+
     .crowd h1{
         /*muda o tamanho e estilo do titulo*/
         font-size: 120px;
         font-family: monospace;
+    }
+    
+    .admin{
+        display: flex;
+        text-align: center;
+        justify-content: right;
+        margin: 2rem 2rem 0 0rem;
+    }
+
+    .admin a{
+        text-decoration: none;
     }
 
     .botoes {
