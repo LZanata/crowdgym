@@ -90,19 +90,34 @@
                     </table>
                 </div>
             </div>
-            <form action="atualizar_usuario.php" method="post">
+            <div class="form">
+            <form action="php/gerente/editar.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" value="<?php echo $usuario['nome']; ?>" required>
+                <input type="text" name="nome" value="<?php echo $usuario['nome']; ?>">
                 <br>
                 <label for="email">Email:</label>
-                <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required>
+                <input type="email" name="email" value="<?php echo $usuario['email']; ?>">
                 <br>
-                <label for="telefone">Telefone:</label>
-                <input type="text" name="telefone" value="<?php echo $usuario['telefone']; ?>" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" value="<?php echo $usuario['cpf']; ?>">
                 <br>
-                <input type="submit" value="Atualizar">
+                <label for="senha">Senha:</label>
+                <input type="text" name="senha" value="<?php echo $usuario['senha']; ?>">
+                <br>
+                <label for="cargo">Cargo:</label>
+                <input type="text" name="cargo" value="<?php echo $usuario['cargo']; ?>">
+                <br>
+                <label for="data_contrat">Data de Contrato:</label>
+                <input type="text" name="data_contrat" value="<?php echo $usuario['data_contrat']; ?>">
+                <br>
+                <label for="genero">Genero:</label>
+                <input type="text" name="genero" value="<?php echo $usuario['genero']; ?>">
+                <br>
+                
+                <input type="submit" value="Atualizar Perfil">
             </form>
+            </div>
         </div>
     </main>
 </body>
