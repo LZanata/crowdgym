@@ -1,20 +1,29 @@
-body{
+/*Padronizando os componentes*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+   main{
     /*faz os conteudos ficarem centralizados no meio da tela*/
     display: flex;
     justify-content: center;
-    
+    text-align: center;
+    flex-direction: column;
    }
     .crowd {
         /*faz o titulo ficar mais abaixo na tela*/
         margin-top: 30px;
     }
-    h1{
+    .crowd h1{
         /*muda o tamanho e estilo do titulo*/
         font-size: 120px;
         font-family: monospace;
     }
 
-    .entrar {
+    .botoes {
         /*essa div centraliza os botoes de entrar no meio da tela*/
         position: fixed;
         top: 50%;
@@ -25,7 +34,7 @@ body{
         margin-top: 90px;
     }
 
-    a {
+    .botoes a {
         /*estiliza os botoes de entrar como aluno/academia*/
         display: block;
         width: 400px;
@@ -42,13 +51,13 @@ body{
         transition: all .35s;    
     }
 
-    .btentrar1{
+    .bentrar1{
         /*coloca um espaco entre os botoes*/
         margin-right: 70px;
     }
 
 
-    a span {
+    .botoes a span {
         /*faz o texto dos botoes ficarem no centro e o z-index faz ele ficar em cima da cor do fundo quando acontecer a transicao*/
         position: relative;
         z-index: 2;
@@ -56,7 +65,7 @@ body{
         size: 2rem;
     }
 
-    .btentrar1:after {
+    .bentrar1 a:after {
         /*muda a cor do botao quando passa o mouse em cima e coloca uma transicao para preencher o botao em um tempo delimitado*/
         position: absolute;
         content: "";
@@ -68,7 +77,7 @@ body{
         transition: all .60s;
     }
     
-    .btentrar2:after {
+    .bentrar2 a:after {
         /*muda a cor do botao quando passa o mouse em cima e coloca uma transicao para preencher o botao em um tempo delimitado*/
         position: absolute;
         content: "";
@@ -80,12 +89,12 @@ body{
         transition: all .60s;
     }
 
-    a:hover {
+    .botoes a:hover {
         /*deixa o texto no botao branco depois da transicao */
         color: #fff;
     }
 
-    a:hover:after {
+    .botoes a:hover:after {
         /*faz a transicao ocupar todo o espaco do botao*/
         width: 100%;
     }
