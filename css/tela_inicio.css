@@ -18,7 +18,7 @@
    
     .crowd {
         /*faz o titulo ficar mais abaixo na tela*/
-        margin-top: 30px;
+        margin-top: 5.5rem;
     }
     .crowd h1{
         /*muda o tamanho e estilo do titulo*/
@@ -32,7 +32,8 @@
         display: flex;
         justify-content: center;
         text-align: center;
-        margin-top: 90px;
+        margin-top: 9rem;
+        margin-bottom: 7.5rem;
     }
 
     .botoes a {
