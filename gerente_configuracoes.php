@@ -1,6 +1,3 @@
-<?php
-require 'php/cadastro_login/verifica_login_gerente.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
