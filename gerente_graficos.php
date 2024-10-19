@@ -1,3 +1,6 @@
+<? 
+ require 'verifica_login_gerente.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
