@@ -133,7 +133,7 @@
               <input
                 type="password"
                 name="senha"
-                placeholder="Digite a senha" maxlength="45"
+                placeholder="Digite a senha" maxlength="15"
                 id="senha" required />
             </div>
             <div class="input-box">
@@ -141,7 +141,7 @@
               <input
                 type="password"
                 name="confirma_senha"
-                placeholder="Digite a senha novamente" maxlength="45"
+                placeholder="Digite a senha novamente" maxlength="15"
                 id="confirma_senha" required />
             </div>
             <div class="input-box">
