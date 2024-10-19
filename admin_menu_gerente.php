@@ -25,8 +25,8 @@
               <a href="#"><i class="bi bi-list"></i></a>
 
               <div class="dropdown-list">
-                <a href="admin_menu_academia.html">Academia</a>
-                <a href="admin_menu_gerente.html">Gerente</a>
+                <a href="admin_menu_academia.php">Academia</a>
+                <a href="admin_menu_gerente.php">Gerente</a>
                 <a href="">Sobre Nós</a>
                 <a href="">Ajuda e Suporte</a>
                 <a href="tela_inicio.html">Sair</a>

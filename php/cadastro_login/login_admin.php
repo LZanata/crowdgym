@@ -7,7 +7,7 @@ $senha = $_POST['senha'];
 
 // Consulta para verificar o usuário no banco de dados
 $sql = "SELECT * FROM administrador WHERE email = '$email' AND senha = '$senha'";
-$result = $conn->query($sql);
+$result = $conexao->query($sql);
 
 // Verifica se há correspondência
 if ($result->num_rows > 0) {
@@ -20,5 +20,5 @@ if ($result->num_rows > 0) {
 }
 
 // Fecha a conexão
-$conn->close();
+$conexao->close();
 ?>           

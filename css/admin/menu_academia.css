@@ -243,17 +243,14 @@ main{
     color: #000000be;
   }
 
-  /*Customização do CEP para cobrir a parte direita da tela*/
-#cep-box{
-    margin-right: 100%;
-}
-
-.days-title{
+  .days-title{
     margin-bottom: 1rem;
-}
+  }
+
   .days-inputs{
     padding: 0 40px 0 40px;
   }
+  
   /*Estilização dos inputs do dia de funcionamento*/
   .days-group{
     display: flex;
