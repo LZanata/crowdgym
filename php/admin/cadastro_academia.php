@@ -14,10 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dia_semana = $_POST['dia_semana'];
     $abertura = $_POST['abertura'];
     $fechamento = $_POST['fechamento'];
-    $Administrador_id = $_POST['Administrador_id'];
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento, Administrador_id) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento', '$Administrador_id')";
+    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
 
     if (mysqli_query($conexao, $query)) {
         echo "Usuário cadastrado com sucesso!";
