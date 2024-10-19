@@ -97,12 +97,17 @@ nav li a:hover {
     display: block;
 }
 
+main{
+    width: 100%;
+    height: 100%;
+}
+
 /*Configurações da Tabela*/
 .chart-container {
     justify-items: center;
     margin-top: 50px;
-    width: 80%;
-    height: 320px;
+    width: 100%;
+    height: 100%;
     max-width: 800px;
 }
 

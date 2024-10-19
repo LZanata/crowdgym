@@ -63,14 +63,20 @@ require 'verifica_login_gerente.php';
     <!--Quando clicar nesta opção de tela aparecera: gráficos de fluxo(semanal, mensal, anual) - faixa etária dos alunos(criança, adolescente, adulto e idoso) - gráfico de matriculas(semanal, mensal e anual) - grafico de receita(semanal, mensal e anual)-->
     <section>
       <div class="chart-container">
-        <canvas id="quantidadeAlunos"></canvas>
-        <canvas id="alunosMatriculados"></canvas>
-        <canvas id="faixaEtaria"></canvas>
+        <!-- Importando a tabela no JavaScript-->
+        <div class="quantiaAlunos">
+          <canvas id="quantidadeAlunos"></canvas>
+          <script src="js/gerente/quantidade_alunos.js"></script>
+        </div>
+        <div class="alunoMatriculado">
+          <canvas id="alunosMatriculados"></canvas>
+          <script src="js/gerente/alunos_matriculados.js"></script>
+        </div>
+        <div class="faixaEtaria">
+          <canvas id="faixaEtaria"></canvas>
+          <script src="js/gerente/faixa_etaria.js"></script>
+        </div>
       </div>
-      <!-- Importando a tabela no JavaScript-->
-      <script src="js/gerente/quantidade_alunos.js"></script>
-      <script src="js/gerente/alunos_matriculados.js"></script>
-      <script src="js/gerente/faixa_etaria.js"></script>
     </section>
   </main>
   <footer>
