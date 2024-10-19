@@ -1,5 +1,5 @@
-<? 
- require 'verifica_login_gerente.php';
+<?
+require 'verifica_login_gerente.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +27,13 @@
             <a href="#"><i class="bi bi-list"></i></a>
 
             <div class="dropdown-list">
-              <a href="gerente_menu_inicial.html">Menu Inicial</a>
-              <a href="gerente_planos.html">Planos e Assinaturas</a>
-              <a href="gerente_graficos.html">Gráficos</a>
+              <a href="gerente_menu_inicial.php">Menu Inicial</a>
+              <a href="gerente_planos.php">Planos e Assinaturas</a>
+              <a href="gerente_graficos.php">Gráficos</a>
               <a href="gerente_func.php">Funcionários</a>
-              <a href="gerente_aluno.html">Alunos</a>
-              <a href="gerente_sobre_nos.html">Sobre Nós</a>
-              <a href="gerente_suporte.html">Ajuda e Suporte</a>
+              <a href="gerente_aluno.php">Alunos</a>
+              <a href="gerente_sobre_nos.php">Sobre Nós</a>
+              <a href="gerente_suporte.php">Ajuda e Suporte</a>
               <a href="tela_inicio.html">Sair</a>
             </div>
           </li>
@@ -154,11 +154,10 @@
             <div class="input-box">
               <label for="Gerente_id">Id do Gerente*</label>
               <input
-                  type="text"
-                  name="Gerente_id"
-                  placeholder="Digite o ID"
-                  id="Gerente_id" required
-                />
+                type="text"
+                name="Gerente_id"
+                placeholder="Digite o ID"
+                id="Gerente_id" required />
             </div>
           </div>
           <div class="gender-inputs">
