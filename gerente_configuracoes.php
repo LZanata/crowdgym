@@ -56,5 +56,11 @@
     <main>
         <!--Quando clicar aparecerá as opções para o usuario poder fazer alterar: conta(nome da academia, email, autenticação de dois fatores e senha) - endereço - tema(claro ou escuro)-->
     </main>
+    <footer>
+        <div id="footer_copyright">
+          &#169
+          2024 CROWD GYM FROM EASY SYSTEM LTDA
+        </div>
+      </footer>
 </body>
 </html>

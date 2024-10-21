@@ -56,5 +56,11 @@
     <main>
         <!--Nesta tela o gerente poderá ver as informações dos alunos e fazer alterações-->
     </main>
+    <footer>
+        <div id="footer_copyright">
+          &#169
+          2024 CROWD GYM FROM EASY SYSTEM LTDA
+        </div>
+      </footer>
 </body>
 </html>

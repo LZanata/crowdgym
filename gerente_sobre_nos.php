@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/gerente/sobre.css">
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
 <body>
@@ -58,6 +58,12 @@
     <main>
         <!--Aparecerá uma descrição sobre nossa empresa e o sistema-->
     </main>
+    <footer>
+        <div id="footer_copyright">
+            &#169
+            2024 CROWD GYM FROM EASY SYSTEM LTDA
+        </div>
+    </footer>
 </body>
 
 </html>

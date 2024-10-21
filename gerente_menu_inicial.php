@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu Inicial Gerente</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/menu_inicial.css">
-    <link
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Inicial Gerente</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/gerente/menu_inicial.css">
+  <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-  />
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <!-- Importando a biblioteca Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <header>
     <nav>
@@ -56,20 +57,21 @@
       </div>
     </nav>
   </header>
-    <main>
-      <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação das ultimas matriculas realizadas(aparecerá os 3 ultimos alunos que se matricularam)-->
-      <section>
-        <div class="chart-container">
-          <canvas id="quantidadeAlunos"></canvas>
+  <main>
+    <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação das ultimas matriculas realizadas(aparecerá os 3 ultimos alunos que se matricularam)-->
+    <section>
+      <div class="chart-container">
+        <canvas id="quantidadeAlunos"></canvas>
       </div>
       <!-- Importando a tabela no JavaScript-->
       <script src="js/gerente/quantidade_alunos.js"></script>
-    </main>
-    <footer>
-      <div id="footer_copyright">
-        &#169
-        2024 FROM EASY SYSTEM LTDA
-      </div>
-    </footer>
-  </body>
+  </main>
+  <footer>
+    <div id="footer_copyright">
+      &#169
+      2024 CROWD GYM FROM EASY SYSTEM LTDA
+    </div>
+  </footer>
+</body>
+
 </html>
