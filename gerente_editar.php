@@ -101,22 +101,36 @@
                     <div class="input-group">
                         <div class="input-box">
                             <label for="nome">Nome:</label>
-                            <input type="text" name="nome" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                            <input type="text" name="nome" placeholder="Digite o nome"
+                                id="nome" maxlength="100" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
                         </div>
 
                         <div class="input-box">
                             <label for="email">Email:</label>
-                            <input type="email" name="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+                            <input type="email" name="email" placeholder="Digite o email" maxlength="255"
+                                id="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
                         </div>
 
                         <div class="input-box">
                             <label for="cpf">CPF:</label>
-                            <input type="text" name="cpf" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                            <input type="text" name="cpf" placeholder="000.000.000-00"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                oninput="formatCPF(this)"
+                                maxlength="14" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
                         </div>
 
                         <div class="input-box">
                             <label for="senha">Senha:</label>
-                            <input type="text" name="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                            <input type="password" name="senha" placeholder="Digite a senha" maxlength="15"
+                                id="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="senha">Confirme a Senha:</label>
+                            <input type="password"
+                                name="confirma_senha"
+                                placeholder="Digite a senha novamente" maxlength="15"
+                                id="confirma_senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
                         </div>
 
                         <div class="input-box">
@@ -125,8 +139,8 @@
                         </div>
 
                         <div class="input-box">
-                            <label for="data_contrat">Data de Contrato:</label>
-                            <input type="text" name="data_contrat" value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
+                            <label for="data_contrat">Data de Contratação:</label>
+                            <input type="text" id="data_contrat" name="data_contrat value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
                         </div>
                     </div>
 
