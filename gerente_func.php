@@ -78,7 +78,7 @@
 
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>
-                          <td>' . $row['nome'] . ' - ' . '</td>
+                          <td class="nome_func">' . $row['nome'] . '</td>
                           <td>
                               <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
                               <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
@@ -165,18 +165,18 @@
 
             <div class="gender-group">
               <div class="gender-input">
-                <input type="radio" name="genero" id="genero" value="feminino" required>
-                <label for="genero">Feminino</label>
+                <input type="radio" name="genero" id="genero_feminino" value="feminino" required>
+                <label for="genero_feminino">Feminino</label>
               </div>
 
               <div class="gender-input">
-                <input type="radio" name="genero" id="genero" value="masculino" required>
-                <label for="genero">Masculino</label>
+                <input type="radio" name="genero" id="genero_masculino" value="masculino" required>
+                <label for="genero_masculino">Masculino</label>
               </div>
 
               <div class="gender-input">
-                <input type="radio" name="genero" id="genero" value="outro" required>
-                <label for="genero">Outro</label>
+                <input type="radio" name="genero" id="genero_outro" value="outro" required>
+                <label for="genero_outro">Outro</label>
               </div>
             </div>
           </div>

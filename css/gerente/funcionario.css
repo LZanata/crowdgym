@@ -47,6 +47,11 @@ main{
     text-decoration: none;
 }
 
+/*Customização do espaçamento dos nomes*/
+.nome_func{
+    padding: 1rem 1rem 1rem 1rem;
+}
+
 /*Customização do detalhes*/
 #details{
     width: 100%;

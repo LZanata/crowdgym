@@ -76,7 +76,7 @@
 
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>
-                          <td>' . $row['nome'] . ' - ' . '</td>
+                          <td class="nome_func">' . $row['nome'] . '</td>
                           <td>
                               <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                               <a href="gerente_remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
