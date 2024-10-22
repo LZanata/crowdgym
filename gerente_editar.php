@@ -91,87 +91,96 @@
                     </table>
                 </div>
             </div>
-            <div class="form">
+            <?php
+            include 'php/gerente/conexao.php';
+            $query = "SELECT id, nome, email FROM funcionario";
+            $result = mysqli_query($conexao, $query);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '
+              <div class="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Editar Funcionário</h1>
+                        <h1>Editar ' . $row['nome'] . ' </h1>
+                    </div>
+                </div>';
+            }
+            ?>
+            <form action="php/gerente/editar.php" method="post">
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" placeholder="Digite o nome"
+                            id="nome" maxlength="100" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" placeholder="Digite o email" maxlength="255"
+                            id="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" name="cpf" placeholder="000.000.000-00"
+                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                            oninput="formatCPF(this)"
+                            maxlength="14" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo" value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" placeholder="Digite a senha" maxlength="15"
+                            id="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="senha">Confirme a Senha:</label>
+                        <input type="password"
+                            name="confirma_senha"
+                            placeholder="Digite a senha novamente" maxlength="15"
+                            id="confirma_senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="data_contrat">Data de Contratação:</label>
+                        <input type="date" id="data_contrat" name="data_contrat value=" <?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
                     </div>
                 </div>
-                <form action="php/gerente/editar.php" method="post">
-                    <div class="input-group">
-                        <div class="input-box">
-                            <label for="nome">Nome:</label>
-                            <input type="text" name="nome" placeholder="Digite o nome"
-                                id="nome" maxlength="100" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
-                        </div>
 
-                        <div class="input-box">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" placeholder="Digite o email" maxlength="255"
-                                id="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
-                        </div>
-
-                        <div class="input-box">
-                            <label for="cpf">CPF:</label>
-                            <input type="text" name="cpf" placeholder="000.000.000-00"
-                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                oninput="formatCPF(this)"
-                                maxlength="14" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
-                        </div>
-
-                        <div class="input-box">
-                            <label for="senha">Senha:</label>
-                            <input type="password" name="senha" placeholder="Digite a senha" maxlength="15"
-                                id="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
-                        </div>
-
-                        <div class="input-box">
-                            <label for="senha">Confirme a Senha:</label>
-                            <input type="password"
-                                name="confirma_senha"
-                                placeholder="Digite a senha novamente" maxlength="15"
-                                id="confirma_senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
-                        </div>
-
-                        <div class="input-box">
-                            <label for="cargo">Cargo:</label>
-                            <input type="text" name="cargo" value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
-                        </div>
-
-                        <div class="input-box">
-                            <label for="data_contrat">Data de Contratação:</label>
-                            <input type="text" id="data_contrat" name="data_contrat value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
-                        </div>
+                <div class="gender-inputs">
+                    <div class="gender-title">
+                        <h6>Gênero*</h6>
                     </div>
 
-                    <div class="gender-inputs">
-                        <div class="gender-title">
-                            <h6>Gênero*</h6>
+                    <div class="gender-group">
+                        <div class="gender-input">
+                            <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['feminino']) : ''; ?>">
+                            <label for="genero">Feminino</label>
                         </div>
 
-                        <div class="gender-group">
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['feminino']) : ''; ?>">
-                                <label for="genero">Feminino</label>
-                            </div>
+                        <div class="gender-input">
+                            <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['masculino']) : ''; ?>">
+                            <label for="genero">Masculino</label>
+                        </div>
 
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['masculino']) : ''; ?>">
-                                <label for="genero">Masculino</label>
-                            </div>
-
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['outro']) : ''; ?>">
-                                <label for="genero">Outro</label>
-                            </div>
+                        <div class="gender-input">
+                            <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['outro']) : ''; ?>">
+                            <label for="genero">Outro</label>
                         </div>
                     </div>
+                </div>
 
-                    <div class="register-button">
-                        <input type="submit" value="Atualizar Perfil">
-                    </div>
-            </div>
+                <div class="register-button">
+                    <input type="submit" value="Atualizar Perfil">
+                </div>
             </form>
+        </div>
 
         </div>
         </div>

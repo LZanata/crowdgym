@@ -101,10 +101,10 @@
                         <div class="form">
                          <div class="form-header">
                           <div class="title">
-                          <h1>Detalhes de ' . $row['nome'] . ' </h1>
+                            <h1>Detalhes de ' . $row['nome'] . ' </h1>
                           </div>
-                        </div> 
-                         </div>';
+                         </div> 
+                        </div>';
       }
       ?>
     </div>
