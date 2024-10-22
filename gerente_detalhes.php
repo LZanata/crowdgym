@@ -10,8 +10,6 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="js/gerente/validar_senha.js"></script>
-  <script src="js/gerente/formatocpf.js"></script>
 </head>
 
 <body>
@@ -80,7 +78,6 @@
                 echo '<tr>
                           <td>' . $row['nome'] . ' - ' . '</td>
                           <td>
-                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
                               <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                               <a href="gerente_remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
                           </td>
