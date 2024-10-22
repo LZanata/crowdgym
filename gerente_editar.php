@@ -92,39 +92,45 @@
                 </div>
             </div>
             <div class="form">
-            <form action="php/gerente/editar.php" method="post">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" value="<?php echo $usuario['nome']; ?>">
-                <br>
-                <label for="email">Email:</label>
-                <input type="email" name="email" value="<?php echo $usuario['email']; ?>">
-                <br>
-                <label for="cpf">CPF:</label>
-                <input type="text" name="cpf" value="<?php echo $usuario['cpf']; ?>">
-                <br>
-                <label for="senha">Senha:</label>
-                <input type="text" name="senha" value="<?php echo $usuario['senha']; ?>">
-                <br>
-                <label for="cargo">Cargo:</label>
-                <input type="text" name="cargo" value="<?php echo $usuario['cargo']; ?>">
-                <br>
-                <label for="data_contrat">Data de Contrato:</label>
-                <input type="text" name="data_contrat" value="<?php echo $usuario['data_contrat']; ?>">
-                <br>
-                <label for="genero">Genero:</label>
-                <input type="text" name="genero" value="<?php echo $usuario['genero']; ?>">
-                <br>
-                
-                <input type="submit" value="Atualizar Perfil">
-            </form>
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Editar Funcionário</h1>
+                    </div>
+                </div>
+                <form action="php/gerente/editar.php" method="post">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+
+                    <label for="cpf">CPF:</label>
+                    <input type="text" name="cpf" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+
+                    <label for="senha">Senha:</label>
+                    <input type="text" name="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" name="cargo" value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
+
+                    <label for="data_contrat">Data de Contrato:</label>
+                    <input type="text" name="data_contrat" value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
+
+                    <label for="genero">Genero:</label>
+                    <input type="text" name="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['genero']) : ''; ?>">
+
+                    <input type="submit" value="Atualizar Perfil">
+                </form>
+
             </div>
         </div>
     </main>
     <footer>
         <div id="footer_copyright">
-          &#169
-          2024 CROWD GYM FROM EASY SYSTEM LTDA
+            &#169
+            2024 CROWD GYM FROM EASY SYSTEM LTDA
         </div>
-      </footer>
+    </footer>
 </body>
+
 </html>
