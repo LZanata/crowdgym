@@ -98,31 +98,68 @@
                     </div>
                 </div>
                 <form action="php/gerente/editar.php" method="post">
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                        </div>
 
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+                        <div class="input-box">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+                        </div>
 
-                    <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                        <div class="input-box">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" name="cpf" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                        </div>
 
-                    <label for="senha">Senha:</label>
-                    <input type="text" name="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                        <div class="input-box">
+                            <label for="senha">Senha:</label>
+                            <input type="text" name="senha" value="<?php echo isset($usuario['senha']) ? htmlspecialchars($usuario['senha']) : ''; ?>">
+                        </div>
 
-                    <label for="cargo">Cargo:</label>
-                    <input type="text" name="cargo" value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
+                        <div class="input-box">
+                            <label for="cargo">Cargo:</label>
+                            <input type="text" name="cargo" value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
+                        </div>
 
-                    <label for="data_contrat">Data de Contrato:</label>
-                    <input type="text" name="data_contrat" value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
+                        <div class="input-box">
+                            <label for="data_contrat">Data de Contrato:</label>
+                            <input type="text" name="data_contrat" value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
+                        </div>
+                    </div>
 
-                    <label for="genero">Genero:</label>
-                    <input type="text" name="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['genero']) : ''; ?>">
+                    <div class="gender-inputs">
+                        <div class="gender-title">
+                            <h6>Gênero*</h6>
+                        </div>
 
-                    <input type="submit" value="Atualizar Perfil">
-                </form>
+                        <div class="gender-group">
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['feminino']) : ''; ?>">
+                                <label for="genero">Feminino</label>
+                            </div>
 
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['masculino']) : ''; ?>">
+                                <label for="genero">Masculino</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero" value="<?php echo isset($usuario['genero']) ? htmlspecialchars($usuario['outro']) : ''; ?>">
+                                <label for="genero">Outro</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="register-button">
+                        <input type="submit" value="Atualizar Perfil">
+                    </div>
             </div>
+            </form>
+
+        </div>
         </div>
     </main>
     <footer>
