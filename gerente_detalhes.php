@@ -78,6 +78,7 @@
                 echo '<tr>
                           <td class="nome_func">' . $row['nome'] . '</td>
                           <td>
+                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a>
                               <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                               <a href="gerente_remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
                           </td>
@@ -90,27 +91,46 @@
       </div>
       <?php
       include 'php/gerente/conexao.php';
-      $query = "SELECT id, nome, email FROM funcionario";
-      $result = mysqli_query($conexao, $query);
 
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo '
-                        <div class="form">
-                         <div class="form-header">
-                          <div class="title">
-                            <h1>Detalhes de ' . $row['nome'] . ' </h1>
-                          </div>
-                         </div> 
-                        </div>';
+      // Verifica se o ID foi enviado na URL
+      if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+
+        // Consulta para obter os dados do funcionário pelo ID
+        $query = "SELECT nome, email FROM funcionario WHERE id = ?";
+        $stmt = mysqli_prepare($conexao, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        // Verifica se o funcionário foi encontrado
+        if ($row = mysqli_fetch_assoc($result)) {
+          echo '
+          <div class="form">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Detalhes do ' . $row['nome'] . '</h1>
+                    </div>
+                </div>';
+          echo "<p>Email: " . $row['email'] . "</p>";
+        } else {
+          echo "Funcionário não encontrado.";
+        }
+
+        mysqli_stmt_close($stmt);
+      } else {
+        echo "ID do funcionário não fornecido.";
       }
       ?>
+
     </div>
   </main>
   <footer>
-        <div id="footer_copyright">
-          &#169
-          2024 CROWD GYM FROM EASY SYSTEM LTDA
-        </div>
-      </footer>
+    <div id="footer_copyright">
+      &#169
+      2024 CROWD GYM FROM EASY SYSTEM LTDA
+    </div>
+  </footer>
 </body>
+
 </html>

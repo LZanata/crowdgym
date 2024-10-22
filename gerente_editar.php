@@ -80,7 +80,8 @@
                                 echo '<tr>
                           <td class="nome_func">' . $row['nome'] . '</td>
                           <td>
-                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a>
+                              <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a>  
                               <a href="gerente_remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
                           </td>
                         </tr>';
