@@ -68,6 +68,11 @@
           <div class="userlist-title">
             <h1>Funcionários Cadastrados</h1>
           </div>
+          <form method="GET" action="php/gerente/pesquisar.php">
+            <input type="text" name="pesquisa" placeholder="Digite o nome ou email"
+              value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>" />
+            <button type="submit">Pesquisar Funcionário</button>
+          </form>
         </div>
         <div class="userlist-table">
           <table>
