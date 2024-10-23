@@ -109,9 +109,10 @@
           <div class="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Detalhes do ' . $row['nome'] . '</h1>
+                        <h1>Detalhes de Funcionário</h1> 
                     </div>
                 </div>';
+          echo "<p>Nome: " . $row['nome'] . "</p>";      
           echo "<p>CPF: " . $row['cpf'] . "</p>";        
           echo "<p>Email: " . $row['email'] . "</p>";
           echo "<p>Cargo: " . $row['cargo'] . "</p>";

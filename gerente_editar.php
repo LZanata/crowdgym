@@ -127,7 +127,7 @@
             <div class="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Editar <?php echo htmlspecialchars($usuario['nome']); ?></h1>
+                        <h1>Editar Funcionário</h1>
                     </div>
                 </div>
 
