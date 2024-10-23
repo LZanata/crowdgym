@@ -125,76 +125,75 @@
                         <h1>Editar <?php echo htmlspecialchars($usuario['nome']); ?></h1>
                     </div>
                 </div>
-                
-            <form action="php/gerente/editar.php" method="post">
-                <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
-                <div class="input-group">
-                    <div class="input-box">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
-                            value="<?php echo htmlspecialchars($usuario['nome']); ?>">
-                    </div>
 
-                    <div class="input-box">
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
-                            value="<?php echo htmlspecialchars($usuario['email']); ?>">
-                    </div>
-
-                    <div class="input-box">
-                        <label for="cpf">CPF:</label>
-                        <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                            oninput="formatCPF(this)" maxlength="14"
-                            value="<?php echo htmlspecialchars($usuario['cpf']); ?>">
-                    </div>
-
-                    <div class="input-box">
-                        <label for="cargo">Cargo:</label>
-                        <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo"
-                            value="<?php echo htmlspecialchars($usuario['cargo']); ?>">
-                    </div>
-
-                    <div class="input-box">
-                        <label for="data_contrat">Data de Contratação:</label>
-                        <input type="date" id="data_contrat" name="data_contrat"
-                            value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
-                    </div>
-                </div>
-
-                <div class="gender-inputs">
-                    <div class="gender-title">
-                        <h6>Gênero*</h6>
-                    </div>
-
-                    <div class="gender-group">
-                        <div class="gender-input">
-                            <input type="radio" name="genero" id="genero_feminino" value="feminino"
-                                <?php echo ($usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
-                            <label for="genero_feminino">Feminino</label>
+                <form action="php/gerente/editar.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
+                                value="<?php echo htmlspecialchars($usuario['nome']); ?>">
                         </div>
 
-                        <div class="gender-input">
-                            <input type="radio" name="genero" id="genero_masculino" value="masculino"
-                                <?php echo ($usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
-                            <label for="genero_masculino">Masculino</label>
+                        <div class="input-box">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
+                                value="<?php echo htmlspecialchars($usuario['email']); ?>">
                         </div>
 
-                        <div class="gender-input">
-                            <input type="radio" name="genero" id="genero_outro" value="outro"
-                                <?php echo ($usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
-                            <label for="genero_outro">Outro</label>
+                        <div class="input-box">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                oninput="formatCPF(this)" maxlength="14"
+                                value="<?php echo htmlspecialchars($usuario['cpf']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="cargo">Cargo:</label>
+                            <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo"
+                                value="<?php echo htmlspecialchars($usuario['cargo']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="data_contrat">Data de Contratação:</label>
+                            <input type="date" id="data_contrat" name="data_contrat"
+                                value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
                         </div>
                     </div>
-                </div>
 
-                <div class="register-button">
-                    <input type="submit" value="Atualizar Perfil">
-                </div>
-            </form>
+                    <div class="gender-inputs">
+                        <div class="gender-title">
+                            <h6>Gênero*</h6>
+                        </div>
 
-        </div>
+                        <div class="gender-group">
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_feminino" value="feminino"
+                                    <?php echo ($usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
+                                <label for="genero_feminino">Feminino</label>
+                            </div>
 
-        </div>
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_masculino" value="masculino"
+                                    <?php echo ($usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
+                                <label for="genero_masculino">Masculino</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_outro" value="outro"
+                                    <?php echo ($usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
+                                <label for="genero_outro">Outro</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="register-button">
+                        <input type="submit" value="Atualizar Perfil">
+                    </div>
+                </form>
+
+            </div>
+
         </div>
     </main>
     <footer>
