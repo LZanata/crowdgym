@@ -1,45 +1,29 @@
 <?php
-include('conexao.php'); 
+include 'conexao.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['id']) && isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['cpf']) && isset($_POST['cargo']) && isset($_POST['data_contrat']) && isset($_POST['genero'])) {
     $id = $_POST['id'];
-    $nome = trim($_POST['nome']);
-    $email = trim($_POST['email']);
-    $cpf = trim($_POST['cpf']);
-    $senha = trim($_POST['senha']);
-    $cargo = trim($_POST['cargo']);
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $cpf = $_POST['cpf'];
+    $cargo = $_POST['cargo'];
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
 
-    // Validação básica
-    if (empty($id) || empty($nome) || empty($email) || empty($cpf) || empty($cargo) || empty($data_contrat) || empty($genero)) {
-        echo "Todos os campos são obrigatórios.";
-        exit;
-    }
+    // Atualiza os dados do funcionário
+    $query = "UPDATE funcionario SET nome = ?, email = ?, cpf = ?, cargo = ?, data_contrat = ?, genero = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conexao, $query);
+    mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $email, $cpf, $cargo, $data_contrat, $genero, $id);
+    mysqli_stmt_execute($stmt);
 
-    // Hash da senha
-    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Query de atualização
-    $sql = "UPDATE funcionario SET nome=?, email=?, cpf=?, senha=?, cargo=?, data_contrat=?, genero=? WHERE id=?";
-
-    // Preparação e execução da query
-    if ($stmt = $conexao->prepare($sql)) {
-        $stmt->bind_param("sssssssi", $nome, $email, $cpf, $senhaHash, $cargo, $data_contrat, $genero, $id);
-        
-        if ($stmt->execute()) {
-            echo "Cadastro atualizado com sucesso!";
-        } else {
-            echo "Erro ao atualizar: " . $stmt->error;
-        }
-
-        $stmt->close();
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        echo "Funcionário atualizado com sucesso.";
     } else {
-        echo "Erro na preparação da query: " . $conexao->error;
+        echo "Erro ao atualizar funcionário.";
     }
 
-    $conexao->close();
+    mysqli_stmt_close($stmt);
 } else {
-    echo "Método inválido.";
+    echo "Dados incompletos para a atualização.";
 }
 ?>

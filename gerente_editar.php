@@ -93,61 +93,71 @@
             </div>
             <?php
             include 'php/gerente/conexao.php';
-            $query = "SELECT id, nome, email FROM funcionario";
-            $result = mysqli_query($conexao, $query);
 
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '
-              <div class="form">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Editar ' . $row['nome'] . ' </h1>
-                    </div>
-                </div>';
+            // Verifica se o ID foi enviado na URL
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+
+                // Consulta para obter os dados do funcionário pelo ID
+                $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero FROM funcionario WHERE id = ?";
+                $stmt = mysqli_prepare($conexao, $query);
+                mysqli_stmt_bind_param($stmt, 'i', $id);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+
+                // Verifica se o funcionário foi encontrado
+                if ($usuario = mysqli_fetch_assoc($result)) {
+                    // Preenche os dados no formulário
+                } else {
+                    echo "Funcionário não encontrado.";
+                    exit;
+                }
+
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "ID do funcionário não fornecido.";
+                exit;
             }
             ?>
+            <div class="form">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Editar <?php echo htmlspecialchars($usuario['nome']); ?></h1>
+                    </div>
+                </div>
+                
             <form action="php/gerente/editar.php" method="post">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
                 <div class="input-group">
                     <div class="input-box">
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
-                            value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                            value="<?php echo htmlspecialchars($usuario['nome']); ?>">
                     </div>
 
                     <div class="input-box">
                         <label for="email">Email:</label>
                         <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
-                            value="<?php echo isset($usuario['email']) ? htmlspecialchars($usuario['email']) : ''; ?>">
+                            value="<?php echo htmlspecialchars($usuario['email']); ?>">
                     </div>
 
                     <div class="input-box">
                         <label for="cpf">CPF:</label>
                         <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                             oninput="formatCPF(this)" maxlength="14"
-                            value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                            value="<?php echo htmlspecialchars($usuario['cpf']); ?>">
                     </div>
 
                     <div class="input-box">
                         <label for="cargo">Cargo:</label>
                         <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo"
-                            value="<?php echo isset($usuario['cargo']) ? htmlspecialchars($usuario['cargo']) : ''; ?>">
-                    </div>
-
-                    <div class="input-box">
-                        <label for="senha">Senha:</label>
-                        <input type="password" name="senha" placeholder="Digite a senha" maxlength="15" id="senha">
-                    </div>
-
-                    <div class="input-box">
-                        <label for="confirma_senha">Confirme a Senha:</label>
-                        <input type="password" name="confirma_senha" placeholder="Digite a senha novamente" maxlength="15"
-                            id="confirma_senha">
+                            value="<?php echo htmlspecialchars($usuario['cargo']); ?>">
                     </div>
 
                     <div class="input-box">
                         <label for="data_contrat">Data de Contratação:</label>
                         <input type="date" id="data_contrat" name="data_contrat"
-                            value="<?php echo isset($usuario['data_contrat']) ? htmlspecialchars($usuario['data_contrat']) : ''; ?>">
+                            value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
                     </div>
                 </div>
 
@@ -159,19 +169,19 @@
                     <div class="gender-group">
                         <div class="gender-input">
                             <input type="radio" name="genero" id="genero_feminino" value="feminino"
-                                <?php echo (isset($usuario['genero']) && $usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
+                                <?php echo ($usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
                             <label for="genero_feminino">Feminino</label>
                         </div>
 
                         <div class="gender-input">
                             <input type="radio" name="genero" id="genero_masculino" value="masculino"
-                                <?php echo (isset($usuario['genero']) && $usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
+                                <?php echo ($usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
                             <label for="genero_masculino">Masculino</label>
                         </div>
 
                         <div class="gender-input">
                             <input type="radio" name="genero" id="genero_outro" value="outro"
-                                <?php echo (isset($usuario['genero']) && $usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
+                                <?php echo ($usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
                             <label for="genero_outro">Outro</label>
                         </div>
                     </div>
