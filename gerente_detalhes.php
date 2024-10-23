@@ -114,17 +114,17 @@
         // Verifica se o funcionário foi encontrado
         if ($row = mysqli_fetch_assoc($result)) {
           echo '
-          <div class="form">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Detalhes de Funcionário</h1> 
-                    </div>
-                </div>';
-          echo "<p>Nome: " . $row['nome'] . "</p>";
-          echo "<p>CPF: " . $row['cpf'] . "</p>";
-          echo "<p>Email: " . $row['email'] . "</p>";
-          echo "<p>Cargo: " . $row['cargo'] . "</p>";
-          echo "<p>Data de Contratação: " . $row['data_contrat'] . "</p>";
+        <div class="form">
+            <div class="form-header">
+                <div class="title">
+                    <h1>Detalhes de Funcionário</h1> 
+                </div>
+            </div>';
+          echo '<p class="details">Nome: ' . $row['nome'] . '</p>';
+          echo '<p class="details">CPF: ' . $row['cpf'] . '</p>';
+          echo '<p class="details">Email: ' . $row['email'] . '</p>';
+          echo '<p class="details">Cargo: ' . $row['cargo'] . '</p>';
+          echo '<p class="details">Data de Contratação: ' . $row['data_contrat'] . '</p>';
         } else {
           echo "Funcionário não encontrado.";
         }
