@@ -10,6 +10,8 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script src="js/gerente/confirmar_exclusao.js"></script>
+  <script src="js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
@@ -80,9 +82,15 @@
                           <td>
                               <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a>
                               <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                              <a href="gerente_remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
+                              <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
                           </td>
                         </tr>';
+              }
+              ?>
+              <!--Mensagem após a remoção-->
+              <?php
+              if (isset($_GET['removido']) && $_GET['removido'] == 1) {
+                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
               }
               ?>
             </tbody>
@@ -112,8 +120,8 @@
                         <h1>Detalhes de Funcionário</h1> 
                     </div>
                 </div>';
-          echo "<p>Nome: " . $row['nome'] . "</p>";      
-          echo "<p>CPF: " . $row['cpf'] . "</p>";        
+          echo "<p>Nome: " . $row['nome'] . "</p>";
+          echo "<p>CPF: " . $row['cpf'] . "</p>";
           echo "<p>Email: " . $row['email'] . "</p>";
           echo "<p>Cargo: " . $row['cargo'] . "</p>";
           echo "<p>Data de Contratação: " . $row['data_contrat'] . "</p>";

@@ -4,4 +4,4 @@ setTimeout(function () {
   if (mensagem) {
     mensagem.style.display = "none";
   }
-}, 3000); // 3000 milissegundos = 3 segundos
+}, 2000); // 2000 milissegundos = 2 segundos
