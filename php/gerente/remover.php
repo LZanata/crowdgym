@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 
     if (mysqli_stmt_execute($stmt)) {
         // Redireciona para a página principal com uma mensagem de sucesso
-        header("Location: gerente_func.php?removido=1");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente_func.php?removido=1");
         exit;
     } else {
         echo "Erro ao remover o usuário: " . mysqli_error($conexao);

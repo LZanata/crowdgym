@@ -91,9 +91,10 @@
               <!--Mensagem após a remoção-->
               <?php
               if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo "<p>Usuário removido com sucesso!</p>";
+                echo '<div id="mensagem-sucesso">Usuário removido com sucesso!</div>';
               }
               ?>
+
             </tbody>
           </table>
         </div>
