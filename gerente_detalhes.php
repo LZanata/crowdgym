@@ -97,7 +97,7 @@
         $id = $_GET['id'];
 
         // Consulta para obter os dados do funcionário pelo ID
-        $query = "SELECT nome, email FROM funcionario WHERE id = ?";
+        $query = "SELECT nome, email, cpf, cargo, data_contrat FROM funcionario WHERE id = ?";
         $stmt = mysqli_prepare($conexao, $query);
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
@@ -112,7 +112,10 @@
                         <h1>Detalhes do ' . $row['nome'] . '</h1>
                     </div>
                 </div>';
+          echo "<p>CPF: " . $row['cpf'] . "</p>";        
           echo "<p>Email: " . $row['email'] . "</p>";
+          echo "<p>Cargo: " . $row['cargo'] . "</p>";
+          echo "<p>Data de Contratação: " . $row['data_contrat'] . "</p>";
         } else {
           echo "Funcionário não encontrado.";
         }
