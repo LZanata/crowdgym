@@ -1,7 +1,8 @@
 <?php
 include 'conexao.php';
 
-if (isset($_POST['id']) && isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['cpf']) && isset($_POST['cargo']) && isset($_POST['data_contrat']) && isset($_POST['genero'])) {
+// Verifica se o formulário foi enviado com o ID do usuário
+if (isset($_POST['id'], $_POST['nome'], $_POST['email'])) {
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -10,20 +11,21 @@ if (isset($_POST['id']) && isset($_POST['nome']) && isset($_POST['email']) && is
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
 
-    // Atualiza os dados do funcionário
+    // Atualiza os dados do funcionário no banco de dados
     $query = "UPDATE funcionario SET nome = ?, email = ?, cpf = ?, cargo = ?, data_contrat = ?, genero = ? WHERE id = ?";
     $stmt = mysqli_prepare($conexao, $query);
     mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $email, $cpf, $cargo, $data_contrat, $genero, $id);
-    mysqli_stmt_execute($stmt);
 
-    if (mysqli_stmt_affected_rows($stmt) > 0) {
-        echo "Funcionário atualizado com sucesso.";
+    if (mysqli_stmt_execute($stmt)) {
+        // Redireciona o usuário de volta para a página de edição com uma mensagem de sucesso
+        header("Location: http://localhost/Projeto_CrowdGym/gerente_editar.php?id=$id&success=1");
+        exit;
     } else {
-        echo "Erro ao atualizar funcionário.";
+        echo "Erro ao atualizar os dados: " . mysqli_error($conexao);
     }
 
     mysqli_stmt_close($stmt);
 } else {
-    echo "Dados incompletos para a atualização.";
+    echo "Dados incompletos para atualização.";
 }
 ?>

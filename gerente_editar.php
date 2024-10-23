@@ -92,6 +92,11 @@
                 </div>
             </div>
             <?php
+            if (isset($_GET['success']) && $_GET['success'] == 1) {
+                echo "<p>Perfil atualizado com sucesso!</p>";
+            }
+            ?>
+            <?php
             include 'php/gerente/conexao.php';
 
             // Verifica se o ID foi enviado na URL
