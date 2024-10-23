@@ -12,6 +12,7 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <script src="js/gerente/validar_senha.js"></script>
   <script src="js/gerente/formatocpf.js"></script>
+  <script src="js/gerente/confirmar_exclusao.js"></script>
 </head>
 
 <body>
@@ -78,13 +79,19 @@
 
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>
-                          <td class="nome_func">' . $row['nome'] . '</td>
-                          <td>
-                              <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                              <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                              <a href="remover.php?id=' . $row['id'] . '" id="remove">Remover</a>
-                          </td>
-                        </tr>';
+              <td class="nome_func">' . $row['nome'] . '</td>
+              <td>
+                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+              </td>
+          </tr>';
+              }
+              ?>
+              <!--Mensagem após a remoção-->
+              <?php
+              if (isset($_GET['removido']) && $_GET['removido'] == 1) {
+                echo "<p>Usuário removido com sucesso!</p>";
               }
               ?>
             </tbody>
@@ -196,4 +203,5 @@
     </div>
   </footer>
 </body>
+
 </html>
