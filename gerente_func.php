@@ -13,6 +13,7 @@
   <script src="js/gerente/validar_senha.js"></script>
   <script src="js/gerente/formatocpf.js"></script>
   <script src="js/gerente/confirmar_exclusao.js"></script>
+  <script src="js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
@@ -91,7 +92,7 @@
               <!--Mensagem após a remoção-->
               <?php
               if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo '<div id="mensagem-sucesso">Usuário removido com sucesso!</div>';
+                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
               }
               ?>
 
