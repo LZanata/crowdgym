@@ -72,7 +72,7 @@
             <form method="GET" action="">
               <input type="text" name="pesquisa" placeholder="Digite o nome ou email"
                 value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>" />
-              <button type="submit">Pesquisar Funcionário</button>
+              <button type="submit">Pesquisar</button>
             </form>
           </div>
         </div>

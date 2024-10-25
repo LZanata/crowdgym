@@ -47,11 +47,46 @@ main{
     text-decoration: none;
 }
 
+/*Alinhando o form da barra de pesquisa*/
 .search-form form{
     margin: 0 1.5rem 1.5rem 1.5rem;
     text-align: center;
     align-items: center;
+    justify-content: space-between;
 }
+
+.search-form input{
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do input ao passar o mouse nele*/
+.search-form input:hover{
+    background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.search-form input:focus-visible{
+    outline: 1px solid #F57419;
+}
+
+.search-form button{
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #F57419;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+/*Altera a cor ao passar o mouse encima do botão*/
+.search-form button:hover{
+    background-color: #ff6a00;
+} 
 
 /*Customização do espaçamento dos nomes*/
 .nome_func{
