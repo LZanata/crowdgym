@@ -68,7 +68,7 @@
           <div class="userlist-title">
             <h1>Funcionários Cadastrados</h1>
           </div>
-          <form method="GET" action="php/gerente/pesquisar.php">
+          <form method="GET" action="">
             <input type="text" name="pesquisa" placeholder="Digite o nome ou email"
               value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>" />
             <button type="submit">Pesquisar Funcionário</button>
@@ -80,31 +80,46 @@
               <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
               include 'php/gerente/conexao.php';
+
+              // Verifica se o termo de pesquisa foi fornecido
+              $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+
+              // Consulta para buscar os funcionários com base no termo de pesquisa
               $query = "SELECT id, nome, email FROM funcionario";
+              if (!empty($pesquisa)) {
+                $query .= " WHERE nome LIKE '%$pesquisa%' OR email LIKE '%$pesquisa%'";
+              }
+
               $result = mysqli_query($conexao, $query);
 
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>
-              <td class="nome_func">' . $row['nome'] . '</td>
-              <td>
-                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-              </td>
-          </tr>';
+              // Verifica se encontrou resultados
+              if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '<tr>
+                            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
+                            <td>
+                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                            </td>
+                        </tr>';
+                }
+              } else {
+                echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';
               }
               ?>
+
               <!--Mensagem após a remoção-->
               <?php
               if (isset($_GET['removido']) && $_GET['removido'] == 1) {
                 echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
               }
               ?>
-
             </tbody>
           </table>
         </div>
       </div>
+      
       <div class="form">
         <form action="php/gerente/processa_cadastro.php" method="POST">
           <div class="form-header">
