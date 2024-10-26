@@ -81,22 +81,20 @@ $conexao->close();
                 placeholder="Digite a senha" maxlength="15"
                 id="senha" required />
             </div>
-            <div>
-              <div class="esqueci-group">
-                <div class="esqueci">
-                  <a href="recuperar_senha.html">Esqueci minha senha</a>
-                </div>
-                <div class="error">
-                  <!-- Exibe a mensagem de erro, se existir -->
-                  <?php if (!empty($erroLogin)): ?>
-                    <p id="mensagemErro" style="color: red;"><?php echo $erroLogin; ?></p>
-                  <?php endif; ?>
-                </div>
+            <div class="esqueci-group">
+              <div class="error">
+                <!-- Exibe a mensagem de erro, se existir -->
+                <?php if (!empty($erroLogin)): ?>
+                  <p id="mensagemErro" style="color: red;"><?php echo $erroLogin; ?></p>
+                <?php endif; ?>
               </div>
-              <div class="button-group">
-                <div class="button">
-                  <input type="submit" value="Acessar conta" />
-                </div>
+              <div class="esqueci">
+                <a href="recuperar_senha.html">Esqueci minha senha</a>
+              </div>
+            </div>
+            <div class="button-group">
+              <div class="button">
+                <input type="submit" value="Acessar conta" />
               </div>
         </form>
       </div>
