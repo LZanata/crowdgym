@@ -81,7 +81,7 @@
                         <tbody>
                             <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
                             <?php
-                            include 'php/gerente/conexao.php';
+                            include 'php/conexao.php';
 
                             // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';

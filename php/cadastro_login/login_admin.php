@@ -1,5 +1,5 @@
 <?php
-include 'conexao.php';
+include 'php/conexao.php';
 
 // Obtém os dados do formulário
 $email = $_POST['email'];

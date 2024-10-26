@@ -1,5 +1,5 @@
 <?php
-include 'php/cadastro_login/conexao.php';
+include 'php/conexao.php';
 
 // Inicializa as variáveis de mensagem de erro
 $erroLogin = "";

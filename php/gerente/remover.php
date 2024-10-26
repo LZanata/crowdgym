@@ -1,5 +1,5 @@
 <?php
-include 'conexao.php';
+include 'php/conexao.php';
 
 // Verifica se o ID foi fornecido
 if (isset($_GET['id'])) {

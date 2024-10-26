@@ -1,5 +1,5 @@
 <?php
-include 'conexao.php';
+include 'php/conexao.php';
 
 // Verifica se o formulário foi enviado com o ID do usuário
 if (isset($_POST['id'], $_POST['nome'], $_POST['email'])) {

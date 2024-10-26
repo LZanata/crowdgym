@@ -1,5 +1,5 @@
 <?php
-include 'conexao.php';
+include 'php/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
