@@ -145,6 +145,7 @@ main{
   color: #000000be;
 }
 
+/*Alinhando os textos dentro da div*/
 .esqueci-group{
   display: flex;
   justify-content: space-between;

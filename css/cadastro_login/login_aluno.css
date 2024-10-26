@@ -145,6 +145,12 @@
     color: #000000be;
   }
   
+  /*Alinhando os textos dentro da div*/
+  .esqueci-group{
+    display: flex;
+    justify-content: space-between;
+  }
+  
   .esqueci {
     /*faz o botao esqueci a senha ficar no canto direito*/
     display: flex;

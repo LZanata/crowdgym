@@ -52,11 +52,12 @@ mysqli_close($conexao);
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/cadastro_login/login_academia.css" />
+  <script src="js/cadastro_login/ocultar_mensagem.js"></script>
   <title>Login academia</title>
 </head>
 <!--Parte do Login, obs: quando o usuário fizer login, ele será redirecionado para a página de acordo com a conta dele(funcionário ou de gerente)-->
 
-<body>
+<body onload="ocultarMensagem()">
   <main>
     <div class="container">
       <div class="form">
@@ -93,10 +94,10 @@ mysqli_close($conexao);
                 id="senha" required />
             </div>
             <div class="esqueci-group">
-              <div class="wrong-email">
+              <div class="error">
                 <!-- Exibe a mensagem de erro, se existir -->
                 <?php if (!empty($erroLogin)): ?>
-                  <p style="color: red;"><?php echo $erroLogin; ?></p>
+                  <p id="mensagemErro" style="color: red;"><?php echo $erroLogin; ?></p>
                 <?php endif; ?>
               </div>
               <div class="esqueci">
