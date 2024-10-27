@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alunos Academia</title>
   <link rel="stylesheet" href="css/index.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
 <body>
@@ -18,12 +21,11 @@
             <a href="#"><i class="bi bi-list"></i></a>
 
             <div class="dropdown-list">
-              <a href="aluno_menu_inicial.php">Menu Inicial</a>
-              <a href="aluno_minhas_academias.php">Minhas Academias</a>
-              <a href="aluno_buscar_academias.php">Buscar Academias</a>
-              <a href="aluno_dados_pagamento.php">Dados de Pagamento</a>
-              <a href="aluno_sobre_nos.php">Sobre Nós</a>
-              <a href="aluno_suporte.php">Ajuda e Suporte</a>
+              <a href="func_menu_inicial.php">Menu Inicial</a>
+              <a href="func_alunos.php">Alunos</a>
+              <a href="func_catraca.php">Catraca</a>
+              <a href="func_sobre_nos.php">Sobre Nós</a>
+              <a href="func_suporte.php">Ajuda e Suporte</a>
               <a href="tela_inicio.html">Sair</a>
             </div>
           </li>
