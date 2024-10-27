@@ -8,32 +8,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = $_POST['email'];
   $senha = $_POST['senha'];
 
-  // Busca o gerente pelo email
+  // Primeiro, tenta buscar o usuário como gerente
   $query = "SELECT * FROM gerente WHERE email = ?";
   $stmt = mysqli_prepare($conexao, $query);
   mysqli_stmt_bind_param($stmt, 's', $email);
   mysqli_stmt_execute($stmt);
   $result = mysqli_stmt_get_result($stmt);
 
-  // Verifica se o gerente foi encontrado
   if ($row = mysqli_fetch_assoc($result)) {
-    // Verifica se a senha está correta
+    // Verifica se a senha está correta para o gerente
     if (password_verify($senha, $row['senha'])) {
-      // Inicia a sessão e salva os dados do usuário
+      // Inicia a sessão e salva os dados do gerente
       session_start();
-      $_SESSION['gerente_id'] = $row['id'];
-      $_SESSION['gerente_nome'] = $row['nome'];
+      $_SESSION['usuario_id'] = $row['id'];
+      $_SESSION['usuario_nome'] = $row['nome'];
+      $_SESSION['usuario_tipo'] = 'gerente';
 
       // Redireciona para a página do gerente
       header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.php");
       exit();
     } else {
-      // Define a mensagem de erro para senha incorreta
       $erroLogin = "Senha incorreta. Tente novamente.";
     }
   } else {
-    // Define a mensagem de erro para email não encontrado
-    $erroLogin = "Email não encontrado. Tente novamente.";
+    // Se não encontrou o gerente, tenta buscar o usuário como funcionário
+    $query = "SELECT * FROM funcionario WHERE email = ?";
+    $stmt = mysqli_prepare($conexao, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+      // Verifica se a senha está correta para o funcionário
+      if (password_verify($senha, $row['senha'])) {
+        // Inicia a sessão e salva os dados do funcionário
+        session_start();
+        $_SESSION['usuario_id'] = $row['id'];
+        $_SESSION['usuario_nome'] = $row['nome'];
+        $_SESSION['usuario_tipo'] = 'funcionario';
+
+        // Redireciona para a página do funcionário
+        header("Location: http://localhost/Projeto_CrowdGym/func_menu_inicial.php");
+        exit();
+      } else {
+        $erroLogin = "Senha incorreta. Tente novamente.";
+      }
+    } else {
+      $erroLogin = "Email não encontrado. Tente novamente.";
+    }
   }
 
   // Fecha o statement
@@ -43,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Fecha a conexão
 mysqli_close($conexao);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
