@@ -15,7 +15,12 @@ function sendEmail() {
         bairro: document.getElementById("bairro").value,
         rua: document.getElementById("rua").value,
         numero: document.getElementById("numero").value,
-        complemento: document.getElementById("complemento").value       
+        complemento: document.getElementById("complemento").value,
+        abertura: document.getElementById("abertura").value,
+        fechamento: document.getElementById("fechamento").value,
+        funcionamento: document.getElementById("Segunda a Sexta").value,
+        funcionamento: document.getElementById("Segunda a Sábado").value, 
+        funcionamento: document.getElementById("Todos os dias").value     
     };
 
     emailjs.send('service_zzwirtl', 'template_y90vtvb', templateParams)
