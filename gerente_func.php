@@ -193,14 +193,6 @@
               <label for="data_contrat">Data de Contratação - opcional</label>
               <input type="date" id="data_contrat" name="data_contrat" required>
             </div>
-            <div class="input-box">
-              <label for="Gerente_id">Id do Gerente*</label>
-              <input
-                type="text"
-                name="Gerente_id"
-                placeholder="Digite o ID"
-                id="Gerente_id" required />
-            </div>
           </div>
           <div class="gender-inputs">
             <div class="gender-title">

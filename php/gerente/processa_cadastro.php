@@ -1,5 +1,15 @@
 <?php
 include 'conexao.php';
+session_start();
+
+// Verifica se o gerente está logado
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login_academia.php");
+    exit();
+}
+
+// Obtém o ID do gerente logado
+$Gerente_id = $_SESSION['usuario_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
@@ -10,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cargo = $_POST['cargo'];
     $data_contrat = $_POST['data_contrat'];
     $genero = $_POST['genero'];
-    $Gerente_id = $_POST['Gerente_id'];
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirma_senha) {
