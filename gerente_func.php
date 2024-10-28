@@ -83,18 +83,30 @@
               <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
               include 'php/conexao.php';
-
+              
+              // Obtém o ID do gerente autenticado
+              $gerente_id = $_SESSION['usuario_id'];
+              
               // Verifica se o termo de pesquisa foi fornecido
               $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
-
-              // Consulta para buscar os funcionários com base no termo de pesquisa
-              $query = "SELECT id, nome, email FROM funcionario";
+              
+              // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
+              $query = "SELECT id, nome, email FROM funcionario WHERE Gerente_id = ?";
               if (!empty($pesquisa)) {
-                $query .= " WHERE nome LIKE '%$pesquisa%' OR email LIKE '%$pesquisa%'";
+                  $query .= " AND (nome LIKE ? OR email LIKE ?)";
               }
-
-              $result = mysqli_query($conexao, $query);
-
+              
+              // Prepara e executa a consulta
+              $stmt = $conexao->prepare($query);
+              if (!empty($pesquisa)) {
+                  $likePesquisa = '%' . $pesquisa . '%';
+                  $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+              } else {
+                  $stmt->bind_param("i", $gerente_id);
+              }
+              $stmt->execute();
+              $result = $stmt->get_result();
+            
               // Verifica se encontrou resultados
               if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
