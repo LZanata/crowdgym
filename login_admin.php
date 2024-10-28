@@ -50,7 +50,7 @@ $conexao->close();
     <div class="container">
       <div class="form">
         <form
-          action="php/cadastro_login/login_admin.php"
+          action=""
           method="POST"
           class="formLogin">
           <div class="form-header">
