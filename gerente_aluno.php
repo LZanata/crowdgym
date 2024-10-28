@@ -1,3 +1,4 @@
+<?php include 'php/cadastro_login/check_login.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
                             <a href="gerente_aluno.php">Alunos</a>
                             <a href="gerente_sobre_nos.php">Sobre Nós</a>
                             <a href="gerente_suporte.php">Ajuda e Suporte</a>
-                            <a href="tela_inicio.html">Sair</a>
+                            <a href="php/cadastro_login/logout.php">Sair</a>
                         </div>
                     </li>
                 </ul>
