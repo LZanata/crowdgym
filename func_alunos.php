@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alunos Academia</title>
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/funcionario/alunos.css">
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -58,7 +59,7 @@
       <div class="userlist">
         <div class="userlist-header">
           <div class="userlist-title">
-            <h1>Funcionários Cadastrados</h1>
+            <h1>Alunos Matriculados</h1>
           </div>
           <div class="search-form">
             <form method="GET" action="">
@@ -104,21 +105,21 @@
                   echo '<tr>
                             <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
                             <td>
-                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Detalhes</a> 
                                 <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                                 <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
                             </td>
                         </tr>';
                 }
               } else {
-                echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';
+                echo '<tr><td colspan="2">Nenhum aluno encontrado.</td></tr>';
               }
               ?>
 
               <!--Mensagem após a remoção-->
               <?php
               if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
+                echo '<div id="mensagem-sucesso">Aluno removido com sucesso!</div>';
               }
               ?>
             </tbody>
@@ -130,7 +131,7 @@
         <form action="php/gerente/processa_cadastro.php" method="POST">
           <div class="form-header">
             <div class="title">
-              <h1>Cadastro do Funcionário</h1>
+              <h1>Cadastro de Aluno</h1>
             </div>
           </div>
           <div class="input-group">
