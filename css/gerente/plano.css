@@ -162,6 +162,7 @@ main{
 .form-header{
     margin-bottom: 2rem;
     display: flex;
+    justify-content: center;
 }
 
 /*Risco abaixo do titulo*/
@@ -188,7 +189,7 @@ main{
 .input-box{
    display: flex;
    flex-direction: column;
-   width: 90%;
+   width: 100%;
    margin-bottom: 1.1rem; 
 }
 
@@ -228,8 +229,7 @@ main{
 }
 
 /*Customização dos titulos dos inputs e do genero*/
-.input-box label,
-.gender-title h6{
+.input-box label{
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
@@ -240,36 +240,14 @@ main{
     color: #000000be;
 }
 
-/*Estilização dos inputs do genero*/
-.gender-group{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.62rem;
-    padding: 0 0.5rem;
+.register-button{
+    justify-content: center;
+    text-align: center;
 }
-
-/*Alinhando o input*/
-.gender-input{
-    display: flex;
-    align-items: center;
-}
-
-/*Espaçamento entre as bolas e o texto*/
-.gender-input input{
-    margin-right: 0.35rem;
-}
-
-/*Customização dos textos*/
-.gender-input label{
-    font-size: 0.81rem;
-    font-weight: 600;
-    color: #000000c0;
-}
-
 /*Customização do botão*/
 .register-button input{
-    width: 100%;
-    margin-top: 2.5rem;
+    width: 50%;
+    margin-top: 1.5rem;
     border: none;
     background-color: #F57419;
     padding: 0.62rem;
