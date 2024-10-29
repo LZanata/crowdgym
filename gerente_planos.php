@@ -148,72 +148,28 @@
                 required />
             </div>
             <div class="input-box">
-              <label for="email">E-mail*</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="Digite o email" maxlength="255"
-                id="email" />
+              <label for="descricao">Descrição*</label>
+              <textarea id="descricao" name="descricao" rows="4" required></textarea>
             </div>
             <div class="input-box">
-              <label for="cpf">CPF*</label>
-              <input
-                type="text" id="cpf" name="cpf" placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                oninput="formatCPF(this)"
-                maxlength="14"
-                required>
+              <label for="valor">Valor (R$):*</label>
+              <input type="number" id="preco" name="preco" step="0.01" required>
             </div>
             <div class="input-box">
-              <label for="cargo">Cargo*</label>
-              <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo" required />
+              <label for="duracao">Duração (dias):</label>
+              <input type="number" id="duracao" name="duracao" required>
             </div>
             <div class="input-box">
-              <label for="senha">Senha*</label>
-              <input
-                type="password"
-                name="senha"
-                placeholder="Digite a senha" maxlength="15"
-                id="senha" required />
-            </div>
-            <div class="input-box">
-              <label for="confirma_senha">Confirme a Senha*</label>
-              <input
-                type="password"
-                name="confirma_senha"
-                placeholder="Digite a senha novamente" maxlength="15"
-                id="confirma_senha" required />
-            </div>
-            <div class="input-box">
-              <label for="data_contrat">Data de Contratação - opcional</label>
-              <input type="date" id="data_contrat" name="data_contrat" required>
-            </div>
-          </div>
-          <div class="gender-inputs">
-            <div class="gender-title">
-              <h6>Gênero*</h6>
-            </div>
-
-            <div class="gender-group">
-              <div class="gender-input">
-                <input type="radio" name="genero" id="genero_feminino" value="feminino" required>
-                <label for="genero_feminino">Feminino</label>
-              </div>
-
-              <div class="gender-input">
-                <input type="radio" name="genero" id="genero_masculino" value="masculino" required>
-                <label for="genero_masculino">Masculino</label>
-              </div>
-
-              <div class="gender-input">
-                <input type="radio" name="genero" id="genero_outro" value="outro" required>
-                <label for="genero_outro">Outro</label>
-              </div>
+              <label for="tipo">Tipo de Plano:</label>
+              <select id="tipo" name="tipo" required>
+                <option value="principal">Principal</option>
+                <option value="adicional">Adicional</option>
+              </select>
             </div>
           </div>
 
           <div class="register-button">
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Cadastrar Plano">
           </div>
         </form>
       </div>
