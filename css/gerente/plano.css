@@ -1,7 +1,7 @@
 /*Configuração do main*/
 main{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@ main{
 
 /*Configuração da div que possui todas as outras divs da lista*/
 .userlist{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -150,7 +150,7 @@ main{
 
 /*Configuração da div que possui todas as outras divs do forms*/
 .form{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -188,6 +188,7 @@ main{
 .input-box{
    display: flex;
    flex-direction: column;
+   width: 90%;
    margin-bottom: 1.1rem; 
 }
 
