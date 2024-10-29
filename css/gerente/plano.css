@@ -173,7 +173,7 @@ main{
     height: 0.3rem;
     background-color: #F57419;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
 }
 
