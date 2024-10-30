@@ -29,6 +29,7 @@ main{
 .userlist-title{
     margin-bottom: 1.5rem;
     display: flex;
+    justify-content: center;
 }
 
 /*Risco abaixo do titulo*/
