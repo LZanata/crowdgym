@@ -125,7 +125,7 @@
                             <!--Mensagem após a remoção-->
                             <?php
                             if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
+                                echo '<div id="mensagem-sucesso">Plano removido com sucesso!</div>';
                             }
                             ?>
                         </tbody>

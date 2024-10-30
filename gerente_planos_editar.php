@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerente Funcionário</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/funcionario.css" />
+    <link rel="stylesheet" href="css/gerente/plano.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -90,17 +90,17 @@
                             // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-                            // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
-                            $query = "SELECT id, nome, email FROM funcionario WHERE Gerente_id = ?";
+                            // Consulta para buscar os planos com base no gerente autenticado e no termo de pesquisa, incluindo a coluna 'id'
+                            $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Gerente_id = ?";
                             if (!empty($pesquisa)) {
-                                $query .= " AND (nome LIKE ? OR email LIKE ?)";
+                                $query .= " AND (nome LIKE ?)";
                             }
 
                             // Prepara e executa a consulta
                             $stmt = $conexao->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
-                                $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+                                $stmt->bind_param("is", $gerente_id, $likePesquisa);
                             } else {
                                 $stmt->bind_param("i", $gerente_id);
                             }
@@ -108,26 +108,26 @@
                             $result = $stmt->get_result();
 
                             // Verifica se encontrou resultados
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
                                     echo '<tr>
-                            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
-                            <td>
-                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                            </td>
-                        </tr>';
+                  <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+                  <td>
+                      <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                      <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                      <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                  </td>
+              </tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';
+                                echo '<tr><td colspan="6">Nenhum plano encontrado.</td></tr>';
                             }
                             ?>
 
                             <!--Mensagem após a remoção-->
                             <?php
                             if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
+                                echo '<div id="mensagem-sucesso">Plano removido com sucesso!</div>';
                             }
                             ?>
                         </tbody>
@@ -146,101 +146,74 @@
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
 
-                // Consulta para obter os dados do funcionário pelo ID
-                $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero FROM funcionario WHERE id = ?";
+                // Consulta para obter os dados do plano pelo ID
+                $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE id = ?";
                 $stmt = mysqli_prepare($conexao, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
-                // Verifica se o funcionário foi encontrado
-                if ($usuario = mysqli_fetch_assoc($result)) {
-                    // Preenche os dados no formulário
+                // Verifica se o plano foi encontrado
+                if ($plano = mysqli_fetch_assoc($result)) {
+                    // Exibe o formulário com os dados do plano
                 } else {
-                    echo "Funcionário não encontrado.";
+                    echo "Plano não encontrado.";
                     exit;
                 }
 
                 mysqli_stmt_close($stmt);
             } else {
-                echo "ID do funcionário não fornecido.";
+                echo "ID do plano não fornecido.";
                 exit;
             }
             ?>
             <div class="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Editar Funcionário</h1>
+                        <h1>Editar Plano</h1>
                     </div>
                 </div>
 
-                <form action="php/gerente/editar.php" method="post">
-                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
+                <form action="php/gerente/editar_plano.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($plano['id']); ?>">
+
                     <div class="input-group">
                         <div class="input-box">
-                            <label for="nome">Nome:</label>
-                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
-                                value="<?php echo htmlspecialchars($usuario['nome']); ?>">
+                            <label for="nome">Nome do Plano:</label>
+                            <input type="text" name="nome" placeholder="Digite o nome do plano" id="nome" maxlength="100"
+                                value="<?php echo htmlspecialchars($plano['nome']); ?>" required>
                         </div>
 
                         <div class="input-box">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
-                                value="<?php echo htmlspecialchars($usuario['email']); ?>">
+                            <label for="descricao">Descrição:</label>
+                            <textarea name="descricao" placeholder="Digite a descrição do plano" id="descricao" maxlength="255" required><?php echo htmlspecialchars($plano['descricao']); ?></textarea>
                         </div>
 
                         <div class="input-box">
-                            <label for="cpf">CPF:</label>
-                            <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                oninput="formatCPF(this)" maxlength="14"
-                                value="<?php echo htmlspecialchars($usuario['cpf']); ?>">
+                            <label for="valor">Valor (R$):</label>
+                            <input type="number" name="valor" placeholder="Digite o valor" id="valor" step="0.01" min="0"
+                                value="<?php echo htmlspecialchars($plano['valor']); ?>" required>
                         </div>
 
                         <div class="input-box">
-                            <label for="cargo">Cargo:</label>
-                            <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo"
-                                value="<?php echo htmlspecialchars($usuario['cargo']); ?>">
+                            <label for="duracao">Duração (dias):</label>
+                            <input type="number" name="duracao" placeholder="Duração do plano em dias" id="duracao" min="1"
+                                value="<?php echo htmlspecialchars($plano['duracao']); ?>" required>
                         </div>
 
                         <div class="input-box">
-                            <label for="data_contrat">Data de Contratação:</label>
-                            <input type="date" id="data_contrat" name="data_contrat"
-                                value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" name="tipo" placeholder="Digite o tipo do plano" id="tipo"
+                                value="<?php echo htmlspecialchars($plano['tipo']); ?>" required>
                         </div>
                     </div>
 
-                    <div class="gender-inputs">
-                        <div class="gender-title">
-                            <h6>Gênero*</h6>
-                        </div>
-
-                        <div class="gender-group">
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_feminino" value="feminino"
-                                    <?php echo ($usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
-                                <label for="genero_feminino">Feminino</label>
-                            </div>
-
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_masculino" value="masculino"
-                                    <?php echo ($usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
-                                <label for="genero_masculino">Masculino</label>
-                            </div>
-
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_outro" value="outro"
-                                    <?php echo ($usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
-                                <label for="genero_outro">Outro</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="register-button">
-                        <input type="submit" value="Atualizar Perfil">
-                    </div>
-                </form>
-
+            <div class="register-button">
+                <input type="submit" value="Atualizar Plano">
             </div>
+            </form>
+
+        </div>
 
         </div>
     </main>
