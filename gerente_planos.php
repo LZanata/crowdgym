@@ -166,6 +166,7 @@
             <div class="input-box">
               <label for="tipo">Tipo de Plano:</label>
               <select id="tipo" name="tipo" required>
+                <option value="">Selecione um tipo</option>
                 <option value="principal">Principal</option>
                 <option value="adicional">Adicional</option>
               </select>
