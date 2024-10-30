@@ -11,7 +11,8 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="js/gerente/ocultar_plano_cadastrado.js"></script>
+  <script src="js/gerente/ocultar_plano_cadastrado.js"></script>
+  <script src="js/gerente/remover_plano.js"></script>
 </head>
 
 <body>
@@ -128,10 +129,15 @@
 
               <!--Mensagem após a remoção-->
               <?php
-              if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo '<div id="mensagem-removido">Plano removido com sucesso!</div>';
+              if (isset($_GET['removido'])) {
+                if ($_GET['removido'] == 1) {
+                  echo '<div class="mensagem-sucesso">Plano removido com sucesso!</div>';
+                } else {
+                  echo '<div class="mensagem-erro">Erro ao remover o plano.</div>';
+                }
               }
               ?>
+
             </tbody>
           </table>
         </div>
