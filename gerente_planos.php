@@ -124,7 +124,7 @@
               <!--Mensagem após o sucesso do cadastro-->
               <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
                 echo '<div class="mensagem-sucesso">Plano cadastrado com sucesso!</div>';
-              }
+              } 
               ?>
 
               <!--Mensagem após a remoção-->

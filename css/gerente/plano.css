@@ -264,26 +264,26 @@ main{
     background-color: #ff6a00;
 }     
 
+/*Estilizando mensagem de cadastrado e removido com sucesso*/
 .mensagem-sucesso{
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-/*Estilizando mensagem de removido com sucesso*/
-#mensagem-removido {
     background-color: #FFF9F3;
     color: #000000;
     font-style: normal;
     font-weight: bold;
-    border: 1px solid #f1ddc8;
     padding: 10px;
     margin: 10px 0;
     text-align: center;
     border-radius: 5px;
+}
+
+/*Estilizando mensagem de cadastro remomovido com erro*/
+.mensagem-erro{
+    padding: 10px;
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    border-radius: 5px; 
 }
 
 .details{
