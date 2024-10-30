@@ -85,8 +85,8 @@
               // Verifica se o termo de pesquisa foi fornecido
               $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-              // Consulta para buscar os planos com base no gerente autenticado e no termo de pesquisa
-              $query = "SELECT nome, descricao, valor, duracao, tipo FROM planos WHERE Gerente_id = ?";
+              // Consulta para buscar os planos com base no gerente autenticado e no termo de pesquisa, incluindo a coluna 'id'
+              $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Gerente_id = ?";
               if (!empty($pesquisa)) {
                 $query .= " AND (nome LIKE ?)";
               }
@@ -106,27 +106,29 @@
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   echo '<tr>
-                              <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
-                              <td>' . htmlspecialchars($row['descricao']) . '</td>
-                              <td>' . htmlspecialchars(number_format($row['valor'], 2, ',', '.')) . '</td>
-                              <td>' . htmlspecialchars($row['duracao']) . ' dias</td>
-                              <td>' . htmlspecialchars($row['tipo']) . '</td>
-                              <td>
-                                  <a href="gerente_detalhes_planos.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                  <a href="gerente_editar_planos.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                              </td>
-                          </tr>';
+                  <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+                  <td>
+                      <a href="gerente_detalhes_planos.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                      <a href="gerente_editar_planos.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                      <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                  </td>
+              </tr>';
                 }
               } else {
-                echo '<tr><td colspan="5">Nenhum plano encontrado.</td></tr>';
+                echo '<tr><td colspan="6">Nenhum plano encontrado.</td></tr>';
+              }
+              ?>
+
+              <!--Mensagem após o sucesso do cadastro-->
+              <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
+                echo '<div class="mensagem-sucesso">Plano cadastrado com sucesso!</div>';
               }
               ?>
 
               <!--Mensagem após a remoção-->
               <?php
               if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo '<div id="mensagem-sucesso">Plano removido com sucesso!</div>';
+                echo '<div id="mensagem-removido">Plano removido com sucesso!</div>';
               }
               ?>
             </tbody>
@@ -157,7 +159,7 @@
             </div>
             <div class="input-box">
               <label for="valor">Valor (R$):*</label>
-              <input type="number" id="preco" name="preco" placeholder="Digite o valor do plano" step="0.01" required>
+              <input type="number" id="valor" name="valor" placeholder="Digite o valor do plano" step="0.01" required>
             </div>
             <div class="input-box">
               <label for="duracao">Duração (dias):</label>

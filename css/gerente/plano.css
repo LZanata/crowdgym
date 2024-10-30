@@ -90,7 +90,7 @@ main{
 } 
 
 /*Customização do espaçamento dos nomes*/
-.nome_func{
+.nome_plano{
     padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -262,10 +262,18 @@ main{
 /*Altera a cor ao passar o mouse encima do botão*/
 .register-button input:hover{
     background-color: #ff6a00;
-} 
+}     
+
+#mensagem-sucesso{
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+}
 
 /*Estilizando mensagem de removido com sucesso*/
-#mensagem-sucesso {
+#mensagem-removido {
     background-color: #FFF9F3;
     color: #000000;
     font-style: normal;

@@ -24,9 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $Gerente_id);
 
     if ($stmt->execute()) {
-        echo "Plano cadastrado com sucesso!";
         // Redireciona de volta à página de planos
-        header("Location: gerente_planos.php");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente_planos.php?sucesso=1");
         exit();
     } else {
         echo "Erro ao cadastrar o plano: " . $conexao->error;
