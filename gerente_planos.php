@@ -153,15 +153,15 @@
             </div>
             <div class="input-box">
               <label for="descricao">Descrição*</label>
-              <textarea id="descricao" name="descricao" rows="4" required></textarea>
+              <textarea id="descricao" name="descricao" rows="4" placeholder="Digite a descrição do plano" required></textarea>
             </div>
             <div class="input-box">
               <label for="valor">Valor (R$):*</label>
-              <input type="number" id="preco" name="preco" step="0.01" required>
+              <input type="number" id="preco" name="preco" placeholder="Digite o valor do plano" step="0.01" required>
             </div>
             <div class="input-box">
               <label for="duracao">Duração (dias):</label>
-              <input type="number" id="duracao" name="duracao" required>
+              <input type="number" id="duracao" name="duracao" placeholder="Digite a duração do plano" required>
             </div>
             <div class="input-box">
               <label for="tipo">Tipo de Plano:</label>
