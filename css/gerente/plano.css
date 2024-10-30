@@ -264,12 +264,13 @@ main{
     background-color: #ff6a00;
 }     
 
-#mensagem-sucesso{
+.mensagem-sucesso{
     padding: 10px;
     background-color: #4CAF50;
     color: white;
     text-align: center;
     margin: 10px 0;
+    border-radius: 5px;
 }
 
 /*Estilizando mensagem de removido com sucesso*/
