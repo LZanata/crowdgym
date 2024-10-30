@@ -22,7 +22,7 @@
 
                         <div class="dropdown-list">
                             <a href="gerente_menu_inicial.php">Menu Inicial</a>
-                            <a href="gerente_planos.php">Planos e Assinaturas</a>
+                            <a href="gerente_planos.php">Planos e Serviços</a>
                             <a href="gerente_graficos.php">Gráficos</a>
                             <a href="gerente_func.php">Funcionários</a>
                             <a href="gerente_aluno.php">Alunos</a>

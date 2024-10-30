@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planos</title>
+  <title>Planos e Serviços</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/gerente/plano.css">
   <link
@@ -26,7 +26,7 @@
 
             <div class="dropdown-list">
               <a href="gerente_menu_inicial.php">Menu Inicial</a>
-              <a href="gerente_planos.php">Planos e Assinaturas</a>
+              <a href="gerente_planos.php">Planos e Serviços</a>
               <a href="gerente_graficos.php">Gráficos</a>
               <a href="gerente_func.php">Funcionários</a>
               <a href="gerente_aluno.php">Alunos</a>
