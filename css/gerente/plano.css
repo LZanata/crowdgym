@@ -248,7 +248,7 @@ main{
 /*Customização do botão*/
 .register-button input{
     width: 50%;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     border: none;
     background-color: #F57419;
     padding: 0.62rem;
@@ -290,4 +290,3 @@ main{
     font-size: 20px;
     padding: 1rem 0;
 }
-

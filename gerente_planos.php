@@ -117,7 +117,7 @@
               </tr>';
                 }
               } else {
-                echo '<tr><td colspan="6">Nenhum plano encontrado.</td></tr>';
+                echo '<tr><td class="nenhum_plano" colspan="6">Nenhum plano encontrado.</td></tr>';
               }
               ?>
 
