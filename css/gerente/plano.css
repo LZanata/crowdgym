@@ -161,7 +161,7 @@ main{
 
 /*Configuração da div do cabeçalho*/
 .form-header{
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
 }

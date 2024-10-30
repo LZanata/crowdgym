@@ -84,14 +84,20 @@
                             <?php
                             include 'php/conexao.php';
 
-                            // Obtém o ID do gerente autenticado
-                            $gerente_id = $_SESSION['usuario_id'];
+                            // Verifique se o ID da academia está definido na sessão
+                            if (!isset($_SESSION['Academia_id'])) {
+                                echo "Acesso não autorizado. Por favor, faça o login novamente.";
+                                exit();
+                            }
+
+                            // Obtém o ID da academia associada ao gerente autenticado
+                            $Academia_id = $_SESSION['Academia_id'];
 
                             // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-                            // Consulta para buscar os planos com base no gerente autenticado e no termo de pesquisa, incluindo a coluna 'id'
-                            $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Gerente_id = ?";
+                            // Consulta para buscar os planos com base no Academia_id e no termo de pesquisa
+                            $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Academia_id = ?";
                             if (!empty($pesquisa)) {
                                 $query .= " AND (nome LIKE ?)";
                             }
@@ -100,9 +106,9 @@
                             $stmt = $conexao->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
-                                $stmt->bind_param("is", $gerente_id, $likePesquisa);
+                                $stmt->bind_param("is", $Academia_id, $likePesquisa);
                             } else {
-                                $stmt->bind_param("i", $gerente_id);
+                                $stmt->bind_param("i", $Academia_id);
                             }
                             $stmt->execute();
                             $result = $stmt->get_result();
@@ -111,16 +117,16 @@
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo '<tr>
-                  <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
-                  <td>
-                      <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                      <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                      <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                  </td>
-              </tr>';
+        <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+        <td>
+            <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+            <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+            <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+        </td>
+    </tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="6">Nenhum plano encontrado.</td></tr>';
+                                echo '<tr><td class="nenhum_plano" colspan="6">Nenhum plano encontrado.</td></tr>';
                             }
                             ?>
 
