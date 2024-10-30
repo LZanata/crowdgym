@@ -3,13 +3,13 @@ include 'conexao.php';
 session_start();
 
 // Verifica se o gerente está logado
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['Academia_id'])) {
     header("Location: login_academia.php");
     exit();
 }
 
-// Obtém o ID do gerente logado
-$Gerente_id = $_SESSION['usuario_id'];
+// Obtém o ID da academia associada ao gerente logado
+$Academia_id = $_SESSION['Academia_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $duracao = $_POST['duracao'];
     $tipo = $_POST['tipo'];
 
-    // Consulta para inserir o novo plano
-    $query = "INSERT INTO planos (nome, descricao, valor, duracao, tipo, Gerente_id) VALUES (?, ?, ?, ?, ?, ?)";
+    // Consulta para inserir o novo plano, vinculando ao Academia_id
+    $query = "INSERT INTO planos (nome, descricao, valor, duracao, tipo, Academia_id) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($query);
-    $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $Gerente_id);
+    $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $Academia_id);
 
     if ($stmt->execute()) {
         // Redireciona de volta à página de planos

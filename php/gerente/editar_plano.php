@@ -12,8 +12,8 @@ if (isset($_POST['id'], $_POST['nome'], $_POST['descricao'], $_POST['valor'], $_
 
     // Atualiza os dados do plano no banco de dados
     $query = "UPDATE planos SET nome = ?, descricao = ?, valor = ?, duracao = ?, tipo = ? WHERE id = ?";
-    $stmt = mysqli_prepare($conexao, $query);
-    mysqli_stmt_bind_param($stmt, 'ssdiii', $nome, $descricao, $valor, $duracao, $tipo, $id);
+    $stmt = $conexao->prepare($query);
+    $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $id);
 
     if (mysqli_stmt_execute($stmt)) {
         header("Location: http://localhost/Projeto_CrowdGym/gerente_planos_editar.php?id=$id&success=1");

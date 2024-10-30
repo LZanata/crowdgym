@@ -11,7 +11,7 @@
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="js/gerente/confirmar_exclusao.js"></script>
+    <script src="js/gerente/remover_plano.js"></script>
     <script src="js/gerente/ocultar_mensagem.js"></script>
 </head>
 

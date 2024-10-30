@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $senha = $_POST['senha'];
 
   // Primeiro, tenta buscar o usuário como gerente
-  $query = "SELECT * FROM gerente WHERE email = ?";
+  $query = "SELECT id, nome, senha, Academia_id FROM gerente WHERE email = ?";
   $stmt = mysqli_prepare($conexao, $query);
   mysqli_stmt_bind_param($stmt, 's', $email);
   mysqli_stmt_execute($stmt);
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['usuario_id'] = $row['id'];
       $_SESSION['usuario_nome'] = $row['nome'];
       $_SESSION['usuario_tipo'] = 'gerente';
+      $_SESSION['Academia_id'] = $row['Academia_id']; // Armazena o ID da academia
 
       // Redireciona para a página do gerente
       header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.php");
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   } else {
     // Se não encontrou o gerente, tenta buscar o usuário como funcionário
-    $query = "SELECT * FROM funcionario WHERE email = ?";
+    $query = "SELECT id, nome, senha FROM funcionario WHERE email = ?";
     $stmt = mysqli_prepare($conexao, $query);
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
@@ -65,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Fecha a conexão
 mysqli_close($conexao);
 ?>
+
 
 
 <!DOCTYPE html>

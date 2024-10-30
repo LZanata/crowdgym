@@ -13,7 +13,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <script src="js/gerente/validar_senha.js"></script>
     <script src="js/gerente/formatocpf.js"></script>
-    <script src="js/gerente/confirmar_exclusao.js"></script>
+    <script src="js/gerente/remover_plano.js"></script>
     <script src="js/gerente/ocultar_mensagem.js"></script>
 </head>
 
@@ -203,17 +203,20 @@
 
                         <div class="input-box">
                             <label for="tipo">Tipo:</label>
-                            <input type="text" name="tipo" placeholder="Digite o tipo do plano" id="tipo"
-                                value="<?php echo htmlspecialchars($plano['tipo']); ?>" required>
+                            <select id="tipo" name="tipo" required>
+                                <option value="">Selecione um tipo</option>
+                                <option value="principal" <?php if ($plano['tipo'] == 'principal') echo 'selected'; ?>>Principal</option>
+                                <option value="adicional" <?php if ($plano['tipo'] == 'adicional') echo 'selected'; ?>>Adicional</option>
+                            </select>
                         </div>
                     </div>
 
-            <div class="register-button">
-                <input type="submit" value="Atualizar Plano">
-            </div>
-            </form>
+                    <div class="register-button">
+                        <input type="submit" value="Atualizar Plano">
+                    </div>
+                </form>
 
-        </div>
+            </div>
 
         </div>
     </main>
