@@ -86,16 +86,16 @@
               $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
               // Consulta para buscar os planos com base no gerente autenticado e no termo de pesquisa
-              $query = "SELECT id, nome, email FROM funcionario WHERE Gerente_id = ?";
+              $query = "SELECT nome, descricao, valor, duracao, tipo FROM planos WHERE Gerente_id = ?";
               if (!empty($pesquisa)) {
-                $query .= " AND (nome LIKE ? OR email LIKE ?)";
+                $query .= " AND (nome LIKE ?)";
               }
 
               // Prepara e executa a consulta
               $stmt = $conexao->prepare($query);
               if (!empty($pesquisa)) {
                 $likePesquisa = '%' . $pesquisa . '%';
-                $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+                $stmt->bind_param("is", $gerente_id, $likePesquisa);
               } else {
                 $stmt->bind_param("i", $gerente_id);
               }
@@ -103,19 +103,23 @@
               $result = $stmt->get_result();
 
               // Verifica se encontrou resultados
-              if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
                   echo '<tr>
-                            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
-                            <td>
-                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                            </td>
-                        </tr>';
+                              <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+                              <td>' . htmlspecialchars($row['descricao']) . '</td>
+                              <td>' . htmlspecialchars(number_format($row['valor'], 2, ',', '.')) . '</td>
+                              <td>' . htmlspecialchars($row['duracao']) . ' dias</td>
+                              <td>' . htmlspecialchars($row['tipo']) . '</td>
+                              <td>
+                                  <a href="gerente_detalhes_planos.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="gerente_editar_planos.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                              </td>
+                          </tr>';
                 }
               } else {
-                echo '<tr><td colspan="2">Nenhum plano encontrado.</td></tr>';
+                echo '<tr><td colspan="5">Nenhum plano encontrado.</td></tr>';
               }
               ?>
 
@@ -131,7 +135,7 @@
       </div>
 
       <div class="form">
-        <form action="php/gerente/processa_cadastro.php" method="POST">
+        <form action="php/gerente/processa_plano.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro de Plano</h1>
