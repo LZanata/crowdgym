@@ -6,10 +6,13 @@
     max-width: 800px;
 }
 
-/*Espaçamento entre a sessão*/
-section {
+section{
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 5rem;
 }
 
+.lista_header{
+    display: block;
+    margin-top: 3.5rem;
+}

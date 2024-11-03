@@ -60,12 +60,23 @@
   </header>
   <main>
     <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação das ultimas matriculas realizadas(aparecerá os 3 ultimos alunos que se matricularam)-->
-    <section>
-      <div class="chart-container">
-        <canvas id="quantidadeAlunos"></canvas>
-      </div>
-      <!-- Importando a tabela no JavaScript-->
-      <script src="js/gerente/quantidade_alunos.js"></script>
+      <section>
+        <div class="chart-container">
+          <canvas id="quantidadeAlunos"></canvas>
+        </div>
+        <!-- Importando a tabela no JavaScript-->
+        <script src="js/gerente/quantidade_alunos.js"></script>
+        <div class="conteudo_lista">
+          <div class="lista_alunos">
+            <div class="lista_header">
+              <h1>Ultimas Matriculas Realizadas</h1>
+            </div>
+          </div>
+          <div class="lista_principal">
+
+          </div>
+        </div>
+      </section>
   </main>
   <footer>
     <div id="footer_copyright">
