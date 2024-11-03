@@ -211,8 +211,8 @@
                             <label for="tipo">Tipo:</label>
                             <select id="tipo" name="tipo" required>
                                 <option value="">Selecione um tipo</option>
-                                <option value="principal" <?php if ($plano['tipo'] == 'principal') echo 'selected'; ?>>Principal</option>
-                                <option value="adicional" <?php if ($plano['tipo'] == 'adicional') echo 'selected'; ?>>Adicional</option>
+                                <option value="principal" <?php if ($plano['tipo'] == 'principal') echo 'selected'; ?>>Plano</option>
+                                <option value="adicional" <?php if ($plano['tipo'] == 'adicional') echo 'selected'; ?>>Assinatura</option>
                             </select>
                         </div>
                     </div>
