@@ -101,14 +101,14 @@
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>
-            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
-            <td><img src="' . htmlspecialchars($row['foto']) . '" alt="Foto do aluno" width="50" /></td>
-            <td>
-                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-            </td>
-        </tr>';
+    <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
+    <td><img src="' . htmlspecialchars($row['foto'] ?? 'caminho_para_imagem_padrao.jpg', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="50" /></td>
+    <td>
+        <a href="gerente_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
+        <a href="gerente_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
+        <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
+    </td>
+</tr>';
                                 }
                             } else {
                                 echo '<tr><td colspan="3">Nenhum aluno encontrado.</td></tr>';
@@ -194,7 +194,7 @@
 
                         <div class="input-box">
                             <label for="foto">Foto</label>
-                            <input type="file" name="foto" id="foto" />
+                            <input type="file" name="foto" required>
                         </div>
                     </div>
 

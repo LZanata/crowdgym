@@ -9,10 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['senha'];
     $confirma_senha = $_POST['confirma_senha'];
     $plano_id = $_POST['plano'];
+    $data_nascimento = $_POST['data_nascimento'];
+    $genero = $_POST['genero'];
     $data_inicio = date("Y-m-d");
 
     // Validação básica
-    if (empty($nome) || empty($email) || empty($cpf) || empty($senha) || empty($plano_id)) {
+    if (empty($nome) || empty($email) || empty($cpf) || empty($senha) || empty($plano_id) || empty($data_nascimento) || empty($genero) || empty($_FILES['foto'])) {
         echo "Por favor, preencha todos os campos obrigatórios.";
         exit;
     }
@@ -26,13 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash da senha
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
+    // Processamento da foto
+    $foto_dir = '../uploads/';
+
+    // Verifica se a pasta uploads existe, caso contrário, cria
+    if (!file_exists($foto_dir)) {
+        mkdir($foto_dir, 0755, true);
+    }
+
+    $foto_nome = basename($_FILES['foto']['name']);
+    $foto_caminho = $foto_dir . uniqid() . "_" . $foto_nome;
+
+    if (!move_uploaded_file($_FILES['foto']['tmp_name'], $foto_caminho)) {
+        echo "Erro ao fazer upload da foto.";
+        exit;
+    }
+
+
     // Iniciar uma transação
     $conexao->begin_transaction();
 
     try {
-        // Insere o aluno
-        $stmt_aluno = $conexao->prepare("INSERT INTO aluno (nome, email, cpf, senha) VALUES (?, ?, ?, ?)");
-        $stmt_aluno->bind_param("ssss", $nome, $email, $cpf, $senha_hash);
+        // Insere o aluno com os campos adicionais
+        $stmt_aluno = $conexao->prepare("INSERT INTO aluno (nome, email, cpf, senha, data_nascimento, genero, foto) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt_aluno->bind_param("sssssss", $nome, $email, $cpf, $senha_hash, $data_nascimento, $genero, $foto_caminho);
         $stmt_aluno->execute();
         $aluno_id = $stmt_aluno->insert_id; // Obtém o ID do aluno recém-cadastrado
 
@@ -62,4 +81,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Erro ao cadastrar aluno e assinatura: " . $e->getMessage();
     }
 }
-?>
