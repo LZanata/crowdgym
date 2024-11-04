@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `academia` (
   `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `complemento` varchar(255) DEFAULT NULL,
-  `bairro` varchar(100)NOT NULL,
+  `bairro` varchar(100) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `estado` char(2) NOT NULL,
   `cep` char(9) NOT NULL,
@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `entrada_saida` (
   KEY `fk_Entrada_Saida_Aluno1_idx` (`Aluno_id`)
 );
 
+DROP TABLE IF EXISTS `fluxo`;
 CREATE TABLE IF NOT EXISTS `fluxo` (
   `id` int NOT NULL AUTO_INCREMENT,
   `alunos` int NOT NULL,
@@ -76,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `cpf` varchar(14) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `senha` varchar(45) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `cargo` varchar(50) NOT NULL,
   `data_contrat` date NOT NULL,
   `genero` enum('masculino','feminino','outro') NOT NULL,
@@ -111,12 +112,13 @@ CREATE TABLE IF NOT EXISTS `pagamento` (
   KEY `fk_Pagamento_Aluno1_idx` (`Aluno_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `plano` (
+CREATE TABLE IF NOT EXISTS `planos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `valor` decimal(10,2) NOT NULL,
   `duracao` int NOT NULL,
+  `tipo` enum('Principal','Adicional') NOT NULL,
   `Academia_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Plano_Academia1_idx` (`Academia_id`)

@@ -63,17 +63,32 @@
     <section>
       <div class="chart-container">
         <!-- Importando a tabela no JavaScript-->
-        <div class="quantiaAlunos">
-          <canvas id="quantidadeAlunos"></canvas>
-          <script src="js/gerente/quantidade_alunos.js"></script>
+        <div class="container_main">
+          <div class="container_header">
+            <h1>Quantidade de Alunos</h1>
+          </div>
+          <div class="quantia_main">
+            <canvas id="quantidadeAlunos"></canvas>
+            <script src="js/gerente/quantidade_alunos.js"></script>
+          </div>
         </div>
-        <div class="alunoMatriculado">
-          <canvas id="alunosMatriculados"></canvas>
-          <script src="js/gerente/alunos_matriculados.js"></script>
+        <div class="container_main">
+          <div class="container_header">
+            <h1>Alunos Matriculados</h1>
+          </div>
+          <div class="matriculados_main">
+            <canvas id="alunosMatriculados"></canvas>
+            <script src="js/gerente/alunos_matriculados.js"></script>
+          </div>
         </div>
-        <div class="faixaEtaria">
-          <canvas id="faixaEtaria"></canvas>
-          <script src="js/gerente/faixa_etaria.js"></script>
+        <div class="container_main">
+          <div class="container_header">
+          <h1>Faixa Etária dos Alunos</h1>
+          </div>
+          <div class="faixa_main">
+            <canvas id="faixaEtaria"></canvas>
+            <script src="js/gerente/faixa_etaria.js"></script>
+          </div>
         </div>
       </div>
     </section>

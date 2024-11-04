@@ -3,14 +3,6 @@ main{
     height: 100%;
 }
 
-/*Configurações da Tabela*/
-.chart-container {
-    justify-items: center;
-    margin-top: 50px;
-    width: 100%;
-    max-width: 800px;
-}
-
 /*Espaçamento entre a sessão*/
 section {
     display: flex;
@@ -18,16 +10,52 @@ section {
     padding: 1.5rem 5rem;
 }
 
-.quantiaAlunos{
-    height: 20rem;
+/*Configurações da Tabela*/
+.chart-container {
+    justify-items: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
 }
 
-.alunoMatriculado{
-    height: 20rem;
-    margin: 5rem 10% 0 10%;
+/*Configurando espaçamento entre as divisões dos containers*/
+.container_main{
+    margin: 0 0 5rem 0;
 }
 
-.faixaEtaria{
+.quantia_main{
     height: 20rem;
-    margin: 5rem 30% 0 30%
+    margin: 1rem 0 0 0;
+}
+
+.matriculados_main{
+    height: 20rem;
+    margin: 1rem 10% 0 10%;
+}
+
+.faixa_main{
+    height: 20rem;
+    margin: 1rem 30% 0 30%
+}
+
+/*Configurando Titulos*/
+.container_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_header h1{
+    font-size: 2rem;
+}
+
+/*Risco abaixo do titulo*/
+.container_header h1::after{
+    content: '';
+    display: block;
+    width: 10rem;
+    height: 0.3rem;
+    background-color: #f8b067;
+    margin: 0 auto;
+    border-radius: 10px;
 }
