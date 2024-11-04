@@ -11,7 +11,7 @@
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-        <script src="js/gerente/formatocpf.js"></script>
+    <script src="js/gerente/formatocpf.js"></script>
 </head>
 
 <body>
@@ -138,29 +138,66 @@
                             <label for="nome">Nome*</label>
                             <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100" required />
                         </div>
-                        <div class="input-box">
-                            <label for="email">E-mail*</label>
-                            <input type="text" name="email" placeholder="Digite o email" maxlength="255" id="email" required />
-                        </div>
+
                         <div class="input-box">
                             <label for="cpf">CPF*</label>
                             <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                                 oninput="formatCPF(this)" maxlength="14" required>
                         </div>
+
                         <div class="input-box">
-                            <label for="foto">Foto*</label>
-                            <input type="file" name="foto" id="foto" accept="image/*" required />
+                            <label for="email">E-mail*</label>
+                            <input type="text" name="email" placeholder="Digite o email" maxlength="255" id="email" required />
                         </div>
+
+                        <div class="input-box">
+                            <label for="data_nascimento">Data de Nascimento*</label>
+                            <input type="date" name="data_nascimento" id="data_nascimento" required />
+                        </div>
+
                         <div class="input-box">
                             <label for="senha">Senha*</label>
                             <input type="password" name="senha" placeholder="Digite a senha" maxlength="15" id="senha" required />
                         </div>
+
                         <div class="input-box">
                             <label for="confirma_senha">Confirme a Senha*</label>
                             <input type="password" name="confirma_senha" placeholder="Digite a senha novamente" maxlength="15"
                                 id="confirma_senha" required />
                         </div>
+
+                        <div class="input-box">
+                            <label for="plano">Plano da Academia*</label>
+                            <select name="plano" id="plano" required>
+                                <option value="">Selecione um plano</option>
+                                <?php
+                                include 'php/conexao.php';
+
+                                // Obtém o ID do gerente autenticado e o ID da academia
+                                $gerente_id = $_SESSION['usuario_id'];
+                                $academia_id = $_SESSION['Academia_id'];
+
+                                // Consulta para obter os planos da academia
+                                $query = "SELECT id, nome FROM planos WHERE Academia_id = ?";
+                                $stmt = $conexao->prepare($query);
+                                $stmt->bind_param("i", $academia_id);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                // Preenche o select com os planos
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome']) . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="foto">Foto</label>
+                            <input type="file" name="foto" id="foto" />
+                        </div>
                     </div>
+
                     <div class="gender-inputs">
                         <div class="gender-title">
                             <h6>Gênero*</h6>
@@ -185,7 +222,7 @@
                     </div>
 
                     <div class="register-button">
-                        <input type="submit" value="Cadastrar">
+                        <input type="submit" value="Cadastrar Aluno e Assinar Plano">
                     </div>
                 </form>
             </div>
