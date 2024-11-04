@@ -183,8 +183,8 @@
               <label for="tipo">Tipo de Plano:</label>
               <select id="tipo" name="tipo" required>
                 <option value="">Selecione um tipo</option>
-                <option value="principal">Plano</option>
-                <option value="adicional">Assinatura</option>
+                <option value="principal">Plano Principal</option>
+                <option value="adicional">Serviço Adicional</option>
               </select>
             </div>
           </div>
