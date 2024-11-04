@@ -218,20 +218,45 @@ main{
   
   /*Configuração da Responsividade*/
   @media screen and (max-width: 700px) {
-    .form-academia{
-      display: flex ;
-      flex-direction: column;
-      width: 300px;
-    }
-    .conteiner{
+    .container{
       margin-top: 2%;
       background-color: #fff;
       border-radius: 7px;
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-      width: 300px;
-      height: 100%;
+      width: 95%;
+      height: 90%;
       margin-left: auto;
       margin-right: auto;
     }
+    .form-academia{
+      display: flex ;
+      flex-direction: column;
+      width: 50px;
+    }
+    .input-group{
+      display: block;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 40px 0 40px;
+      padding: 1rem 0 0 0;
+    }
+    .form{
+      padding-top: 30px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .title h1{
+      font-size: 1.7rem;
+      font-family: monospace;
+    }
   
   }
+  @media screen and (max-width: 700px) {
+    .dropdown i{
+        margin-left:-50px ;
+    }
+    .logo{
+        font-size: 1.6rem;
+    }
+}

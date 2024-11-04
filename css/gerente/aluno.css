@@ -1,0 +1,288 @@
+/*Configuração do main*/
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Configuração do container onde fica as divs*/
+.container {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
+
+/*Configuração da div que possui todas as outras divs da lista*/
+.userlist{
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/*Configuração da div do cabeçalho*/
+.userlist-title{
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/*Risco abaixo do titulo*/
+.userlist-title h1::after{
+    content: '';
+    display: block;
+    width: 10rem;
+    height: 0.3rem;
+    background-color: #F57419;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/*Customização do botão*/
+.userlist-table a {
+    text-decoration: none;
+}
+
+/*Alinhando o form da barra de pesquisa*/
+.search-form form{
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-form input{
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do input ao passar o mouse nele*/
+.search-form input:hover{
+    background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.search-form input:focus-visible{
+    outline: 1px solid #F57419;
+}
+
+.search-form button{
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #F57419;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+/*Altera a cor ao passar o mouse encima do botão*/
+.search-form button:hover{
+    background-color: #ff6a00;
+} 
+
+/*Customização do espaçamento dos nomes*/
+.nome_func{
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+/*Customização do detalhes*/
+#details{
+    width: 100%;
+    margin-top: 2.5rem;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;  
+}
+
+/*Customização do editar*/
+#edit{
+    width: 100%;
+    margin-top: 2.5rem;
+    border: none;
+    background-color: #FFA600;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;  
+}
+
+/*Customização do remover*/
+#remove{
+    width: 100%;
+    margin-top: 2.5rem;
+    border: none;
+    background-color: #f14232;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;  
+}
+
+/*Altera a cor ao passar o mouse encima do botão*/
+#details:hover{
+    background-color: #ff6a00;
+} 
+
+#edit:hover{
+    background-color: #ffc400; 
+}
+
+#remove:hover{
+    background-color: #ff0000;
+}
+
+/*Configuração da div que possui todas as outras divs do forms*/
+.form{
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/*Configuração da div do cabeçalho*/
+.form-header{
+    margin-bottom: 2rem;
+    display: flex;
+}
+
+/*Risco abaixo do titulo*/
+.form-header h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #F57419;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+/*Customização do grupo dos inputs*/
+.input-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+/*Separando cada tela de input*/
+.input-box{
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.1rem; 
+}
+
+/*Customização do input*/
+.input-box input{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+/*Customização do input ao passar o mouse nele*/
+.input-box input:hover{
+    background-color: #eeeeee75;
+}
+
+/*Curstomização do input ao clicar nele*/
+.input-box input:focus-visible{
+    outline: 1px solid #F57419;
+}
+
+/*Customização dos titulos dos inputs e do genero*/
+.input-box label,
+.gender-title h6{
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+/*Customização dos texto dentro do input*/
+.input-box input::placeholder{
+    color: #000000be;
+}
+
+/*Estilização dos inputs do genero*/
+.gender-group{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.62rem;
+    padding: 0 0.5rem;
+}
+
+/*Alinhando o input*/
+.gender-input{
+    display: flex;
+    align-items: center;
+}
+
+/*Espaçamento entre as bolas e o texto*/
+.gender-input input{
+    margin-right: 0.35rem;
+}
+
+/*Customização dos textos*/
+.gender-input label{
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+/*Customização do botão*/
+.register-button input{
+    width: 100%;
+    margin-top: 2.5rem;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+/*Altera a cor ao passar o mouse encima do botão*/
+.register-button input:hover{
+    background-color: #ff6a00;
+} 
+
+/*Estilizando mensagem de removido com sucesso*/
+#mensagem-sucesso {
+    background-color: #FFF9F3;
+    color: #000000;
+    font-style: normal;
+    font-weight: bold;
+    border: 1px solid #f1ddc8;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.details{
+    font-size: 20px;
+    padding: 1rem 0;
+}
