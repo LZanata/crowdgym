@@ -3,18 +3,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerente Aluno</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerente Funcionário</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/aluno.css">
+    <link rel="stylesheet" href="css/gerente/plano.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script src="js/gerente/validar_senha.js"></script>
     <script src="js/gerente/formatocpf.js"></script>
+    <script src="js/gerente/remover_plano.js"></script>
+    <script src="js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
+    <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
     <header>
         <nav>
             <!--Menu para alterar as opções de tela-->
@@ -57,8 +61,8 @@
             </div>
         </nav>
     </header>
+
     <main>
-        <!--Nesta tela o gerente poderá ver as informações dos alunos e fazer alterações-->
         <div class="container">
             <div class="userlist">
                 <div class="userlist-header">
@@ -67,7 +71,7 @@
                     </div>
                     <div class="search-form">
                         <form method="GET" action="">
-                            <input type="text" name="pesquisa" placeholder="Digite o nome do aluno"
+                            <input type="text" name="pesquisa" placeholder="Digite o nome ou email"
                                 value="<?php echo isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : ''; ?>" />
                             <button type="submit">Pesquisar</button>
                         </form>
@@ -76,6 +80,7 @@
                 <div class="userlist-table">
                     <table>
                         <tbody>
+                            <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
                             <?php
                             include 'php/conexao.php';
 
@@ -124,8 +129,7 @@
                             }
                             ?>
 
-
-
+                            <!--Mensagem após a remoção-->
                             <?php
                             if (isset($_GET['removido']) && $_GET['removido'] == 1) {
                                 echo '<div id="mensagem-sucesso">Aluno removido com sucesso!</div>';
@@ -135,76 +139,69 @@
                     </table>
                 </div>
             </div>
+            <?php
+            if (isset($_GET['success']) && $_GET['success'] == 1) {
+                echo "<p>Perfil atualizado com sucesso!</p>";
+            }
+            // Verifica se o ID foi enviado na URL
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+
+                // Consulta para obter os dados do aluno pelo ID
+                $query = "SELECT id, nome, email, cpf, data_nascimento, genero FROM aluno WHERE id = ?";
+                $stmt = mysqli_prepare($conexao, $query);
+                mysqli_stmt_bind_param($stmt, 'i', $id);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+
+                // Verifica se o aluno foi encontrado
+                if ($aluno = mysqli_fetch_assoc($result)) {
+                    // Exibe o formulário de edição com os dados do aluno
+                } else {
+                    echo "Aluno não encontrado.";
+                    exit;
+                }
+
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "ID do aluno não fornecido.";
+                exit;
+            }
+            ?>
 
             <div class="form">
-                <form action="php/gerente/processa_aluno.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-header">
-                        <div class="title">
-                            <h1>Cadastro do Aluno</h1>
-                        </div>
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Editar Aluno</h1>
                     </div>
+                </div>
+
+                <form action="php/aluno/editar.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($aluno['id']); ?>">
                     <div class="input-group">
                         <div class="input-box">
-                            <label for="nome">Nome*</label>
-                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100" required />
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
+                                value="<?php echo htmlspecialchars($aluno['nome']); ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="cpf">CPF*</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                oninput="formatCPF(this)" maxlength="14" required>
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
+                                value="<?php echo htmlspecialchars($aluno['email']); ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="email">E-mail*</label>
-                            <input type="text" name="email" placeholder="Digite o email" maxlength="255" id="email" required />
+                            <label for="cpf">CPF:</label>
+                            <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                oninput="formatCPF(this)" maxlength="14"
+                                value="<?php echo htmlspecialchars($aluno['cpf']); ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="data_nascimento">Data de Nascimento*</label>
-                            <input type="date" name="data_nascimento" id="data_nascimento" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="senha">Senha*</label>
-                            <input type="password" name="senha" placeholder="Digite a senha" maxlength="15" id="senha" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="confirma_senha">Confirme a Senha*</label>
-                            <input type="password" name="confirma_senha" placeholder="Digite a senha novamente" maxlength="15"
-                                id="confirma_senha" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="plano">Plano da Academia*</label>
-                            <select name="plano" id="plano" required>
-                                <option value="">Selecione um plano</option>
-                                <?php
-                                include 'php/conexao.php';
-
-                                // Obtém o ID do gerente autenticado e o ID da academia
-                                $gerente_id = $_SESSION['usuario_id'];
-                                $academia_id = $_SESSION['Academia_id'];
-
-                                // Consulta para obter os planos da academia
-                                $query = "SELECT id, nome FROM planos WHERE Academia_id = ?";
-                                $stmt = $conexao->prepare($query);
-                                $stmt->bind_param("i", $academia_id);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-
-                                // Preenche o select com os planos
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="input-box">
-                            <label for="foto">Foto</label>
-                            <input type="file" name="foto" required>
+                            <label for="data_nascimento">Data de Nascimento:</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento"
+                                value="<?php echo htmlspecialchars($aluno['data_nascimento']); ?>">
                         </div>
                     </div>
 
@@ -215,29 +212,34 @@
 
                         <div class="gender-group">
                             <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_feminino" value="feminino" required>
+                                <input type="radio" name="genero" id="genero_feminino" value="feminino"
+                                    <?php echo ($aluno['genero'] == 'feminino') ? 'checked' : ''; ?>>
                                 <label for="genero_feminino">Feminino</label>
                             </div>
 
                             <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_masculino" value="masculino" required>
+                                <input type="radio" name="genero" id="genero_masculino" value="masculino"
+                                    <?php echo ($aluno['genero'] == 'masculino') ? 'checked' : ''; ?>>
                                 <label for="genero_masculino">Masculino</label>
                             </div>
 
                             <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_outro" value="outro" required>
+                                <input type="radio" name="genero" id="genero_outro" value="outro"
+                                    <?php echo ($aluno['genero'] == 'outro') ? 'checked' : ''; ?>>
                                 <label for="genero_outro">Outro</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="register-button">
-                        <input type="submit" value="Cadastrar Aluno e Assinar Plano">
+                        <input type="submit" value="Atualizar Perfil">
                     </div>
                 </form>
-            </div>
-        </div>
 
+            </div>
+
+
+        </div>
     </main>
     <footer>
         <div id="footer_copyright">
