@@ -47,7 +47,6 @@
 
               <div class="dropdown-icon">
                 <a href="#" >Perfil</a>
-                <a href="#">Endereço</a>
                 <a href="#">Tema</a>
                 <a href="#">Sair</a>
               </div>
