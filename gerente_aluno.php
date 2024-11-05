@@ -90,30 +90,40 @@
 
                             // Prepara e executa a consulta
                             $stmt = $conexao->prepare($query);
+                            if ($stmt === false) {
+                                die("Erro na preparação da consulta: " . $conexao->error);
+                            }
+
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
                                 $stmt->bind_param("ss", $likePesquisa, $likePesquisa);
                             }
-                            $stmt->execute();
+
+                            if (!$stmt->execute()) {
+                                echo "Erro ao executar a consulta: " . $stmt->error;
+                                exit;
+                            }
+
                             $result = $stmt->get_result();
 
                             // Verifica se encontrou resultados
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>
-    <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
-    <td><img src="' . htmlspecialchars($row['foto'] ?? 'caminho_para_imagem_padrao.jpg', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="50" /></td>
-    <td>
-        <a href="gerente_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
-        <a href="gerente_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
-        <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
-    </td>
-</tr>';
+            <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
+            <td><img src="' . htmlspecialchars($row['foto'] ?? 'php/uploads/', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="200" /></td>
+            <td>
+                <a href="gerente_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
+                <a href="gerente_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
+                <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
+            </td>
+        </tr>';
                                 }
                             } else {
                                 echo '<tr><td colspan="3">Nenhum aluno encontrado.</td></tr>';
                             }
                             ?>
+
 
 
                             <?php
