@@ -135,7 +135,7 @@
         <br>
         <h1 align="center">Crowd Gym</h1>
 
-        <p align="center">O Crowd Gym é um sistema e site direcionado para academias e alunos de academias, que permite que o fluxo de entrada e saída da academia seja monitorado através de catracas com leitor biométrico, permitindo o registro de horários de pico e um planejamento melhor do treino dos alunos.</p><br>
+        <p align="center">O Crowd Gym é um sistema que permite que as academias gerenciem o cadastro de alunos, monitorem o fluxo de entrada e saída, e acompanhem informações financeiras e de planos de assinatura. Ele oferece funcionalidades específicas para gerentes e funcionários, garantindo controle de acesso e uma experiência integrada para todos os usuários. Já os alunos têm acesso a uma interface onde podem se matricular em qualquer academia cadastrada, assinar planos, e visualizar em tempo real o fluxo de pessoas que estão presentes na academia, proporcionando uma experiência mais dinâmica e interativa para o usuário.</p><br>
         <p align="center">Nosso site tem como principais usuários a equipe da academia, como a gerência e os funcionários administrativos, e os alunos que frequentam a academia. Alunos e a equipe da academia terão acessos diferentes, de acordo com suas necessidades.</p>
         <br>
 
