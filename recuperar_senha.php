@@ -11,7 +11,7 @@
 <body>
     <!--Tela de Recuperação de Senha-->
     <div class="page">
-        <form method="POST" class="formLogin">
+        <form method="POST" action="" class="formLogin">
             <div class="titulo">
                 <h1>Crowd Gym</h1>
             </div>
