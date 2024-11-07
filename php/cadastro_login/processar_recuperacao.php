@@ -7,7 +7,7 @@ require 'vendor/autoload.php';
 include('conexao.php'); 
 
 function encontrarUsuario($conn, $email) {
-    $tabelas = ['administradores', 'gerentes', 'funcionarios', 'alunos'];
+    $tabelas = ['administrador', 'gerente', 'funcionario', 'aluno'];
     foreach ($tabelas as $tabela) {
         $query = $conn->prepare("SELECT '$tabela' AS tipo_usuario FROM $tabela WHERE email = ?");
         $query->bind_param("s", $email);
