@@ -109,7 +109,7 @@ mysqli_close($conexao);
                   <input type="submit" value="Acessar conta" />
                 </div>
                 <div class="button">
-                  <a href="cadastro_aluno.html">Criar Conta</a>
+                  <a href="cadastro_aluno.php">Criar Conta</a>
                 </div>
               </div>
         </form>
