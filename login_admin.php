@@ -71,7 +71,7 @@ $conexao->close();
                 type="text"
                 name="email"
                 placeholder="Digite o email" maxlength="255"
-                id="email" />
+                id="email" required />
             </div>
             <div class="input-box">
               <label for="senha">Senha*</label>
