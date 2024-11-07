@@ -1,15 +1,21 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
+
+// Carregar variáveis de ambiente
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 include('conexao.php'); 
 
 function encontrarUsuario($conn, $email) {
     $tabelas = ['administrador', 'gerente', 'funcionario', 'aluno'];
     foreach ($tabelas as $tabela) {
-        $query = $conn->prepare("SELECT '$tabela' AS tipo_usuario FROM $tabela WHERE email = ?");
+        $query = $conn->prepare("SELECT email FROM $tabela WHERE email = ?");
         $query->bind_param("s", $email);
         $query->execute();
         $result = $query->get_result();
@@ -27,13 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tipo_usuario = encontrarUsuario($conn, $email);
 
     if ($tipo_usuario) {
-        $token = bin2hex(random_bytes(16));
-        $expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        $token = bin2hex(random_bytes(16)); // Gerando um token
+        $expiry = date('Y-m-d H:i:s', strtotime('+1 hour')); // Definindo a validade do token (1 hora)
 
+        // Atualizando o token e sua validade na tabela do usuário
         $updateQuery = $conn->prepare("UPDATE $tipo_usuario SET token_recuperacao = ?, validade_token = ? WHERE email = ?");
         $updateQuery->bind_param("sss", $token, $expiry, $email);
         $updateQuery->execute();
 
+        // Gerando o link para redefinir a senha
         $link = "https://seusite.com/redefinir_senha.php?token=$token&tipo=$tipo_usuario";
         $assunto = "Recuperação de Senha";
         $mensagem = "Olá, clique no link abaixo para redefinir sua senha: $link";
@@ -41,26 +49,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Configuração do PHPMailer
         $mail = new PHPMailer(true);
         try {
-            // Configurações do servidor
+            // Configurações do servidor SMTP
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Host do seu provedor de e-mail
+            $mail->Host = getenv('SMTP_HOST');
             $mail->SMTPAuth = true;
-            $mail->Username = 'seuemail@gmail.com'; // E-mail
-            $mail->Password = 'suasenha'; // Senha
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Username = getenv('EMAIL_USUARIO');
+            $mail->Password = getenv('EMAIL_SENHA');
+            $mail->SMTPSecure = getenv('SMTP_SECURE');
+            $mail->Port = getenv('SMTP_PORT');
+        
+            // Definindo remetente e destinatário
+            $mail->setFrom(getenv('EMAIL_USUARIO'), 'Crowd Gym');
+            $mail->addAddress($email); // E-mail do destinatário
 
-            // Destinatário e remetente
-            $mail->setFrom('no-reply@seusite.com', 'Crowd Gym');
-            $mail->addAddress($email);
-
-            // Conteúdo do e-mail
-            $mail->isHTML(true);
+            // Assunto e corpo do e-mail
             $mail->Subject = $assunto;
-            $mail->Body = $mensagem;
-
+            $mail->Body    = $mensagem;
+        
+            // Enviar o e-mail
             $mail->send();
-            echo "Um link de recuperação foi enviado para o seu e-mail.";
+            echo 'E-mail de recuperação enviado com sucesso.';
         } catch (Exception $e) {
             echo "Erro ao enviar e-mail: {$mail->ErrorInfo}";
         }
