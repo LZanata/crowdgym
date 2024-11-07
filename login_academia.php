@@ -126,7 +126,7 @@ mysqli_close($conexao);
                 <?php endif; ?>
               </div>
               <div class="esqueci">
-                <a href="recuperar_senha.html">Esqueci minha senha</a>
+                <a href="recuperar_senha.php">Esqueci minha senha</a>
               </div>
             </div>
             <div class="button-group">
