@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+include 'php/conexao.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +27,7 @@
             <label for="email">E-mail</label>
             <input type="email" name="email" placeholder="Inserir e-mail" autofocus="true" required />
             <div class="botoes">
-                <input type="submit" value="Enviar link para alteração"></input>
+                <input type="submit" value="Enviar link para alteração" name="SendRecupSenha"></input>
             </div>
         </form>
     </div>
