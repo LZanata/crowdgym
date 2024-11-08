@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -12,10 +12,10 @@ $dotenv->load();
 
 include('conexao.php'); 
 
-function encontrarUsuario($conn, $email) {
+function encontrarUsuario($conexao, $email) {
     $tabelas = ['administrador', 'gerente', 'funcionario', 'aluno'];
     foreach ($tabelas as $tabela) {
-        $query = $conn->prepare("SELECT email FROM $tabela WHERE email = ?");
+        $query = $conexao->prepare("SELECT email FROM $tabela WHERE email = ?");
         $query->bind_param("s", $email);
         $query->execute();
         $result = $query->get_result();
@@ -30,19 +30,19 @@ function encontrarUsuario($conn, $email) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    $tipo_usuario = encontrarUsuario($conn, $email);
+    $tipo_usuario = encontrarUsuario($conexao, $email);
 
     if ($tipo_usuario) {
         $token = bin2hex(random_bytes(16)); // Gerando um token
         $expiry = date('Y-m-d H:i:s', strtotime('+1 hour')); // Definindo a validade do token (1 hora)
 
         // Atualizando o token e sua validade na tabela do usuário
-        $updateQuery = $conn->prepare("UPDATE $tipo_usuario SET token_recuperacao = ?, validade_token = ? WHERE email = ?");
+        $updateQuery = $conexao->prepare("UPDATE $tipo_usuario SET token_recuperacao = ?, validade_token = ? WHERE email = ?");
         $updateQuery->bind_param("sss", $token, $expiry, $email);
         $updateQuery->execute();
 
         // Gerando o link para redefinir a senha
-        $link = "https://seusite.com/redefinir_senha.php?token=$token&tipo=$tipo_usuario";
+        $link = "localhost//Projeto_CrowdGym/redefinir_senha.php?token=$token&tipo=$tipo_usuario";
         $assunto = "Recuperação de Senha";
         $mensagem = "Olá, clique no link abaixo para redefinir sua senha: $link";
 

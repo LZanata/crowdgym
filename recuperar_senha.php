@@ -18,9 +18,9 @@
             <h2>Redefinir Senha</h2>
             <p>Para redefinir sua senha, informe o e-mail cadastrado na sua conta e lhe enviaremos um link para realizar a alteração</p>
             <label for="email">E-mail</label>
-            <input type="email" placeholder="Inserir e-mail" autofocus="true" required />
+            <input type="email" name="email" placeholder="Inserir e-mail" autofocus="true" required />
             <div class="botoes">
-                <a href="alterar_senha.html">Enviar link para alteração</a>
+                <input type="submit" value="Enviar link para alteração"></input>
             </div>
         </form>
     </div>

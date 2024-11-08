@@ -118,19 +118,21 @@ body {
     flex-direction: column;
 }
 
-.botoes a {
+.botoes input {
     /*estiliza os botoes acessar e criar conta*/
-    display: flex;
-    justify-content: center;
-    background-color: #f57419;
-    text-decoration: none;
+    width: 100%;
+    height: 3rem;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
     color: #fff;
-    border-radius: 4px;
-    padding: 15px;
-    height: 20px;
+    margin-bottom: 30px;
 }
 
-.botoes a:hover {
+.botoes input:hover {
     /*faz o texto dos botoes continuarem brancos depois de passar o mouse*/
     color: #fff;
 }
