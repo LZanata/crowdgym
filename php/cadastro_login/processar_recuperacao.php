@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
 
 // Carregar variáveis de ambiente
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__ . '.env');
 $dotenv->load();
 
 include('conexao.php'); 
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updateQuery->execute();
 
         // Gerando o link para redefinir a senha
-        $link = "localhost//Projeto_CrowdGym/redefinir_senha.php?token=$token&tipo=$tipo_usuario";
+        $link = "http://localhost/Projeto_CrowdGym/redefinir_senha.php?token=$token&tipo=$tipo_usuario";
         $assunto = "Recuperação de Senha";
         $mensagem = "Olá, clique no link abaixo para redefinir sua senha: $link";
 
@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
             // Definindo remetente e destinatário
             $mail->setFrom(getenv('EMAIL_USUARIO'), 'Crowd Gym');
+
             $mail->addAddress($email); // E-mail do destinatário
 
             // Assunto e corpo do e-mail
