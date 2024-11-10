@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `crowdgym`;
+
+USE `crowdgym`;
+
 CREATE TABLE IF NOT EXISTS `academia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
