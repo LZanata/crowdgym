@@ -56,7 +56,7 @@ main{
   padding: 0;
   margin: 0;
   font-weight: 500;
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 /*Alteração da div do subtitulo*/
@@ -210,20 +210,10 @@ main{
   background-color: #ff6a00;
 }
 
-/* formatação do footer*/
-footer {
-  width: 100%;
-  color: var(--cor-bg);
-  position: relative;
-  bottom: 0;
-  
-}
-
 /*formata o texto do e o centraliza copyright*/
 #footer_copyright {
   display: flex;
   justify-content: center;
-  background-color: var(--cor-secundaria);
   font-size: 0.9rem;
   padding: 1.5rem;
   font-weight: 100;
@@ -231,28 +221,37 @@ footer {
 
 /*Configuração da Responsividade*/
 @media screen and (max-width: 700px) {
-  .form-academia{
-    display: flex ;
-    flex-direction: column;
-    width: 300px;
+  .formLogin {
+    height: 40%;
+    width: 100%;
   }
-  .conteiner{
-    margin-top: 2%;
-    background-color: #fff;
-    border-radius: 7px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+
+  .button a{
+    width: 100%;
+    text-decoration: none;
+    height: 20px;
+    background-color: #F57419;
+    padding: 0.90rem 2.7rem 0.90rem 2.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: #fff;
+  }
+  .form{
+    padding-top: 50px;
     width: 300px;
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
   }
-
-}
-
-@media screen and (max-width: 640px) {
-  .formLogin {
-    height: 60%;
-    width: 60%;
+  .container{
+    margin-top: 20%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 620px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }
