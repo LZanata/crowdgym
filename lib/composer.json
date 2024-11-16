@@ -1,18 +1,6 @@
 {
-    "name": "lzanata/lib",
-    "autoload": {
-        "psr-4": {
-            "Lzanata\\Lib\\": "src/"
-        }
-    },   
-    "authors": [
-        {
-            "name": "LZanata",
-            "email": "leonardozana19@gmail.com"
-        }
-    ],
     "require": {
-        "google/apiclient": "^2.18"
+        "phpmailer/phpmailer": "^6.9",
+        "vlucas/phpdotenv": "^5.6"
     }
-
 }

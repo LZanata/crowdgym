@@ -1,22 +1,17 @@
 <?php
-session_start();
-
-include 'php/conexao.php';
-
 require 'lib/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
-use League\OAuth2\Client\Provider\Google;
 
 // Carregar variáveis de ambiente
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-include('conexao.php');
+include('php/conexao.php');
 
-// Função para encontrar o usuário
+// Função para encontrar o e-mail nas tabelas
 function encontrarUsuario($conexao, $email) {
     $tabelas = ['administrador', 'gerente', 'funcionario', 'aluno'];
     foreach ($tabelas as $tabela) {
@@ -24,6 +19,7 @@ function encontrarUsuario($conexao, $email) {
         $query->bind_param("s", $email);
         $query->execute();
         $result = $query->get_result();
+
         if ($result->num_rows > 0) {
             return $tabela; // Retorna o nome da tabela onde o e-mail foi encontrado
         }
@@ -33,6 +29,7 @@ function encontrarUsuario($conexao, $email) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
     $tipo_usuario = encontrarUsuario($conexao, $email);
 
     if ($tipo_usuario) {
@@ -49,43 +46,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $assunto = "Recuperação de Senha";
         $mensagem = "Olá, clique no link abaixo para redefinir sua senha: $link";
 
-        // Configuração do OAuth 2.0
-        $provider = new Google([
-            'clientId'     => getenv('GOOGLE_CLIENT_ID'),
-            'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
-            'redirectUri'  => 'http://localhost',
-        ]);
-
-        $accessToken = getenv('GOOGLE_ACCESS_TOKEN'); // Token de acesso obtido anteriormente
-
         // Configuração do PHPMailer
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = getenv('SMTP_HOST');
             $mail->SMTPAuth = true;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Username = getenv('EMAIL_USUARIO');
+            $mail->Password = getenv('EMAIL_SENHA');
+            $mail->SMTPSecure = getenv('SMTP_SECURE');
+            $mail->Port = getenv('SMTP_PORT');
 
-            // Configuração do OAuth 2.0 no PHPMailer
-            $mail->AuthType = 'XOAUTH2';
-            $mail->setOAuth(new \PHPMailer\PHPMailer\OAuth([
-                'provider' => $provider,
-                'clientId' => getenv('GOOGLE_CLIENT_ID'),
-                'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
-                'refreshToken' => getenv('GOOGLE_REFRESH_TOKEN'),
-                'userName' => getenv('EMAIL_USUARIO')
-            ]));
-
-            // Definindo remetente e destinatário
             $mail->setFrom(getenv('EMAIL_USUARIO'), 'Crowd Gym');
             $mail->addAddress($email);
 
-            // Assunto e corpo do e-mail
             $mail->Subject = $assunto;
-            $mail->Body    = $mensagem;
+            $mail->Body = $mensagem;
 
-            // Enviar o e-mail
             $mail->send();
             echo 'E-mail de recuperação enviado com sucesso.';
         } catch (Exception $e) {
