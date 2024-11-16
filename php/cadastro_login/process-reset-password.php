@@ -44,7 +44,7 @@ if (!preg_match("/[0-9]/", $_POST["senha"])) {
     die("A senha deve conter pelo menos um número");
 }
 
-if ($_POST["senha"] !== $_POST["senha_confirmation"]) {
+if ($_POST["senha"] !== $_POST["confirma_senha"]) {
     die("As senhas devem coincidir");
 }
 

@@ -1,3 +1,40 @@
+<?php
+
+$token = $_GET["token"];
+$token_hash = hash("sha256", $token);
+
+$mysqli = require __DIR__ . "/php/conexao.php";
+
+// Array com as tabelas de usuários
+$tables = ['administrador', 'gerente', 'funcionario', 'aluno'];
+$user = null;
+
+foreach ($tables as $table) {
+    $sql = "SELECT * FROM $table
+            WHERE reset_token_hash = ?";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $token_hash);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user !== null) {
+        break; // Sai do loop se um usuário for encontrado
+    }
+}
+
+if ($user === null) {
+    die("token not found");
+}
+
+if (strtotime($user["reset_token_expires_at"]) <= time()) {
+    die("token has expired");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
