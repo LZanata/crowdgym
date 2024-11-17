@@ -9,20 +9,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = $_POST['email'];
   $senha = $_POST['senha'];
 
-  // Consulta para verificar o administrador no banco de dados usando consulta preparada
-  $sql = "SELECT * FROM administrador WHERE email = ? AND senha = ?";
+  // Consulta para buscar o administrador no banco de dados com base no email
+  $sql = "SELECT * FROM administrador WHERE email = ?";
   $stmt = $conexao->prepare($sql);
-  $stmt->bind_param('ss', $email, $senha);
+  $stmt->bind_param('s', $email);
   $stmt->execute();
   $result = $stmt->get_result();
 
   // Verifica se há correspondência
   if ($result->num_rows > 0) {
-    // Redireciona para a página do administrador
-    header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.php");
-    exit();
+    $usuario = $result->fetch_assoc();
+
+    // Verifica se a senha armazenada está em hash
+    if (password_verify($senha, $usuario['senha'])) {
+      // Senha com hash está correta
+      header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.php");
+      exit();
+    } elseif ($usuario['senha'] === $senha) {
+      // Senha armazenada em texto puro (não é recomendado)
+      header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.php");
+      exit();
+    } else {
+      // Falha na autenticação
+      $erroLogin = "Email ou senha incorretos. Tente novamente.";
+    }
   } else {
-    // Falha no login, define a mensagem de erro
+    // Nenhum usuário encontrado com o email
     $erroLogin = "Email ou senha incorretos. Tente novamente.";
   }
 
