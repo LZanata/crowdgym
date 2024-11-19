@@ -46,12 +46,12 @@ if (isset($_POST['SendRecupSenha'])) {
             try {
                 $mail->send();
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+                echo "O email não pode ser enviado. Mailer error: {$mail->ErrorInfo}";
             }
 
-            echo "Message sent, please check your inbox.";
+            echo "Email enviado, por favor verifique o seu inbox.";
         } else {
-            echo "Email not found in any user table.";
+            echo "Email não foi encontrado.";
         }
     } else {
         echo "E-mail não foi fornecido.";
