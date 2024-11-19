@@ -59,7 +59,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
     <main>
       <section class="mygym">
         <h1>NENHUMA ACADEMIA REGISTRADA</h1>
-        <a href="">CLIQUE AQUI PARA BUSCAR UMA ACADEMIA</a>
+        <a href="aluno_buscar_academias.php">CLIQUE AQUI PARA BUSCAR UMA ACADEMIA</a>
       </section>
     </main>
     <footer>
