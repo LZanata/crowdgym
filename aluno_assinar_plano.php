@@ -1,54 +1,40 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
 require_once 'php/conexao.php';
+require_once 'php/cadastro_login/check_login_aluno.php';
 
+// Obtém o plano_id da URL
+$plano_id = isset($_GET['plano_id']) ? (int)$_GET['plano_id'] : 0;
+
+if (!$plano_id) {
+    echo "Erro: ID do plano não informado.";
+    exit;
+}
+
+// Conexão ao banco
 $conexao = mysqli_connect("localhost", "root", "", "crowdgym");
 
-$plano_id = isset($_GET['plano_id']) ? (int) $_GET['plano_id'] : 0;
-$aluno_id = $_SESSION['aluno_id'];
+if (!$conexao) {
+    die("Falha na conexão: " . mysqli_connect_error());
+}
 
-// Verifica se o plano existe
+// Busca os detalhes do plano
 $queryPlano = $conexao->prepare("SELECT * FROM planos WHERE id = ?");
+if (!$queryPlano) {
+    echo "Erro na preparação da consulta: " . $conexao->error;
+    exit;
+}
 $queryPlano->bind_param("i", $plano_id);
 $queryPlano->execute();
 $resultPlano = $queryPlano->get_result();
 $plano = $resultPlano->fetch_assoc();
 
 if (!$plano) {
-    echo "Plano não encontrado!";
+    echo "Plano não encontrado.";
     exit;
 }
 
-// Verifica se o aluno já assinou este plano
-$queryAssinatura = $conexao->prepare("SELECT * FROM assinatura WHERE Planos_id = ? AND Aluno_id = ? AND status = 'ativo'");
-$queryAssinatura->bind_param("ii", $plano_id, $aluno_id);
-$queryAssinatura->execute();
-$resultAssinatura = $queryAssinatura->get_result();
-
-if ($resultAssinatura->num_rows > 0) {
-    echo "Você já assinou este plano.";
-    exit;
-}
-
-// Insere uma nova assinatura
-$data_inicio = date('Y-m-d');
-$data_fim = date('Y-m-d', strtotime("+{$plano['duracao']} days"));
-$valor_pago = $plano['valor'];
-$status = 'ativo';
-
-$queryInserir = $conexao->prepare("INSERT INTO assinatura (status, valor_pago, data_inicio, data_fim, Planos_id, Aluno_id) VALUES (?, ?, ?, ?, ?, ?)");
-$queryInserir->bind_param("sdssii", $status, $valor_pago, $data_inicio, $data_fim, $plano_id, $aluno_id);
-
-if ($queryInserir->execute()) {
-    echo "Plano assinado com sucesso!";
-} else {
-    echo "Erro ao assinar o plano.";
-}
-
+// Fecha a consulta
 $queryPlano->close();
-$queryAssinatura->close();
-$queryInserir->close();
-$conexao->close();
 ?>
 
 <!DOCTYPE html>
@@ -56,19 +42,16 @@ $conexao->close();
 
 <head>
     <meta charset="UTF-8">
-    <title>Planos - <?php echo htmlspecialchars($academia['nome']); ?></title>
+    <title>Assinar Plano - <?php echo htmlspecialchars($plano['nome']); ?></title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/aluno/plano_academia.css">
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
 <body>
     <header>
-        <!--Quando clicar nesta opção tem que aparecer as academias que ele está matriculado no sistema e quando clicar na academia deverá mostrar os dados de quantas pessoas estão treinando e os planos assinados nesta academia. -->
+        <!-- Menu de navegação -->
         <nav>
-            <!--Menu para alterar as opções de tela-->
             <div class="list">
                 <ul>
                     <li class="dropdown">
@@ -86,11 +69,9 @@ $conexao->close();
                     </li>
                 </ul>
             </div>
-            <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
             <div class="logo">
                 <h1>Crowd Gym</h1>
             </div>
-            <!--Opção para alterar as configurações de usuário-->
             <div class="user">
                 <ul>
                     <li class="user-icon">
@@ -107,8 +88,70 @@ $conexao->close();
         </nav>
     </header>
     <main>
-    <a href="aluno_buscar_academias.php">Voltar</a>   
+        <h2>Plano: <?php echo htmlspecialchars($plano['nome']); ?></h2>
+        <p>Descrição: <?php echo htmlspecialchars($plano['descricao']); ?></p>
+        <p>Valor: R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?></p>
+        <p>Duração: <?php echo $plano['duracao']; ?> dias</p>
+
+        <form action="php/aluno/assinar_plano.php" method="POST">
+            <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($plano_id); ?>">
+            
+            <label for="metodo_pagamento">Método de Pagamento:</label>
+            <select name="metodo_pagamento" id="metodo_pagamento" required>
+                <option value="">Selecione</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+                <option value="Boleto">Boleto</option>
+                <option value="Pix">Pix</option>
+            </select>
+            <br>
+            
+            <label for="data_pagamento">Data de Pagamento:</label>
+            <input type="date" name="data_pagamento" id="data_pagamento" required>
+            <br>
+            
+            <button type="submit">Confirmar Assinatura</button>
+        </form>
+
+        <a href="aluno_buscar_academias.php">Voltar</a>
     </main>
+    <!-- Validação no Frontend -->
+    <script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        const metodoPagamento = document.getElementById("metodo_pagamento").value;
+        const dataPagamento = document.getElementById("data_pagamento").value;
+        const hoje = new Date();
+        const dataPagamentoDate = new Date(dataPagamento);
+        const dataLimite = new Date();
+        dataLimite.setFullYear(dataLimite.getFullYear() + 1);
+
+        let erros = [];
+
+        if (!metodoPagamento) {
+            erros.push("Selecione um método de pagamento.");
+        }
+
+        if (!dataPagamento) {
+            erros.push("Informe a data de pagamento.");
+        } else {
+            if (isNaN(dataPagamentoDate.getTime())) {
+                erros.push("Data de pagamento inválida.");
+            } else {
+                if (dataPagamentoDate < hoje) {
+                    erros.push("A data de pagamento não pode ser no passado.");
+                }
+                if (dataPagamentoDate > dataLimite) {
+                    erros.push("A data de pagamento não pode ser superior a 1 ano.");
+                }
+            }
+        }
+
+        if (erros.length > 0) {
+            alert(erros.join("\n"));
+            event.preventDefault(); // Impede o envio do formulário
+        }
+    });
+    </script>
 </body>
 
 </html>
