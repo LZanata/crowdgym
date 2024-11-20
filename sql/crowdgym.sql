@@ -45,13 +45,15 @@ CREATE TABLE IF NOT EXISTS `aluno` (
 CREATE TABLE IF NOT EXISTS `assinatura` (
   `id` int NOT NULL AUTO_INCREMENT,
   `status` enum('ativo','inativo') NOT NULL,
-  `valor_pago` decimal(10,2) NOT NULL,
   `data_inicio` date NOT NULL,
   `data_fim` date NOT NULL,
-  `Plano_id` int NOT NULL,
+  `metodo_pagamento` enum('Cartão de Crédito','Cartão de Débito','Boleto','Pix') NOT NULL,
+  `data_pagamento` date NOT NULL,
+  `valor_pago` decimal(10,2) NOT NULL,
+  `Planos_id` int NOT NULL,
   `Aluno_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_Assinatura_Plano1_idx` (`Plano_id`),
+  KEY `fk_Assinatura_Planos1_idx` (`Planos_id`),
   KEY `fk_Assinatura_Aluno1_idx` (`Aluno_id`)
 );
 
@@ -102,18 +104,6 @@ CREATE TABLE IF NOT EXISTS `gerente` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`),
   KEY `fk_Funcionario_Academia_idx` (`Academia_id`)
-);
-
-CREATE TABLE IF NOT EXISTS `pagamento` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `valor_pago` decimal(10,2) NOT NULL,
-  `metodo_pagamento` enum('Cartão de Crédito','Cartão de Débito','Boleto','Pix') NOT NULL,
-  `data_pagamento` date NOT NULL,
-  `Assinatura_id` int NOT NULL,
-  `Aluno_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Pagamento_Assinatura1_idx` (`Assinatura_id`),
-  KEY `fk_Pagamento_Aluno1_idx` (`Aluno_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `planos` (

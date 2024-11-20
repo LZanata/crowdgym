@@ -2,25 +2,55 @@
 require_once 'php/cadastro_login/check_login_aluno.php';
 require_once 'php/conexao.php';
 
-$academia_id = isset($_GET['academia_id']) ? (int) $_GET['academia_id'] : 0;
+$conexao = mysqli_connect("localhost", "root", "", "crowdgym");
 
-// Verifica se a academia existe
-$queryAcademia = $conexao->prepare("SELECT * FROM academia WHERE id = ?");
-$queryAcademia->bind_param("i", $academia_id);
-$queryAcademia->execute();
-$academia = $queryAcademia->get_result()->fetch_assoc();
+$plano_id = isset($_GET['plano_id']) ? (int) $_GET['plano_id'] : 0;
+$aluno_id = $_SESSION['aluno_id'];
 
-if (!$academia) {
-    echo "Academia não encontrada!";
+// Verifica se o plano existe
+$queryPlano = $conexao->prepare("SELECT * FROM planos WHERE id = ?");
+$queryPlano->bind_param("i", $plano_id);
+$queryPlano->execute();
+$resultPlano = $queryPlano->get_result();
+$plano = $resultPlano->fetch_assoc();
+
+if (!$plano) {
+    echo "Plano não encontrado!";
     exit;
 }
 
-// Busca planos da academia
-$queryPlanos = $conexao->prepare("SELECT * FROM planos WHERE Academia_id = ?");
-$queryPlanos->bind_param("i", $academia_id);
-$queryPlanos->execute();
-$planos = $queryPlanos->get_result();
+// Verifica se o aluno já assinou este plano
+$queryAssinatura = $conexao->prepare("SELECT * FROM assinatura WHERE Planos_id = ? AND Aluno_id = ? AND status = 'ativo'");
+$queryAssinatura->bind_param("ii", $plano_id, $aluno_id);
+$queryAssinatura->execute();
+$resultAssinatura = $queryAssinatura->get_result();
+
+if ($resultAssinatura->num_rows > 0) {
+    echo "Você já assinou este plano.";
+    exit;
+}
+
+// Insere uma nova assinatura
+$data_inicio = date('Y-m-d');
+$data_fim = date('Y-m-d', strtotime("+{$plano['duracao']} days"));
+$valor_pago = $plano['valor'];
+$status = 'ativo';
+
+$queryInserir = $conexao->prepare("INSERT INTO assinatura (status, valor_pago, data_inicio, data_fim, Planos_id, Aluno_id) VALUES (?, ?, ?, ?, ?, ?)");
+$queryInserir->bind_param("sdssii", $status, $valor_pago, $data_inicio, $data_fim, $plano_id, $aluno_id);
+
+if ($queryInserir->execute()) {
+    echo "Plano assinado com sucesso!";
+} else {
+    echo "Erro ao assinar o plano.";
+}
+
+$queryPlano->close();
+$queryAssinatura->close();
+$queryInserir->close();
+$conexao->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -77,19 +107,7 @@ $planos = $queryPlanos->get_result();
         </nav>
     </header>
     <main>
-        <h1>Planos de <?php echo htmlspecialchars($academia['nome']); ?></h1>
-        <ul>
-            <?php while ($plano = $planos->fetch_assoc()): ?>
-                <li>
-                    <h3><?php echo htmlspecialchars($plano['nome']); ?></h3>
-                    <p><?php echo htmlspecialchars($plano['descricao']); ?></p>
-                    <p>Valor: R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?> (<?php echo $plano['duracao']; ?> dias)</p>
-                    <p>Tipo: <?php echo htmlspecialchars($plano['tipo']); ?></p>
-                    <a href="aluno_assinar_plano.php?plano_id=<?php echo $plano['id']; ?>">Assinar Plano</a>
-                </li>
-            <?php endwhile; ?>
-        </ul>
-        <a href="aluno_buscar_academias.php">Voltar</a>
+    <a href="aluno_buscar_academias.php">Voltar</a>   
     </main>
 </body>
 
