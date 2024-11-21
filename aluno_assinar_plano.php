@@ -2,19 +2,12 @@
 require_once 'php/conexao.php';
 require_once 'php/cadastro_login/check_login_aluno.php';
 
-// Obtém o plano_id da URL
-$plano_id = isset($_GET['plano_id']) ? (int)$_GET['plano_id'] : 0;
+// Verifica se o plano_id foi passado corretamente na URL
+$plano_id = isset($_GET['plano_id']) ? filter_var($_GET['plano_id'], FILTER_VALIDATE_INT) : 0;
 
 if (!$plano_id) {
-    echo "Erro: ID do plano não informado.";
+    echo "Erro: ID do plano não informado ou inválido.";
     exit;
-}
-
-// Conexão ao banco
-$conexao = mysqli_connect("localhost", "root", "", "crowdgym");
-
-if (!$conexao) {
-    die("Falha na conexão: " . mysqli_connect_error());
 }
 
 // Busca os detalhes do plano
@@ -94,63 +87,98 @@ $queryPlano->close();
         <p>Duração: <?php echo $plano['duracao']; ?> dias</p>
 
         <form action="php/aluno/assinar_plano.php" method="POST">
-            <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($plano_id); ?>">
-            
             <label for="metodo_pagamento">Método de Pagamento:</label>
-            <select name="metodo_pagamento" id="metodo_pagamento" required>
+            <select name="metodo_pagamento" id="metodo_pagamento" required onchange="mostrarCamposPagamento(this.value)">
                 <option value="">Selecione</option>
                 <option value="Cartão de Crédito">Cartão de Crédito</option>
                 <option value="Cartão de Débito">Cartão de Débito</option>
                 <option value="Boleto">Boleto</option>
                 <option value="Pix">Pix</option>
             </select>
-            <br>
-            
+
+            <div id="campos_pagamento"></div>
+
             <label for="data_pagamento">Data de Pagamento:</label>
             <input type="date" name="data_pagamento" id="data_pagamento" required>
-            <br>
-            
+
             <button type="submit">Confirmar Assinatura</button>
         </form>
 
         <a href="aluno_buscar_academias.php">Voltar</a>
     </main>
+
     <!-- Validação no Frontend -->
     <script>
-    document.querySelector("form").addEventListener("submit", function(event) {
-        const metodoPagamento = document.getElementById("metodo_pagamento").value;
-        const dataPagamento = document.getElementById("data_pagamento").value;
-        const hoje = new Date();
-        const dataPagamentoDate = new Date(dataPagamento);
-        const dataLimite = new Date();
-        dataLimite.setFullYear(dataLimite.getFullYear() + 1);
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const metodoPagamento = document.getElementById("metodo_pagamento").value;
+            const dataPagamento = document.getElementById("data_pagamento").value;
+            const hoje = new Date();
+            const dataPagamentoDate = new Date(dataPagamento);
+            const dataLimite = new Date();
+            dataLimite.setFullYear(dataLimite.getFullYear() + 1);
 
-        let erros = [];
+            let erros = [];
 
-        if (!metodoPagamento) {
-            erros.push("Selecione um método de pagamento.");
-        }
+            if (!metodoPagamento) {
+                erros.push("Selecione um método de pagamento.");
+            }
 
-        if (!dataPagamento) {
-            erros.push("Informe a data de pagamento.");
-        } else {
-            if (isNaN(dataPagamentoDate.getTime())) {
-                erros.push("Data de pagamento inválida.");
+            if (!dataPagamento) {
+                erros.push("Informe a data de pagamento.");
             } else {
-                if (dataPagamentoDate < hoje) {
-                    erros.push("A data de pagamento não pode ser no passado.");
-                }
-                if (dataPagamentoDate > dataLimite) {
-                    erros.push("A data de pagamento não pode ser superior a 1 ano.");
+                if (isNaN(dataPagamentoDate.getTime())) {
+                    erros.push("Data de pagamento inválida.");
+                } else {
+                    if (dataPagamentoDate < hoje) {
+                        erros.push("A data de pagamento não pode ser no passado.");
+                    }
+                    if (dataPagamentoDate > dataLimite) {
+                        erros.push("A data de pagamento não pode ser superior a 1 ano.");
+                    }
                 }
             }
-        }
 
-        if (erros.length > 0) {
-            alert(erros.join("\n"));
-            event.preventDefault(); // Impede o envio do formulário
+            if (erros.length > 0) {
+                alert(erros.join("\n"));
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        });
+    </script>
+
+    <!-- Preenchimento de campos dos métodos de pagamento escolhido -->
+    <script>
+        function mostrarCamposPagamento(metodo) {
+            const campos = document.getElementById('campos_pagamento');
+            campos.innerHTML = ''; // Limpa os campos
+
+            if (metodo === 'Cartão de Crédito' || metodo === 'Cartão de Débito') {
+                campos.innerHTML = `
+            <label for="numero_cartao">Número do Cartão:</label>
+            <input type="text" name="numero_cartao" id="numero_cartao" required>
+            
+            <label for="nome_titular">Nome do Titular:</label>
+            <input type="text" name="nome_titular" id="nome_titular" required>
+            
+            <label for="validade_cartao">Validade (MM/AA):</label>
+            <input type="text" name="validade_cartao" id="validade_cartao" required>
+            
+            <label for="codigo_seguranca">Código de Segurança:</label>
+            <input type="text" name="codigo_seguranca" id="codigo_seguranca" required>
+            
+            <label for="cpf_titular">CPF do Titular:</label>
+            <input type="text" name="cpf_titular" id="cpf_titular" required>
+        `;
+            } else if (metodo === 'Pix') {
+                campos.innerHTML = `
+            <label for="chave_pix">Chave Pix:</label>
+            <input type="text" name="chave_pix" id="chave_pix" required>
+        `;
+            } else if (metodo === 'Boleto') {
+                campos.innerHTML = `
+            <p>Um boleto será gerado e enviado ao seu email após a confirmação.</p>
+        `;
+            }
         }
-    });
     </script>
 </body>
 
