@@ -1,50 +1,38 @@
 <?php
-require_once 'php/conexao.php';
 require_once 'php/cadastro_login/check_login_aluno.php';
+require_once 'php/conexao.php';
 
-// Verifica se o plano_id foi passado corretamente na URL
-$plano_id = isset($_GET['plano_id']) ? filter_var($_GET['plano_id'], FILTER_VALIDATE_INT) : 0;
+$plano_id = isset($_GET['plano_id']) ? (int) $_GET['plano_id'] : 0;
 
-if (!$plano_id) {
-    echo "Erro: ID do plano não informado ou inválido.";
-    exit;
-}
-
-// Busca os detalhes do plano
+// Busca detalhes do plano selecionado
 $queryPlano = $conexao->prepare("SELECT * FROM planos WHERE id = ?");
-if (!$queryPlano) {
-    echo "Erro na preparação da consulta: " . $conexao->error;
-    exit;
-}
 $queryPlano->bind_param("i", $plano_id);
 $queryPlano->execute();
-$resultPlano = $queryPlano->get_result();
-$plano = $resultPlano->fetch_assoc();
+$plano = $queryPlano->get_result()->fetch_assoc();
 
 if (!$plano) {
-    echo "Plano não encontrado.";
+    echo "Plano não encontrado!";
     exit;
 }
-
-// Fecha a consulta
-$queryPlano->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <title>Assinar Plano - <?php echo htmlspecialchars($plano['nome']); ?></title>
+    <title>Assinar Plano</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/aluno/plano_academia.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/aluno/assinatura.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
 <body>
     <header>
-        <!-- Menu de navegação -->
+        <!--Quando clicar nesta opção tem que aparecer as academias que ele está matriculado no sistema e quando clicar na academia deverá mostrar os dados de quantas pessoas estão treinando e os planos assinados nesta academia. -->
         <nav>
+            <!--Menu para alterar as opções de tela-->
             <div class="list">
                 <ul>
                     <li class="dropdown">
@@ -62,9 +50,11 @@ $queryPlano->close();
                     </li>
                 </ul>
             </div>
+            <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
             <div class="logo">
                 <h1>Crowd Gym</h1>
             </div>
+            <!--Opção para alterar as configurações de usuário-->
             <div class="user">
                 <ul>
                     <li class="user-icon">
@@ -81,103 +71,56 @@ $queryPlano->close();
         </nav>
     </header>
     <main>
-        <h2>Plano: <?php echo htmlspecialchars($plano['nome']); ?></h2>
+        <h2><?php echo htmlspecialchars($plano['nome']); ?></h2>
         <p>Descrição: <?php echo htmlspecialchars($plano['descricao']); ?></p>
         <p>Valor: R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?></p>
-        <p>Duração: <?php echo $plano['duracao']; ?> dias</p>
-
-        <form action="php/aluno/assinar_plano.php" method="POST">
+        <form action="php/aluno/processar_assinatura.php" method="POST">
+            <input type="hidden" name="plano_id" value="<?php echo $plano_id; ?>">
             <label for="metodo_pagamento">Método de Pagamento:</label>
-            <select name="metodo_pagamento" id="metodo_pagamento" required onchange="mostrarCamposPagamento(this.value)">
-                <option value="">Selecione</option>
+            <select id="metodo_pagamento" name="metodo_pagamento" onchange="atualizarFormulario()" required>
+                <option value="">Selecione...</option>
                 <option value="Cartão de Crédito">Cartão de Crédito</option>
                 <option value="Cartão de Débito">Cartão de Débito</option>
-                <option value="Boleto">Boleto</option>
                 <option value="Pix">Pix</option>
+                <option value="Boleto">Boleto</option>
             </select>
 
-            <div id="campos_pagamento"></div>
+            <div id="campos_cartao" style="display: none;">
+                <label for="numero_cartao">Número do Cartão:</label>
+                <input type="text" id="numero_cartao" name="numero_cartao" maxlength="20">
 
-            <label for="data_pagamento">Data de Pagamento:</label>
-            <input type="date" name="data_pagamento" id="data_pagamento" required>
+                <label for="nome_titular">Nome do Titular:</label>
+                <input type="text" id="nome_titular" name="nome_titular">
+
+                <label for="validade_cartao">Validade (MM/AAAA):</label>
+                <input type="month" id="validade_cartao" name="validade_cartao">
+
+                <label for="codigo_seguranca">Código de Segurança:</label>
+                <input type="text" id="codigo_seguranca" name="codigo_seguranca" maxlength="4">
+
+                <label for="cpf_titular">CPF do Titular:</label>
+                <input type="text" id="cpf_titular" name="cpf_titular" maxlength="11">
+            </div>
+
+            <div id="campos_pix" style="display: none;">
+                <p>Para pagamento via Pix, um QR Code será gerado após a confirmação.</p>
+            </div>
+
+            <div id="campos_boleto" style="display: none;">
+                <p>Para pagamento via boleto, um código será gerado após a confirmação.</p>
+            </div>
 
             <button type="submit">Confirmar Assinatura</button>
         </form>
-
-        <a href="aluno_buscar_academias.php">Voltar</a>
+        <a href="aluno_plano_academia.php?academia_id=<?php echo htmlspecialchars($plano['Academia_id']); ?>">Voltar</a>
     </main>
 
-    <!-- Validação no Frontend -->
     <script>
-        document.querySelector("form").addEventListener("submit", function(event) {
-            const metodoPagamento = document.getElementById("metodo_pagamento").value;
-            const dataPagamento = document.getElementById("data_pagamento").value;
-            const hoje = new Date();
-            const dataPagamentoDate = new Date(dataPagamento);
-            const dataLimite = new Date();
-            dataLimite.setFullYear(dataLimite.getFullYear() + 1);
-
-            let erros = [];
-
-            if (!metodoPagamento) {
-                erros.push("Selecione um método de pagamento.");
-            }
-
-            if (!dataPagamento) {
-                erros.push("Informe a data de pagamento.");
-            } else {
-                if (isNaN(dataPagamentoDate.getTime())) {
-                    erros.push("Data de pagamento inválida.");
-                } else {
-                    if (dataPagamentoDate < hoje) {
-                        erros.push("A data de pagamento não pode ser no passado.");
-                    }
-                    if (dataPagamentoDate > dataLimite) {
-                        erros.push("A data de pagamento não pode ser superior a 1 ano.");
-                    }
-                }
-            }
-
-            if (erros.length > 0) {
-                alert(erros.join("\n"));
-                event.preventDefault(); // Impede o envio do formulário
-            }
-        });
-    </script>
-
-    <!-- Preenchimento de campos dos métodos de pagamento escolhido -->
-    <script>
-        function mostrarCamposPagamento(metodo) {
-            const campos = document.getElementById('campos_pagamento');
-            campos.innerHTML = ''; // Limpa os campos
-
-            if (metodo === 'Cartão de Crédito' || metodo === 'Cartão de Débito') {
-                campos.innerHTML = `
-            <label for="numero_cartao">Número do Cartão:</label>
-            <input type="text" name="numero_cartao" id="numero_cartao" required>
-            
-            <label for="nome_titular">Nome do Titular:</label>
-            <input type="text" name="nome_titular" id="nome_titular" required>
-            
-            <label for="validade_cartao">Validade (MM/AA):</label>
-            <input type="text" name="validade_cartao" id="validade_cartao" required>
-            
-            <label for="codigo_seguranca">Código de Segurança:</label>
-            <input type="text" name="codigo_seguranca" id="codigo_seguranca" required>
-            
-            <label for="cpf_titular">CPF do Titular:</label>
-            <input type="text" name="cpf_titular" id="cpf_titular" required>
-        `;
-            } else if (metodo === 'Pix') {
-                campos.innerHTML = `
-            <label for="chave_pix">Chave Pix:</label>
-            <input type="text" name="chave_pix" id="chave_pix" required>
-        `;
-            } else if (metodo === 'Boleto') {
-                campos.innerHTML = `
-            <p>Um boleto será gerado e enviado ao seu email após a confirmação.</p>
-        `;
-            }
+        function atualizarFormulario() {
+            const metodo = document.getElementById('metodo_pagamento').value;
+            document.getElementById('campos_cartao').style.display = metodo.includes('Cartão') ? 'block' : 'none';
+            document.getElementById('campos_pix').style.display = metodo === 'Pix' ? 'block' : 'none';
+            document.getElementById('campos_boleto').style.display = metodo === 'Boleto' ? 'block' : 'none';
         }
     </script>
 </body>
