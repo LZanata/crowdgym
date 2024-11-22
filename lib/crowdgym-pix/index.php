@@ -12,3 +12,7 @@ $obPayload = (new Payload)->setPixKey('1234567890')//Chave CPF do Pix
 ->setTxid('CrowdGym1234'); 
 
 $payloadQrCode = $obPayload->getPayload();
+
+echo "<pre>";
+print_r($payloadQrCode);
+echo "</pre>"; exit;
