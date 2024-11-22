@@ -143,6 +143,18 @@ class Payload{
     }
 
     /**
+     * Método responsável por retornar os valores completos do campo adicional do pix (TXID)
+     * @return string
+     */
+    private function getAdditionalDataFieldTemplate(){
+        //TXID
+        $txid = $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID,$this->txid);
+
+        //RETORNA O VALOR COMPLETO
+        return $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE,$txid);
+    }
+
+    /**
      * Método responsável por gerar o código completo do payload Pix
      * @return string
      */
@@ -155,7 +167,8 @@ class Payload{
         $this->getValue(self::ID_TRANSACTION_AMOUNT,$this->amount).
         $this->getValue(self::ID_COUNTRY_CODE,'BR').
         $this->getValue(self::ID_MERCHANT_NAME,$this->merchantName).
-        $this->getValue(self::ID_MERCHANT_CITY,$this->merchantCity);
+        $this->getValue(self::ID_MERCHANT_CITY,$this->merchantCity).
+        $this->getAdditionalDataFieldTemplate();
 
         return $payload;
     }
