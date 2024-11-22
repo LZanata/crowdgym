@@ -170,6 +170,34 @@ class Payload{
         $this->getValue(self::ID_MERCHANT_CITY,$this->merchantCity).
         $this->getAdditionalDataFieldTemplate();
 
-        return $payload;
+        //RETORNA O PAYLOAD + CRC16
+        return $payload.$this->getCRC16($payload);
+    }
+
+     /**
+     * Método responsável por calcular o valor da hash de validação do código pix
+     * @return string
+     */
+    private function getCRC16($payload) {
+        //ADICIONA DADOS GERAIS NO PAYLOAD
+        $payload .= self::ID_CRC16.'04';
+
+        //DADOS DEFINIDOS PELO BACEN
+        $polinomio = 0x1021;
+        $resultado = 0xFFFF;
+
+        //CHECKSUM
+        if (($length = strlen($payload)) > 0) {
+            for ($offset = 0; $offset < $length; $offset++) {
+                $resultado ^= (ord($payload[$offset]) << 8);
+                for ($bitwise = 0; $bitwise < 8; $bitwise++) {
+                    if (($resultado <<= 1) & 0x10000) $resultado ^= $polinomio;
+                    $resultado &= 0xFFFF;
+                }
+            }
+        }
+
+        //RETORNA CÓDIGO CRC16 DE 4 CARACTERES
+        return self::ID_CRC16.'04'.strtoupper(dechex($resultado));
     }
 }
