@@ -73,21 +73,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
 
     if ($queryInserir->execute()) {
-        echo "Assinatura realizada com sucesso!";
-        header("Location: http://localhost/Projeto_CrowdGym/aluno_minhas_academias.php?id=$id&success=1");
-        exit;
-        // Para métodos Pix ou Boleto, redirecionar para a página de instruções
         if ($metodo_pagamento === 'Pix') {
-            header("Location: ../pagamento_pix.php");
+            // Redireciona para a página do Pix
+            header("Location: http://localhost/Projeto_CrowdGym/lib/crowdgym-pix/index.php?plano_id=$plano_id");
+            exit;
         } elseif ($metodo_pagamento === 'Boleto') {
-            header("Location: ../pagamento_boleto.php");
+            // Redireciona para a página de instruções do boleto
+            header("Location: ../../pagamento_boleto.php");
+            exit;
         } else {
-            header("Location: ../aluno_menu_inicial.php");
+            // Redireciona para a página padrão após o pagamento
+            header("Location: http://localhost/Projeto_CrowdGym/aluno_minhas_academias.php?id=$id&success=1");
+            exit;
         }
-        exit;
     } else {
         echo "Erro ao processar assinatura: " . $conexao->error;
-    }
+    }    
 } else {
     die("Método de requisição inválido.");
 }
