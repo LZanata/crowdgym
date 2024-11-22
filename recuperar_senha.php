@@ -31,7 +31,7 @@ if (isset($_POST['SendRecupSenha'])) {
         }
 
         if ($emailFound) {
-            $mail = require __DIR__ . "/lib/mailer.php";
+            $mail = require __DIR__ . "/lib/phpmailer/mailer.php";
 
             $mail->setFrom("crowdgym21@gmail.com");
             $mail->addAddress($email);

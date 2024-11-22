@@ -41,5 +41,75 @@ class Payload{
      */
     private $merchantName;
 
+    /**
+     * Cidade do titular da conta
+     * @var string
+     */
+    private $merchantCity;
     
+    /**
+     * ID da transação pix
+     * @var string
+     */
+    private $txid;
+
+    /**
+     * Valor da transação
+     * @var string
+     */
+    private $amount;
+
+    /**
+     * Método responsável por definir o valor de $pixKey
+     * @param string $pixKey
+     */
+    public function setPixKey($pixKey){
+        $this->pixKey = $pixKey;
+        return $this;
+    }
+
+    /**
+     * Método responsável por definir o valor de $description
+     * @param string $description
+     */
+    public function setDescription($description){
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Método responsável por definir o valor de $merchantName
+     * @param string $merchantName
+     */
+    public function setMerchantName($merchantName){
+        $this->merchantName = $merchantName;
+        return $this;
+    }
+
+    /**
+     * Método responsável por definir o valor de $merchantCity
+     * @param string $merchantCity
+     */
+    public function setMerchantCity($merchantCity){
+        $this->merchantCity = $merchantCity;
+        return $this;
+    }
+
+     /**
+     * Método responsável por definir o valor de $txid
+     * @param string $txid
+     */
+    public function setTxid($txid){
+        $this->txid = $txid;
+        return $this;
+    }
+
+     /**
+     * Método responsável por definir o valor de $amount
+     * @param float $amount
+     */
+    public function setAmount($amount){
+        $this->amount = (string)number_format($amount,2,'.','');
+        return $this;
+    }
 }
