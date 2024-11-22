@@ -112,4 +112,26 @@ class Payload{
         $this->amount = (string)number_format($amount,2,'.','');
         return $this;
     }
+
+    /**
+     * Responsável por retornar o valor completo de um objeto do payload
+     * @param string $id
+     * @param string $value
+     * @return string $id.$size.$value
+     */
+    private function getValue($id,$value){
+        $size = str_pad(strlen($value),2,'0',STR_PAD_LEFT);
+        return $id.$size.$value;
+    }
+    /**
+     * Método responsável por gerar o código completo do payload Pix
+     * @return string
+     */
+    public function getPayload(){
+        //CRIA O PAYLOAD
+        $payload = $this->getValue
+        (self::ID_PAYLOAD_FORMAT_INDICATOR,'01');
+
+        return $payload;
+    }
 }
