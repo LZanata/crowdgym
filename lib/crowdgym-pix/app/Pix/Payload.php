@@ -123,6 +123,25 @@ class Payload{
         $size = str_pad(strlen($value),2,'0',STR_PAD_LEFT);
         return $id.$size.$value;
     }
+
+    /**
+     * Método responsável por retornar os valores completos da informação da conta
+     * @return string
+     */
+    private function getMerchantAccountInformation(){
+        //DOMÍNIO DO BANCO
+        $gui = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_GUI,'br.gov.bcb.pix');
+
+        //CHAVE PIX
+        $key = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_KEY,$this->pixKey);
+        
+        //DESCRIÇÃO DO PAGAMENTO
+        $description = strlen($this->description) ? $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION,$this->description) : '';
+        
+        //VALOR COMPLETO DA CONTA
+        return $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION,$gui.$key.$description);
+    }
+    
     /**
      * Método responsável por gerar o código completo do payload Pix
      * @return string
