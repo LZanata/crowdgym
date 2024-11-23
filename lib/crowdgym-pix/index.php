@@ -7,12 +7,12 @@ use Mpdf\QrCode\QrCode;
 use Mpdf\QrCode\Output;
 
 //INSTANCIA PRINCIPAL DO PAYLOAD PIX
-$obPayload = (new Payload)->setPixKey('1234567890')//Chave CPF do Pix
-->setDescription('Pagamento do pedido 123456')
-->setMerchantName('Leonardo Zanata')
-->setMerchantCity('SAO PAULO')
+$obPayload = (new Payload)->setPixKey('47685586827')//Chave CPF do Pix
+->setDescription('Pagamento de Assinatura')
+->setMerchantName('LEONARDO Z DE JESUS')
+->setMerchantCity('BARUERI')
 ->setAmount(100.00)
-->setTxid('CrowdGym1234'); 
+->setTxid('CROWDGYM'); 
 
 //CÓDIGO DE PAGAMENTO PIX
 $payloadQrCode = $obPayload->getPayload();
