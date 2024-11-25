@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerente Funcionário</title>
+    <title>Gerente Editar Funcionário</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/gerente/funcionario.css" />
     <link
@@ -92,7 +92,7 @@
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
                             // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
-                            $query = "SELECT id, nome, email FROM funcionario WHERE Gerente_id = ?";
+                            $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ?";
                             if (!empty($pesquisa)) {
                                 $query .= " AND (nome LIKE ? OR email LIKE ?)";
                             }
@@ -112,13 +112,13 @@
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>
-                            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
-                            <td>
-                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                            </td>
-                        </tr>';
+                              <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
+                              <td>
+                                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                              </td>
+                          </tr>';
                                 }
                             } else {
                                 echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';

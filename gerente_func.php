@@ -1,7 +1,7 @@
 <?php include 'php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
@@ -20,48 +20,7 @@
 
 <body>
   <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
-  <header>
-    <nav>
-      <!--Menu para alterar as opções de tela-->
-      <div class="list">
-        <ul>
-          <li class="dropdown">
-            <a href="#"><i class="bi bi-list"></i></a>
-
-            <div class="dropdown-list">
-              <a href="gerente_menu_inicial.php">Menu Inicial</a>
-              <a href="gerente_planos.php">Planos e Serviços</a>
-              <a href="gerente_graficos.php">Gráficos</a>
-              <a href="gerente_func.php">Funcionários</a>
-              <a href="gerente_aluno.php">Alunos</a>
-              <a href="gerente_sobre_nos.php">Sobre Nós</a>
-              <a href="gerente_suporte.php">Ajuda e Suporte</a>
-              <a href="php/cadastro_login/logout.php">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
-      <div class="logo">
-        <h1>Crowd Gym</h1>
-      </div>
-      <!--Opção para alterar as configurações de usuário-->
-      <div class="user">
-        <ul>
-          <li class="user-icon">
-            <a href=""><i class="bi bi-person-circle"></i></a>
-
-            <div class="dropdown-icon">
-              <a href="#">Perfil</a>
-              <a href="#">Endereço</a>
-              <a href="#">Tema</a>
-              <a href="#">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
   <main>
     <div class="container">
@@ -80,55 +39,53 @@
         </div>
         <div class="userlist-table">
           <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
             <tbody>
-              <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
               include 'php/conexao.php';
-              
+
               // Obtém o ID do gerente autenticado
               $gerente_id = $_SESSION['usuario_id'];
-              
+
               // Verifica se o termo de pesquisa foi fornecido
               $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
-              
+
               // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
-              $query = "SELECT id, nome, email FROM funcionario WHERE Gerente_id = ?";
+              $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ?";
               if (!empty($pesquisa)) {
-                  $query .= " AND (nome LIKE ? OR email LIKE ?)";
+                $query .= " AND (nome LIKE ? OR email LIKE ?)";
               }
-              
+
               // Prepara e executa a consulta
               $stmt = $conexao->prepare($query);
               if (!empty($pesquisa)) {
-                  $likePesquisa = '%' . $pesquisa . '%';
-                  $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+                $likePesquisa = '%' . $pesquisa . '%';
+                $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
               } else {
-                  $stmt->bind_param("i", $gerente_id);
+                $stmt->bind_param("i", $gerente_id);
               }
               $stmt->execute();
               $result = $stmt->get_result();
-            
+
               // Verifica se encontrou resultados
               if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo '<tr>
-                            <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
-                            <td>
-                                <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-                            </td>
-                        </tr>';
+                              <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
+                              <td>
+                                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                              </td>
+                          </tr>';
                 }
               } else {
                 echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';
-              }
-              ?>
-
-              <!--Mensagem após a remoção-->
-              <?php
-              if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
               }
               ?>
             </tbody>
@@ -137,7 +94,7 @@
       </div>
 
       <div class="form">
-        <form action="php/gerente/processa_cadastro.php" method="POST">
+        <form action="php/gerente/processa_cadastro_funcionario.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro do Funcionário</h1>
@@ -219,19 +176,24 @@
           </div>
 
           <div class="register-button">
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Cadastrar" />
           </div>
         </form>
       </div>
     </div>
-    </div>
   </main>
-  <footer>
-    <div id="footer_copyright">
-      &#169
-      2024 CROWD GYM FROM EASY SYSTEM LTDA
-    </div>
-  </footer>
+
+  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+
+  <script>
+    // Confirmação de remoção de funcionário
+    function confirmarRemocao(id) {
+      if (confirm("Tem certeza que deseja remover este funcionário?")) {
+        window.location.href = 'php/gerente/remover_funcionario.php?id=' + id;
+      }
+    }
+  </script>
+
 </body>
 
 </html>
