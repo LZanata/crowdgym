@@ -86,7 +86,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
             <p>Status: <?php echo htmlspecialchars($row['status']); ?></p>
             <p>Data de término: <?php echo htmlspecialchars($row['data_fim']); ?></p>
             <?php if ($row['status'] === 'ativo'): ?>
-              <form action="cancelar_assinatura.php" method="post">
+              <form action="php/aluno/cancelar_assinatura.php" method="post">
                 <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($row['plano_id']); ?>">
                 <button type="submit" onclick="return confirm('Tem certeza que deseja cancelar esta assinatura?')">Cancelar Assinatura</button>
               </form>
