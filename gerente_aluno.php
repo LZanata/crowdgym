@@ -1,6 +1,6 @@
 <?php
 require_once 'php/conexao.php';
-require_once 'php/cadastro_login/check_login.php';
+require_once 'php/cadastro_login/check_login-funcionarios.php';
 
 // Obtém o ID da academia a partir da sessão do gerente
 $academia_id = $_SESSION['Academia_id'];
