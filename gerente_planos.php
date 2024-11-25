@@ -1,4 +1,5 @@
-<?php include 'php/cadastro_login/check_login-funcionarios.php'; ?>
+<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,8 +83,14 @@
               include 'php/conexao.php';
 
               // Verifique se o ID da academia está definido na sessão
-              if (!isset($_SESSION['Academia_id'])) {
+              if (!isset($_SESSION['Academia_id']) || !isset($_SESSION['usuario_tipo'])) {
                 echo "Acesso não autorizado. Por favor, faça o login novamente.";
+                exit();
+              }
+
+              // Verifica se o usuário autenticado é um gerente ou funcionário
+              if ($_SESSION['usuario_tipo'] !== 'gerente') {
+                echo "Acesso restrito a gerentes.";
                 exit();
               }
 
@@ -114,27 +121,25 @@
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   echo '<tr>
-        <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
-        <td>
-            <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-            <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-            <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-        </td>
-    </tr>';
+            <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+            <td>
+                <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+            </td>
+        </tr>';
                 }
               } else {
                 echo '<tr><td class="nenhum_plano" colspan="6">Nenhum plano encontrado.</td></tr>';
               }
               ?>
 
+              <!-- Mensagem após o sucesso do cadastro -->
+              <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+                <div class="mensagem-sucesso">Plano cadastrado com sucesso!</div>
+              <?php endif; ?>
 
-              <!--Mensagem após o sucesso do cadastro-->
-              <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
-                echo '<div class="mensagem-sucesso">Plano cadastrado com sucesso!</div>';
-              }
-              ?>
-
-              <!--Mensagem após a remoção-->
+              <!-- Mensagem após a remoção -->
               <?php
               if (isset($_GET['removido'])) {
                 if ($_GET['removido'] == 1) {
