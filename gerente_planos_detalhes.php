@@ -1,12 +1,12 @@
 <?php include 'php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerente Funcionário</title>
+    <title>Crowd Gym - Gerente Detalhes dos Planos</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/gerente/plano.css" />
     <link
@@ -17,10 +17,8 @@
 </head>
 
 <body>
-    <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
     <header>
         <nav>
-            <!--Menu para alterar as opções de tela-->
             <div class="list">
                 <ul>
                     <li class="dropdown">
@@ -39,11 +37,9 @@
                     </li>
                 </ul>
             </div>
-            <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
             <div class="logo">
                 <h1>Crowd Gym</h1>
             </div>
-            <!--Opção para alterar as configurações de usuário-->
             <div class="user">
                 <ul>
                     <li class="user-icon">
@@ -79,29 +75,22 @@
                 <div class="userlist-table">
                     <table>
                         <tbody>
-                            <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
                             <?php
                             include 'php/conexao.php';
 
-                            // Verifique se o ID da academia está definido na sessão
                             if (!isset($_SESSION['Academia_id'])) {
                                 echo "Acesso não autorizado. Por favor, faça o login novamente.";
                                 exit();
                             }
 
-                            // Obtém o ID da academia associada ao gerente autenticado
                             $Academia_id = $_SESSION['Academia_id'];
-
-                            // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-                            // Consulta para buscar os planos com base no Academia_id e no termo de pesquisa
                             $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Academia_id = ?";
                             if (!empty($pesquisa)) {
-                                $query .= " AND (nome LIKE ?)";
+                                $query .= " AND nome LIKE ?";
                             }
 
-                            // Prepara e executa a consulta
                             $stmt = $conexao->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
@@ -112,31 +101,26 @@
                             $stmt->execute();
                             $result = $stmt->get_result();
 
-                            // Verifica se encontrou resultados
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo '<tr>
-        <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
-        <td>
-            <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-            <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
-            <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
-        </td>
-    </tr>';
+                                            <td class="nome_plano">' . htmlspecialchars($row['nome']) . '</td>
+                                            <td>
+                                                <a href="gerente_planos_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                                <a href="gerente_planos_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                                <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                                            </td>
+                                          </tr>';
                                 }
                             } else {
                                 echo '<tr><td class="nenhum_plano" colspan="6">Nenhum plano encontrado.</td></tr>';
                             }
                             ?>
 
-
-                            <!--Mensagem após o sucesso do cadastro-->
                             <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
                                 echo '<div class="mensagem-sucesso">Plano cadastrado com sucesso!</div>';
-                            }
-                            ?>
+                            } ?>
 
-                            <!--Mensagem após a remoção-->
                             <?php
                             if (isset($_GET['removido']) && $_GET['removido'] == 1) {
                                 echo '<div id="mensagem-sucesso">Plano removido com sucesso!</div>';
@@ -146,51 +130,45 @@
                     </table>
                 </div>
             </div>
-            <?php
-            include 'php/conexao.php';
 
-            // Verifica se o ID foi enviado na URL
+            <?php
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-
-                // Consulta para obter os dados do plano pelo ID
                 $query = "SELECT nome, descricao, valor, duracao, tipo FROM planos WHERE id = ?";
-                $stmt = mysqli_prepare($conexao, $query);
-                mysqli_stmt_bind_param($stmt, 'i', $id);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
+                $stmt = $conexao->prepare($query);
+                $stmt->bind_param('i', $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-                // Verifica se o plano foi encontrado
-                if ($row = mysqli_fetch_assoc($result)) {
+                if ($row = $result->fetch_assoc()) {
                     echo '
-        <div class="form">
-            <div class="form-header">
-                <div class="title">
-                    <h1>Detalhes do Plano</h1>
-                </div>
-            </div>
-            <p class="details">Nome: ' . htmlspecialchars($row['nome']) . '</p>
-            <p class="details">Descrição: ' . htmlspecialchars($row['descricao']) . '</p>
-            <p class="details">Valor: R$ ' . htmlspecialchars(number_format($row['valor'], 2, ',', '.')) . '</p>
-            <p class="details">Duração: ' . htmlspecialchars($row['duracao']) . ' dias</p>
-            <p class="details">Tipo: ' . htmlspecialchars($row['tipo']) . '</p>
-        </div>';
+                        <div class="form">
+                            <div class="form-header">
+                                <div class="title">
+                                    <h1>Detalhes do Plano</h1>
+                                </div>
+                            </div>
+                            <p class="details">Nome: ' . htmlspecialchars($row['nome']) . '</p>
+                            <p class="details">Descrição: ' . htmlspecialchars($row['descricao']) . '</p>
+                            <p class="details">Valor: R$ ' . htmlspecialchars(number_format($row['valor'], 2, ',', '.')) . '</p>
+                            <p class="details">Duração: ' . htmlspecialchars($row['duracao']) . ' dias</p>
+                            <p class="details">Tipo: ' . htmlspecialchars($row['tipo']) . '</p>
+                        </div>';
                 } else {
                     echo "Plano não encontrado.";
                 }
 
-                mysqli_stmt_close($stmt);
+                $stmt->close();
             } else {
                 echo "ID do plano não fornecido.";
             }
             ?>
-
         </div>
     </main>
+
     <footer>
         <div id="footer_copyright">
-            &#169
-            2024 CROWD GYM FROM EASY SYSTEM LTDA
+            &#169 2024 CROWD GYM FROM EASY SYSTEM LTDA
         </div>
     </footer>
 </body>
