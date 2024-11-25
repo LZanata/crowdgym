@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +7,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planos e Serviços</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/gerente/plano.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/gerente/plano.css">
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="js/gerente/ocultar_plano_cadastrado.js"></script>
-  <script src="js/gerente/remover_plano.js"></script>
+  <script src="../js/gerente/ocultar_plano_cadastrado.js"></script>
+  <script src="../js/gerente/remover_plano.js"></script>
 </head>
 
 <body>
-  <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+  <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
     <!--Quando clicar devera ter uma opção para adicionar, editar ou remover planos de matricula da academia para os úsuarios alunos poderem assinar-->
     <div class="container">
@@ -39,7 +39,7 @@
             <tbody>
               <!-- Preenchendo com os dados do Plano vindo do banco de dados -->
               <?php
-              include 'php/conexao.php';
+              include '../php/conexao.php';
 
               // Verifique se o ID da academia está definido na sessão
               if (!isset($_SESSION['Academia_id']) || !isset($_SESSION['usuario_tipo'])) {
@@ -115,7 +115,7 @@
       </div>
 
       <div class="form">
-        <form action="php/gerente/processa_plano.php" method="POST">
+        <form action="../php/gerente/processa_plano.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro de Plano</h1>
@@ -161,7 +161,7 @@
     </div>
     </div>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
-include 'php/cadastro_login/check_login_gerente.php';
-include 'php/conexao.php';
+include '../php/cadastro_login/check_login_gerente.php';
+include '../php/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,17 +12,17 @@ include 'php/conexao.php';
     <title>Crowd Gym - Gerente Editar Planos</title>
     <meta name="description" content="Gerenciamento de planos e funcionários no Crowd Gym">
     <meta name="keywords" content="academia, planos, gerenciamento, Crowd Gym">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/plano.css" />
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/gerente/plano.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="js/gerente/validar_senha.js"></script>
-    <script src="js/gerente/formatocpf.js"></script>
-    <script src="js/gerente/remover_plano.js"></script>
-    <script src="js/gerente/ocultar_mensagem.js"></script>
+    <script src="../js/gerente/validar_senha.js"></script>
+    <script src="../js/gerente/formatocpf.js"></script>
+    <script src="../js/gerente/remover_plano.js"></script>
+    <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
-    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+    <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
     <main>
         <div class="container">
@@ -135,7 +135,7 @@ include 'php/conexao.php';
                     </div>
                 </div>
 
-                <form action="php/gerente/editar_plano.php" method="post">
+                <form action="../php/gerente/editar_plano.php" method="post">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($plano['id']); ?>">
 
                     <div class="input-group">
@@ -180,7 +180,7 @@ include 'php/conexao.php';
         </div>
     </main>
 
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

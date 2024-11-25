@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,17 +7,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crowd Gym - Gerente Detalhes dos Planos</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/plano.css" />
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/gerente/plano.css" />
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="js/gerente/remover_plano.js"></script>
-    <script src="js/gerente/ocultar_mensagem.js"></script>
+        href="../https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script src="../js/gerente/remover_plano.js"></script>
+    <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
-    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+    <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
     <main>
         <div class="container">
@@ -38,7 +38,7 @@
                     <table>
                         <tbody>
                             <?php
-                            include 'php/conexao.php';
+                            include '../php/conexao.php';
 
                             if (!isset($_SESSION['Academia_id'])) {
                                 echo "Acesso não autorizado. Por favor, faça o login novamente.";
@@ -128,7 +128,7 @@
         </div>
     </main>
 
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
