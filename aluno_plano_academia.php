@@ -91,6 +91,7 @@ $planos = $queryPlanos->get_result();
         </ul>
         <a href="aluno_buscar_academias.php">Voltar</a>
     </main>
+    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

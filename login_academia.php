@@ -113,7 +113,7 @@ mysqli_close($conexao);
                 <input type="submit" value="Acessar conta" />
               </div>
               <div class="button">
-                <a href="cadastro_academia.html">Assinar Crowd Gym</a>
+                <a href="cadastro_academia.php">Assinar Crowd Gym</a>
               </div>
             </div>
         </form>

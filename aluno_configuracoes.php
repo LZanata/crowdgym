@@ -14,11 +14,6 @@ require_once 'php/cadastro_login/check_login_aluno.php';
           <!--Quando clicar aparecerá as opções para o usuario poder fazer alterar: conta(nome do aluno, email, autenticação de dois fatores e senha) - tema(claro ou escuro) -->
     </header>
     <main></main>
-    <footer>
-        <div id="footer_copyright">
-          &#169
-          2024 CROWD GYM FROM EASY SYSTEM LTDA
-        </div>
-      </footer>
+    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 </html>

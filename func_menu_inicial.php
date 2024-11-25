@@ -58,12 +58,7 @@
     <!--Aqui é onde vai ficar a parte do Menu Inicial-->
     <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação de Alunos Recentes(aparecerá os 3 ultimos alunos que entraram recentemente)-->
   </main>
-  <footer>
-    <div id="footer_copyright">
-      &#169
-      2024 CROWD GYM FROM EASY SYSTEM LTDA
-    </div>
-  </footer>
+  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

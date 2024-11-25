@@ -1,5 +1,5 @@
-<?php 
-include 'php/cadastro_login/check_login_gerente.php'; 
+<?php
+include 'php/cadastro_login/check_login_gerente.php';
 include 'php/conexao.php';
 ?>
 
@@ -22,43 +22,7 @@ include 'php/conexao.php';
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="list">
-                <ul>
-                    <li class="dropdown">
-                        <a href="#"><i class="bi bi-list"></i></a>
-                        <div class="dropdown-list">
-                            <a href="gerente_menu_inicial.php">Menu Inicial</a>
-                            <a href="gerente_planos.php">Planos e Serviços</a>
-                            <a href="gerente_graficos.php">Gráficos</a>
-                            <a href="gerente_func.php">Funcionários</a>
-                            <a href="gerente_aluno.php">Alunos</a>
-                            <a href="gerente_sobre_nos.php">Sobre Nós</a>
-                            <a href="gerente_suporte.php">Ajuda e Suporte</a>
-                            <a href="php/cadastro_login/logout.php">Sair</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="logo">
-                <h1>Crowd Gym</h1>
-            </div>
-            <div class="user">
-                <ul>
-                    <li class="user-icon">
-                        <a href=""><i class="bi bi-person-circle"></i></a>
-                        <div class="dropdown-icon">
-                            <a href="#">Perfil</a>
-                            <a href="#">Endereço</a>
-                            <a href="#">Tema</a>
-                            <a href="php/cadastro_login/logout.php">Sair</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
     <main>
         <div class="container">
@@ -163,7 +127,7 @@ include 'php/conexao.php';
                 exit;
             }
             ?>
-            
+
             <div class="form">
                 <div class="form-header">
                     <div class="title">
@@ -216,9 +180,7 @@ include 'php/conexao.php';
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Crowd Gym. Todos os direitos reservados.</p>
-    </footer>
+    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

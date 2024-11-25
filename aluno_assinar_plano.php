@@ -114,7 +114,7 @@ if (!$plano) {
         </form>
         <a href="aluno_plano_academia.php?academia_id=<?php echo htmlspecialchars($plano['Academia_id']); ?>">Voltar</a>
     </main>
-
+    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
     <script>
         function atualizarFormulario() {
             const metodo = document.getElementById('metodo_pagamento').value;

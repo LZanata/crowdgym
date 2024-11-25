@@ -109,12 +109,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
       <a href="aluno_buscar_academias.php">Clique aqui para buscar uma academia</a>
     <?php endif; ?>
   </main>
-  <footer>
-    <div id="footer_copyright">
-      &#169
-      2024 CROWD GYM FROM EASY SYSTEM LTDA
-    </div>
-  </footer>
+  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
