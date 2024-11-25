@@ -134,7 +134,7 @@
                     </div>
                 </div>
 
-                <form action="php/gerente/editar.php" method="post">
+                <form action="php/gerente/editar_func.php" method="post">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
                     <div class="input-group">
                         <div class="input-box">
