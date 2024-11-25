@@ -1,4 +1,58 @@
-<?php include 'php/cadastro_login/check_login.php'; ?>
+<?php
+require_once 'php/conexao.php';
+require_once 'php/cadastro_login/check_login.php';
+
+// Obtém o ID da academia a partir da sessão do gerente
+$academia_id = $_SESSION['Academia_id'];
+
+// Inicializa a variável $result como null
+$result = null;
+
+// Captura o termo de pesquisa, se existir
+$pesquisa = isset($_GET['pesquisa']) ? trim($_GET['pesquisa']) : '';
+
+try {
+    // Base da consulta SQL
+    $sql = "
+        SELECT 
+            aluno.id AS aluno_id,
+            aluno.nome AS aluno_nome,
+            aluno.email AS aluno_email,
+            assinatura.id AS assinatura_id,
+            assinatura.data_inicio,
+            assinatura.data_fim,
+            assinatura.status,
+            planos.nome AS plano_nome,
+            planos.valor AS plano_valor,
+            planos.duracao AS plano_duracao
+        FROM assinatura
+        INNER JOIN aluno ON assinatura.Aluno_id = aluno.id
+        INNER JOIN planos ON assinatura.Planos_id = planos.id
+        INNER JOIN academia ON planos.Academia_id = academia.id
+        WHERE academia.id = ? AND assinatura.status = 'ativo'";
+
+    // Adiciona condição para pesquisa, se aplicável
+    if (!empty($pesquisa)) {
+        $sql .= " AND aluno.nome LIKE ?";
+    }
+
+    $query = $conexao->prepare($sql);
+
+    // Define os parâmetros para a consulta
+    if (!empty($pesquisa)) {
+        $pesquisa = "%$pesquisa%";
+        $query->bind_param("is", $academia_id, $pesquisa);
+    } else {
+        $query->bind_param("i", $academia_id);
+    }
+
+    $query->execute();
+    $result = $query->get_result();
+} catch (Exception $e) {
+    echo "Erro ao executar a consulta: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,165 +130,40 @@
                 <div class="userlist-table">
                     <table>
                         <tbody>
-                            <?php
-                            include 'php/conexao.php';
 
-                            // Verifica se o termo de pesquisa foi fornecido
-                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
-
-                            // Consulta para buscar os alunos com base no termo de pesquisa
-                            $query = "SELECT id, nome, email, foto FROM aluno";
-                            if (!empty($pesquisa)) {
-                                $query .= " WHERE (nome LIKE ? OR email LIKE ?)";
-                            }
-
-                            // Prepara e executa a consulta
-                            $stmt = $conexao->prepare($query);
-                            if ($stmt === false) {
-                                die("Erro na preparação da consulta: " . $conexao->error);
-                            }
-
-                            if (!empty($pesquisa)) {
-                                $likePesquisa = '%' . $pesquisa . '%';
-                                $stmt->bind_param("ss", $likePesquisa, $likePesquisa);
-                            }
-
-                            if (!$stmt->execute()) {
-                                echo "Erro ao executar a consulta: " . $stmt->error;
-                                exit;
-                            }
-
-                            $result = $stmt->get_result();
-
-                            // Verifica se encontrou resultados
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<tr>
-            <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
-            <td><img src="' . htmlspecialchars($row['foto'] ?? 'php/uploads/', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="200" /></td>
-            <td>
-                <a href="gerente_aluno_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
-                <a href="gerente_aluno_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
-                <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
-            </td>
-        </tr>';
-                                }
-                            } else {
-                                echo '<tr><td colspan="3">Nenhum aluno encontrado.</td></tr>';
-                            }
-                            ?>
-
-
-
-                            <?php
-                            if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                                echo '<div id="mensagem-sucesso">Aluno removido com sucesso!</div>';
-                            }
-                            ?>
+                            <?php if ($result->num_rows > 0): ?>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome do Aluno</th>
+                                            <th>Email</th>
+                                            <th>Plano</th>
+                                            <th>Valor</th>
+                                            <th>Data de Início</th>
+                                            <th>Data de Término</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php while ($row = $result->fetch_assoc()): ?>
+                                            <tr>
+                                                <td><?php echo htmlspecialchars($row['aluno_nome']); ?></td>
+                                                <td><?php echo htmlspecialchars($row['aluno_email']); ?></td>
+                                                <td><?php echo htmlspecialchars($row['plano_nome']); ?></td>
+                                                <td>R$ <?php echo number_format($row['plano_valor'], 2, ',', '.'); ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($row['data_inicio'])); ?></td>
+                                                <td><?php echo date('d/m/Y', strtotime($row['data_fim'])); ?></td>
+                                                <td><?php echo htmlspecialchars($row['status']); ?></td>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <p>Nenhum aluno matriculado na sua academia no momento.</p>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-            <div class="form">
-                <form action="php/gerente/processa_aluno.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-header">
-                        <div class="title">
-                            <h1>Cadastro do Aluno</h1>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="input-box">
-                            <label for="nome">Nome*</label>
-                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="cpf">CPF*</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                oninput="formatCPF(this)" maxlength="14" required>
-                        </div>
-
-                        <div class="input-box">
-                            <label for="email">E-mail*</label>
-                            <input type="text" name="email" placeholder="Digite o email" maxlength="255" id="email" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="data_nascimento">Data de Nascimento*</label>
-                            <input type="date" name="data_nascimento" id="data_nascimento" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="senha">Senha*</label>
-                            <input type="password" name="senha" placeholder="Digite a senha" maxlength="15" id="senha" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="confirma_senha">Confirme a Senha*</label>
-                            <input type="password" name="confirma_senha" placeholder="Digite a senha novamente" maxlength="15"
-                                id="confirma_senha" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="plano">Plano da Academia*</label>
-                            <select name="plano" id="plano" required>
-                                <option value="">Selecione um plano</option>
-                                <?php
-                                include 'php/conexao.php';
-
-                                // Obtém o ID do gerente autenticado e o ID da academia
-                                $gerente_id = $_SESSION['usuario_id'];
-                                $academia_id = $_SESSION['Academia_id'];
-
-                                // Consulta para obter os planos da academia
-                                $query = "SELECT id, nome FROM planos WHERE Academia_id = ?";
-                                $stmt = $conexao->prepare($query);
-                                $stmt->bind_param("i", $academia_id);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-
-                                // Preenche o select com os planos
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="input-box">
-                            <label for="foto">Foto</label>
-                            <input type="file" name="foto" required>
-                        </div>
-                    </div>
-
-                    <div class="gender-inputs">
-                        <div class="gender-title">
-                            <h6>Gênero*</h6>
-                        </div>
-
-                        <div class="gender-group">
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_feminino" value="feminino" required>
-                                <label for="genero_feminino">Feminino</label>
-                            </div>
-
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_masculino" value="masculino" required>
-                                <label for="genero_masculino">Masculino</label>
-                            </div>
-
-                            <div class="gender-input">
-                                <input type="radio" name="genero" id="genero_outro" value="outro" required>
-                                <label for="genero_outro">Outro</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="register-button">
-                        <input type="submit" value="Cadastrar Aluno e Assinar Plano">
-                    </div>
-                </form>
             </div>
         </div>
 
