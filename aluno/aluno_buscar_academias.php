@@ -1,6 +1,6 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
-require_once 'php/conexao.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
+require_once '../php/conexao.php';
 
 // Busca academias com base no nome ou cidade
 $filtro = isset($_GET['filtro']) ? "%" . $_GET['filtro'] . "%" : "%";
@@ -16,8 +16,8 @@ $resultado = $query->get_result();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buscar Academias</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/aluno/buscar_academia.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/aluno/buscar_academia.css">
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -83,7 +83,7 @@ $resultado = $query->get_result();
       <?php endwhile; ?>
     </ul>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

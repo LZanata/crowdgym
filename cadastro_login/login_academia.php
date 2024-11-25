@@ -1,5 +1,5 @@
 <?php
-include 'php/conexao.php';
+include '../php/conexao.php';
 
 // Inicializa as variáveis de mensagem de erro
 $erroLogin = "";
@@ -55,8 +55,8 @@ mysqli_close($conexao);
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/cadastro_login/login_academia.css" />
-  <script src="js/cadastro_login/ocultar_mensagem.js"></script>
+  <link rel="stylesheet" href="../css/cadastro_login/login_academia.css" />
+  <script src="../js/cadastro_login/ocultar_mensagem.js"></script>
   <title>Login academia</title>
 </head>
 <!--Parte do Login, obs: quando o usuário fizer login, ele será redirecionado para a página de acordo com a conta dele(funcionário ou de gerente)-->

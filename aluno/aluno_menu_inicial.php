@@ -1,5 +1,5 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,8 +7,8 @@ require_once 'php/cadastro_login/check_login_aluno.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Inicial Aluno</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/aluno/menu_inicial.css" />
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/aluno/menu_inicial.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -65,7 +65,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
     <!-- Importando a biblioteca Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Importando a tabela no JavaScript-->
-    <script src="js/aluno/tabela_horas_semanal.js"></script>
+    <script src="../js/aluno/tabela_horas_semanal.js"></script>
     <div class="info">
       <div class="last-train">
         <h2>Ultimo Treino Realizado</h2>
@@ -82,6 +82,6 @@ require_once 'php/cadastro_login/check_login_aluno.php';
     </div>
     </section>
     </main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
   </body>
 </html>

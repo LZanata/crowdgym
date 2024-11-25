@@ -1,5 +1,5 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +8,8 @@ require_once 'php/cadastro_login/check_login_aluno.php';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minhas Academias</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/aluno/minhas_academias.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/aluno/minhas_academias.css">
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -59,8 +59,8 @@ require_once 'php/cadastro_login/check_login_aluno.php';
   </header>
   <main>
     <?php
-    require_once 'php/cadastro_login/check_login_aluno.php';
-    require_once 'php/conexao.php';
+    require_once '../php/cadastro_login/check_login_aluno.php';
+    require_once '../php/conexao.php';
 
     $aluno_id = $_SESSION['aluno_id']; // ID do aluno logado
 
@@ -86,7 +86,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
             <p>Status: <?php echo htmlspecialchars($row['status']); ?></p>
             <p>Data de término: <?php echo htmlspecialchars($row['data_fim']); ?></p>
             <?php if ($row['status'] === 'ativo'): ?>
-              <form action="php/aluno/cancelar_assinatura.php" method="post">
+              <form action="../php/aluno/cancelar_assinatura.php" method="post">
                 <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($row['plano_id']); ?>">
                 <button type="submit" onclick="return confirm('Tem certeza que deseja cancelar esta assinatura?')">Cancelar Assinatura</button>
               </form>
@@ -109,7 +109,7 @@ require_once 'php/cadastro_login/check_login_aluno.php';
       <a href="aluno_buscar_academias.php">Clique aqui para buscar uma academia</a>
     <?php endif; ?>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

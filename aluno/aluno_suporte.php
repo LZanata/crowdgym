@@ -1,5 +1,5 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,8 +7,8 @@ require_once 'php/cadastro_login/check_login_aluno.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajuda e Suporte</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/aluno/suporte.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/aluno/suporte.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
 </head>
 <body>
@@ -70,6 +70,6 @@ require_once 'php/cadastro_login/check_login_aluno.php';
         </section>
     </main>
 
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 </html>

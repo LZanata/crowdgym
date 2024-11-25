@@ -1,5 +1,5 @@
 <?php
-include 'php/conexao.php';
+include '../php/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
@@ -48,11 +48,11 @@ mysqli_close($conexao);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Aluno</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/cadastro_login/cadastro_aluno.css">
-    <script src="js/cadastro_login/validar_senha.js"></script>
-    <script src="js/aluno/formatocpf.js"></script>
-    <script src="js/aluno/validarsenha.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cadastro_login/cadastro_aluno.css">
+    <script src="../js/cadastro_login/validar_senha.js"></script>
+    <script src="../js/aluno/formatocpf.js"></script>
+    <script src="../js/aluno/validarsenha.js"></script>
 </head>
 
 <body>
@@ -153,6 +153,6 @@ mysqli_close($conexao);
         </div>
         </div> 
       </main>
-      <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+      <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 </html>

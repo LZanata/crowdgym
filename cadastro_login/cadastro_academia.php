@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cadastrar academia</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/cadastro_login/cadastro_academia.css" />
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cadastro_login/cadastro_academia.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -15,9 +15,9 @@
       <div class="rwb-tooltip">Fale conosco</div>
       <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
     </a>
-    <script src="js/admin/atualizarcidade.js"></script>
-    <script src="js/cadastro_login/formatocpf.js"></script>
-    <script src="js/cadastro_login/formatotelefone.js"></script>
+    <script src="../js/admin/atualizarcidade.js"></script>
+    <script src="../js/cadastro_login/formatocpf.js"></script>
+    <script src="../js/cadastro_login/formatotelefone.js"></script>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
@@ -28,7 +28,7 @@
       });
    })();
     </script>
-    <script src="js/cadastro_login/enviar_email.js"></script>
+    <script src="../js/cadastro_login/enviar_email.js"></script>
   </head>
   <body>
     <main>
@@ -239,6 +239,6 @@
       </div>
     </div>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
   </body>
 </html>

@@ -20,11 +20,11 @@
         </div>
         <div class="botoes">
             <div class="bentrar1">
-            <a href="login_aluno.php"
+            <a href="cadastro_login/login_aluno.php"
               ><span> Área do aluno</span></a>
             </div>
             <div class="bentrar2">
-            <a href="login_academia.php"
+            <a href="cadastro_login/login_academia.php"
               ><span>Área da academia</span></a>
             </div>
         </div>

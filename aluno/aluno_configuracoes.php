@@ -1,5 +1,5 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,6 @@ require_once 'php/cadastro_login/check_login_aluno.php';
           <!--Quando clicar aparecerá as opções para o usuario poder fazer alterar: conta(nome do aluno, email, autenticação de dois fatores e senha) - tema(claro ou escuro) -->
     </header>
     <main></main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 </html>

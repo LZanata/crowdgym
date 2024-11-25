@@ -1,6 +1,6 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
-require_once 'php/conexao.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
+require_once '../php/conexao.php';
 
 $plano_id = isset($_GET['plano_id']) ? (int) $_GET['plano_id'] : 0;
 
@@ -114,7 +114,7 @@ if (!$plano) {
         </form>
         <a href="aluno_plano_academia.php?academia_id=<?php echo htmlspecialchars($plano['Academia_id']); ?>">Voltar</a>
     </main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
     <script>
         function atualizarFormulario() {
             const metodo = document.getElementById('metodo_pagamento').value;

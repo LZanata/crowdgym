@@ -8,7 +8,7 @@ if (isset($_POST['SendRecupSenha'])) {
         $token_hash = hash("sha256", $token);
         $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
-        $mysqli = require __DIR__ . "/php/conexao.php";
+        $mysqli = require __DIR__ . "../php/conexao.php";
 
         // Array com as tabelas de usuários
         $tables = ['administrador', 'gerente', 'funcionario', 'aluno'];
@@ -31,7 +31,7 @@ if (isset($_POST['SendRecupSenha'])) {
         }
 
         if ($emailFound) {
-            $mail = require __DIR__ . "/lib/phpmailer/mailer.php";
+            $mail = require __DIR__ . "..//lib/phpmailer/mailer.php";
 
             $mail->setFrom("crowdgym21@gmail.com");
             $mail->addAddress($email);
@@ -64,7 +64,7 @@ if (isset($_POST['SendRecupSenha'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastro_login/recuperar_senha.css">
+    <link rel="stylesheet" href="../css/cadastro_login/recuperar_senha.css">
     <title>Recuperar Senha</title>
 </head>
 <body>

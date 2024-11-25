@@ -2,7 +2,7 @@
 $token = $_GET["token"];
 $token_hash = hash("sha256", $token);
 
-$mysqli = require __DIR__ . "/php/conexao.php";
+$mysqli = require __DIR__ . "../php/conexao.php";
 
 // Array com as tabelas de usuários
 $tables = ['administrador', 'gerente', 'funcionario', 'aluno'];
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastro_login/alterar_senha.css">
+    <link rel="stylesheet" href="../css/cadastro_login/alterar_senha.css">
     <title>Recuperar Senha</title>
 </head>
 

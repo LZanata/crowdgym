@@ -1,6 +1,6 @@
 <?php
-require_once 'php/cadastro_login/check_login_aluno.php';
-require_once 'php/conexao.php';
+require_once '../php/cadastro_login/check_login_aluno.php';
+require_once '../php/conexao.php';
 
 $academia_id = isset($_GET['academia_id']) ? (int) $_GET['academia_id'] : 0;
 
@@ -27,8 +27,8 @@ $planos = $queryPlanos->get_result();
 <head>
     <meta charset="UTF-8">
     <title>Planos - <?php echo htmlspecialchars($academia['nome']); ?></title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/aluno/plano_academia.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/aluno/plano_academia.css">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -91,7 +91,7 @@ $planos = $queryPlanos->get_result();
         </ul>
         <a href="aluno_buscar_academias.php">Voltar</a>
     </main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

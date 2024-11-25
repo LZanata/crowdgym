@@ -1,5 +1,5 @@
 <?php
-include 'php/conexao.php';
+include '../php/conexao.php';
 
 // Inicializa a variável de mensagem de erro
 $erroLogin = "";
@@ -53,7 +53,7 @@ $conexao->close();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/cadastro_login/login_aluno.css">
+  <link rel="stylesheet" href="../css/cadastro_login/login_aluno.css">
   <title>Login aluno</title>
 </head>
 
@@ -112,7 +112,7 @@ $conexao->close();
       </div>
     </div>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
