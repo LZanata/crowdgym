@@ -1,6 +1,3 @@
-<?php
-require_once 'php/cadastro_login/check_login_aluno.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -78,32 +78,22 @@ CREATE TABLE IF NOT EXISTS `fluxo` (
   KEY `fk_Fluxo_Academia1_idx` (`Academia_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `funcionario` (
+CREATE TABLE IF NOT EXISTS `funcionarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cpf` varchar(14) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `cargo` varchar(50) NOT NULL,
-  `data_contrat` date NOT NULL,
-  `genero` enum('masculino','feminino','outro') NOT NULL,
-  `Gerente_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf` (`cpf`),
-  KEY `fk_Funcionario_Gerente1_idx` (`Gerente_id`)
-);
-
-CREATE TABLE IF NOT EXISTS `gerente` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cpf` char(14) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
-  `senha` varchar(255) NOT NULL,
+  `telefone` varchar(15) DEFAULT NULL,  -- Exclusivo para gerente
+  `cargo` varchar(50) DEFAULT NULL,     -- Exclusivo para funcionário
+  `data_contrat` date DEFAULT NULL,     -- Exclusivo para funcionário
+  `genero` enum('masculino','feminino','outro') DEFAULT NULL, -- Exclusivo para funcionário
+  `tipo` enum('gerente', 'funcionario') NOT NULL,
   `Academia_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`),
-  KEY `fk_Funcionario_Academia_idx` (`Academia_id`)
+  KEY `fk_Funcionarios_Academia_idx` (`Academia_id`),
+  ON DELETE CASCADE ON UPDATE CASCADE;
 );
 
 CREATE TABLE IF NOT EXISTS `planos` (
