@@ -81,21 +81,32 @@ require_once 'php/cadastro_login/check_login_aluno.php';
       <h2>Minhas Academias</h2>
       <ul>
         <?php while ($row = $result->fetch_assoc()): ?>
-          <li>
-            <strong><?php echo htmlspecialchars($row['nome_academia']); ?></strong>
+          <div class="academia">
+            <h3><?php echo htmlspecialchars($row['nome_academia']); ?></h3>
             <p>Status: <?php echo htmlspecialchars($row['status']); ?></p>
-            <p>Data de Término: <?php echo date('d/m/Y', strtotime($row['data_fim'])); ?></p>
-            <form action="cancelar_assinatura.php" method="post">
-              <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($row['plano_id']); ?>">
-              <button type="submit">Cancelar Assinatura</button>
-            </form>
-          </li>
+            <p>Data de término: <?php echo htmlspecialchars($row['data_fim']); ?></p>
+            <?php if ($row['status'] === 'ativo'): ?>
+              <form action="cancelar_assinatura.php" method="post">
+                <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($row['plano_id']); ?>">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja cancelar esta assinatura?')">Cancelar Assinatura</button>
+              </form>
+            <?php endif; ?>
+          </div>
         <?php endwhile; ?>
+        <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+          <div class="alert alert-success">
+            Assinatura cancelada com sucesso!
+          </div>
+        <?php elseif (isset($_GET['error'])): ?>
+          <div class="alert alert-danger">
+            Erro ao cancelar assinatura. Tente novamente.
+          </div>
+        <?php endif; ?>
       </ul>
     <?php else: ?>
       <h2>Nenhuma Academia Registrada</h2>
       <p>Você ainda não possui assinaturas de academias no momento.</p>
-      <a href="buscar_academias.php">Clique aqui para buscar uma academia</a>
+      <a href="aluno_buscar_academias.php">Clique aqui para buscar uma academia</a>
     <?php endif; ?>
   </main>
   <footer>
