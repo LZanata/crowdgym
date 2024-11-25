@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">

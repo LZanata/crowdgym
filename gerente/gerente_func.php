@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,20 +7,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerente Funcionário</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/gerente/funcionario.css" />
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/gerente/funcionario.css" />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="js/gerente/validar_senha.js"></script>
-  <script src="js/gerente/formatocpf.js"></script>
-  <script src="js/gerente/confirmar_exclusao.js"></script>
-  <script src="js/gerente/ocultar_mensagem.js"></script>
+  <script src="../js/gerente/validar_senha.js"></script>
+  <script src="../js/gerente/formatocpf.js"></script>
+  <script src="../js/gerente/confirmar_exclusao.js"></script>
+  <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
   <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
-  <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+  <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
   <main>
     <div class="container">
@@ -47,7 +47,7 @@
             </thead>
             <tbody>
               <?php
-              include 'php/conexao.php';
+              include '../php/conexao.php';
 
               $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
@@ -94,7 +94,7 @@
       </div>
 
       <div class="form">
-        <form action="php/gerente/processa_cadastro_funcionario.php" method="POST">
+        <form action="../php/gerente/processa_cadastro_funcionario.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro do Funcionário</h1>
@@ -191,13 +191,13 @@
     </div>
   </main>
 
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 
   <script>
     // Confirmação de remoção de funcionário
     function confirmarRemocao(id) {
       if (confirm("Tem certeza que deseja remover este funcionário?")) {
-        window.location.href = 'php/gerente/remover_funcionario.php?id=' + id;
+        window.location.href = '../php/gerente/remover_funcionario.php?id=' + id;
       }
     }
   </script>

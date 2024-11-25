@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,20 +7,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerente Editar Funcionário</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/funcionario.css" />
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/gerente/funcionario.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="js/gerente/validar_senha.js"></script>
-    <script src="js/gerente/formatocpf.js"></script>
-    <script src="js/gerente/confirmar_exclusao.js"></script>
-    <script src="js/gerente/ocultar_mensagem.js"></script>
+    <script src="../js/gerente/validar_senha.js"></script>
+    <script src="../js/gerente/formatocpf.js"></script>
+    <script src="../js/gerente/confirmar_exclusao.js"></script>
+    <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
     <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
-    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+    <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
     <main>
         <div class="container">
@@ -42,7 +42,7 @@
                         <tbody>
                             <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
                             <?php
-                            include 'php/conexao.php';
+                            include '../php/conexao.php';
 
                             $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
@@ -134,7 +134,7 @@
                     </div>
                 </div>
 
-                <form action="php/gerente/editar_func.php" method="post">
+                <form action="../php/gerente/editar_func.php" method="post">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
                     <div class="input-group">
                         <div class="input-box">
@@ -212,7 +212,7 @@
 
         </div>
     </main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
