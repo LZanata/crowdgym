@@ -1,15 +1,6 @@
 <?php
 include '../conexao.php';
-session_start();
-
-// Verifica se o gerente está logado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login_academia.php");
-    exit();
-}
-
-// Obtém o ID do gerente logado
-$Gerente_id = $_SESSION['usuario_id'];
+include '../cadastro_login/check_login_gerente.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
@@ -17,23 +8,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirma_senha = $_POST['confirma_senha'];
-    $cargo = $_POST['cargo'];
-    $data_contrat = $_POST['data_contrat'];
-    $genero = $_POST['genero'];
+    $telefone = $_POST['telefone'] ?? null; // Exclusivo para gerente
+    $cargo = $_POST['cargo'] ?? null;       // Exclusivo para funcionário
+    $data_contrat = $_POST['data_contrat'] ?? null; // Exclusivo para funcionário
+    $genero = $_POST['genero'] ?? null;     // Exclusivo para funcionário
+    $tipo = $_POST['tipo'];
+    $Academia_id = $_SESSION['Academia_id']; // Pega o ID da academia do gerente logado
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirma_senha) {
         echo "Erro: As senhas não coincidem. Tente novamente.";
-        exit; // Interrompe a execução se as senhas não coincidirem
+        exit;
     }
 
     // Hash da senha
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionario (cpf, nome, email, senha, cargo, data_contrat, genero, Gerente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO funcionarios (cpf, nome, email, senha, telefone, cargo, data_contrat, genero, tipo, Academia_id) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssssi', $cpf, $nome, $email, $senha_hash, $cargo, $data_contrat, $genero, $Gerente_id);
+    mysqli_stmt_bind_param($stmt, 'sssssssssi', $cpf, $nome, $email, $senha_hash, $telefone, $cargo, $data_contrat, $genero, $tipo, $Academia_id);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";

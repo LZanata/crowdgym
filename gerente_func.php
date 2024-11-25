@@ -49,14 +49,13 @@
               <?php
               include 'php/conexao.php';
 
-              // Obtém o ID do gerente autenticado
-              $gerente_id = $_SESSION['usuario_id'];
+              $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
               // Verifica se o termo de pesquisa foi fornecido
               $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-              // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
-              $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ?";
+              // Consulta para buscar apenas os funcionários da academia associada
+              $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ? AND tipo = 'funcionario'";
               if (!empty($pesquisa)) {
                 $query .= " AND (nome LIKE ? OR email LIKE ?)";
               }
@@ -65,12 +64,13 @@
               $stmt = $conexao->prepare($query);
               if (!empty($pesquisa)) {
                 $likePesquisa = '%' . $pesquisa . '%';
-                $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+                $stmt->bind_param("iss", $Academia_id, $likePesquisa, $likePesquisa);
               } else {
-                $stmt->bind_param("i", $gerente_id);
+                $stmt->bind_param("i", $Academia_id);
               }
               $stmt->execute();
               $result = $stmt->get_result();
+
 
               // Verifica se encontrou resultados
               if (mysqli_num_rows($result) > 0) {
@@ -150,6 +150,14 @@
             <div class="input-box">
               <label for="data_contrat">Data de Contratação - opcional</label>
               <input type="date" id="data_contrat" name="data_contrat" required>
+            </div>
+            <div class="input-box">
+              <label for="tipo">Tipo de Funcionário:</label>
+              <select id="tipo" name="tipo" required>
+                <option value="">Selecione um tipo</option>
+                <option value="gerente">Gerente</option>
+                <option value="funcionario">Funcionário</option>
+              </select>
             </div>
           </div>
           <div class="gender-inputs">
