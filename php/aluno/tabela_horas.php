@@ -1,5 +1,5 @@
 <?php
-include 'php/conexao.php';
+include '../conexao.php';
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 

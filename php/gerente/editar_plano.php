@@ -1,5 +1,5 @@
 <?php
-include 'conexao.php';
+include '../conexao.php';
 
 // Verifica se os dados foram enviados via POST
 if (isset($_POST['id'], $_POST['nome'], $_POST['descricao'], $_POST['valor'], $_POST['duracao'], $_POST['tipo'])) {

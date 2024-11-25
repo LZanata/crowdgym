@@ -117,7 +117,7 @@ try {
             <div class="userlist">
                 <div class="userlist-header">
                     <div class="userlist-title">
-                        <h1>Alunos Cadastrados</h1>
+                        <h1>Alunos da Academia</h1>
                     </div>
                     <div class="search-form">
                         <form method="GET" action="">
