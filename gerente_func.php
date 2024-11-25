@@ -78,8 +78,8 @@
                   echo '<tr>
                               <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
                               <td>
-                                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="gerente_func_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="gerente_func_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                                   <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
                               </td>
                           </tr>';

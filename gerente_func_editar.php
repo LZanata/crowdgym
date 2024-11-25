@@ -20,48 +20,7 @@
 
 <body>
     <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
-    <header>
-        <nav>
-            <!--Menu para alterar as opções de tela-->
-            <div class="list">
-                <ul>
-                    <li class="dropdown">
-                        <a href="#"><i class="bi bi-list"></i></a>
-
-                        <div class="dropdown-list">
-                            <a href="gerente_menu_inicial.php">Menu Inicial</a>
-                            <a href="gerente_planos.php">Planos e Serviços</a>
-                            <a href="gerente_graficos.php">Gráficos</a>
-                            <a href="gerente_func.php">Funcionários</a>
-                            <a href="gerente_aluno.php">Alunos</a>
-                            <a href="gerente_sobre_nos.php">Sobre Nós</a>
-                            <a href="gerente_suporte.php">Ajuda e Suporte</a>
-                            <a href="php/cadastro_login/logout.php">Sair</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
-            <div class="logo">
-                <h1>Crowd Gym</h1>
-            </div>
-            <!--Opção para alterar as configurações de usuário-->
-            <div class="user">
-                <ul>
-                    <li class="user-icon">
-                        <a href=""><i class="bi bi-person-circle"></i></a>
-
-                        <div class="dropdown-icon">
-                            <a href="#">Perfil</a>
-                            <a href="#">Endereço</a>
-                            <a href="#">Tema</a>
-                            <a href="#">Sair</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
 
     <main>
         <div class="container">
@@ -85,14 +44,13 @@
                             <?php
                             include 'php/conexao.php';
 
-                            // Obtém o ID do gerente autenticado
-                            $gerente_id = $_SESSION['usuario_id'];
+                            $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
                             // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-                            // Consulta para buscar os funcionários com base no gerente autenticado e no termo de pesquisa
-                            $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ?";
+                            // Consulta para buscar apenas os funcionários da academia associada
+                            $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ? AND tipo = 'funcionario'";
                             if (!empty($pesquisa)) {
                                 $query .= " AND (nome LIKE ? OR email LIKE ?)";
                             }
@@ -101,12 +59,13 @@
                             $stmt = $conexao->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
-                                $stmt->bind_param("iss", $gerente_id, $likePesquisa, $likePesquisa);
+                                $stmt->bind_param("iss", $Academia_id, $likePesquisa, $likePesquisa);
                             } else {
-                                $stmt->bind_param("i", $gerente_id);
+                                $stmt->bind_param("i", $Academia_id);
                             }
                             $stmt->execute();
                             $result = $stmt->get_result();
+
 
                             // Verifica se encontrou resultados
                             if (mysqli_num_rows($result) > 0) {
@@ -114,8 +73,8 @@
                                     echo '<tr>
                               <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
                               <td>
-                                  <a href="gerente_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
-                                  <a href="gerente_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="gerente_func_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="gerente_func_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
                                   <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
                               </td>
                           </tr>';
@@ -148,7 +107,7 @@
                 $id = $_GET['id'];
 
                 // Consulta para obter os dados do funcionário pelo ID
-                $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero FROM funcionario WHERE id = ?";
+                $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero, tipo FROM funcionarios WHERE id = ? AND tipo = 'funcionario'"; // Verifica apenas funcionários
                 $stmt = mysqli_prepare($conexao, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
@@ -207,6 +166,14 @@
                             <label for="data_contrat">Data de Contratação:</label>
                             <input type="date" id="data_contrat" name="data_contrat"
                                 value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
+                        </div>
+                        <div class="input-box">
+                            <label for="tipo">Tipo de Funcionário:</label>
+                            <select id="tipo" name="tipo" required>
+                                <option value="">Selecione um tipo</option>
+                                <option value="gerente">Gerente</option>
+                                <option value="funcionario">Funcionário</option>
+                            </select>
                         </div>
                     </div>
 
