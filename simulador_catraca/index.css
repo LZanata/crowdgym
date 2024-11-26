@@ -46,13 +46,40 @@
 }
 
 .input-group{
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .input-group input{
     display: flex;
     flex-direction: column;
 }
+
+/*Separando cada tela de input*/
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; 
+ }
+ 
+ /*Customização do input*/
+ .input-box input{
+   height: 3rem;
+   margin: 0.6rem 0;
+   padding: 0.8rem 1.2rem;
+   border: none;
+   border-radius: 10px;
+   box-shadow: 1px 1px 6px #0000001c;
+ }
+ 
+ /*Customização do input ao passar o mouse nele*/
+ .input-box input:hover{
+   background-color: #eeeeee75;
+ }
+ 
+ /*Curstomização do input ao clicar nele*/
+ .input-box input:focus-visible{
+   outline: 1px solid #F57419;
+ }
 
 .mensagem {
     transition: opacity 1s ease-in-out;
