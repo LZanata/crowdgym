@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";
         // Redirecionar para outra página
-        header("Location: http://localhost/Projeto_CrowdGym/aluno/login_aluno.php");
+        header("Location: http://localhost/Projeto_CrowdGym/cadastro_login/login_aluno.php");
         exit();
     } else {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
