@@ -67,7 +67,7 @@ require_once '../php/cadastro_login/check_login_aluno.php';
     <?php else: ?>
       <h2>Nenhuma Academia Registrada</h2>
       <p>Você ainda não possui assinaturas de academias no momento.</p>
-      <a href="aluno_buscar_academias.php">Clique aqui para buscar uma academia</a>
+      <a href="buscar_academias.php">Clique aqui para buscar uma academia</a>
     <?php endif; ?>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->

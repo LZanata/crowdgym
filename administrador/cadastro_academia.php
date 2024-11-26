@@ -1,4 +1,35 @@
-<?php include '../php/cadastro_login/check_login_admin.php'; ?>
+<?php 
+include '../php/cadastro_login/check_login_admin.php';
+include '../php/conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nome = $_POST['nome'];
+    $telefone = $_POST['telefone'];
+    $rua = $_POST['rua'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $cep = $_POST['cep'];
+    $dia_semana = $_POST['dia_semana'];
+    $abertura = $_POST['abertura'];
+    $fechamento = $_POST['fechamento'];
+
+    // Inserir os dados no banco de dados
+    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
+
+    if (mysqli_query($conexao, $query)) {
+        echo "Usuário cadastrado com sucesso!";
+        // Redirecionar para outra página
+        header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_gerente.php");
+        exit();
+    } else {
+        echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +53,7 @@
   <main>
     <div class="container">
       <div class="form">
-        <form action="../php/admin/cadastro_academia.php" method="POST">
+        <form action="" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro de Academia</h1>

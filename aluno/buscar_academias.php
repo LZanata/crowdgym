@@ -39,7 +39,7 @@ $resultado = $query->get_result();
           <p>Telefone: <?php echo htmlspecialchars($academia['telefone']); ?></p>
           <p>Funcionamento: <?php echo htmlspecialchars($academia['dia_semana'] . " das " . $academia['abertura'] . " às " . $academia['fechamento']); ?></p>
           <p>Endereço: <?php echo htmlspecialchars($academia['rua'] . ", " . $academia['numero'] . " - " . $academia['bairro'] . ", " . $academia['cidade'] . " - " . $academia['estado']); ?></p>
-          <a href="aluno_plano_academia.php?academia_id=<?php echo $academia['id']; ?>">Ver Planos</a>
+          <a href="plano_academia.php?academia_id=<?php echo $academia['id']; ?>">Ver Planos</a>
         </li>
       <?php endwhile; ?>
     </ul>

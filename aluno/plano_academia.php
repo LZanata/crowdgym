@@ -46,11 +46,11 @@ $planos = $queryPlanos->get_result();
                     <p><?php echo htmlspecialchars($plano['descricao']); ?></p>
                     <p>Valor: R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?> (<?php echo $plano['duracao']; ?> dias)</p>
                     <p>Tipo: <?php echo htmlspecialchars($plano['tipo']); ?></p>
-                    <a href="aluno_assinar_plano.php?plano_id=<?php echo $plano['id']; ?>">Assinar Plano</a>
+                    <a href="assinar_plano.php?plano_id=<?php echo $plano['id']; ?>">Assinar Plano</a>
                 </li>
             <?php endwhile; ?>
         </ul>
-        <a href="aluno_buscar_academias.php">Voltar</a>
+        <a href="buscar_academias.php">Voltar</a>
     </main>
     <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
