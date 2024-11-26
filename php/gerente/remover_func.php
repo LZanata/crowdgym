@@ -15,11 +15,11 @@ if (isset($_GET['id'])) {
         // Tenta executar a query de exclusão
         if (mysqli_stmt_execute($stmt)) {
             // Redireciona para a página principal com uma mensagem de sucesso
-            header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_func.php?removido=1");
+            header("Location: http://localhost/Projeto_CrowdGym/gerente/funcionario.php?removido=1");
             exit;
         } else {
             // Exibe um erro se a execução falhar
-            header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_func.php?erro=1");
+            header("Location: http://localhost/Projeto_CrowdGym/gerente/funcionario.php?erro=1");
             exit;
         }
         

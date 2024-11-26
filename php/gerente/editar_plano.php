@@ -16,7 +16,7 @@ if (isset($_POST['id'], $_POST['nome'], $_POST['descricao'], $_POST['valor'], $_
     $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $id);
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_planos_editar.php?id=$id&success=1");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/planos_editar.php?id=$id&success=1");
         exit;
     } else {
         echo "Erro ao atualizar o plano. " . mysqli_error($conexao);

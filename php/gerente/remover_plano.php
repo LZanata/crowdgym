@@ -13,10 +13,10 @@ if (isset($_GET['id'])) {
     // Executa a consulta e verifica se a remoção foi bem-sucedida
     if (mysqli_stmt_execute($stmt)) {
         // Redireciona para a página principal com uma mensagem de sucesso
-        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_planos.php?removido=1");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/planos.php?removido=1");
     } else {
         // Em caso de erro, redireciona com uma mensagem de erro
-        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_planos.php?removido=0");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/planos.php?removido=0");
         exit;
     }
 

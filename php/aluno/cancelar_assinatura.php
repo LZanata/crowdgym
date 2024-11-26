@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($queryCancelar->execute()) {
         // Redireciona para a página de academias com mensagem de sucesso
-        header("Location: http://localhost/Projeto_CrowdGym/aluno/aluno_minhas_academias.php?success=1");
+        header("Location: http://localhost/Projeto_CrowdGym/aluno/minhas_academias.php?success=1");
         exit;
     } else {
         echo "Erro ao cancelar assinatura: " . $conexao->error;

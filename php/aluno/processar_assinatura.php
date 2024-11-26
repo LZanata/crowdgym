@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             // Redireciona para a página padrão após o pagamento
-            header("Location: http://localhost/Projeto_CrowdGym/aluno/aluno_minhas_academias.php?id=$id&success=1");
+            header("Location: http://localhost/Projeto_CrowdGym/aluno/minhas_academias.php?id=$id&success=1");
             exit;
         }
     } else {
