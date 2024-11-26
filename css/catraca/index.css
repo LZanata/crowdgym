@@ -27,6 +27,7 @@
     margin-right: auto;
   }
 
+  /*Configurando a div do titulo*/
 .header{
     display: flex;
     justify-content: center;
@@ -60,3 +61,22 @@
 .mensagem.oculta {
     opacity: 0;
 }
+
+.button{
+    display: flex;
+    flex-direction: column;
+}
+
+/*Customização do botão*/
+.button button{ 
+    width: 100%;
+    height: 3rem;
+    border: none;
+    background-color: #F57419;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
