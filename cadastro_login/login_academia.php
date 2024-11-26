@@ -28,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redireciona com base no tipo de usuário
             if ($row['tipo'] === 'gerente') {
-                header("Location: http://localhost/Projeto_CrowdGym/gerente_menu_inicial.php");
+                header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_menu_inicial.php");
             } else if ($row['tipo'] === 'funcionario') {
-                header("Location: http://localhost/Projeto_CrowdGym/func_menu_inicial.php");
+                header("Location: http://localhost/Projeto_CrowdGym/funcionario/func_menu_inicial.php");
             }
             exit();
         } else {

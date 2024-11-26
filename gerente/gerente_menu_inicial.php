@@ -25,7 +25,7 @@
         <canvas id="quantidadeAlunos"></canvas>
       </div>
       <!-- Importando a tabela no JavaScript-->
-      <script src="js/gerente/quantidade_alunos.js"></script>
+      <script src="../js/gerente/quantidade_alunos.js"></script>
       <div class="conteudo_lista">
         <div class="lista_alunos">
           <div class="lista_header">
