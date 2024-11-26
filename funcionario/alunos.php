@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login.php'; ?>
+<?php include '../php/cadastro_login/check_login.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alunos Academia</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/funcionario/alunos.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/funcionario/alunos.css">
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -36,7 +36,7 @@
             <tbody>
               <!-- Preenchendo com os dados do funcionário vindo do banco de dados -->
               <?php
-              include 'php/conexao.php';
+              include '../php/conexao.php';
 
               // Obtém o ID do gerente autenticado
               $gerente_id = $_SESSION['usuario_id'];
@@ -90,7 +90,7 @@
       </div>
 
       <div class="form">
-        <form action="php/gerente/processa_cadastro.php" method="POST">
+        <form action="../php/gerente/processa_cadastro.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro de Aluno</h1>
@@ -179,7 +179,7 @@
     </div>
     </div>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
