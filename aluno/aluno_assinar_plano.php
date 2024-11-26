@@ -21,8 +21,8 @@ if (!$plano) {
 <head>
     <meta charset="UTF-8">
     <title>Assinar Plano</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/aluno/assinatura.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/aluno/assinatura.css">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -35,7 +35,7 @@ if (!$plano) {
         <h2><?php echo htmlspecialchars($plano['nome']); ?></h2>
         <p>Descrição: <?php echo htmlspecialchars($plano['descricao']); ?></p>
         <p>Valor: R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?></p>
-        <form action="php/aluno/processar_assinatura.php" method="POST">
+        <form action="../php/aluno/processar_assinatura.php" method="POST">
             <input type="hidden" name="plano_id" value="<?php echo $plano_id; ?>">
             <label for="metodo_pagamento">Método de Pagamento:</label>
             <select id="metodo_pagamento" name="metodo_pagamento" onchange="atualizarFormulario()" required>
@@ -75,7 +75,6 @@ if (!$plano) {
         </form>
         <a href="aluno_plano_academia.php?academia_id=<?php echo htmlspecialchars($plano['Academia_id']); ?>">Voltar</a>
     </main>
-    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
     <script>
         function atualizarFormulario() {
             const metodo = document.getElementById('metodo_pagamento').value;
@@ -84,6 +83,7 @@ if (!$plano) {
             document.getElementById('campos_boleto').style.display = metodo === 'Boleto' ? 'block' : 'none';
         }
     </script>
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

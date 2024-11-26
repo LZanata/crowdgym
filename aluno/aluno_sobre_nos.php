@@ -16,7 +16,6 @@ require_once '../php/cadastro_login/check_login_aluno.php';
 </head>
 
 <body>
-  <nav>
     <!--Menu para alterar as opções de tela-->
     <?php include '../partials/header_aluno.php'; ?> <!-- Inclui o cabeçalho -->
     <?php include '../partials/main_sobre_nos.php'; ?> <!-- Inclui o Sobre Nós -->
