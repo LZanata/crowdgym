@@ -4,54 +4,61 @@ if (isset($_POST['SendRecupSenha'])) {
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
 
+        // Gera o token e configura a expiração
         $token = bin2hex(random_bytes(16));
         $token_hash = hash("sha256", $token);
-        $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
+        $expiry = date("Y-m-d H:i:s", time() + 60 * 30); // Token válido por 30 minutos
 
-        $mysqli = require __DIR__ . "../php/conexao.php";
+        // Inclui a conexão com o banco de dados
+        $mysqli = require __DIR__ . "/../php/conexao.php";
 
         // Array com as tabelas de usuários
-        $tables = ['administrador', 'gerente', 'funcionario', 'aluno'];
+        $tables = ['administrador', 'aluno', 'funcionarios'];
         $emailFound = false;
 
+        // Percorre as tabelas para atualizar o token
         foreach ($tables as $table) {
             $sql = "UPDATE $table
-                    SET reset_token_hash = ?,
-                        reset_token_expires_at = ?
+                    SET reset_token_hash = ?, reset_token_expires_at = ?
                     WHERE email = ?";
 
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("sss", $token_hash, $expiry, $email);
-            $stmt->execute();
 
-            if ($mysqli->affected_rows) {
-                $emailFound = true;
-                break; // Sai do loop se o e-mail for encontrado em uma das tabelas
+            if ($stmt) {
+                $stmt->bind_param("sss", $token_hash, $expiry, $email);
+                $stmt->execute();
+
+                // Verifica se o e-mail foi encontrado
+                if ($mysqli->affected_rows) {
+                    $emailFound = true;
+                    break; // Sai do loop se o e-mail for encontrado
+                }
+                $stmt->close();
+            } else {
+                echo "Erro ao preparar a consulta para a tabela $table: " . $mysqli->error;
             }
         }
 
+        // Envia o e-mail se o e-mail foi encontrado em alguma tabela
         if ($emailFound) {
-            $mail = require __DIR__ . "../lib/phpmailer/mailer.php";
+            $mail = require __DIR__ . "/../lib/phpmailer/mailer.php";
 
             $mail->setFrom("crowdgym21@gmail.com");
             $mail->addAddress($email);
-            $mail->Subject = "Alteração de senha";
+            $mail->Subject = "Crowd Gym - Alterar Senha ";
             $mail->Body = <<<END
-
-            Clique <a href="http://localhost/Projeto_CrowdGym/cadastro_login/redefinir_senha.php?token=$token">aqui</a> 
-            para alterar a sua senha.
-
-            END;
+Clique <a href="http://localhost/Projeto_CrowdGym/cadastro_login/redefinir_senha.php?token=$token">aqui</a> 
+para alterar a sua senha.
+END;
 
             try {
                 $mail->send();
+                echo "Email enviado, por favor verifique o seu inbox.";
             } catch (Exception $e) {
                 echo "O email não pode ser enviado. Mailer error: {$mail->ErrorInfo}";
             }
-
-            echo "Email enviado, por favor verifique o seu inbox.";
         } else {
-            echo "Email não foi encontrado.";
+            echo "Email não encontrado em nenhuma tabela.";
         }
     } else {
         echo "E-mail não foi fornecido.";

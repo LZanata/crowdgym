@@ -2,36 +2,46 @@
 $token = $_GET["token"];
 $token_hash = hash("sha256", $token);
 
-$mysqli = require __DIR__ . "../php/conexao.php";
+$mysqli = require __DIR__ . "/../php/conexao.php";
 
 // Array com as tabelas de usuários
-$tables = ['administrador', 'gerente', 'funcionario', 'aluno'];
+$tables = ['administrador', 'aluno', 'funcionarios'];
 $user = null;
 $tableName = null;
 
+// Procura o token em cada tabela
 foreach ($tables as $table) {
     $sql = "SELECT * FROM $table
             WHERE reset_token_hash = ?";
 
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $token_hash);
-    $stmt->execute();
 
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+    if ($stmt) {
+        $stmt->bind_param("s", $token_hash);
+        $stmt->execute();
 
-    if ($user !== null) {
-        $tableName = $table;
-        break; // Sai do loop se um usuário for encontrado
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+
+        if ($user !== null) {
+            $tableName = $table; // Identifica a tabela correspondente
+            break; // Sai do loop se o usuário for encontrado
+        }
+
+        $stmt->close();
+    } else {
+        echo "Erro ao preparar a consulta para a tabela $table: " . $mysqli->error;
     }
 }
 
+// Verifica se o token foi encontrado
 if ($user === null) {
-    die("token not found");
+    die("Token não encontrado.");
 }
 
+// Verifica se o token expirou
 if (strtotime($user["reset_token_expires_at"]) <= time()) {
-    die("token has expired");
+    die("O token expirou.");
 }
 
 // Processa o formulário de redefinição de senha
@@ -46,19 +56,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Atualiza a senha no banco de dados
         $updateSql = "UPDATE $tableName
                       SET senha = ?, reset_token_hash = NULL, reset_token_expires_at = NULL
-                      WHERE id = ?"; // Use o identificador correto, pode ser `id` ou outro nome de coluna
+                      WHERE id = ?";
 
         $updateStmt = $mysqli->prepare($updateSql);
-        $updateStmt->bind_param("si", $passwordHash, $user['id']); // Ajuste conforme o identificador correto
-        $updateStmt->execute();
 
-        echo "Senha alterada com sucesso. Você pode fazer login com sua nova senha.";
-        header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.php");
+        if ($updateStmt) {
+            $updateStmt->bind_param("si", $passwordHash, $user['id']);
+            $updateStmt->execute();
+
+            if ($updateStmt->affected_rows > 0) {
+                echo "Senha alterada com sucesso. Você pode fazer login com sua nova senha.";
+                header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.php");
+                exit;
+            } else {
+                echo "Erro ao atualizar a senha. Por favor, tente novamente.";
+            }
+
+            $updateStmt->close();
+        } else {
+            echo "Erro ao preparar a consulta de atualização: " . $mysqli->error;
+        }
     } else {
         echo "As senhas não correspondem. Tente novamente.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
