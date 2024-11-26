@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerente Funcionário</title>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/gerente/funcionario.css" />
+    <link rel="stylesheet" href="../css/gerente/plano.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <script src="../js/gerente/confirmar_exclusao.js"></script>
+    <script src="../js/gerente/validar_senha.js"></script>
+    <script src="../js/gerente/formatocpf.js"></script>
+    <script src="../js/gerente/remover_plano.js"></script>
     <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
@@ -75,8 +77,8 @@
             <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
             <td><img src="' . htmlspecialchars($row['foto'] ?? 'php/uploads/', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="200" /></td>
             <td>
-                <a href="gerente_aluno_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
-                <a href="gerente_aluno_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
+                <a href="aluno_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
+                <a href="aluno_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
                 <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
             </td>
         </tr>';
@@ -97,48 +99,106 @@
                 </div>
             </div>
             <?php
-            include 'php/conexao.php';
-
-            // Verifica se o ID do aluno foi enviado na URL
+            if (isset($_GET['success']) && $_GET['success'] == 1) {
+                echo "<p>Perfil atualizado com sucesso!</p>";
+            }
+            // Verifica se o ID foi enviado na URL
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
 
                 // Consulta para obter os dados do aluno pelo ID
-                $query = "SELECT nome, cpf, email, genero, data_nascimento, foto FROM aluno WHERE id = ?";
+                $query = "SELECT id, nome, email, cpf, data_nascimento, genero FROM aluno WHERE id = ?";
                 $stmt = mysqli_prepare($conexao, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
                 // Verifica se o aluno foi encontrado
-                if ($row = mysqli_fetch_assoc($result)) {
-                    echo '
-        <div class="form">
-            <div class="form-header">
-                <div class="title">
-                    <h1>Detalhes do Aluno</h1> 
-                </div>
-            </div>';
-                    echo '<p class="details">Nome: ' . htmlspecialchars($row['nome'], ENT_QUOTES, 'UTF-8') . '</p>';
-                    echo '<p class="details">CPF: ' . htmlspecialchars($row['cpf'], ENT_QUOTES, 'UTF-8') . '</p>';
-                    echo '<p class="details">Email: ' . htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') . '</p>';
-                    echo '<p class="details">Gênero: ' . htmlspecialchars($row['genero'], ENT_QUOTES, 'UTF-8') . '</p>';
-                    echo '<p class="details">Data de Nascimento: ' . htmlspecialchars($row['data_nascimento'], ENT_QUOTES, 'UTF-8') . '</p>';
-
-                    // Exibe a foto do aluno, se existir
-                    $fotoPath = !empty($row['foto']) ? htmlspecialchars($row['foto'], ENT_QUOTES, 'UTF-8') : 'php/uploads/imagem_padrao.jpg';
-                    echo '<p class="details">Foto: <img src="' . $fotoPath . '" alt="Foto do aluno" width="200" /></p>';
+                if ($aluno = mysqli_fetch_assoc($result)) {
+                    // Exibe o formulário de edição com os dados do aluno
                 } else {
                     echo "Aluno não encontrado.";
+                    exit;
                 }
 
                 mysqli_stmt_close($stmt);
             } else {
                 echo "ID do aluno não fornecido.";
+                exit;
             }
             ?>
-        </div>
 
+            <div class="form">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Editar Aluno</h1>
+                    </div>
+                </div>
+
+                <form action="../php/aluno/editar.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($aluno['id']); ?>">
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
+                                value="<?php echo htmlspecialchars($aluno['nome']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
+                                value="<?php echo htmlspecialchars($aluno['email']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                oninput="formatCPF(this)" maxlength="14"
+                                value="<?php echo htmlspecialchars($aluno['cpf']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="data_nascimento">Data de Nascimento:</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento"
+                                value="<?php echo htmlspecialchars($aluno['data_nascimento']); ?>">
+                        </div>
+                    </div>
+
+                    <div class="gender-inputs">
+                        <div class="gender-title">
+                            <h6>Gênero*</h6>
+                        </div>
+
+                        <div class="gender-group">
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_feminino" value="feminino"
+                                    <?php echo ($aluno['genero'] == 'feminino') ? 'checked' : ''; ?>>
+                                <label for="genero_feminino">Feminino</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_masculino" value="masculino"
+                                    <?php echo ($aluno['genero'] == 'masculino') ? 'checked' : ''; ?>>
+                                <label for="genero_masculino">Masculino</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" name="genero" id="genero_outro" value="outro"
+                                    <?php echo ($aluno['genero'] == 'outro') ? 'checked' : ''; ?>>
+                                <label for="genero_outro">Outro</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="register-button">
+                        <input type="submit" value="Atualizar Perfil">
+                    </div>
+                </form>
+
+            </div>
+
+
+        </div>
     </main>
     <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>

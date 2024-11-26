@@ -6,27 +6,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerente Funcionário</title>
+    <title>Gerente Editar Funcionário</title>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/gerente/plano.css" />
+    <link rel="stylesheet" href="../css/gerente/funcionario.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <script src="../js/gerente/validar_senha.js"></script>
     <script src="../js/gerente/formatocpf.js"></script>
-    <script src="../js/gerente/remover_plano.js"></script>
+    <script src="../js/gerente/confirmar_exclusao.js"></script>
     <script src="../js/gerente/ocultar_mensagem.js"></script>
 </head>
 
 <body>
     <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
     <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+
     <main>
         <div class="container">
             <div class="userlist">
                 <div class="userlist-header">
                     <div class="userlist-title">
-                        <h1>Alunos Cadastrados</h1>
+                        <h1>Funcionários Cadastrados</h1>
                     </div>
                     <div class="search-form">
                         <form method="GET" action="">
@@ -43,55 +44,50 @@
                             <?php
                             include '../php/conexao.php';
 
+                            $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
+
                             // Verifica se o termo de pesquisa foi fornecido
                             $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
 
-                            // Consulta para buscar os alunos com base no termo de pesquisa
-                            $query = "SELECT id, nome, email, foto FROM aluno";
+                            // Consulta para buscar apenas os funcionários da academia associada
+                            $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ? AND tipo = 'funcionario'";
                             if (!empty($pesquisa)) {
-                                $query .= " WHERE (nome LIKE ? OR email LIKE ?)";
+                                $query .= " AND (nome LIKE ? OR email LIKE ?)";
                             }
 
                             // Prepara e executa a consulta
                             $stmt = $conexao->prepare($query);
-                            if ($stmt === false) {
-                                die("Erro na preparação da consulta: " . $conexao->error);
-                            }
-
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
-                                $stmt->bind_param("ss", $likePesquisa, $likePesquisa);
+                                $stmt->bind_param("iss", $Academia_id, $likePesquisa, $likePesquisa);
+                            } else {
+                                $stmt->bind_param("i", $Academia_id);
                             }
-
-                            if (!$stmt->execute()) {
-                                echo "Erro ao executar a consulta: " . $stmt->error;
-                                exit;
-                            }
-
+                            $stmt->execute();
                             $result = $stmt->get_result();
+
 
                             // Verifica se encontrou resultados
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>
-            <td class="nome_func">' . htmlspecialchars($row['nome'] ?? '', ENT_QUOTES, 'UTF-8') . '</td>
-            <td><img src="' . htmlspecialchars($row['foto'] ?? 'php/uploads/', ENT_QUOTES, 'UTF-8') . '" alt="Foto do aluno" width="200" /></td>
-            <td>
-                <a href="gerente_aluno_detalhes.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="details">Ver Detalhes</a> 
-                <a href="gerente_aluno_editar.php?id=' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" id="edit">Editar</a> 
-                <a href="#" onclick="confirmarRemocao(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')" id="remove">Remover</a>
-            </td>
-        </tr>';
+                              <td class="nome_func">' . htmlspecialchars($row['nome']) . '</td>
+                              <td>
+                                  <a href="funcionario_detalhes.php?id=' . $row['id'] . '" id="details">Ver Detalhes</a> 
+                                  <a href="funcionario_editar.php?id=' . $row['id'] . '" id="edit">Editar</a> 
+                                  <a href="#" onclick="confirmarRemocao(' . $row['id'] . ')" id="remove">Remover</a>
+                              </td>
+                          </tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="3">Nenhum aluno encontrado.</td></tr>';
+                                echo '<tr><td colspan="2">Nenhum funcionário encontrado.</td></tr>';
                             }
                             ?>
 
                             <!--Mensagem após a remoção-->
                             <?php
                             if (isset($_GET['removido']) && $_GET['removido'] == 1) {
-                                echo '<div id="mensagem-sucesso">Aluno removido com sucesso!</div>';
+                                echo '<div id="mensagem-sucesso">Funcionário removido com sucesso!</div>';
                             }
                             ?>
                         </tbody>
@@ -102,65 +98,82 @@
             if (isset($_GET['success']) && $_GET['success'] == 1) {
                 echo "<p>Perfil atualizado com sucesso!</p>";
             }
+            ?>
+            <?php
+            include '../php/conexao.php';
+
             // Verifica se o ID foi enviado na URL
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
 
-                // Consulta para obter os dados do aluno pelo ID
-                $query = "SELECT id, nome, email, cpf, data_nascimento, genero FROM aluno WHERE id = ?";
+                // Consulta para obter os dados do funcionário pelo ID
+                $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero, tipo FROM funcionarios WHERE id = ? AND tipo = 'funcionario'"; // Verifica apenas funcionários
                 $stmt = mysqli_prepare($conexao, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
 
-                // Verifica se o aluno foi encontrado
-                if ($aluno = mysqli_fetch_assoc($result)) {
-                    // Exibe o formulário de edição com os dados do aluno
+                // Verifica se o funcionário foi encontrado
+                if ($usuario = mysqli_fetch_assoc($result)) {
+                    // Preenche os dados no formulário
                 } else {
-                    echo "Aluno não encontrado.";
+                    echo "Funcionário não encontrado.";
                     exit;
                 }
 
                 mysqli_stmt_close($stmt);
             } else {
-                echo "ID do aluno não fornecido.";
+                echo "ID do funcionário não fornecido.";
                 exit;
             }
             ?>
-
             <div class="form">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Editar Aluno</h1>
+                        <h1>Editar Funcionário</h1>
                     </div>
                 </div>
 
-                <form action="../php/aluno/editar.php" method="post">
-                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($aluno['id']); ?>">
+                <form action="../php/gerente/editar_func.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($usuario['id']); ?>">
                     <div class="input-group">
                         <div class="input-box">
                             <label for="nome">Nome:</label>
                             <input type="text" name="nome" placeholder="Digite o nome" id="nome" maxlength="100"
-                                value="<?php echo htmlspecialchars($aluno['nome']); ?>">
+                                value="<?php echo htmlspecialchars($usuario['nome']); ?>">
                         </div>
 
                         <div class="input-box">
                             <label for="email">Email:</label>
                             <input type="email" name="email" placeholder="Digite o email" maxlength="255" id="email"
-                                value="<?php echo htmlspecialchars($aluno['email']); ?>">
+                                value="<?php echo htmlspecialchars($usuario['email']); ?>">
                         </div>
 
                         <div class="input-box">
                             <label for="cpf">CPF:</label>
                             <input type="text" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                                 oninput="formatCPF(this)" maxlength="14"
-                                value="<?php echo htmlspecialchars($aluno['cpf']); ?>">
+                                value="<?php echo htmlspecialchars($usuario['cpf']); ?>">
                         </div>
 
                         <div class="input-box">
-                            <label for="data_nascimento">Data de Nascimento:</label>
-                            <input type="date" id="data_nascimento" name="data_nascimento"
-                                value="<?php echo htmlspecialchars($aluno['data_nascimento']); ?>">
+                            <label for="cargo">Cargo:</label>
+                            <input type="text" name="cargo" placeholder="Digite o cargo" id="cargo"
+                                value="<?php echo htmlspecialchars($usuario['cargo']); ?>">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="data_contrat">Data de Contratação:</label>
+                            <input type="date" id="data_contrat" name="data_contrat"
+                                value="<?php echo htmlspecialchars($usuario['data_contrat']); ?>">
+                        </div>
+                        <div class="input-box">
+                            <label for="tipo">Tipo de Funcionário:</label>
+                            <select id="tipo" name="tipo" required>
+                                <option value="">Selecione um tipo</option>
+                                <option value="gerente">Gerente</option>
+                                <option value="funcionario">Funcionário</option>
+                            </select>
                         </div>
                     </div>
 
@@ -172,19 +185,19 @@
                         <div class="gender-group">
                             <div class="gender-input">
                                 <input type="radio" name="genero" id="genero_feminino" value="feminino"
-                                    <?php echo ($aluno['genero'] == 'feminino') ? 'checked' : ''; ?>>
+                                    <?php echo ($usuario['genero'] == 'feminino') ? 'checked' : ''; ?>>
                                 <label for="genero_feminino">Feminino</label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="radio" name="genero" id="genero_masculino" value="masculino"
-                                    <?php echo ($aluno['genero'] == 'masculino') ? 'checked' : ''; ?>>
+                                    <?php echo ($usuario['genero'] == 'masculino') ? 'checked' : ''; ?>>
                                 <label for="genero_masculino">Masculino</label>
                             </div>
 
                             <div class="gender-input">
                                 <input type="radio" name="genero" id="genero_outro" value="outro"
-                                    <?php echo ($aluno['genero'] == 'outro') ? 'checked' : ''; ?>>
+                                    <?php echo ($usuario['genero'] == 'outro') ? 'checked' : ''; ?>>
                                 <label for="genero_outro">Outro</label>
                             </div>
                         </div>
@@ -196,7 +209,6 @@
                 </form>
 
             </div>
-
 
         </div>
     </main>
