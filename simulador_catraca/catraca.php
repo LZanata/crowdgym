@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     <main>
         <div class="container">
             <div class="header">
-                <h1>Simulador de Catraca</h1>
+                <h1>Catraca Virtual</h1>
                 <?php if (isset($mensagem)): ?>
                     <p class="mensagem" id="mensagem"><strong><?= htmlspecialchars($mensagem) ?></strong></p>
                 <?php endif; ?>
