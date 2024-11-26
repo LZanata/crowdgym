@@ -1,10 +1,22 @@
-body {
-    /*estiliza os elementos do body*/
-    font-family: 'Inter', sans-serif;
+/*Padronizando os componentes*/
+* {
     margin: 0;
     padding: 0;
-    color: #000000;
-}
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /*Configuração da div que possui todas as outras divs do forms*/
+.container{
+    margin-top: 2%;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    width: 650px;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 .mensagem {
     transition: opacity 1s ease-in-out;
