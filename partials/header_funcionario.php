@@ -8,7 +8,7 @@
 
                     <div class="dropdown-list">
                         <a href="menu_inicial.php">Menu Inicial</a>
-                        <a href="alunos.php">Alunos</a>
+                        <a href="aluno.php">Alunos</a>
                         <a href="catraca.php">Catraca</a>
                         <a href="sobre_nos.php">Sobre Nós</a>
                         <a href="suporte.php">Ajuda e Suporte</a>
