@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['administrador_id'] = $usuario['id'];
 
       // Redireciona para a página de administração
-      header("Location: http://localhost/Projeto_CrowdGym/administrador/admin_menu_academia.php");
+      header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_academia.php");
       exit();
     } else {
       // Falha na autenticação

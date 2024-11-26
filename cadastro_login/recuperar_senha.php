@@ -68,12 +68,14 @@ END;
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/cadastro_login/recuperar_senha.css">
     <title>Recuperar Senha</title>
 </head>
+
 <body>
     <!--Tela de Recuperação de Senha-->
     <div class="page">
@@ -91,4 +93,5 @@ END;
         </form>
     </div>
 </body>
+
 </html>

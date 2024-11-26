@@ -7,11 +7,11 @@
                     <a href="#"><i class="bi bi-list"></i></a>
 
                     <div class="dropdown-list">
-                        <a href="func_menu_inicial.php">Menu Inicial</a>
-                        <a href="func_alunos.php">Alunos</a>
-                        <a href="func_catraca.php">Catraca</a>
-                        <a href="func_sobre_nos.php">Sobre Nós</a>
-                        <a href="func_suporte.php">Ajuda e Suporte</a>
+                        <a href="menu_inicial.php">Menu Inicial</a>
+                        <a href="alunos.php">Alunos</a>
+                        <a href="catraca.php">Catraca</a>
+                        <a href="sobre_nos.php">Sobre Nós</a>
+                        <a href="suporte.php">Ajuda e Suporte</a>
                         <a href="../php/cadastro_login/logout.php">Sair</a>
                     </div>
                 </li>

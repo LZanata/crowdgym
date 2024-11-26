@@ -7,8 +7,8 @@
                     <a href="#"><i class="bi bi-list"></i></a>
 
                     <div class="dropdown-list">
-                        <a href="admin_menu_academia.php">Academia</a>
-                        <a href="admin_menu_gerente.php">Gerente</a>
+                        <a href="cadastro_academia.php">Academia</a>
+                        <a href="cadastro_gerente.php">Gerente</a>
                         <a href="">Sobre Nós</a>
                         <a href="">Ajuda e Suporte</a>
                         <a href="../php/cadastro_login/logout.php">Sair</a>
