@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['aluno_nome'] = $row['nome'];
 
       // Redireciona para a página do aluno
-      header("Location: http://localhost/Projeto_CrowdGym/aluno_menu_inicial.php");
+      header("Location: http://localhost/Projeto_CrowdGym/aluno/aluno_menu_inicial.php");
       exit();
     } else {
       // Define a mensagem de erro para senha incorreta

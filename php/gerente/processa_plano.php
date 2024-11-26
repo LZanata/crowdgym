@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Redireciona de volta à página de planos
-        header("Location: http://localhost/Projeto_CrowdGym/gerente_planos.php?sucesso=1");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_planos.php?sucesso=1");
         exit();
     } else {
         echo "Erro ao cadastrar o plano: " . $conexao->error;

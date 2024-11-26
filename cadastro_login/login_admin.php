@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se a senha armazenada está em hash
     if (password_verify($senha, $usuario['senha'])) {
       // Senha com hash está correta
-      header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.php");
+      header("Location: http://localhost/Projeto_CrowdGym/administrador/admin_menu_academia.php");
       exit();
     } elseif ($usuario['senha'] === $senha) {
       // Senha armazenada em texto puro (não é recomendado)
-      header("Location: http://localhost/Projeto_CrowdGym/admin_menu_academia.php");
+      header("Location: http://localhost/Projeto_CrowdGym/administrador/admin_menu_academia.php");
       exit();
     } else {
       // Falha na autenticação

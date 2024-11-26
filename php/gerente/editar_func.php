@@ -18,7 +18,7 @@ if (isset($_POST['id'], $_POST['nome'], $_POST['email'])) {
 
     if (mysqli_stmt_execute($stmt)) {
         // Redireciona o usuário de volta para a página de edição com uma mensagem de sucesso
-        header("Location: http://localhost/Projeto_CrowdGym/gerente_editar.php?id=$id&success=1");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_editar.php?id=$id&success=1");
         exit;
     } else {
         echo "Erro ao atualizar os dados: " . mysqli_error($conexao);

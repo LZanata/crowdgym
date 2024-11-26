@@ -31,14 +31,14 @@ if (isset($_POST['SendRecupSenha'])) {
         }
 
         if ($emailFound) {
-            $mail = require __DIR__ . "..//lib/phpmailer/mailer.php";
+            $mail = require __DIR__ . "../lib/phpmailer/mailer.php";
 
             $mail->setFrom("crowdgym21@gmail.com");
             $mail->addAddress($email);
             $mail->Subject = "Alteração de senha";
             $mail->Body = <<<END
 
-            Clique <a href="http://localhost/Projeto_CrowdGym/redefinir_senha.php?token=$token">aqui</a> 
+            Clique <a href="http://localhost/Projeto_CrowdGym/cadastro_login/redefinir_senha.php?token=$token">aqui</a> 
             para alterar a sua senha.
 
             END;

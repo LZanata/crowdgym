@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_stmt_execute($stmt)) {
         echo "Usuário cadastrado com sucesso!";
         // Redirecionar para outra página
-        header("Location: http://localhost/Projeto_CrowdGym/gerente_func.php");
+        header("Location: http://localhost/Projeto_CrowdGym/gerente/gerente_func.php");
         exit();
     } else {
         echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);

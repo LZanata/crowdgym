@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $updateStmt->execute();
 
         echo "Senha alterada com sucesso. Você pode fazer login com sua nova senha.";
-        header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.html");
+        header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.php");
     } else {
         echo "As senhas não correspondem. Tente novamente.";
     }
