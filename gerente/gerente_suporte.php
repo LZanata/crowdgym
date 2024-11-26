@@ -1,4 +1,4 @@
-<?php include 'php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,16 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajuda e Suporte</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/gerente/suporte.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/gerente/suporte.css">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="css/funcionario/suporte.css">
+    <link rel="stylesheet" href="../css/funcionario/suporte.css">
 </head>
 
 <body>
-    <?php include 'partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
+    <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
     <main>
         <!--Quando clicar aparecerá a tela para enviar uma mensagem ou tickets para o suporte técnico-->
         <section class="support-section">
@@ -37,7 +37,7 @@
             </form>
         </section>
     </main>
-    <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+    <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>
