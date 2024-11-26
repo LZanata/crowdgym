@@ -97,7 +97,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <label for="cpf">CPF do Aluno:</label>
         <input type="text" name="cpf" id="cpf" required>
-        <input type="hidden" name="academia_id" value="1"> <!-- ID da academia fixa ou dinâmica -->
+        
+        <label for="academia_id">ID da Academia:</label>
+        <input type="number" name="academia_id" id="academia_id" required>
+
         <button type="submit" name="acao" value="entrada">Registrar Entrada</button>
         <button type="submit" name="acao" value="saida">Registrar Saída</button>
     </form>

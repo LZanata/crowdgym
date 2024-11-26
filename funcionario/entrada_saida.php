@@ -50,7 +50,7 @@ $resultado = $query->get_result();
                         <td><?= htmlspecialchars($linha['data_entrada']) ?></td>
                         <td><?= $linha['data_saida'] ? htmlspecialchars($linha['data_saida']) : 'Ainda na academia' ?></td>
                         <td>
-                            <form method="GET" action="detalhes_aluno.php" style="display:inline;">
+                            <form method="GET" action="aluno_detalhes.php" style="display:inline;">
                                 <input type="hidden" name="aluno_id" value="<?= $linha['aluno_id'] ?>">
                                 <button type="submit">Ver Detalhes</button>
                             </form>
