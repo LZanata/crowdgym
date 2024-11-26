@@ -33,7 +33,7 @@ $resultado = $query->get_result();
 <body>
     <?php include '../partials/header_funcionario.php'; ?> <!-- Inclui o cabeçalho -->
     <main>
-        <h1>Entradas e Saídas de Alunos</h1>
+        <h1>Registro de Entrada e Saída de Alunos</h1>
         <table>
             <thead>
                 <tr>

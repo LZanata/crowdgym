@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     <main>
         <div class="container">
             <div class="header">
-                <h1>Catraca Virtual</h1>
+                <h1>Catraca</h1>
                 <?php if (isset($mensagem)): ?>
                     <p class="mensagem" id="mensagem"><strong><?= htmlspecialchars($mensagem) ?></strong></p>
                 <?php endif; ?>
@@ -108,11 +108,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
                     <div class="input-group">
                         <div class="input-box">
                             <label for="cpf">CPF do Aluno:</label>
-                            <input type="text" name="cpf" id="cpf" required>
+                            <input type="text" name="cpf" 
+                            placeholder="Digite o CPF"
+                            id="cpf" required>
                         </div>
                         <div class="input-box">
                             <label for="academia_id">ID da Academia:</label>
-                            <input type="text" name="academia_id" id="academia_id" required>
+                            <input type="text" name="academia_id"
+                            placeholder="Digite o ID" id="academia_id" required>
                         </div>
                     </div>
                     <div class="button">
@@ -124,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
         </div>
     </main>
     <script>
-        // Função para ocultar a mensagem após 5 segundos
+        // Função para ocultar a mensagem após 3 segundos
         setTimeout(() => {
             const mensagem = document.getElementById('mensagem');
             if (mensagem) {
@@ -132,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
                 // Remove do DOM após a animação
                 setTimeout(() => mensagem.remove(), 1000);
             }
-        }, 5000); // 5 segundos
+        }, 3000); // 3 segundos
     </script>
 </body>
 
