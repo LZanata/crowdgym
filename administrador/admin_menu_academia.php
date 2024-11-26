@@ -1,3 +1,4 @@
+<?php include '../php/cadastro_login/check_login_admin.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

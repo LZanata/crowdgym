@@ -1,4 +1,5 @@
 <?php
+session_start(); // Inicia a sessão
 include '../php/conexao.php';
 
 // Inicializa a variável de mensagem de erro
@@ -10,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $senha = $_POST['senha'];
 
   // Consulta para buscar o administrador no banco de dados com base no email
-  $sql = "SELECT * FROM administrador WHERE email = ?";
+  $sql = "SELECT id, senha FROM administrador WHERE email = ?";
   $stmt = $conexao->prepare($sql);
   $stmt->bind_param('s', $email);
   $stmt->execute();
@@ -20,13 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($result->num_rows > 0) {
     $usuario = $result->fetch_assoc();
 
-    // Verifica se a senha armazenada está em hash
+    // Verifica a senha
     if (password_verify($senha, $usuario['senha'])) {
-      // Senha com hash está correta
-      header("Location: http://localhost/Projeto_CrowdGym/administrador/admin_menu_academia.php");
-      exit();
-    } elseif ($usuario['senha'] === $senha) {
-      // Senha armazenada em texto puro (não é recomendado)
+      // Armazena o ID do administrador na sessão
+      $_SESSION['administrador_id'] = $usuario['id'];
+
+      // Redireciona para a página de administração
       header("Location: http://localhost/Projeto_CrowdGym/administrador/admin_menu_academia.php");
       exit();
     } else {
