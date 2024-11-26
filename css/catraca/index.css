@@ -6,6 +6,15 @@
     font-family: 'Inter', sans-serif;
   }
 
+  /*Configuração do main*/
+  main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /*Configuração da div que possui todas as outras divs do forms*/
 .container{
     margin-top: 2%;
@@ -18,9 +27,36 @@
     margin-right: auto;
   }
 
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+  padding: 3rem;  
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-content{
+    padding-bottom: 2rem;
+}
+
+.form-content input{
+    display: flex;
+    flex-direction: column;
+}
+
 .mensagem {
     transition: opacity 1s ease-in-out;
 }
+
 .mensagem.oculta {
     opacity: 0;
 }

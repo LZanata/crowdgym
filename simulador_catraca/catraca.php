@@ -105,12 +105,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
             </div>
             <div class="form">
                 <form method="POST">
-                    <label for="cpf">CPF do Aluno:</label>
-                    <input type="text" name="cpf" id="cpf" required>
-                    <label for="academia_id">ID da Academia:</label>
-                    <input type="text" name="academia_id" id="academia_id" required>
-                    <button type="submit" name="acao" value="entrada">Registrar Entrada</button>
-                    <button type="submit" name="acao" value="saida">Registrar Saída</button>
+                    <div class="form-content">
+                        <label for="cpf">CPF do Aluno:</label>
+                        <input type="text" name="cpf" id="cpf" required>
+                    </div>
+                    <div class="form-content">
+                        <label for="academia_id">ID da Academia:</label>
+                        <input type="text" name="academia_id" id="academia_id" required>
+                    </div>
+                    <div class="button">
+                        <button type="submit" name="acao" value="entrada">Registrar Entrada</button>
+                        <button type="submit" name="acao" value="saida">Registrar Saída</button>
+                    </div>
                 </form>
             </div>
         </div>
