@@ -24,47 +24,8 @@ $resultado = $query->get_result();
 </head>
 
 <body>
-  <header>
-    <!-- Quando clicar tem que aparecer uma barra de pesquisa e as academias conectadas com o Crowd Gym mais próximas da localização do usuário abaixo da barra de pesquisa e quando clicar na academia deverá mostrar os planos de matricula da academia -->
-    <nav>
-      <!--Menu para alterar as opções de tela-->
-      <div class="list">
-        <ul>
-          <li class="dropdown">
-            <a href="#"><i class="bi bi-list"></i></a>
-
-            <div class="dropdown-list">
-              <a href="aluno_menu_inicial.php">Menu Inicial</a>
-              <a href="aluno_minhas_academias.php">Minhas Academias</a>
-              <a href="aluno_buscar_academias.php">Buscar Academias</a>
-              <a href="aluno_dados_pagamento.php">Dados de Pagamento</a>
-              <a href="aluno_sobre_nos.php">Sobre Nós</a>
-              <a href="aluno_suporte.php">Ajuda e Suporte</a>
-              <a href="php/cadastro_login/logout.php">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
-      <div class="logo">
-        <h1>Crowd Gym</h1>
-      </div>
-      <!--Opção para alterar as configurações de usuário-->
-      <div class="user">
-        <ul>
-          <li class="user-icon">
-            <a href=""><i class="bi bi-person-circle"></i></a>
-
-            <div class="dropdown-icon">
-              <a href="#">Editar Perfil</a>
-              <a href="#">Alterar Tema</a>
-              <a href="#">Sair da Conta</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <!-- Quando clicar tem que aparecer uma barra de pesquisa e as academias conectadas com o Crowd Gym mais próximas da localização do usuário abaixo da barra de pesquisa e quando clicar na academia deverá mostrar os planos de matricula da academia -->
+  <?php include '../partials/header_aluno.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
     <h1>Pesquisar Academias</h1>
     <form method="get" action="">
