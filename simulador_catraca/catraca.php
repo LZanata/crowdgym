@@ -1,7 +1,8 @@
 <?php
 include '../php/conexao.php';
 
-function registrarEntradaSaida($cpf, $academia_id, $conexao) {
+function registrarEntradaSaida($cpf, $academia_id, $conexao)
+{
     // Obter o ID do aluno pelo CPF
     $query = $conexao->prepare("SELECT id FROM aluno WHERE cpf = ?");
     $query->bind_param("s", $cpf);
@@ -80,22 +81,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/catraca/index.css">
     <title>Simulador de Catraca</title>
 </head>
+
 <body>
-    <h1>Simulador de Catraca</h1>
-    <?php if (isset($mensagem)): ?>
-        <p><strong><?= htmlspecialchars($mensagem) ?></strong></p>
-    <?php endif; ?>
-    <form method="POST">
-        <label for="cpf">CPF do Aluno:</label>
-        <input type="text" name="cpf" id="cpf" required>
-        <label for="academia_id">ID da Academia:</label>
-        <input type="text" name="academia_id" id="academia_id" required>
-        <button type="submit">Registrar Entrada/Saída</button>
-    </form>
+    <main>
+        <div class="container">
+            <div class="header">
+                <h1>Simulador de Catraca</h1>
+            </div>
+            <div class="message" id="mensagem">
+                <?php if (isset($mensagem)): ?>
+                    <p><strong><?= htmlspecialchars($mensagem) ?></strong></p>
+                <?php endif; ?>
+            </div>
+            <div class="form">
+                <form method="POST">
+                    <label for="cpf">CPF do Aluno:</label>
+                    <input type="text" name="cpf" id="cpf" required>
+                    <label for="academia_id">ID da Academia:</label>
+                    <input type="text" name="academia_id" id="academia_id" required>
+                    <button type="submit">Registrar Entrada/Saída</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Função para ocultar a mensagem após 5 segundos
+        setTimeout(() => {
+            const mensagem = document.getElementById('mensagem');
+            if (mensagem) {
+                mensagem.classList.add('oculta');
+                // Remove do DOM após a animação
+                setTimeout(() => mensagem.remove(), 1000);
+            }
+        }, 5000); // 5 segundos
+    </script>
 </body>
+
 </html>

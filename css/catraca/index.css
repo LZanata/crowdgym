@@ -1,0 +1,14 @@
+body {
+    /*estiliza os elementos do body*/
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+
+.mensagem {
+    transition: opacity 1s ease-in-out;
+}
+.mensagem.oculta {
+    opacity: 0;
+}
