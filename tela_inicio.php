@@ -12,7 +12,7 @@
     <main>
         <div class="header">
           <div class="admin">
-            <a href="login_admin.php"><span> Área de ADM</span></a>
+            <a href="cadastro_login/login_admin.php"><span> Área de ADM</span></a>
           </div>
           <div class="crowd">
             <h1>Crowd Gym</h1>
