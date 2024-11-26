@@ -1,5 +1,5 @@
 <?php
-include '../php/conexao.php';
+include 'conexao.php';
 
 function registrarEntrada($cpf, $academia_id, $conexao)
 {
@@ -105,13 +105,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
             </div>
             <div class="form">
                 <form method="POST">
-                    <div class="form-content">
-                        <label for="cpf">CPF do Aluno:</label>
-                        <input type="text" name="cpf" id="cpf" required>
-                    </div>
-                    <div class="form-content">
-                        <label for="academia_id">ID da Academia:</label>
-                        <input type="text" name="academia_id" id="academia_id" required>
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="cpf">CPF do Aluno:</label>
+                            <input type="text" name="cpf" id="cpf" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="academia_id">ID da Academia:</label>
+                            <input type="text" name="academia_id" id="academia_id" required>
+                        </div>
                     </div>
                     <div class="button">
                         <button type="submit" name="acao" value="entrada">Registrar Entrada</button>

@@ -104,10 +104,11 @@ $conexao->close();
                 <a href="recuperar_senha.php">Esqueci minha senha</a>
               </div>
             </div>
-            <div class="button-group">
-              <div class="button">
-                <input type="submit" value="Acessar conta" />
-              </div>
+          </div>
+          <div class="button-group">
+            <div class="button">
+              <input type="submit" value="Acessar conta" />
+            </div>
         </form>
       </div>
     </div>

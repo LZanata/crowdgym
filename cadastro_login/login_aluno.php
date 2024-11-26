@@ -104,14 +104,16 @@ mysqli_close($conexao);
                   <a href="recuperar_senha.php">Esqueci minha senha</a>
                 </div>
               </div>
-              <div class="button-group">
-                <div class="button">
-                  <input type="submit" value="Acessar conta" />
-                </div>
-                <div class="button">
-                  <a href="cadastro_aluno.php">Criar Conta</a>
-                </div>
-              </div>
+            </div>
+          </div>
+          <div class="button-group">
+            <div class="button">
+              <input type="submit" value="Acessar conta" />
+            </div>
+            <div class="button">
+              <a href="cadastro_aluno.php">Criar Conta</a>
+            </div>
+          </div>
         </form>
       </div>
     </div>

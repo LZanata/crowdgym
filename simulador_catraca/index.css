@@ -45,11 +45,11 @@
     justify-content: center;
 }
 
-.form-content{
+.input-group{
     padding-bottom: 2rem;
 }
 
-.form-content input{
+.input-group input{
     display: flex;
     flex-direction: column;
 }
