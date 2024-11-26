@@ -12,7 +12,7 @@
                         <a href="gerente_aluno.php">Alunos</a>
                         <a href="gerente_sobre_nos.php">Sobre Nós</a>
                         <a href="gerente_suporte.php">Ajuda e Suporte</a>
-                        <a href="php/cadastro_login/logout.php">Sair</a>
+                        <a href="../php/cadastro_login/logout.php">Sair</a>
                     </div>
                 </li>
             </ul>

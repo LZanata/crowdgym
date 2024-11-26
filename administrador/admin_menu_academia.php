@@ -5,61 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administrador Menu</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/admin/menu_academia.css" />
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/admin/menu_academia.css" />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="js/admin/atualizarcidade.js"></script>
-  <script src="js/admin/formatotelefone.js"></script>
-  <script src="js/admin/formatocpf.js"></script>
+  <script src="../js/admin/atualizarcidade.js"></script>
+  <script src="../js/admin/formatotelefone.js"></script>
+  <script src="../js/admin/formatocpf.js"></script>
 </head>
 
 <body>
   <!--Nesta tela o gerente cadastra a conta do funcionário, edita e remove-->
-  <header>
-    <nav>
-      <!--Menu para alterar as opções de tela-->
-      <div class="list">
-        <ul>
-          <li class="dropdown">
-            <a href="#"><i class="bi bi-list"></i></a>
-
-            <div class="dropdown-list">
-              <a href="admin_menu_academia.php">Academia</a>
-              <a href="admin_menu_gerente.php">Gerente</a>
-              <a href="">Sobre Nós</a>
-              <a href="">Ajuda e Suporte</a>
-              <a href="tela_inicio.html">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--Logo do Crowd Gym(quando passar o mouse por cima, o logo devera ficar laranja)-->
-      <div class="logo">
-        <h1>Crowd Gym</h1>
-      </div>
-      <!--Opção para alterar as configurações de usuário-->
-      <div class="user">
-        <ul>
-          <li class="user-icon">
-            <a href=""><i class="bi bi-person-circle"></i></a>
-
-            <div class="dropdown-icon">
-              <a href="#">Perfil</a>
-              <a href="#">Tema</a>
-              <a href="#">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
+  <?php include '../partials/header_admin.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
     <div class="container">
       <div class="form">
-        <form action="php/admin/cadastro_academia.php" method="POST">
+        <form action="../php/admin/cadastro_academia.php" method="POST">
           <div class="form-header">
             <div class="title">
               <h1>Cadastro de Academia</h1>
@@ -227,7 +189,7 @@
       </div>
     </div>
   </main>
-  <?php include 'partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
 </body>
 
 </html>

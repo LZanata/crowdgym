@@ -13,7 +13,7 @@
                         <a href="aluno_dados_pagamento.php">Dados de Pagamento</a>
                         <a href="aluno_sobre_nos.php">Sobre Nós</a>
                         <a href="aluno_suporte.php">Ajuda e Suporte</a>
-                        <a href="php/cadastro_login/logout.php">Sair</a>
+                        <a href="../php/cadastro_login/logout.php">Sair</a>
                     </div>
                 </li>
             </ul>

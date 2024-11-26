@@ -12,7 +12,7 @@
                         <a href="func_catraca.php">Catraca</a>
                         <a href="func_sobre_nos.php">Sobre Nós</a>
                         <a href="func_suporte.php">Ajuda e Suporte</a>
-                        <a href="tela_inicio.html">Sair</a>
+                        <a href="../php/cadastro_login/logout.php">Sair</a>
                     </div>
                 </li>
             </ul>
