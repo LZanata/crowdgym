@@ -21,7 +21,7 @@
     background-color: #fff;
     border-radius: 7px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-    width: 650px;
+    width: 40%;
     height: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -35,7 +35,7 @@
 }
 
 .header h1{
-  padding: 3rem;  
+  padding: 3rem 1rem 3rem 1rem;  
 }
 
 .form{
