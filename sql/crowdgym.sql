@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `entrada_saida` (
 DROP TABLE IF EXISTS `fluxo`;
 CREATE TABLE IF NOT EXISTS `fluxo` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `alunos` int NOT NULL,
+  `quantidade_alunos` int NOT NULL,
   `data` date NOT NULL,
   `Academia_id` int NOT NULL,
   PRIMARY KEY (`id`),
