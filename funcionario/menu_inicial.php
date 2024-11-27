@@ -39,7 +39,6 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
   <!-- Importando a biblioteca Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -50,25 +49,18 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
   <main>
     <div class="dashboard">
       <div class="chart-container">
-        <canvas id="quantidadeAlunos"></canvas>
+        <h1>Histórico de Fluxo</h1>
+        <canvas id="graficoFluxo"></canvas>
       </div>
       <div class="card">
         <h1>Fluxo AO VIVO</h1>
         <p>Alunos treinando agora: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
       </div>
-      <div class="card">
-        <h3>Histórico de Fluxo</h3>
-        <canvas id="graficoFluxo"></canvas>
-      </div>
-      <div class="card">
-        <h3>Capacidade</h3>
-        <p id="capacidadeMaxima"></p>
-      </div>
     </div>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
   <!-- Importando a tabela no JavaScript-->
-  <script src="../js/funcionario/quantidade_alunos.js"></script>
+  <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
 </body>
 
 </html>
