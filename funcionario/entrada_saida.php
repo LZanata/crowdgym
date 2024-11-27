@@ -31,6 +31,7 @@ $resultado = $query->get_result();
 </head>
 
 <body>
+    <!--Aqui o funcionário poderá ver o registro dos alunos que entraram e sairam da academia-->
     <?php include '../partials/header_funcionario.php'; ?> <!-- Inclui o cabeçalho -->
     <main>
         <h1>Registro de Entrada e Saída de Alunos</h1>
