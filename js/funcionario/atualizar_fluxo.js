@@ -4,14 +4,13 @@ function carregarDadosGrafico() {
         .then(response => response.json())
         .then(data => {
             if (data.labels && data.data) {
-                // Atualiza os dados do gráfico
                 quantiaAluno.data.labels = data.labels;  // Atualiza as etiquetas (horas)
                 quantiaAluno.data.datasets[0].data = data.data;  // Atualiza a quantidade de alunos
                 quantiaAluno.update();  // Atualiza o gráfico com os novos dados
             } else {
                 console.error("Erro ao carregar dados do gráfico:", data.error);
             }
-        })
+        })        
         .catch(error => console.error("Erro na requisição do gráfico:", error));
 }
 
@@ -34,7 +33,7 @@ const ctx = document.getElementById('graficoFluxo').getContext('2d');
 const quantiaAluno = new Chart(ctx, {
     type: 'bar', // Tipo de gráfico: barras
     data: {
-        labels: [''], // Etiquetas (horas)
+        labels: [], // Etiquetas (horas)
         datasets: [{
             label: 'Alunos',
             data: [], // Quantidade de pessoas

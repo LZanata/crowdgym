@@ -11,11 +11,11 @@ $academia_id = $_SESSION['Academia_id'];
 
 // Consulta para obter dados agrupados por hora
 $query = $conexao->prepare("
-    SELECT DATE_FORMAT(data_hora, '%H:%i') AS hora, MAX(alunos_treinando) AS total
-    FROM historico_fluxo
-    WHERE Academia_id = ?
-    GROUP BY HOUR(data_hora)
-    ORDER BY data_hora ASC
+    SELECT DATE_FORMAT(data_entrada, '%H:%i') AS hora, COUNT(*) AS total
+    FROM entrada_saida
+    WHERE Academia_id = ? AND data_saida IS NULL
+    GROUP BY DATE_FORMAT(data_entrada, '%H:%i')
+    ORDER BY data_entrada ASC
 ");
 $query->bind_param("i", $academia_id);
 $query->execute();
@@ -29,5 +29,6 @@ while ($linha = $resultado->fetch_assoc()) {
     $data[] = $linha['total'];
 }
 
+var_dump(['labels' => $labels, 'data' => $data]);
 echo json_encode(['labels' => $labels, 'data' => $data]);
 ?>
