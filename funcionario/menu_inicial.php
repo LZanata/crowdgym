@@ -40,17 +40,19 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <!-- Importando a biblioteca Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 
 <body>
-  <!--Aqui é parte do menu incial, assim que o funcionario logar-->
+  <!--Aqui é parte do menu inicial, assim que o funcionário logar-->
   <?php include '../partials/header_funcionario.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
     <div class="dashboard">
       <div class="chart-container">
         <h1>Histórico de Fluxo</h1>
-        <canvas id="graficoFluxo"></canvas>
+        <!-- Canvas onde o gráfico será exibido -->
+        <canvas id="graficoFluxo" width="400" height="200"></canvas>
+ <!-- Verifique se o ID está correto -->
       </div>
       <div class="fluxo">
         <h1>Fluxo AO VIVO</h1>
@@ -58,7 +60,8 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
       </div>
     </div>
   </main>
-  <?php include '../partials/footer.php'; ?> 
+  <?php include '../partials/footer.php'; ?>
+  <!-- Inclui o script JS para atualizar o gráfico e fluxo -->
   <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
 </body>
 
