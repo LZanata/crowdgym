@@ -1,6 +1,6 @@
 // Função para carregar os dados do gráfico
 function carregarDadosGrafico() {
-    fetch('../../php/funcionario/dados_grafico.php')
+    fetch('../php/funcionario/dados_grafico.php')
         .then(response => response.json())
         .then(data => {
             if (data.labels && data.data) {
@@ -17,7 +17,7 @@ function carregarDadosGrafico() {
 
 // Função para atualizar o contador de fluxo
 function atualizarFluxo() {
-    fetch('../../php/funcionario/fluxo_ao_vivo.php')
+    fetch('../php/funcionario/fluxo_ao_vivo.php')
         .then(response => response.json())
         .then(data => {
             if (data.alunos_treinando !== undefined) {

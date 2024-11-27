@@ -52,14 +52,13 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
         <h1>Histórico de Fluxo</h1>
         <canvas id="graficoFluxo"></canvas>
       </div>
-      <div class="card">
+      <div class="fluxo">
         <h1>Fluxo AO VIVO</h1>
         <p>Alunos treinando agora: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
       </div>
     </div>
   </main>
-  <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
-  <!-- Importando a tabela no JavaScript-->
+  <?php include '../partials/footer.php'; ?> 
   <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
 </body>
 
