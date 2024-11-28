@@ -33,8 +33,6 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <!-- Importando a biblioteca Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -55,6 +53,8 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
     </main>
     <?php include '../partials/footer.php'; ?>
     <!-- Inclui o script JS para atualizar o gráfico e fluxo -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/funcionario/historico_fluxo.js"></script>
     <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
 </body>
 
