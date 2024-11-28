@@ -1,6 +1,29 @@
 <?php
+require_once '../php/conexao.php';
 require_once '../php/cadastro_login/check_login_aluno.php';
+
+$aluno_id = $_SESSION['Aluno_id'];
+
+// Consulta para buscar o último treino
+$query = $conexao->prepare("
+    SELECT DATE_FORMAT(data_entrada, '%a, %d de %b') AS ultimo_treino,
+           TIME_FORMAT(data_entrada, '%H:%i') AS horario_entrada,
+           TIME_FORMAT(data_saida, '%H:%i') AS horario_saida
+    FROM entrada_saida
+    WHERE Aluno_id = ?
+    ORDER BY data_entrada DESC
+    LIMIT 1
+");
+$query->bind_param("i", $aluno_id);
+$query->execute();
+$resultado = $query->get_result();
+$dados = $resultado->fetch_assoc();
+
+$ultimo_treino = $dados ? $dados['ultimo_treino'] : "Nenhum treino registrado";
+$horario_entrada = $dados ? $dados['horario_entrada'] : "--:--";
+$horario_saida = $dados ? $dados['horario_saida'] : "--:--";
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -31,18 +54,19 @@ require_once '../php/cadastro_login/check_login_aluno.php';
       <script src="../js/aluno/tabela_horas_semanal.js"></script>
       <div class="info">
         <div class="last-train">
-          <h2>Ultimo Treino Realizado</h2>
-          <p>sex. 19 de set.</p>
+          <h2>Último Treino Realizado</h2>
+          <p><?= htmlspecialchars($ultimo_treino); ?></p>
         </div>
         <div class="time-arrive">
           <h2>Horário de Chegada</h2>
-          <p>05:29</p>
+          <p><?= htmlspecialchars($horario_entrada); ?></p>
         </div>
         <div class="time-left">
           <h2>Horário de Saída</h2>
-          <p>07:40</p>
+          <p><?= htmlspecialchars($horario_saida); ?></p>
         </div>
       </div>
+
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
