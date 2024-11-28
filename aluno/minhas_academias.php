@@ -16,23 +16,21 @@ require_once '../php/cadastro_login/check_login_aluno.php';
 </head>
 
 <body>
-  <!--Quando clicar nesta opção tem que aparecer as academias que ele está matriculado no sistema e quando clicar na academia deverá mostrar os dados de quantas pessoas estão treinando e os planos assinados nesta academia. -->
   <?php include '../partials/header_aluno.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
     <?php
-    require_once '../php/cadastro_login/check_login_aluno.php';
     require_once '../php/conexao.php';
 
     $aluno_id = $_SESSION['aluno_id']; // ID do aluno logado
 
     // Consulta para verificar as academias onde o aluno possui assinatura
     $query = $conexao->prepare("
-    SELECT a.nome AS nome_academia, ass.status, ass.data_fim, ass.Planos_id AS plano_id
+    SELECT a.id AS academia_id, a.nome AS nome_academia, ass.status, ass.data_fim, ass.Planos_id AS plano_id
     FROM assinatura ass
     JOIN planos p ON ass.Planos_id = p.id
     JOIN academia a ON p.Academia_id = a.id
     WHERE ass.Aluno_id = ? AND ass.status = 'ativo' AND ass.data_fim >= CURDATE()
-");
+    ");
     $query->bind_param("i", $aluno_id);
     $query->execute();
     $result = $query->get_result();
@@ -41,11 +39,24 @@ require_once '../php/cadastro_login/check_login_aluno.php';
     if ($result->num_rows > 0): ?>
       <h2>Minhas Academias</h2>
       <ul>
-        <?php while ($row = $result->fetch_assoc()): ?>
+        <?php while ($row = $result->fetch_assoc()): 
+          // Consulta para obter o fluxo ao vivo de alunos na academia
+          $fluxoQuery = $conexao->prepare("
+          SELECT COUNT(*) AS total_treinando
+          FROM entrada_saida
+          WHERE Academia_id = ? AND data_saida IS NULL
+          ");
+          $fluxoQuery->bind_param("i", $row['academia_id']);
+          $fluxoQuery->execute();
+          $fluxoResult = $fluxoQuery->get_result();
+          $fluxoData = $fluxoResult->fetch_assoc();
+          $totalTreinando = $fluxoData['total_treinando'];
+        ?>
           <div class="academia">
             <h3><?php echo htmlspecialchars($row['nome_academia']); ?></h3>
             <p>Status: <?php echo htmlspecialchars($row['status']); ?></p>
             <p>Data de término: <?php echo htmlspecialchars($row['data_fim']); ?></p>
+            <p>Alunos treinando agora: <strong><?php echo $totalTreinando; ?></strong></p>
             <?php if ($row['status'] === 'ativo'): ?>
               <form action="../php/aluno/cancelar_assinatura.php" method="post">
                 <input type="hidden" name="plano_id" value="<?php echo htmlspecialchars($row['plano_id']); ?>">
