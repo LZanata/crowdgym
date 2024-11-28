@@ -2,19 +2,19 @@
 include '../conexao.php';
 session_start();
 
-// Ativar logs de erro (para depuração temporária)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Verificar se a sessão está ativa
 if (!isset($_SESSION['Academia_id'])) {
-    header('Content-Type: application/json');
     echo json_encode(['error' => 'Não autorizado']);
     exit;
 }
 
 $academia_id = $_SESSION['Academia_id'];
+
+// Verifique a conexão com o banco
+if ($conexao->connect_error) {
+    echo json_encode(['error' => 'Erro de conexão: ' . $conexao->connect_error]);
+    exit;
+}
 
 // Consulta SQL para obter dados
 $query = $conexao->prepare("
@@ -32,18 +32,14 @@ $resultado = $query->get_result();
 $labels = [];
 $data = [];
 
-while ($linha = $resultado->fetch_assoc()) {
-    $labels[] = $linha['hora'];
-    $data[] = $linha['total'];
-}
-
-// Garantir que a saída é JSON puro
-header('Content-Type: application/json');
-
-if (empty($labels) || empty($data)) {
-    echo json_encode(['error' => 'Sem dados para mostrar']);
-} else {
+// Verifique os dados retornados pela consulta
+if ($resultado->num_rows > 0) {
+    while ($linha = $resultado->fetch_assoc()) {
+        $labels[] = $linha['hora'];
+        $data[] = $linha['total'];
+    }
     echo json_encode(['labels' => $labels, 'data' => $data]);
+} else {
+    echo json_encode(['error' => 'Sem dados para mostrar']);
 }
-
-exit;
+?>

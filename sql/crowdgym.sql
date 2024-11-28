@@ -68,11 +68,11 @@ CREATE TABLE IF NOT EXISTS `entrada_saida` (
   KEY `fk_Entrada_Saida_Aluno1_idx` (`Aluno_id`)
 );
 
-DROP TABLE IF EXISTS `fluxo`;
-CREATE TABLE IF NOT EXISTS `fluxo` (
+DROP TABLE IF EXISTS `historico_fluxo`;
+CREATE TABLE IF NOT EXISTS `historico_fluxo` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `quantidade_alunos` int NOT NULL,
-  `data` date NOT NULL,
+  `alunos_treinando` int NOT NULL,
+  `data_hora` datetime NOT NULL,
   `Academia_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Fluxo_Academia1_idx` (`Academia_id`)
