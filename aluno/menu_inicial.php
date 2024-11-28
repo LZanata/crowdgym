@@ -2,7 +2,7 @@
 require_once '../php/conexao.php';
 require_once '../php/cadastro_login/check_login_aluno.php';
 
-$aluno_id = $_SESSION['Aluno_id'];
+$aluno_id = $_SESSION['aluno_id'];
 
 // Consulta para buscar o último treino
 $query = $conexao->prepare("
@@ -46,12 +46,8 @@ $horario_saida = $dados ? $dados['horario_saida'] : "--:--";
     <!--Aqui terá um gráfico semanal de quantas horas o aluno treinou durante todos os dias da semana- o ultimo dia e horario que o aluno foi e saiu da academia -->
     <section>
       <div class="chart-container">
-        <canvas id="meuGrafico"></canvas>
+        <canvas id="graficoHorasTreino"></canvas>
       </div>
-      <!-- Importando a biblioteca Chart.js -->
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <!-- Importando a tabela no JavaScript-->
-      <script src="../js/aluno/tabela_horas_semanal.js"></script>
       <div class="info">
         <div class="last-train">
           <h2>Último Treino Realizado</h2>
@@ -66,10 +62,13 @@ $horario_saida = $dados ? $dados['horario_saida'] : "--:--";
           <p><?= htmlspecialchars($horario_saida); ?></p>
         </div>
       </div>
-
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <!-- Importando a biblioteca Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Importando a tabela no JavaScript-->
+  <script src="../js/aluno/tabela_horas_semanal.js"></script>
 </body>
 
 </html>
