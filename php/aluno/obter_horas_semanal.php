@@ -2,7 +2,7 @@
 require_once '../conexao.php';
 require_once '../cadastro_login/check_login_aluno.php';
 
-$aluno_id = $_SESSION['Aluno_id'];
+$aluno_id = $_SESSION['aluno_id'];
 
 // Consulta para buscar as horas treinadas por dia na semana atual
 $query = $conexao->prepare("
