@@ -2,12 +2,6 @@
 include '../php/cadastro_login/check_login_funcionario.php';
 include '../php/conexao.php';
 
-// Verificar se o usuário está logado
-if (!isset($_SESSION['Academia_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
 // Função para contar alunos treinando
 function contarAlunosTreinando($academia_id, $conexao)
 {

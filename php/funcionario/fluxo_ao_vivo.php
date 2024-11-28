@@ -1,12 +1,6 @@
 <?php
 include '../conexao.php';
-session_start();
-
-// Verificar se o usuário está logado
-if (!isset($_SESSION['Academia_id'])) {
-    echo json_encode(['error' => 'Não autorizado']);
-    exit;
-}
+include '../cadastro_login/check_login_funcionario.php';
 
 $academia_id = $_SESSION['Academia_id'];
 
