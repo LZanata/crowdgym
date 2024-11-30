@@ -30,15 +30,8 @@ const graficoFluxo = new Chart(ctx, {
 
 // Função para carregar o gráfico
 function carregarGraficoFluxo() {
-    // Obtém o ID da academia do campo oculto no HTML
     const academiaId = document.getElementById('academiaId').value;
-    
-    if (!academiaId) {
-        console.error('Academia ID não encontrado');
-        return;
-    }
 
-    // Chama o PHP para obter os dados históricos
     fetch(`../php/funcionario/obter_historico_fluxo.php?academia_id=${academiaId}`)
         .then(response => response.json())
         .then(data => {
@@ -48,7 +41,12 @@ function carregarGraficoFluxo() {
             }
 
             // Atualizar as labels e os dados no gráfico
-            graficoFluxo.data.labels = data.labels;
+            graficoFluxo.data.labels = data.labels.map(label => {
+                // Extrai apenas a hora (hora:minuto)
+                const date = new Date(label);
+                return `${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+            });
+
             graficoFluxo.data.datasets[0].data = data.values;
 
             // Atualizar o gráfico
@@ -57,8 +55,26 @@ function carregarGraficoFluxo() {
         .catch(error => console.error('Erro ao carregar gráfico de fluxo:', error));
 }
 
-// Chama a função ao carregar a página
+// Função para reiniciar o gráfico à meia-noite
+function reiniciarGraficoAmeiaNoite() {
+    const agora = new Date();
+    const meiaNoite = new Date();
+    meiaNoite.setHours(24, 0, 0, 0); // Define a próxima meia-noite
+
+    // Se já for meia-noite, reinicie o gráfico
+    if (agora.getTime() >= meiaNoite.getTime()) {
+        carregarGraficoFluxo();
+    }
+
+    // Atualiza o gráfico às 00:00:00
+    setTimeout(reiniciarGraficoAmeiaNoite, meiaNoite.getTime() - agora.getTime());
+}
+
+// Chame a função ao carregar a página
 carregarGraficoFluxo();
 
 // Atualizar o gráfico a cada 5 segundos
 setInterval(carregarGraficoFluxo, 5000);
+
+// Chama a função para reiniciar o gráfico à meia-noite
+reiniciarGraficoAmeiaNoite();
