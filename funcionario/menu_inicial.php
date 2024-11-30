@@ -36,8 +36,6 @@ $alunosTreinando = $rowFluxo['total'];
             <div class="fluxo">
                 <h1>Fluxo AO VIVO</h1>
                 <p>Alunos treinando agora: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
-                <!-- Adiciona o botão de atualização do fluxo -->
-                <button onclick="atualizarFluxo(<?= $_SESSION['Aluno_id'] ?>, <?= $_SESSION['Academia_id'] ?>)">Atualizar Fluxo</button>
             </div>
         </div>
     </main>

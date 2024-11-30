@@ -2,7 +2,7 @@
 include '../conexao.php';
 include '../cadastro_login/check_login_funcionario.php';
 
-// Exemplo de consulta ao banco para obter o histórico de fluxo
+// Consulta ao banco para obter o histórico de fluxo
 $query = "SELECT alunos_treinando, data_hora FROM historico_fluxo WHERE Academia_id = ? ORDER BY data_hora DESC LIMIT 10";
 $stmt = $conexao->prepare($query);
 $stmt->bind_param("i", $_SESSION['Academia_id']);
@@ -23,4 +23,5 @@ echo json_encode([
     'labels' => $labels,
     'values' => $values
 ]);
+
 ?>
