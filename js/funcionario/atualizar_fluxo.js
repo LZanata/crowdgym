@@ -1,14 +1,24 @@
+// Espera o carregamento do DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtém o ID da academia que está no campo oculto
+    const academiaId = document.getElementById('academiaId').value;
+
+    // Atualiza o fluxo a cada 5 segundos
+    setInterval(() => {
+        atualizarFluxo(academiaId);
+    }, 5000);
+});
+
 // Função para atualizar o fluxo
-function atualizarFluxo(aluno_id, academia_id) {
-    // Verifica se os IDs estão presentes
-    if (!aluno_id || !academia_id) {
-        console.error("Dados incompletos: aluno_id ou academia_id ausente.");
+function atualizarFluxo(academia_id) {
+    // Verifica se o ID da academia está presente
+    if (!academia_id) {
+        console.error("Academia ID ausente.");
         return;
     }
 
     // Cria o objeto de dados a ser enviado
     const dados = {
-        aluno_id: aluno_id,
         academia_id: academia_id
     };
 
@@ -25,7 +35,7 @@ function atualizarFluxo(aluno_id, academia_id) {
         if (data.erro) {
             console.error(data.erro);
         } else {
-            // Manipula a resposta bem-sucedida, como atualizar o número de alunos treinando
+            // Atualiza o número de alunos treinando no DOM
             document.getElementById("contadorFluxo").textContent = data.alunos_treinando;
         }
     })

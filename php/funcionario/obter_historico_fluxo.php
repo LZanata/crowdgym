@@ -1,27 +1,35 @@
 <?php
 include '../conexao.php';
-include '../cadastro_login/check_login_funcionario.php';
 
-// Consulta ao banco para obter o histórico de fluxo
-$query = "SELECT alunos_treinando, data_hora FROM historico_fluxo WHERE Academia_id = ? ORDER BY data_hora DESC LIMIT 10";
-$stmt = $conexao->prepare($query);
-$stmt->bind_param("i", $_SESSION['Academia_id']);
-$stmt->execute();
-$result = $stmt->get_result();
+if (isset($_GET['academia_id'])) {
+    $academia_id = intval($_GET['academia_id']);
 
-// Prepare os dados para o gráfico
-$labels = [];
-$values = [];
+    $query = $conexao->prepare("
+        SELECT 
+            DATE_FORMAT(data_entrada, '%Y-%m-%d %H:00:00') AS hora,
+            COUNT(*) AS total_alunos
+        FROM 
+            entrada_saida
+        WHERE 
+            Academia_id = ?
+        GROUP BY 
+            DATE_FORMAT(data_entrada, '%Y-%m-%d %H:00:00')
+        ORDER BY 
+            hora;
+    ");
+    $query->bind_param("i", $academia_id);
+    $query->execute();
 
-while ($row = $result->fetch_assoc()) {
-    $labels[] = date('H:i', strtotime($row['data_hora']));  // Formatar para hora:minuto
-    $values[] = $row['alunos_treinando'];
+    $resultado = $query->get_result();
+    $dados = [];
+
+    while ($row = $resultado->fetch_assoc()) {
+        $dados['labels'][] = $row['hora'];
+        $dados['values'][] = $row['total_alunos'];
+    }
+
+    echo json_encode($dados);
+} else {
+    echo json_encode(['erro' => 'Academia_id não fornecido']);
 }
-
-// Retorne os dados no formato JSON
-echo json_encode([
-    'labels' => $labels,
-    'values' => $values
-]);
-
 ?>

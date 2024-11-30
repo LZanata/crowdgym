@@ -30,18 +30,28 @@ const ctx = document.getElementById('graficoFluxo').getContext('2d');
 
     // Função para carregar o gráfico
     function carregarGraficoFluxo() {
-        fetch('../php/funcionario/obter_historico_fluxo.php')
+        const academiaId = 1; // Substitua pelo ID da academia apropriado
+    
+        fetch(`../php/funcionario/obter_historico_fluxo.php?academia_id=${academiaId}`)
             .then(response => response.json())
             .then(data => {
+                if (data.erro) {
+                    console.error(data.erro);
+                    return;
+                }
+    
+                // Atualizar as labels e os dados no gráfico
                 graficoFluxo.data.labels = data.labels;
                 graficoFluxo.data.datasets[0].data = data.values;
+    
+                // Atualizar o gráfico
                 graficoFluxo.update();
             })
             .catch(error => console.error('Erro ao carregar gráfico de fluxo:', error));
     }
-
-    // Carregar o gráfico assim que a página for carregada
-    carregarGraficoFluxo();
+    
+    // Chame a função ao carregar a página
+    carregarGraficoFluxo();    
 
     // Atualizar o gráfico a cada segundos
     setInterval(carregarGraficoFluxo, 5000);
