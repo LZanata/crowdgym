@@ -1,19 +1,23 @@
 <?php
 include '../php/cadastro_login/check_login_funcionario.php';
 include '../php/conexao.php';
-include '../php/funcoes/funcoes_fluxo.php';
 
-$academia_id = $_SESSION['Academia_id'];
-$alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
+// Consulta para obter o número de alunos treinando ao vivo
+$queryFluxo = $conexao->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
+$queryFluxo->bind_param("i", $_SESSION['Academia_id']);
+$queryFluxo->execute();
+$resultadoFluxo = $queryFluxo->get_result();
+$rowFluxo = $resultadoFluxo->fetch_assoc();
+$alunosTreinando = $rowFluxo['total'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funcionário Menu Inicial</title>
+    <title>Funcionário - Menu Inicial</title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/funcionario/menu_inicial.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -21,22 +25,32 @@ $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
 
 <body>
     <?php include '../partials/header_funcionario.php'; ?> <!-- Inclui o cabeçalho -->
+
     <main>
         <div class="dashboard">
             <div class="chart-container">
                 <h1>Histórico de Fluxo</h1>
                 <canvas id="graficoFluxo"></canvas>
             </div>
+
             <div class="fluxo">
                 <h1>Fluxo AO VIVO</h1>
                 <p>Alunos treinando agora: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
+                <!-- Adiciona o botão de atualização do fluxo -->
+                <button onclick="atualizarFluxo(<?= $_SESSION['Aluno_id'] ?>, <?= $_SESSION['Academia_id'] ?>)">Atualizar Fluxo</button>
             </div>
         </div>
     </main>
+
     <?php include '../partials/footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/funcionario/historico_fluxo.js"></script>
     <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
+    <script>
+        // Chama a função para carregar o gráfico de histórico de fluxo
+        carregarGraficoFluxo();
+    </script>
 </body>
 
 </html>

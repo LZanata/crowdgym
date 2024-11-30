@@ -1,38 +1,33 @@
-// arquivo: atualizar_fluxo.js
-async function atualizarFluxoAoVivo() {
-    try {
-        // Certifique-se de que as variáveis estão corretas, e definidas
-        const alunoId = 1; // Substitua pelo ID do aluno correto
-        const academiaId = 1; // Substitua pelo ID da academia correto
-
-        // Verificação para garantir que os dados não são nulos ou indefinidos
-        if (!alunoId || !academiaId) {
-            console.error("Erro: aluno_id ou academia_id estão ausentes.");
-            return;
-        }
-
-        const response = await fetch('../php/funcionario/fluxo_ao_vivo.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                aluno_id: alunoId,
-                academia_id: academiaId,
-            }),
-        });
-
-        const data = await response.json();
-
-        if (data.alunos_treinando !== undefined) {
-            document.getElementById('contadorFluxo').textContent = data.alunos_treinando;
-        } else {
-            console.error("Erro no servidor:", data.erro);
-        }
-    } catch (error) {
-        console.error('Erro ao atualizar o fluxo:', error);
+// Função para atualizar o fluxo
+function atualizarFluxo(aluno_id, academia_id) {
+    // Verifica se os IDs estão presentes
+    if (!aluno_id || !academia_id) {
+        console.error("Dados incompletos: aluno_id ou academia_id ausente.");
+        return;
     }
-}
 
-// Chama a função periodicamente
-setInterval(atualizarFluxoAoVivo, 5000); // Atualiza a cada 5 segundos
+    // Cria o objeto de dados a ser enviado
+    const dados = {
+        aluno_id: aluno_id,
+        academia_id: academia_id
+    };
+
+    // Envia os dados para o PHP via fetch
+    fetch('../php/funcionario/fluxo_ao_vivo.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.erro) {
+            console.error(data.erro);
+        } else {
+            // Manipula a resposta bem-sucedida, como atualizar o número de alunos treinando
+            document.getElementById("contadorFluxo").textContent = data.alunos_treinando;
+        }
+    })
+    .catch(error => console.error('Erro na requisição:', error));
+}

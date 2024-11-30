@@ -1,9 +1,7 @@
 <?php
 include '../conexao.php';
-include '../cadastro_login/check_login_funcionario.php';
-include '../funcoes/funcoes_fluxo.php';
 
-// Recebe os dados via POST e decodifica o JSON
+// Recebe os dados via POST
 $data = json_decode(file_get_contents('php://input'), true);
 
 // Verifica se os dados foram recebidos corretamente
@@ -11,37 +9,35 @@ if (isset($data['aluno_id']) && isset($data['academia_id'])) {
     $aluno_id = $data['aluno_id'];
     $academia_id = $data['academia_id'];
 
-    // Debug: log dos dados recebidos para verificar
-    error_log("Dados recebidos: aluno_id = $aluno_id, academia_id = $academia_id");
-
-    // Atualiza o fluxo de alunos
-    $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
-    echo json_encode(['alunos_treinando' => $alunosTreinando]);
-
-    // Após inserir um novo registro de entrada
+    // Verifica se o aluno está entrando ou saindo
     $queryEntrada = $conexao->prepare("
         INSERT INTO entrada_saida (data_entrada, Academia_id, Aluno_id)
         VALUES (NOW(), ?, ?)
     ");
     $queryEntrada->bind_param("ii", $academia_id, $aluno_id);
     $queryEntrada->execute();
+    
+    // Atualiza o número de alunos treinando ao vivo
+    atualizarFluxo($academia_id, $conexao);
+} else {
+    echo json_encode(['erro' => 'Dados incompletos: aluno_id ou academia_id ausente.']);
+}
+
+// Função para atualizar o número de alunos treinando
+function atualizarFluxo($academia_id, $conexao) {
+    $queryFluxo = $conexao->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
+    $queryFluxo->bind_param("i", $academia_id);
+    $queryFluxo->execute();
+    $resultado = $queryFluxo->get_result();
+    $row = $resultado->fetch_assoc();
+    $totalAlunosTreinando = $row['total'];
 
     // Atualiza o histórico de fluxo
-    atualizarHistoricoFluxo($academia_id, $conexao);
-
-    // Atualiza a saída do aluno
-    $querySaida = $conexao->prepare("
-        UPDATE entrada_saida
-        SET data_saida = NOW()
-        WHERE Aluno_id = ? AND Academia_id = ? AND data_saida IS NULL
+    $queryHistorico = $conexao->prepare("
+        INSERT INTO historico_fluxo (alunos_treinando, data_hora, Academia_id)
+        VALUES (?, NOW(), ?)
     ");
-    $querySaida->bind_param("ii", $aluno_id, $academia_id);
-    $querySaida->execute();
-
-    // Atualiza o histórico de fluxo novamente
-    atualizarHistoricoFluxo($academia_id, $conexao);
-} else {
-    // Se os dados estão ausentes, envia uma resposta de erro
-    echo json_encode(['erro' => 'Dados incompletos: aluno_id ou academia_id ausente.']);
+    $queryHistorico->bind_param("ii", $totalAlunosTreinando, $academia_id);
+    $queryHistorico->execute();
 }
 ?>
