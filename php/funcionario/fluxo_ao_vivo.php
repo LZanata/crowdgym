@@ -1,52 +1,47 @@
 <?php
 include '../conexao.php';
 include '../cadastro_login/check_login_funcionario.php';
+include '../funcoes/funcoes_fluxo.php';
 
-$academia_id = $_SESSION['Academia_id'];
+// Recebe os dados via POST e decodifica o JSON
+$data = json_decode(file_get_contents('php://input'), true);
 
-// Função para contar alunos treinando
-function contarAlunosTreinando($academia_id, $conexao) {
-    $query = $conexao->prepare("
-        SELECT COUNT(*) AS total
-        FROM entrada_saida
-        WHERE Academia_id = ? AND data_saida IS NULL
-    ");
-    $query->bind_param("i", $academia_id);
-    $query->execute();
-    $resultado = $query->get_result();
-    $dados = $resultado->fetch_assoc();
+// Verifica se os dados foram recebidos corretamente
+if (isset($data['aluno_id']) && isset($data['academia_id'])) {
+    $aluno_id = $data['aluno_id'];
+    $academia_id = $data['academia_id'];
 
-    return $dados['total'];
-}
+    // Debug: log dos dados recebidos para verificar
+    error_log("Dados recebidos: aluno_id = $aluno_id, academia_id = $academia_id");
 
-$alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
-
-echo json_encode(['alunos_treinando' => $alunosTreinando]);
-
-function verificarCapacidade($academia_id, $conexao) {
-    $query = $conexao->prepare("
-        SELECT capacidade_maxima
-        FROM academia
-        WHERE id = ?
-    ");
-    $query->bind_param("i", $academia_id);
-    $query->execute();
-    $resultado = $query->get_result();
-    $dadosAcademia = $resultado->fetch_assoc();
-
-    $capacidadeMaxima = $dadosAcademia['capacidade_maxima'];
-
-    // Conta alunos treinando
+    // Atualiza o fluxo de alunos
     $alunosTreinando = contarAlunosTreinando($academia_id, $conexao);
+    echo json_encode(['alunos_treinando' => $alunosTreinando]);
 
-    if ($alunosTreinando > $capacidadeMaxima) {
-        // Enviar notificação
-        enviarNotificacao($alunosTreinando, $capacidadeMaxima);
-    }
-}
+    // Após inserir um novo registro de entrada
+    $queryEntrada = $conexao->prepare("
+        INSERT INTO entrada_saida (data_entrada, Academia_id, Aluno_id)
+        VALUES (NOW(), ?, ?)
+    ");
+    $queryEntrada->bind_param("ii", $academia_id, $aluno_id);
+    $queryEntrada->execute();
 
-function enviarNotificacao($alunos, $limite) {
-    // Código para enviar notificação (exemplo: e-mail ou pop-up)
-    echo "Atenção: $alunos alunos na academia. Capacidade máxima: $limite.";
+    // Atualiza o histórico de fluxo
+    atualizarHistoricoFluxo($academia_id, $conexao);
+
+    // Atualiza a saída do aluno
+    $querySaida = $conexao->prepare("
+        UPDATE entrada_saida
+        SET data_saida = NOW()
+        WHERE Aluno_id = ? AND Academia_id = ? AND data_saida IS NULL
+    ");
+    $querySaida->bind_param("ii", $aluno_id, $academia_id);
+    $querySaida->execute();
+
+    // Atualiza o histórico de fluxo novamente
+    atualizarHistoricoFluxo($academia_id, $conexao);
+} else {
+    // Se os dados estão ausentes, envia uma resposta de erro
+    echo json_encode(['erro' => 'Dados incompletos: aluno_id ou academia_id ausente.']);
 }
 ?>
