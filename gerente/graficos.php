@@ -27,10 +27,19 @@
           <div class="container_header">
             <h1>Quantidade de Alunos</h1>
           </div>
-          <div class="quantia_main">
-            <canvas id="quantidadeAlunos"></canvas>
-            <script src="../js/gerente/quantidade_alunos.js"></script>
+          <div class="fluxo_diario">
+            <input type="hidden" id="academiaId" value="<?php echo $_SESSION['Academia_id']; ?>"><!-- Exemplo: ID da academia -->
+            <label for="intervalo">Selecione o intervalo de tempo:</label>
+            <select id="intervalo" onchange="carregarGraficoFluxo()">
+              <option value="semanal">Últimos 7 dias</option>
+              <option value="mensal" selected>Últimos 30 dias</option>
+              <option value="bimestral">Últimos 2 meses</option>
+              <option value="trimestral">Últimos 3 meses</option>
+              <option value="semestral">Últimos 6 meses</option>
+              <option value="anual">Últimos 12 meses</option>
+            </select>
           </div>
+          <canvas id="graficoFluxo" style="height: 400px;"></canvas>
         </div>
         <div class="container_main">
           <div class="container_header">
@@ -38,7 +47,6 @@
           </div>
           <div class="matriculados_main">
             <canvas id="alunosMatriculados"></canvas>
-            <script src="../js/gerente/alunos_matriculados.js"></script>
           </div>
         </div>
         <div class="container_main">
@@ -47,13 +55,15 @@
           </div>
           <div class="faixa_main">
             <canvas id="faixaEtaria"></canvas>
-            <script src="../js/gerente/faixa_etaria.js"></script>
           </div>
         </div>
       </div>
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <script src="../js/gerente/fluxo_diario.js"></script>
+  <script src="../js/gerente/faixa_etaria.js"></script>
+  <script src="../js/gerente/alunos_matriculados.js"></script>
 </body>
 
 </html>
