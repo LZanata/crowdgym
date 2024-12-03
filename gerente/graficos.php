@@ -39,7 +39,7 @@
               <option value="anual">Últimos 12 meses</option>
             </select>
           </div>
-          <canvas id="graficoFluxo" style="height: 400px;"></canvas>
+          <canvas id="graficoFluxo"></canvas>
         </div>
         <div class="container_main">
           <div class="container_header">

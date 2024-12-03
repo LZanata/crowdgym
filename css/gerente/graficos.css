@@ -16,6 +16,7 @@ section {
     margin-top: 20px;
     width: 100%;
     max-width: 800px;
+    height: 400px; 
 }
 
 /*Configurando espaçamento entre as divisões dos containers*/
