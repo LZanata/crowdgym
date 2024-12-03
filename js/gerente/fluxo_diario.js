@@ -30,7 +30,7 @@ function atualizarGrafico(labels, values) {
                 datasets: [{
                     label: 'Fluxo de Alunos',
                     data: values,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: '#f57419',
                     tension: 0.4
                 }]
             },
