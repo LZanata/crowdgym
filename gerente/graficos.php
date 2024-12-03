@@ -31,33 +31,29 @@
             <input type="hidden" id="academiaId" value="<?php echo $_SESSION['Academia_id']; ?>"><!-- Exemplo: ID da academia -->
             <label for="intervalo">Selecione o intervalo de tempo:</label>
             <select id="intervalo" onchange="carregarGraficoFluxo()">
-              <option value="semanal">Últimos 7 dias</option>
-              <option value="mensal" selected>Últimos 30 dias</option>
-              <option value="bimestral">Últimos 2 meses</option>
-              <option value="trimestral">Últimos 3 meses</option>
-              <option value="semestral">Últimos 6 meses</option>
-              <option value="anual">Últimos 12 meses</option>
+              <option value="7">Últimos 7 dias</option>
+              <option value="30" selected>Últimos 30 dias</option>
+              <option value="365">Últimos 365 dias</option>
             </select>
+            <canvas id="graficoFluxo"></canvas>
           </div>
-          <canvas id="graficoFluxo"></canvas>
+          <div class="container_main">
+            <div class="container_header">
+              <h1>Alunos Matriculados</h1>
+            </div>
+            <div class="matriculados_main">
+              <canvas id="alunosMatriculados"></canvas>
+            </div>
+          </div>
+          <div class="container_main">
+            <div class="container_header">
+              <h1>Faixa Etária dos Alunos</h1>
+            </div>
+            <div class="faixa_main">
+              <canvas id="faixaEtaria"></canvas>
+            </div>
+          </div>
         </div>
-        <div class="container_main">
-          <div class="container_header">
-            <h1>Alunos Matriculados</h1>
-          </div>
-          <div class="matriculados_main">
-            <canvas id="alunosMatriculados"></canvas>
-          </div>
-        </div>
-        <div class="container_main">
-          <div class="container_header">
-            <h1>Faixa Etária dos Alunos</h1>
-          </div>
-          <div class="faixa_main">
-            <canvas id="faixaEtaria"></canvas>
-          </div>
-        </div>
-      </div>
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
