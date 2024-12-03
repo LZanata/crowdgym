@@ -58,9 +58,9 @@
   </main>
 
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
-  <script src="../js/gerente/fluxo_diario.js"></script>
-  <script src="../js/gerente/faixa_etaria.js"></script>
-  <script src="../js/gerente/alunos_matriculados.js"></script>
+  <script src="../js/graficos/fluxo_diario.js"></script>
+  <script src="../js/graficos/faixa_etaria.js"></script>
+  <script src="../js/graficos/alunos_matriculados.js"></script>
 </body>
 
 </html>

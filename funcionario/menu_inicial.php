@@ -44,8 +44,8 @@ $alunosTreinando = $rowFluxo['total'];
     <!-- Verifique se o campo oculto com ID academiaId está dentro da tag body e antes de qualquer chamada de script -->
     <input type="hidden" id="academiaId" value="<?= htmlspecialchars($_SESSION['Academia_id']) ?>">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/funcionario/historico_fluxo.js"></script>
-    <script src="../js/funcionario/atualizar_fluxo.js?v=1.0"></script>
+    <script src="../js/graficos/historico_fluxo.js"></script>
+    <script src="../js/fluxo/atualizar_fluxo.js?v=1.0"></script>
 </body>
 
 </html>
