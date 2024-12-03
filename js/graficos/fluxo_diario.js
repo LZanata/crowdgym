@@ -4,7 +4,7 @@ function carregarGraficoFluxo() {
     const intervalo = document.getElementById("intervalo").value;
     const academiaId = document.getElementById("academiaId").value;
 
-    fetch(`../php/gerente/obter_fluxo_diario.php?academia_id=${academiaId}&intervalo=${intervalo}`)
+    fetch(`../php/graficos/obter_fluxo_diario.php?academia_id=${academiaId}&intervalo=${intervalo}`)
         .then(response => response.json())
         .then(data => {
             if (data.erro) {

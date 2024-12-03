@@ -23,7 +23,7 @@ function atualizarFluxo(academia_id) {
     };
 
     // Envia os dados para o PHP via fetch
-    fetch('../php/funcionario/fluxo_ao_vivo.php', {
+    fetch('../php/fluxo/fluxo_ao_vivo.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

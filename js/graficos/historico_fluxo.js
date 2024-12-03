@@ -32,7 +32,7 @@ const graficoFluxo = new Chart(ctx, {
 function carregarGraficoFluxo() {
     const academiaId = document.getElementById('academiaId').value;
 
-    fetch(`../php/funcionario/obter_historico_fluxo.php?academia_id=${academiaId}`)
+    fetch(`../php/graficos/obter_historico_fluxo.php?academia_id=${academiaId}`)
         .then(response => response.json())
         .then(data => {
             if (data.erro) {

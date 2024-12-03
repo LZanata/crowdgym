@@ -18,7 +18,7 @@
 
   <main>
     <div class="chart-container">
-      <!-- Gráfico de fluxo diário -->
+      <!-- Gráfico de fluxo semanal/mensal/anual/etc... -->
       <div class="container_main">
         <div class="container_header">
           <h1>Quantidade de Alunos</h1>
@@ -34,6 +34,17 @@
           <canvas id="graficoFluxo"></canvas>
         </div>
       </div>
+
+      <!-- Gráfico de Fluxo por Hora -->
+      <div class="container_main">
+        <div class="container_header">
+          <h1>Fluxo por Hora</h1>
+        </div>
+        <div class="fluxo_hora">
+          <canvas id="graficoFluxoHora"></canvas>
+        </div>
+      </div>
+      <script src="../js/graficos/fluxo_por_hora.js"></script>
 
       <!-- Gráfico de alunos matriculados -->
       <div class="container_main">
