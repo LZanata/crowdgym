@@ -52,7 +52,7 @@
               $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
               // Verifica se o termo de pesquisa foi fornecido
-              $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+              $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conn, $_GET['pesquisa']) : '';
 
               // Consulta para buscar apenas os funcionários da academia associada
               $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ? AND tipo = 'funcionario'";
@@ -61,7 +61,7 @@
               }
 
               // Prepara e executa a consulta
-              $stmt = $conexao->prepare($query);
+              $stmt = $conn->prepare($query);
               if (!empty($pesquisa)) {
                 $likePesquisa = '%' . $pesquisa . '%';
                 $stmt->bind_param("iss", $Academia_id, $likePesquisa, $likePesquisa);

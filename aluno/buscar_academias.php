@@ -4,7 +4,7 @@ require_once '../php/conexao.php';
 
 // Busca academias com base no nome ou cidade
 $filtro = isset($_GET['filtro']) ? "%" . $_GET['filtro'] . "%" : "%";
-$query = $conexao->prepare("SELECT * FROM academia WHERE nome LIKE ? OR cidade LIKE ?");
+$query = $conn->prepare("SELECT * FROM academia WHERE nome LIKE ? OR cidade LIKE ?");
 $query->bind_param("ss", $filtro, $filtro);
 $query->execute();
 $resultado = $query->get_result();

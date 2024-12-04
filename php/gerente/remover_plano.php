@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
 
     // Prepara a consulta para remover o plano com o ID especificado
     $query = "DELETE FROM planos WHERE id = ?";
-    $stmt = mysqli_prepare($conexao, $query);
+    $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 'i', $id);
 
     // Executa a consulta e verifica se a remoção foi bem-sucedida

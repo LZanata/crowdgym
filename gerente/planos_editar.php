@@ -62,7 +62,7 @@ include '../php/conexao.php';
                             }
 
                             // Prepara e executa a consulta
-                            $stmt = $conexao->prepare($query);
+                            $stmt = $conn->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
                                 $stmt->bind_param("is", $Academia_id, $likePesquisa);
@@ -111,7 +111,7 @@ include '../php/conexao.php';
 
                 // Consulta para obter os dados do plano pelo ID
                 $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE id = ?";
-                $stmt = $conexao->prepare($query);
+                $stmt = $conn->prepare($query);
                 $stmt->bind_param('i', $id);
                 $stmt->execute();
                 $result = $stmt->get_result();

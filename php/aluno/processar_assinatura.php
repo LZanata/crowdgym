@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $valor_pago = 0;
 
     // Busca detalhes do plano para obter o valor e a duração
-    $queryPlano = $conexao->prepare("SELECT valor, duracao FROM planos WHERE id = ?");
+    $queryPlano = $conn->prepare("SELECT valor, duracao FROM planos WHERE id = ?");
     $queryPlano->bind_param("i", $plano_id);
     $queryPlano->execute();
     $plano = $queryPlano->get_result()->fetch_assoc();
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       : date('Y-m-d');
 
     // Inserção no banco de dados
-    $queryInserir = $conexao->prepare("
+    $queryInserir = $conn->prepare("
         INSERT INTO assinatura 
         (status, data_inicio, data_fim, metodo_pagamento, data_pagamento, valor_pago, Planos_id, Aluno_id, 
          numero_cartao, nome_titular, validade_cartao, codigo_seguranca, cpf_titular) 
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
     } else {
-        echo "Erro ao processar assinatura: " . $conexao->error;
+        echo "Erro ao processar assinatura: " . $conn->error;
     }    
 } else {
     die("Método de requisição inválido.");

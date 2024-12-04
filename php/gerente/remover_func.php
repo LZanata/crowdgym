@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
 
     // Executa a exclusão do usuário no banco de dados
     $query = "DELETE FROM funcionarios WHERE id = ?";
-    $stmt = mysqli_prepare($conexao, $query);
+    $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, 'i', $id);
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         mysqli_stmt_close($stmt);
     } else {
         // Exibe um erro caso a preparação da query falhe
-        echo "Erro ao preparar a consulta: " . mysqli_error($conexao);
+        echo "Erro ao preparar a consulta: " . mysqli_error($conn);
     }
 } else {
     echo "ID do usuário não fornecido.";

@@ -5,7 +5,7 @@ require_once '../php/conexao.php';
 $plano_id = isset($_GET['plano_id']) ? (int) $_GET['plano_id'] : 0;
 
 // Busca detalhes do plano selecionado
-$queryPlano = $conexao->prepare("SELECT * FROM planos WHERE id = ?");
+$queryPlano = $conn->prepare("SELECT * FROM planos WHERE id = ?");
 $queryPlano->bind_param("i", $plano_id);
 $queryPlano->execute();
 $plano = $queryPlano->get_result()->fetch_assoc();

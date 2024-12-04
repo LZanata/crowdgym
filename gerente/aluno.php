@@ -36,7 +36,7 @@ try {
         $sql .= " AND aluno.nome LIKE ?";
     }
 
-    $query = $conexao->prepare($sql);
+    $query = $conn->prepare($sql);
 
     // Define os parâmetros para a consulta
     if (!empty($pesquisa)) {

@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Inserir os dados no banco de dados
     $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
 
-    if (mysqli_query($conexao, $query)) {
+    if (mysqli_query($conn, $query)) {
         echo "Usuário cadastrado com sucesso!";
         // Redirecionar para outra página
         header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_gerente.php");
         exit();
     } else {
-        echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
+        echo "Erro ao cadastrar o usuário: " . mysqli_error($conn);
     }
 }
 

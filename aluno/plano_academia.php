@@ -5,7 +5,7 @@ require_once '../php/conexao.php';
 $academia_id = isset($_GET['academia_id']) ? (int) $_GET['academia_id'] : 0;
 
 // Verifica se a academia existe
-$queryAcademia = $conexao->prepare("SELECT * FROM academia WHERE id = ?");
+$queryAcademia = $conn->prepare("SELECT * FROM academia WHERE id = ?");
 $queryAcademia->bind_param("i", $academia_id);
 $queryAcademia->execute();
 $academia = $queryAcademia->get_result()->fetch_assoc();
@@ -16,7 +16,7 @@ if (!$academia) {
 }
 
 // Busca planos da academia
-$queryPlanos = $conexao->prepare("SELECT * FROM planos WHERE Academia_id = ?");
+$queryPlanos = $conn->prepare("SELECT * FROM planos WHERE Academia_id = ?");
 $queryPlanos->bind_param("i", $academia_id);
 $queryPlanos->execute();
 $planos = $queryPlanos->get_result();

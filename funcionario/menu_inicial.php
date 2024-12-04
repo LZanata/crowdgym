@@ -3,7 +3,7 @@ include '../php/cadastro_login/check_login_funcionario.php';
 include '../php/conexao.php';
 
 // Consulta para obter o número de alunos treinando ao vivo
-$queryFluxo = $conexao->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
+$queryFluxo = $conn->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
 $queryFluxo->bind_param("i", $_SESSION['Academia_id']);
 $queryFluxo->execute();
 $resultadoFluxo = $queryFluxo->get_result();

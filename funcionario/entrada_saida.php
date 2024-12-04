@@ -5,7 +5,7 @@ include '../php/conexao.php'; // Arquivo de conexão com o banco de dados
 $academia_id = $_SESSION['Academia_id']; // ID da academia do funcionário logado
 
 // Consultar os registros de entrada e saída dos alunos
-$query = $conexao->prepare("
+$query = $conn->prepare("
     SELECT es.id, es.data_entrada, es.data_saida, a.nome AS nome_aluno, a.id AS aluno_id
     FROM entrada_saida es
     INNER JOIN aluno a ON es.Aluno_id = a.id

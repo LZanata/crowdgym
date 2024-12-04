@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   // Consulta para buscar o administrador no banco de dados com base no email
   $sql = "SELECT id, senha FROM administrador WHERE email = ?";
-  $stmt = $conexao->prepare($sql);
+  $stmt = $conn->prepare($sql);
   $stmt->bind_param('s', $email);
   $stmt->execute();
   $result = $stmt->get_result();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fecha a conexão
-$conexao->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>

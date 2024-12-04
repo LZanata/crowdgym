@@ -10,7 +10,7 @@ try {
         throw new Exception("Parâmetros inválidos.");
     }
 
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         SELECT 
             DATE(data_entrada) AS dia,
             COUNT(*) AS total_alunos

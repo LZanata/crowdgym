@@ -46,14 +46,14 @@
                             }
 
                             $Academia_id = $_SESSION['Academia_id'];
-                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conn, $_GET['pesquisa']) : '';
 
                             $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Academia_id = ?";
                             if (!empty($pesquisa)) {
                                 $query .= " AND nome LIKE ?";
                             }
 
-                            $stmt = $conexao->prepare($query);
+                            $stmt = $conn->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
                                 $stmt->bind_param("is", $Academia_id, $likePesquisa);
@@ -97,7 +97,7 @@
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $query = "SELECT nome, descricao, valor, duracao, tipo FROM planos WHERE id = ?";
-                $stmt = $conexao->prepare($query);
+                $stmt = $conn->prepare($query);
                 $stmt->bind_param('i', $id);
                 $stmt->execute();
                 $result = $stmt->get_result();

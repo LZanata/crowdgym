@@ -1,10 +1,10 @@
 <?php
 include 'conexao.php';
 
-function registrarEntrada($cpf, $academia_id, $conexao)
+function registrarEntrada($cpf, $academia_id, $conn)
 {
     // Obter o ID do aluno pelo CPF
-    $query = $conexao->prepare("SELECT id FROM aluno WHERE cpf = ?");
+    $query = $conn->prepare("SELECT id FROM aluno WHERE cpf = ?");
     $query->bind_param("s", $cpf);
     $query->execute();
     $resultado = $query->get_result();
@@ -17,7 +17,7 @@ function registrarEntrada($cpf, $academia_id, $conexao)
     $aluno_id = $aluno['id'];
 
     // Verificar se já existe uma entrada sem saída
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         SELECT * FROM entrada_saida
         WHERE Aluno_id = ? AND Academia_id = ? AND DATE(data_entrada) = CURDATE() AND data_saida IS NULL
     ");
@@ -30,7 +30,7 @@ function registrarEntrada($cpf, $academia_id, $conexao)
     }
 
     // Inserir nova entrada
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         INSERT INTO entrada_saida (data_entrada, Academia_id, Aluno_id)
         VALUES (NOW(), ?, ?)
     ");
@@ -38,14 +38,14 @@ function registrarEntrada($cpf, $academia_id, $conexao)
     if ($query->execute()) {
         return "Entrada registrada com sucesso.";
     } else {
-        return "Erro ao registrar entrada: " . $conexao->error;
+        return "Erro ao registrar entrada: " . $conn->error;
     }
 }
 
-function registrarSaida($cpf, $academia_id, $conexao)
+function registrarSaida($cpf, $academia_id, $conn)
 {
     // Obter o ID do aluno pelo CPF
-    $query = $conexao->prepare("SELECT id FROM aluno WHERE cpf = ?");
+    $query = $conn->prepare("SELECT id FROM aluno WHERE cpf = ?");
     $query->bind_param("s", $cpf);
     $query->execute();
     $resultado = $query->get_result();
@@ -58,7 +58,7 @@ function registrarSaida($cpf, $academia_id, $conexao)
     $aluno_id = $aluno['id'];
 
     // Atualizar saída para o registro mais recente
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         UPDATE entrada_saida
         SET data_saida = NOW()
         WHERE Aluno_id = ? AND Academia_id = ? AND DATE(data_entrada) = CURDATE() AND data_saida IS NULL
@@ -78,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     $acao = $_POST['acao'];
 
     if ($acao === 'entrada') {
-        $mensagem = registrarEntrada($cpf, $academia_id, $conexao);
+        $mensagem = registrarEntrada($cpf, $academia_id, $conn);
     } elseif ($acao === 'saida') {
-        $mensagem = registrarSaida($cpf, $academia_id, $conexao);
+        $mensagem = registrarSaida($cpf, $academia_id, $conn);
     }
 }
 ?>

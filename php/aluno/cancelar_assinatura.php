@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aluno_id = $_SESSION['aluno_id']; // Certifique-se de que o aluno está autenticado.
 
     // Verifica se a assinatura está ativa
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         SELECT id FROM assinatura 
         WHERE Planos_id = ? AND Aluno_id = ? AND status = 'ativo'
     ");
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Atualiza o status para 'inativo' e ajusta a data de término
-    $queryCancelar = $conexao->prepare("
+    $queryCancelar = $conn->prepare("
         UPDATE assinatura 
         SET status = 'inativo', data_fim = CURDATE()
         WHERE Planos_id = ? AND Aluno_id = ?
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: http://localhost/Projeto_CrowdGym/aluno/minhas_academias.php?success=1");
         exit;
     } else {
-        echo "Erro ao cancelar assinatura: " . $conexao->error;
+        echo "Erro ao cancelar assinatura: " . $conn->error;
     }
 } else {
     echo "Método de requisição inválido.";

@@ -10,7 +10,7 @@ if (!isset($_GET['aluno_id'])) {
 $aluno_id = $_GET['aluno_id'];
 
 // Buscar os detalhes do aluno no banco de dados
-$query = $conexao->prepare("
+$query = $conn->prepare("
     SELECT nome, cpf, email, genero, data_nascimento, foto
     FROM aluno
     WHERE id = ?

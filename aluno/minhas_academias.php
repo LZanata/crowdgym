@@ -24,7 +24,7 @@ require_once '../php/cadastro_login/check_login_aluno.php';
     $aluno_id = $_SESSION['aluno_id']; // ID do aluno logado
 
     // Consulta para verificar as academias onde o aluno possui assinatura
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
     SELECT a.id AS academia_id, a.nome AS nome_academia, ass.status, ass.data_fim, ass.Planos_id AS plano_id
     FROM assinatura ass
     JOIN planos p ON ass.Planos_id = p.id
@@ -41,7 +41,7 @@ require_once '../php/cadastro_login/check_login_aluno.php';
       <ul>
         <?php while ($row = $result->fetch_assoc()): 
           // Consulta para obter o fluxo ao vivo de alunos na academia
-          $fluxoQuery = $conexao->prepare("
+          $fluxoQuery = $conn->prepare("
           SELECT COUNT(*) AS total_treinando
           FROM entrada_saida
           WHERE Academia_id = ? AND data_saida IS NULL

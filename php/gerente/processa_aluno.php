@@ -46,17 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Iniciar uma transação
-    $conexao->begin_transaction();
+    $conn->begin_transaction();
 
     try {
         // Insere o aluno com os campos adicionais
-        $stmt_aluno = $conexao->prepare("INSERT INTO aluno (nome, email, cpf, senha, data_nascimento, genero, foto) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt_aluno = $conn->prepare("INSERT INTO aluno (nome, email, cpf, senha, data_nascimento, genero, foto) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt_aluno->bind_param("sssssss", $nome, $email, $cpf, $senha_hash, $data_nascimento, $genero, $foto_caminho);
         $stmt_aluno->execute();
         $aluno_id = $stmt_aluno->insert_id; // Obtém o ID do aluno recém-cadastrado
 
         // Consultar o valor do plano selecionado
-        $stmt_plano = $conexao->prepare("SELECT valor FROM planos WHERE id = ?");
+        $stmt_plano = $conn->prepare("SELECT valor FROM planos WHERE id = ?");
         $stmt_plano->bind_param("i", $plano_id);
         $stmt_plano->execute();
         $stmt_plano->bind_result($valor_pago);
@@ -67,17 +67,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data_fim = date("Y-m-d", strtotime("+1 month")); // Exemplo: plano mensal
 
         // Insere a assinatura
-        $stmt_assinatura = $conexao->prepare("INSERT INTO assinatura (status, valor_pago, data_inicio, data_fim, Planos_id, Aluno_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt_assinatura = $conn->prepare("INSERT INTO assinatura (status, valor_pago, data_inicio, data_fim, Planos_id, Aluno_id) VALUES (?, ?, ?, ?, ?, ?)");
         $status = 'ativo';
         $stmt_assinatura->bind_param("sdssii", $status, $valor_pago, $data_inicio, $data_fim, $plano_id, $aluno_id);
         $stmt_assinatura->execute();
 
         // Confirma a transação
-        $conexao->commit();
+        $conn->commit();
 
         echo "Aluno cadastrado e assinatura criada com sucesso!";
     } catch (Exception $e) {
-        $conexao->rollback(); // Desfaz a transação em caso de erro
+        $conn->rollback(); // Desfaz a transação em caso de erro
         echo "Erro ao cadastrar aluno e assinatura: " . $e->getMessage();
     }
 }

@@ -57,7 +57,7 @@
               $Academia_id = $_SESSION['Academia_id'];
 
               // Verifica se o termo de pesquisa foi fornecido
-              $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+              $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conn, $_GET['pesquisa']) : '';
 
               // Consulta para buscar os planos com base no Academia_id e no termo de pesquisa
               $query = "SELECT id, nome, descricao, valor, duracao, tipo FROM planos WHERE Academia_id = ?";
@@ -66,7 +66,7 @@
               }
 
               // Prepara e executa a consulta
-              $stmt = $conexao->prepare($query);
+              $stmt = $conn->prepare($query);
               if (!empty($pesquisa)) {
                 $likePesquisa = '%' . $pesquisa . '%';
                 $stmt->bind_param("is", $Academia_id, $likePesquisa);

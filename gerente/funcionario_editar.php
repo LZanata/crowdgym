@@ -47,7 +47,7 @@
                             $Academia_id = $_SESSION['Academia_id']; // Obtém o ID da academia do gerente autenticado
 
                             // Verifica se o termo de pesquisa foi fornecido
-                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conn, $_GET['pesquisa']) : '';
 
                             // Consulta para buscar apenas os funcionários da academia associada
                             $query = "SELECT id, nome, email FROM funcionarios WHERE Academia_id = ? AND tipo = 'funcionario'";
@@ -56,7 +56,7 @@
                             }
 
                             // Prepara e executa a consulta
-                            $stmt = $conexao->prepare($query);
+                            $stmt = $conn->prepare($query);
                             if (!empty($pesquisa)) {
                                 $likePesquisa = '%' . $pesquisa . '%';
                                 $stmt->bind_param("iss", $Academia_id, $likePesquisa, $likePesquisa);
@@ -100,7 +100,7 @@
             }
             ?>
             <?php
-            include '../php/conexao.php';
+            include '../php/conn.php';
 
             // Verifica se o ID foi enviado na URL
             if (isset($_GET['id'])) {
@@ -108,7 +108,7 @@
 
                 // Consulta para obter os dados do funcionário pelo ID
                 $query = "SELECT id, nome, email, cpf, cargo, data_contrat, genero, tipo FROM funcionarios WHERE id = ? AND tipo = 'funcionario'"; // Verifica apenas funcionários
-                $stmt = mysqli_prepare($conexao, $query);
+                $stmt = mysqli_prepare($conn, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);

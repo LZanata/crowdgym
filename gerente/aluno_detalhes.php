@@ -42,7 +42,7 @@
                             include '../php/conexao.php';
 
                             // Verifica se o termo de pesquisa foi fornecido
-                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conexao, $_GET['pesquisa']) : '';
+                            $pesquisa = isset($_GET['pesquisa']) ? mysqli_real_escape_string($conn, $_GET['pesquisa']) : '';
 
                             // Consulta para buscar os alunos com base no termo de pesquisa
                             $query = "SELECT id, nome, email, foto FROM aluno";
@@ -51,9 +51,9 @@
                             }
 
                             // Prepara e executa a consulta
-                            $stmt = $conexao->prepare($query);
+                            $stmt = $conn->prepare($query);
                             if ($stmt === false) {
-                                die("Erro na preparação da consulta: " . $conexao->error);
+                                die("Erro na preparação da consulta: " . $conn->error);
                             }
 
                             if (!empty($pesquisa)) {
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <?php
-            include 'php/conexao.php';
+            include 'php/conn.php';
 
             // Verifica se o ID do aluno foi enviado na URL
             if (isset($_GET['id'])) {
@@ -105,7 +105,7 @@
 
                 // Consulta para obter os dados do aluno pelo ID
                 $query = "SELECT nome, cpf, email, genero, data_nascimento, foto FROM aluno WHERE id = ?";
-                $stmt = mysqli_prepare($conexao, $query);
+                $stmt = mysqli_prepare($conn, $query);
                 mysqli_stmt_bind_param($stmt, 'i', $id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);

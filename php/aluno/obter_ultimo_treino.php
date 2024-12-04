@@ -4,7 +4,7 @@ require_once '../cadastro_login/check_login_aluno.php';
 
 $aluno_id = $_SESSION['Aluno_id'];
 
-$query = $conexao->prepare("
+$query = $conn->prepare("
     SELECT DATE_FORMAT(data_entrada, '%a, %d de %b') AS ultimo_treino,
            TIME_FORMAT(data_entrada, '%H:%i') AS horario_entrada,
            TIME_FORMAT(data_saida, '%H:%i') AS horario_saida

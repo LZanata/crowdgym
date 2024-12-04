@@ -2,8 +2,8 @@
 include '../php/conexao.php';
 include '../php/cadastro_login/check_login_funcionario.php';
 
-function buscarAluno($cpf, $academia_id, $conexao) {
-    $query = $conexao->prepare("
+function buscarAluno($cpf, $academia_id, $conn) {
+    $query = $conn->prepare("
         SELECT a.id, a.nome, a.cpf, p.tipo, ass.status
         FROM aluno a
         JOIN assinatura ass ON ass.Aluno_id = a.id
@@ -17,10 +17,10 @@ function buscarAluno($cpf, $academia_id, $conexao) {
     return $resultado->fetch_assoc();
 }
 
-function liberarEntradaOuSaida($aluno_id, $academia_id, $acao, $conexao) {
+function liberarEntradaOuSaida($aluno_id, $academia_id, $acao, $conn) {
     if ($acao === 'entrada') {
         // Verificar se já há uma entrada não finalizada
-        $query = $conexao->prepare("
+        $query = $conn->prepare("
             SELECT id FROM entrada_saida
             WHERE Aluno_id = ? AND Academia_id = ? AND data_saida IS NULL
         ");
@@ -33,7 +33,7 @@ function liberarEntradaOuSaida($aluno_id, $academia_id, $acao, $conexao) {
         }
 
         // Registrar entrada
-        $query = $conexao->prepare("
+        $query = $conn->prepare("
             INSERT INTO entrada_saida (data_entrada, Academia_id, Aluno_id)
             VALUES (NOW(), ?, ?)
         ");
@@ -41,11 +41,11 @@ function liberarEntradaOuSaida($aluno_id, $academia_id, $acao, $conexao) {
         if ($query->execute()) {
             return "Entrada registrada com sucesso.";
         } else {
-            return "Erro ao registrar entrada: " . $conexao->error;
+            return "Erro ao registrar entrada: " . $conn->error;
         }
     } elseif ($acao === 'saida') {
         // Registrar saída
-        $query = $conexao->prepare("
+        $query = $conn->prepare("
             UPDATE entrada_saida
             SET data_saida = NOW()
             WHERE Aluno_id = ? AND Academia_id = ? AND data_saida IS NULL
@@ -68,12 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cpf'], $_POST['acao']
     $academia_id = $_SESSION['Academia_id']; // ID da academia do funcionário logado
 
     // Buscar aluno
-    $aluno = buscarAluno($cpf, $academia_id, $conexao);
+    $aluno = buscarAluno($cpf, $academia_id, $conn);
     if (!$aluno) {
         $mensagem = "Aluno não encontrado ou sem plano principal ativo.";
     } else {
         // Liberar entrada ou saída
-        $mensagem = liberarEntradaOuSaida($aluno['id'], $academia_id, $acao, $conexao);
+        $mensagem = liberarEntradaOuSaida($aluno['id'], $academia_id, $acao, $conn);
     }
 }
 ?>

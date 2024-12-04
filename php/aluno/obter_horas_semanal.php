@@ -5,7 +5,7 @@ require_once '../cadastro_login/check_login_aluno.php';
 $aluno_id = $_SESSION['aluno_id'];
 
 // Consulta para buscar as horas treinadas por dia na semana atual
-$query = $conexao->prepare("
+$query = $conn->prepare("
     SELECT 
         DAYOFWEEK(data_entrada) AS dia_semana,
         SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, data_entrada, data_saida))) AS horas_totais

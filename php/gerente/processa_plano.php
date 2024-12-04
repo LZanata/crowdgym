@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Consulta para inserir o novo plano, vinculando ao Academia_id
     $query = "INSERT INTO planos (nome, descricao, valor, duracao, tipo, Academia_id) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conexao->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param("ssdisi", $nome, $descricao, $valor, $duracao, $tipo, $Academia_id);
 
     if ($stmt->execute()) {
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: http://localhost/Projeto_CrowdGym/gerente/planos.php?sucesso=1");
         exit();
     } else {
-        echo "Erro ao cadastrar o plano: " . $conexao->error;
+        echo "Erro ao cadastrar o plano: " . $conn->error;
     }
 
     // Fecha o statement
@@ -36,5 +36,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fecha a conexão
-$conexao->close();
+$conn->close();
 ?>

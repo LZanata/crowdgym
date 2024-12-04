@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Inserir os dados no banco de dados
     $query = "INSERT INTO funcionarios (cpf, nome, email, senha, telefone, cargo, data_contrat, genero, tipo, Academia_id) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conexao, $query);
+    $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 'sssssssssi', $cpf, $nome, $email, $senha_hash, $telefone, $cargo, $data_contrat, $genero, $tipo, $Academia_id);
 
     if (mysqli_stmt_execute($stmt)) {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: http://localhost/Projeto_CrowdGym/gerente/funcionario.php");
         exit();
     } else {
-        echo "Erro ao cadastrar o usuário: " . mysqli_error($conexao);
+        echo "Erro ao cadastrar o usuário: " . mysqli_error($conn);
     }
 
     // Fecha o statement
@@ -44,5 +44,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fecha a conexão
-mysqli_close($conexao);
+mysqli_close($conn);
 ?>

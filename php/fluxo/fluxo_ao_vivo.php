@@ -9,7 +9,7 @@ if (isset($data['academia_id'])) {
     $academia_id = $data['academia_id'];
 
     // Consulta para calcular o número de alunos treinando
-    $queryFluxo = $conexao->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
+    $queryFluxo = $conn->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
     $queryFluxo->bind_param("i", $academia_id);
     $queryFluxo->execute();
     

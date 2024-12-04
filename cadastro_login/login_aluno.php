@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   // Busca o aluno pelo email
   $query = "SELECT * FROM aluno WHERE email = ?";
-  $stmt = mysqli_prepare($conexao, $query);
+  $stmt = mysqli_prepare($conn, $query);
   mysqli_stmt_bind_param($stmt, 's', $email);
   mysqli_stmt_execute($stmt);
   $result = mysqli_stmt_get_result($stmt);
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fecha a conexão
-mysqli_close($conexao);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
