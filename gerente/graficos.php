@@ -41,7 +41,7 @@
           <h1>Fluxo por Hora</h1>
         </div>
         <div class="fluxo_hora">
-          <canvas id="graficoFluxoHora" width="400" height="200"></canvas>
+          <canvas id="graficoFluxoPorHora"></canvas>
         </div>
       </div>
 
