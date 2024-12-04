@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`../php/graficos/obter_fluxo_por_hora.php?academia_id=${academiaId}`)
       .then((response) => response.json())
       .then((data) => {
-          if (data.status === "success") {
-              const labels = data.labels; // Horas formatadas
-              const valores = data.data;  // Média de alunos
+          if (data.status !== "error") {
+              // Preenchendo os rótulos (horas) e os valores de média de alunos
+              const labels = Array.from({ length: 24 }, (_, i) => `${i}:00`); // Rótulos de 00:00 a 23:00
+              const valores = data.map(item => item.media_alunos); // Média de alunos
 
-              // Renderiza o gráfico
+              // Definição do gráfico
               const ctx = document.getElementById("graficoFluxoPorHora").getContext("2d");
               new Chart(ctx, {
-                  type: "bar",
+                  type: "bar", // Pode ser 'line' ou 'bar'
                   data: {
                       labels: labels,
                       datasets: [

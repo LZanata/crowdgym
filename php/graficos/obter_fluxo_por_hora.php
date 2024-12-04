@@ -6,7 +6,7 @@ require '../conexao.php';
 $academiaId = $_GET['academia_id'] ?? null;
 
 if (!$academiaId) {
-    echo json_encode(['status' => 'error', 'message' => 'ID da academia não fornecido.']);
+    echo json_encode(['error' => 'ID da academia não fornecido.']);
     exit;
 }
 
@@ -14,7 +14,7 @@ try {
     $query = "SELECT 
                   HOUR(data_entrada) AS hora, 
                   COUNT(*) / COUNT(DISTINCT DATE(data_entrada)) AS media_alunos
-              FROM entrada_saida  -- Corrigido o nome da tabela
+              FROM entrada_saida
               WHERE Academia_id = ? 
               GROUP BY hora 
               ORDER BY hora";
@@ -23,21 +23,20 @@ try {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $labels = [];
-    $data = [];
+    // Inicializando um array com todas as horas (0 a 23) e valores de média como 0
+    $dados = array_fill(0, 24, ['hora' => 0, 'media_alunos' => 0]);
+
+    // Preenchendo os dados a partir da consulta
     while ($row = $result->fetch_assoc()) {
-        $labels[] = str_pad($row['hora'], 2, '0', STR_PAD_LEFT) . ':00'; // Converte para formato 00:00
-        $data[] = (float)$row['media_alunos'];
+        $hora = (int)$row['hora'];
+        $media_alunos = (float)$row['media_alunos'];
+        $dados[$hora] = ['hora' => $hora, 'media_alunos' => $media_alunos];
     }
 
-    echo json_encode([
-        'status' => 'success',
-        'labels' => $labels,
-        'data' => $data,
-    ]);
+    echo json_encode($dados);
 } catch (Exception $e) {
     error_log($e->getMessage()); // Registra no log
-    echo json_encode(['status' => 'error', 'message' => 'Erro ao consultar o banco de dados.']);
+    echo json_encode(['error' => 'Erro ao consultar o banco de dados.']);
     exit;
 }
 ?>
