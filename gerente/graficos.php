@@ -41,10 +41,9 @@
           <h1>Fluxo por Hora</h1>
         </div>
         <div class="fluxo_hora">
-          <canvas id="graficoFluxoHora"></canvas>
+          <canvas id="graficoFluxoHora" width="400" height="200"></canvas>
         </div>
       </div>
-      <script src="../js/graficos/fluxo_por_hora.js"></script>
 
       <!-- Gráfico de alunos matriculados -->
       <div class="container_main">
@@ -70,6 +69,7 @@
 
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
   <script src="../js/graficos/fluxo_diario.js"></script>
+  <script src="../js/graficos/fluxo_por_hora.js"></script>
   <script src="../js/graficos/faixa_etaria.js"></script>
   <script src="../js/graficos/alunos_matriculados.js"></script>
 </body>
