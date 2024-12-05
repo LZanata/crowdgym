@@ -54,8 +54,19 @@ CREATE TABLE IF NOT EXISTS `assinatura` (
   `Aluno_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Assinatura_Planos1_idx` (`Planos_id`),
-  KEY `fk_Assinatura_Aluno1_idx` (`Aluno_id`)
+  KEY `fk_Assinatura_Aluno1_idx` (`Aluno_id`),
+  CONSTRAINT `fk_Assinatura_Planos`
+      FOREIGN KEY (`Planos_id`)
+      REFERENCES `planos` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+  CONSTRAINT `fk_Assinatura_Aluno`
+      FOREIGN KEY (`Aluno_id`)
+      REFERENCES `aluno` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
 );
+
 
 CREATE TABLE IF NOT EXISTS `entrada_saida` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -93,7 +104,11 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`),
   KEY `fk_Funcionarios_Academia_idx` (`Academia_id`),
-  ON DELETE CASCADE ON UPDATE CASCADE;
+  CONSTRAINT `fk_Funcionarios_Academia`
+      FOREIGN KEY (`Academia_id`)
+      REFERENCES `academia` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `planos` (

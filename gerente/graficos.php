@@ -25,8 +25,8 @@
         </div>
         <div class="fluxo_diario">
           <input type="hidden" id="academiaId" value="<?php echo $_SESSION['Academia_id']; ?>">
-          <label for="intervalo">Selecione o intervalo de tempo:</label>
-          <select id="intervalo" onchange="carregarGraficoFluxo()">
+          <label for="intervaloFluxo">Selecione o intervalo de tempo:</label>
+          <select id="intervaloFluxo" onchange="carregarGraficoFluxo()">
             <option value="7">Últimos 7 dias</option>
             <option value="30" selected>Últimos 30 dias</option>
             <option value="365">Últimos 365 dias</option>
@@ -57,6 +57,12 @@
           <h1>Alunos Matriculados</h1>
         </div>
         <div class="matriculados_main">
+          <label for="intervaloMatriculados">Selecione o intervalo de tempo:</label>
+          <select id="intervaloMatriculados" onchange="carregarGraficoAlunosMatriculados()">
+            <option value="7">Últimos 7 dias</option>
+            <option value="30" selected>Últimos 30 dias</option>
+            <option value="365">Últimos 365 dias</option>
+          </select>
           <canvas id="alunosMatriculados"></canvas>
         </div>
       </div>

@@ -1,7 +1,7 @@
 let graficoFluxo;
 
 function carregarGraficoFluxo() {
-    const intervalo = document.getElementById("intervalo").value;
+    const intervalo = document.getElementById("intervaloFluxo").value;
     const academiaId = document.getElementById("academiaId").value;
 
     fetch(`../php/graficos/obter_fluxo_diario.php?academia_id=${academiaId}&intervalo=${intervalo}`)
