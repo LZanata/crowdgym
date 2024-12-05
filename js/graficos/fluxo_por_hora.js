@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
                           {
                               label: "Média de alunos por hora",
                               data: valores,
-                              backgroundColor: "rgba(75, 192, 192, 0.2)",
-                              borderColor: "rgba(75, 192, 192, 1)",
+                              backgroundColor: "#FFF9F3",
+                              borderColor: "#f57419",
                               borderWidth: 1,
                           },
                       ],
