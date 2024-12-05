@@ -46,7 +46,7 @@
           <select id="intervaloFluxoPorHora" onchange="carregarGraficoFluxoPorHora()">
             <option value="7">Últimos 7 dias</option>
             <option value="30" selected>Últimos 30 dias</option>
-            <option value="360">Últimos 360 dias</option>
+            <option value="365">Últimos 365 dias</option>
           </select>
           <canvas id="graficoFluxoPorHora"></canvas>
         </div>
