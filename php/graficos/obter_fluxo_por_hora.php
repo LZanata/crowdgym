@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 require '../conexao.php';
 
 $academiaId = $_GET['academia_id'] ?? null;
+$dias = $_GET['dias'] ?? 30; // Intervalo padrão: últimos 30 dias
 
 if (!$academiaId) {
     echo json_encode(['error' => 'ID da academia não fornecido.']);
@@ -16,10 +17,11 @@ try {
                   COUNT(*) / COUNT(DISTINCT DATE(data_entrada)) AS media_alunos
               FROM entrada_saida
               WHERE Academia_id = ? 
+              AND data_entrada >= NOW() - INTERVAL ? DAY
               GROUP BY hora 
               ORDER BY hora";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $academiaId);
+    $stmt->bind_param('ii', $academiaId, $dias);
     $stmt->execute();
     $result = $stmt->get_result();
 

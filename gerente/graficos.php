@@ -41,10 +41,16 @@
           <h1>Fluxo por Hora</h1>
         </div>
         <div class="fluxo_hora">
+          <input type="hidden" id="academiaIdHora" value="<?php echo $_SESSION['Academia_id']; ?>">
+          <label for="intervaloFluxoPorHora">Selecione o intervalo de tempo:</label>
+          <select id="intervaloFluxoPorHora" onchange="carregarGraficoFluxoPorHora()">
+            <option value="7">Últimos 7 dias</option>
+            <option value="30" selected>Últimos 30 dias</option>
+            <option value="360">Últimos 360 dias</option>
+          </select>
           <canvas id="graficoFluxoPorHora"></canvas>
         </div>
       </div>
-
       <!-- Gráfico de alunos matriculados -->
       <div class="container_main">
         <div class="container_header">
@@ -54,7 +60,6 @@
           <canvas id="alunosMatriculados"></canvas>
         </div>
       </div>
-
       <!-- Gráfico de faixa etária -->
       <div class="container_main">
         <div class="container_header">
