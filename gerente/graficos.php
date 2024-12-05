@@ -66,6 +66,15 @@
           <canvas id="alunosMatriculados"></canvas>
         </div>
       </div>
+      <!--Gráfico de Taxa de Renovação de Planos-->
+      <div class="container_main">
+        <div class="container_header">
+          <h1>Taxa de Renovação de Planos</h1>
+        </div>
+        <div class="renovacao_main">
+          <canvas id="graficoRenovacao"></canvas>
+        </div>
+      </div>
       <!-- Gráfico de faixa etária -->
       <div class="container_main">
         <div class="container_header">
@@ -81,8 +90,9 @@
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
   <script src="../js/graficos/fluxo_diario.js"></script>
   <script src="../js/graficos/fluxo_por_hora.js"></script>
-  <script src="../js/graficos/faixa_etaria.js"></script>
   <script src="../js/graficos/alunos_matriculados.js"></script>
+  <script src="../js/graficos/taxa_renovacao.js"></script>
+  <script src="../js/graficos/faixa_etaria.js"></script>
 </body>
 
 </html>
