@@ -1,22 +1,40 @@
 <?php
-include '../cadastro_login/check_login_gerente.php';
+header('Content-Type: application/json');
+error_reporting(E_ALL); 
+ini_set('display_errors', 1); 
+
 include '../conexao.php';
 
-$academiaId = $_SESSION['Academia_id']; 
+$intervalo = isset($_GET['intervalo']) ? intval($_GET['intervalo']) : 30;
+$academiaId = isset($_GET['academiaId']) ? intval($_GET['academiaId']) : 0;
 
 $query = "
-    SELECT
-        SUM(CASE WHEN status = 'ativo' AND data_fim > NOW() THEN 1 ELSE 0 END) AS renovados,
-        SUM(CASE WHEN (status = 'inativo' OR data_fim < NOW()) THEN 1 ELSE 0 END) AS expirados
+    SELECT 
+        SUM(CASE WHEN data_fim >= NOW() THEN 1 ELSE 0 END) AS renovados,
+        SUM(CASE WHEN data_fim < NOW() THEN 1 ELSE 0 END) AS expirados
     FROM assinatura
-    INNER JOIN planos ON assinatura.Planos_id = planos.id
-    WHERE planos.Academia_id = ?
+    WHERE data_inicio >= DATE_SUB(NOW(), INTERVAL ? DAY) 
+      AND Planos_id IN (
+          SELECT id FROM planos WHERE Academia_id = ?
+      )
 ";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $academiaId);
-$stmt->execute();
-$result = $stmt->get_result();
-$data = $result->fetch_assoc();
+if (!$stmt) {
+    echo json_encode(['error' => 'Erro na preparação da consulta: ' . $conn->error]);
+    exit;
+}
 
-echo json_encode($data);
+$stmt->bind_param("ii", $intervalo, $academiaId);
+$stmt->execute();
+$result = $stmt->get_result()->fetch_assoc();
+
+if (!$result) {
+    echo json_encode(['error' => 'Erro ao obter os dados: ' . $conn->error]);
+    exit;
+}
+
+echo json_encode([
+    'renovados' => $result['renovados'] ?? 0,
+    'expirados' => $result['expirados'] ?? 0
+]);
 ?>

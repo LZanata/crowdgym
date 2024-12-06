@@ -71,8 +71,14 @@
         <div class="container_header">
           <h1>Taxa de Renovação de Planos</h1>
         </div>
-        <div class="renovacao_main">
-          <canvas id="graficoRenovacao"></canvas>
+        <div class="taxa_renovacao">
+          <label for="intervaloTaxa">Selecione o intervalo de tempo:</label>
+          <select id="intervaloTaxa" onchange="carregarTaxaRenovacao()">
+            <option value="7">Últimos 7 dias</option>
+            <option value="30" selected>Últimos 30 dias</option>
+            <option value="365">Últimos 365 dias</option>
+          </select>
+          <canvas id="taxaRenovacao"></canvas>
         </div>
       </div>
       <!-- Gráfico de faixa etária -->
