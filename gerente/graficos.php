@@ -78,7 +78,7 @@
             <option value="30" selected>Últimos 30 dias</option>
             <option value="365">Últimos 365 dias</option>
           </select>
-          <canvas id="taxaRenovacao"></canvas>
+          <canvas id="graficoTaxaRenovacao"></canvas>
         </div>
       </div>
       <!-- Gráfico de faixa etária -->

@@ -1,31 +1,56 @@
+let graficoAtual = null; // Variável global para armazenar a instância do gráfico
+
 function carregarTaxaRenovacao() {
-    const intervalo = document.getElementById("intervaloTaxa").value;
-    const academiaId = document.getElementById("academiaId").value;
-  
-    fetch(`../php/graficos/obter_renovacao_dados.php?intervalo=${intervalo}&academiaId=${academiaId}`)
-      .then(response => response.json())
-      .then(data => {
-        const ctx = document.getElementById("taxaRenovacao").getContext("2d");
-        
-        if (window.taxaRenovacaoChart) {
-          window.taxaRenovacaoChart.destroy();
-        }
-  
-        window.taxaRenovacaoChart = new Chart(ctx, {
-          type: "doughnut",
-          data: {
-            labels: ["Renovados", "Expirados"],
-            datasets: [{
-              label: "Taxa de Renovação",
-              data: data,
-              backgroundColor: ["#4CAF50", "#F44336"]
-            }]
+  const intervalo = document.getElementById("intervaloTaxa").value;
+  const academiaId = document.getElementById("academiaId").value;
+
+  fetch(`../php/graficos/obter_renovacao_dados.php?intervalo=${intervalo}&academiaId=${academiaId}`)
+    .then(response => response.json()) // Garante que os dados retornados sejam JSON
+    .then(data => {
+      console.log("Dados recebidos:", data); // Verifique se os dados estão corretos no console
+
+      // Extração dos valores retornados pela API
+      const renovados = parseInt(data.renovados) || 0;
+      const expirados = parseInt(data.expirados) || 0;
+
+      // Configuração do gráfico
+      const chartData = {
+        labels: ['Renovados', 'Expirados'],
+        datasets: [{
+          label: 'Taxa de Renovação',
+          data: [renovados, expirados],
+          backgroundColor: ['#648F63', '#E58A83'],
+        }]
+      };
+
+      // Referência ao canvas
+      const ctx = document.getElementById('graficoTaxaRenovacao').getContext('2d');
+
+      // Destruir o gráfico anterior, se existir
+      if (graficoAtual) {
+        graficoAtual.destroy();
+      }
+
+      // Criar um novo gráfico e salvar a instância
+      graficoAtual = new Chart(ctx, {
+        type: 'bar', // Tipo do gráfico
+        data: chartData,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true },
+            title: {
+              display: true,
+              text: 'Taxa de Renovação de Planos'
+            }
           }
-        });
-      })
-      .catch(error => console.error("Erro ao carregar os dados do gráfico:", error));
-  }
-  
-  // Carregar o gráfico ao carregar a página
-  document.addEventListener("DOMContentLoaded", carregarTaxaRenovacao);
-  
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao carregar os dados do gráfico:', error);
+    });
+}
+
+// Carregar o gráfico ao carregar a página
+document.addEventListener("DOMContentLoaded", carregarTaxaRenovacao);
