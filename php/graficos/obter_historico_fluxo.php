@@ -14,7 +14,7 @@ if (isset($_GET['academia_id'])) {
     }
 
     // Consulta os dados de hoje
-    $query = $conexao->prepare("
+    $query = $conn->prepare("
         SELECT 
             HOUR(data_entrada) AS hora,
             COUNT(*) AS total_alunos
