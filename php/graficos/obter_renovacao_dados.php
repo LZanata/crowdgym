@@ -1,24 +1,32 @@
 <?php
 header('Content-Type: application/json');
 error_reporting(E_ALL); 
-ini_set('display_errors', 1); 
+ini_set('display_errors', 1);
 
 include '../conexao.php';
 
 $intervalo = isset($_GET['intervalo']) ? intval($_GET['intervalo']) : 30;
 $academiaId = isset($_GET['academiaId']) ? intval($_GET['academiaId']) : 0;
 
+// Query corrigida
 $query = "
     SELECT 
-        SUM(CASE WHEN data_fim >= NOW() THEN 1 ELSE 0 END) AS renovados,
-        SUM(CASE WHEN data_fim < NOW() THEN 1 ELSE 0 END) AS expirados
+        SUM(CASE 
+                WHEN data_fim >= NOW() THEN 1 
+                ELSE 0 
+            END) AS renovados,
+        SUM(CASE 
+                WHEN data_fim < NOW() 
+                     AND data_fim >= DATE_SUB(NOW(), INTERVAL ? DAY) THEN 1 
+                ELSE 0 
+            END) AS expirados
     FROM assinatura
-    WHERE data_inicio >= DATE_SUB(NOW(), INTERVAL ? DAY) 
-      AND Planos_id IN (
-          SELECT id FROM planos WHERE Academia_id = ?
-      )
+    WHERE Planos_id IN (
+        SELECT id FROM planos WHERE Academia_id = ?
+    )
 ";
 $stmt = $conn->prepare($query);
+
 if (!$stmt) {
     echo json_encode(['error' => 'Erro na preparação da consulta: ' . $conn->error]);
     exit;
