@@ -23,7 +23,7 @@
         <div class="container_header">
           <h1>Quantidade de Alunos</h1>
         </div>
-        <div class="fluxo_diario">
+        <div class="container_content">
           <input type="hidden" id="academiaId" value="<?php echo $_SESSION['Academia_id']; ?>">
           <label for="intervaloFluxo">Selecione o intervalo de tempo:</label>
           <select id="intervaloFluxo" onchange="carregarGraficoFluxo()">
@@ -40,7 +40,7 @@
         <div class="container_header">
           <h1>Fluxo por Hora</h1>
         </div>
-        <div class="fluxo_hora">
+        <div class="container_content">
           <input type="hidden" id="academiaIdHora" value="<?php echo $_SESSION['Academia_id']; ?>">
           <label for="intervaloFluxoPorHora">Selecione o intervalo de tempo:</label>
           <select id="intervaloFluxoPorHora" onchange="carregarGraficoFluxoPorHora()">
@@ -56,7 +56,7 @@
         <div class="container_header">
           <h1>Alunos Matriculados</h1>
         </div>
-        <div class="matriculados_main">
+        <div class="container_content">
           <label for="intervaloMatriculados">Selecione o intervalo de tempo:</label>
           <select id="intervaloMatriculados" onchange="carregarGraficoAlunosMatriculados()">
             <option value="7">Últimos 7 dias</option>
@@ -71,7 +71,7 @@
         <div class="container_header">
           <h1>Taxa de Renovação de Planos</h1>
         </div>
-        <div class="taxa_renovacao">
+        <div class="container_content">
           <label for="intervaloTaxa">Selecione o intervalo de tempo:</label>
           <select id="intervaloTaxa" onchange="carregarTaxaRenovacao()">
             <option value="7">Últimos 7 dias</option>
@@ -86,7 +86,7 @@
         <div class="container_header">
           <h1>Faixa Etária dos Alunos</h1>
         </div>
-        <div class="faixa_main">
+        <div class="container_content">
           <canvas id="faixaEtaria"></canvas>
         </div>
       </div>

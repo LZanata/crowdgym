@@ -19,7 +19,7 @@ function carregarTaxaRenovacao() {
         datasets: [{
           label: 'Taxa de Renovação',
           data: [renovados, expirados],
-          backgroundColor: ['#648F63', '#E58A83'],
+          backgroundColor: ['#E5FFE8', '#FFE7EA'],
         }]
       };
 

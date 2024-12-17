@@ -21,41 +21,6 @@ main{
     max-width: 800px;
 }
 
-/*Configurando espaçamento entre as divisões dos containers*/
-.container_main{
-    margin: 0 0 5rem 0;
-    height: 400px; 
-}
-
-.fluxo_diario{
-    height: 20rem;
-    margin: 1rem 0 0 0;
-}
-
-.fluxo_hora {
-    height: 20rem;
-    margin: 1rem 10% 0 10%;
-  }  
-
-.matriculados_main{
-    height: 20rem;
-    margin: 1rem 10% 0 10%;
-}
-
-.renovacao_main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20rem;
-    margin: 1rem 10% 0 10%;
-}
-  
-
-.faixa_main{
-    height: 20rem;
-    margin: 1rem 30% 0 30%
-}
-
 /*Configurando Titulos*/
 .container_header{
     display: flex;
@@ -76,4 +41,20 @@ main{
     background-color: #f8b067;
     margin: 0 auto;
     border-radius: 10px;
+}
+
+/*Configurando espaçamento entre as divisões dos containers*/
+.container_main{
+    margin: 0 0 5rem 0;
+    height: 400px; 
+}
+
+.container_content{
+    height: 20rem;
+    margin: 1rem 10% 0 10%;
+}
+
+.faixa_main{
+    height: 20rem;
+    margin: 1rem 30% 0 30%
 }
