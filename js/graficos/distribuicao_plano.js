@@ -1,5 +1,9 @@
-function carregarDistribuicaoPlanos(dias) {
-    fetch(`distribuicao_plano.php?dias=${dias}`)
+function carregarDistribuicaoPlanos() {
+    const academiaId = document.getElementById("academiaId").value; // Caso necessário
+    const dias = document.getElementById("intervaloDistribuicaoPlanos").value;
+
+    // URL com o parâmetro de dias
+    fetch(`../php/graficos/obter_distribuicao_planos.php?intervalo=${dias}&academiaId=${academiaId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro do servidor: ${response.statusText}`);
@@ -7,38 +11,45 @@ function carregarDistribuicaoPlanos(dias) {
             return response.json();
         })
         .then(data => {
-            console.log('Dados recebidos:', data);  // Verificar os dados recebidos
+            console.log('Dados recebidos:', data);
 
-            // Verificar se os dados estão no formato esperado
-            if (!data.labels || !data.values) {
-                console.error('Dados ausentes ou inválidos para o gráfico');
+            if (!Array.isArray(data)) {
+                console.error('Resposta inesperada do servidor:', data);
+                alert('Erro: resposta inesperada do servidor.');
                 return;
             }
 
-            // Verificar se o gráfico já existe e destruí-lo antes de criar um novo
-            if (window.graficoDistribuicaoPlanos && typeof window.graficoDistribuicaoPlanos.destroy === 'function') {
+            const labels = data.map(item => item.plano_nome);
+            const values = data.map(item => item.quantidade);
+
+            console.log('Labels:', labels);
+            console.log('Values:', values);
+
+            // Verificar se o gráfico existe antes de destruí-lo
+            if (window.graficoDistribuicaoPlanos instanceof Chart) {
+                console.log('Destruindo gráfico existente.');
                 window.graficoDistribuicaoPlanos.destroy();
             }
 
-            // Criar o gráfico com os dados recebidos
+            // Criar novo gráfico
             const ctx = document.getElementById('graficoDistribuicaoPlanos').getContext('2d');
             window.graficoDistribuicaoPlanos = new Chart(ctx, {
-                type: 'bar',  // Tipo de gráfico (barra)
+                type: 'bar',
                 data: {
-                    labels: data.labels,  // Labels dos planos
+                    labels: labels,
                     datasets: [{
-                        label: 'Distribuição de Planos',  // Título do gráfico
-                        data: data.values,  // Dados dos planos
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',  // Cor de fundo das barras
-                        borderColor: 'rgba(75, 192, 192, 1)',  // Cor da borda das barras
-                        borderWidth: 1  // Largura da borda
+                        label: 'Distribuição de Planos',
+                        data: values,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
                     }]
                 },
                 options: {
-                    responsive: true,  // Responsivo
+                    responsive: true,
                     plugins: {
                         legend: {
-                            display: true  // Exibir legenda
+                            display: true
                         }
                     }
                 }
@@ -46,5 +57,11 @@ function carregarDistribuicaoPlanos(dias) {
         })
         .catch(error => {
             console.error('Erro ao carregar os dados do gráfico:', error);
+            alert('Erro ao carregar os dados. Consulte o console para mais detalhes.');
         });
 }
+
+// Chamar a função ao carregar a página com 30 dias como padrão
+document.addEventListener("DOMContentLoaded", () => {
+    carregarDistribuicaoPlanos();
+});
