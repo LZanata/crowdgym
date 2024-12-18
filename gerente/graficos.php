@@ -81,15 +81,31 @@
           <canvas id="graficoTaxaRenovacao"></canvas>
         </div>
       </div>
-      <!-- Gráfico de faixa etária -->
+      <!-- Gráfico Distribuição de Planos -->
       <div class="container_main">
         <div class="container_header">
-          <h1>Faixa Etária dos Alunos</h1>
+          <h1>Distribuição de Planos</h1>
         </div>
         <div class="container_content">
-          <canvas id="faixaEtaria"></canvas>
+          <label for="intervaloDistribuicaoPlanos">Selecione o intervalo de tempo:</label>
+          <select id="intervaloDistribuicaoPlanos" onchange="carregarDistribuicaoPlanos()">
+            <option value="7">Últimos 7 dias</option>
+            <option value="30" selected>Últimos 30 dias</option>
+            <option value="365">Últimos 365 dias</option>
+          </select>
+          <canvas id="graficoDistribuicaoPlanos"></canvas>
         </div>
       </div>
+    </div>
+    <!-- Gráfico de faixa etária -->
+    <div class="container_main">
+      <div class="container_header">
+        <h1>Faixa Etária dos Alunos</h1>
+      </div>
+      <div class="container_content">
+        <canvas id="faixaEtaria"></canvas>
+      </div>
+    </div>
     </div>
   </main>
 
@@ -98,6 +114,7 @@
   <script src="../js/graficos/fluxo_por_hora.js"></script>
   <script src="../js/graficos/alunos_matriculados.js"></script>
   <script src="../js/graficos/taxa_renovacao.js"></script>
+  <script src="../js/graficos/distribuicao_plano.js"></script>
   <script src="../js/graficos/faixa_etaria.js"></script>
 </body>
 
