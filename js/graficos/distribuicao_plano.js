@@ -40,8 +40,8 @@ function carregarDistribuicaoPlanos() {
                     datasets: [{
                         label: 'Distribuição de Planos',
                         data: values,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: '#FFF9F3',
+                        borderColor: '#f57419',
                         borderWidth: 1
                     }]
                 },
