@@ -105,6 +105,15 @@
           <canvas id="graficoReceitaMensal"></canvas>
         </div>
       </div>
+      <!--Gráficos de Alunos Ativos vs Inativos -->
+      <div class="container_main">
+        <div class="container_header">
+          <h1>Alunos Ativos vs Inativos</h1>
+        </div>
+        <div class="container_content">
+          <canvas id="graficoAlunosAtivosVsInativos"></canvas>
+        </div>
+      </div>
       <!-- Gráfico de faixa etária -->
       <div class="container_main">
         <div class="container_header">
@@ -124,6 +133,7 @@
   <script src="../js/graficos/taxa_renovacao.js"></script>
   <script src="../js/graficos/distribuicao_plano.js"></script>
   <script src="../js/graficos/receita_mensal.js"></script>
+  <script src="../js/graficos/aulos_ativos_inativos.js"></script>
   <script src="../js/graficos/faixa_etaria.js"></script>
 </body>
 
