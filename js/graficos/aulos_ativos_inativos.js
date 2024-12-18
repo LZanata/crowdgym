@@ -1,7 +1,7 @@
-function carregarAlunosAtivosVsInativos() {
-    const academiaId = document.getElementById("academiaId").value;
+function carregarAlunosAtivosInativos() {
+    const intervalo = document.getElementById("intervaloAlunosAtivos").value;
 
-    fetch(`../php/graficos/obter_alunos_ativos_inativos.php?academiaId=${academiaId}`)
+    fetch(`../php/graficos/obter_alunos_ativos_inativos.php?intervalo=${intervalo}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro do servidor: ${response.statusText}`);
@@ -13,28 +13,29 @@ function carregarAlunosAtivosVsInativos() {
 
             if (data.error) {
                 console.error('Erro no servidor:', data.error);
-                alert('Erro ao carregar os dados. Consulte o console para mais detalhes.');
+                alert('Erro ao carregar os dados.');
                 return;
             }
 
-            // Preparando os dados para o gráfico
+            // Verificar se os dados estão no formato esperado
             const labels = ['Ativos', 'Inativos'];
-            const valores = [data.ativos, data.inativos];
+            const values = [data.ativos, data.inativos];
 
-            if (window.graficoAlunosAtivosVsInativos && typeof window.graficoAlunosAtivosVsInativos.destroy === 'function') {
-                window.graficoAlunosAtivosVsInativos.destroy();
+            // Verificar se o gráfico já existe e destruí-lo antes de criar um novo
+            if (window.graficoAlunosAtivosInativos && typeof window.graficoAlunosAtivosInativos.destroy === 'function') {
+                console.log('Destruindo gráfico existente.');
+                window.graficoAlunosAtivosInativos.destroy();
             }
 
-            const ctx = document.getElementById('graficoAlunosAtivosVsInativos').getContext('2d');
-            window.graficoAlunosAtivosVsInativos = new Chart(ctx, {
-                type: 'pie',  // Tipo de gráfico pizza
+            const ctx = document.getElementById('graficoAlunosAtivosInativos').getContext('2d');
+            window.graficoAlunosAtivosInativos = new Chart(ctx, {
+                type: 'pie',  // Gráfico do tipo pizza
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Alunos Ativos vs Inativos',
-                        data: valores,
-                        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],  // Cores para os setores
-                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],  // Cores das bordas
+                        data: values,
+                        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
                         borderWidth: 1
                     }]
                 },
@@ -42,14 +43,7 @@ function carregarAlunosAtivosVsInativos() {
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return `${tooltipItem.label}: ${tooltipItem.raw} alunos`;
-                                }
-                            }
+                            display: true
                         }
                     }
                 }
@@ -61,7 +55,7 @@ function carregarAlunosAtivosVsInativos() {
         });
 }
 
-// Chamar a função ao carregar a página
+// Chamar a função ao carregar a página com 30 dias como padrão
 document.addEventListener("DOMContentLoaded", () => {
-    carregarAlunosAtivosVsInativos();
+    carregarAlunosAtivosInativos();
 });

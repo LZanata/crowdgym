@@ -5,43 +5,32 @@ ini_set('display_errors', 1);
 
 include '../conexao.php';
 
-// Recebendo o ID da academia
-$academiaId = isset($_GET['academiaId']) ? intval($_GET['academiaId']) : 0;
-
-if ($academiaId <= 0) {
-    echo json_encode(['error' => 'ID da academia inválido.']);
-    exit;
-}
+// Recebendo o intervalo de dias
+$intervalo = isset($_GET['intervalo']) ? intval($_GET['intervalo']) : 30; // Padrão: 30 dias
 
 try {
-    // Consulta SQL para contar alunos ativos e inativos, considerando a data de término real
+    // Consulta para contar alunos ativos e inativos, com filtro de intervalo
     $query = "
     SELECT 
-        SUM(CASE 
-            WHEN (DATE_ADD(s.data_inicio, INTERVAL p.duracao MONTH) >= CURDATE() AND s.data_fim >= CURDATE()) THEN 1 
-            ELSE 0 
-            END) AS ativos,
-        SUM(CASE 
-            WHEN (DATE_ADD(s.data_inicio, INTERVAL p.duracao MONTH) < CURDATE() OR s.data_fim < CURDATE() OR s.data_fim IS NULL) THEN 1 
-            ELSE 0 
-            END) AS inativos
-    FROM aluno a
-    LEFT JOIN assinatura s ON a.id = s.Aluno_id
-    LEFT JOIN planos p ON s.Planos_id = p.id
-    WHERE p.Academia_id = ?
-";
+        COUNT(CASE WHEN a.data_inicio >= DATE_SUB(CURDATE(), INTERVAL ? DAY) AND (a.data_fim IS NULL OR a.data_fim >= CURDATE()) THEN 1 END) AS ativos,
+        COUNT(CASE WHEN (a.data_inicio < DATE_SUB(CURDATE(), INTERVAL ? DAY) OR (a.data_fim IS NOT NULL AND a.data_fim < CURDATE())) THEN 1 END) AS inativos
+    FROM aluno al
+    LEFT JOIN assinatura a ON al.id = a.Aluno_id
+    WHERE a.data_inicio IS NOT NULL
+    ";
 
     $stmt = $conn->prepare($query);
     if (!$stmt) {
         throw new Exception('Erro na preparação da consulta: ' . $conn->error);
     }
 
-    $stmt->bind_param("i", $academiaId);
+    // Bind do intervalo duas vezes para ativos e inativos
+    $stmt->bind_param("ii", $intervalo, $intervalo);
     $stmt->execute();
     $result = $stmt->get_result();
 
     $data = $result->fetch_assoc();
-    
+
     echo json_encode([
         'ativos' => $data['ativos'],
         'inativos' => $data['inativos']

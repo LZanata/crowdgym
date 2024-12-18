@@ -108,10 +108,16 @@
       <!--Gráficos de Alunos Ativos vs Inativos -->
       <div class="container_main">
         <div class="container_header">
-          <h1>Alunos Ativos vs Inativos</h1>
+          <h1>Alunos Ativos vs. Inativos</h1>
         </div>
         <div class="container_content">
-          <canvas id="graficoAlunosAtivosVsInativos"></canvas>
+          <label for="intervaloAlunosAtivos">Selecione o intervalo de tempo:</label>
+          <select id="intervaloAlunosAtivos" onchange="carregarAlunosAtivosInativos()">
+            <option value="7">Últimos 7 dias</option>
+            <option value="30" selected>Últimos 30 dias</option>
+            <option value="365">Últimos 365 dias</option>
+          </select>
+          <canvas id="graficoAlunosAtivosInativos"></canvas>
         </div>
       </div>
       <!-- Gráfico de faixa etária -->
