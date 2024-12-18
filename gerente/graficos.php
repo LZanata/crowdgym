@@ -96,16 +96,15 @@
           <canvas id="graficoDistribuicaoPlanos"></canvas>
         </div>
       </div>
-    </div>
-    <!-- Gráfico de faixa etária -->
-    <div class="container_main">
-      <div class="container_header">
-        <h1>Faixa Etária dos Alunos</h1>
+      <!-- Gráfico de faixa etária -->
+      <div class="container_main">
+        <div class="container_header">
+          <h1>Faixa Etária dos Alunos</h1>
+        </div>
+        <div class="container_content">
+          <canvas id="faixaEtaria"></canvas>
+        </div>
       </div>
-      <div class="container_content">
-        <canvas id="faixaEtaria"></canvas>
-      </div>
-    </div>
     </div>
   </main>
 
