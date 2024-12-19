@@ -120,6 +120,15 @@
           <canvas id="graficoAlunosAtivosInativos"></canvas>
         </div>
       </div>
+      <!-- Gráfico de Fluxo de Receita Mensal -->
+      <div class="container_main">
+        <div class="container_header">
+          <h1>Fluxo de Receita Mensal</h1>
+        </div>
+        <div class="container_content">
+          <canvas id="graficoFluxoReceitaMensal"></canvas>
+        </div>
+      </div>
       <!-- Gráfico de faixa etária -->
       <div class="container_main">
         <div class="container_header">
@@ -140,6 +149,7 @@
   <script src="../js/graficos/distribuicao_plano.js"></script>
   <script src="../js/graficos/receita_mensal.js"></script>
   <script src="../js/graficos/aulos_ativos_inativos.js"></script>
+  <script src="../js/graficos/fluxo_receita_mensal.js"></script>
   <script src="../js/graficos/faixa_etaria.js"></script>
 </body>
 
