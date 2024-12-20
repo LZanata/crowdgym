@@ -19,26 +19,55 @@
 <body>
   <?php include '../partials/header_gerente.php'; ?> <!-- Inclui o cabeçalho -->
   <main>
-    <!--Este menu terá: Quantidade de Alunos Presentes - Gráfico de Fluxo Diário - Identificação das ultimas matriculas realizadas(aparecerá os 3 ultimos alunos que se matricularam)-->
     <section>
-      <div class="chart-container">
-        <canvas id="graficoFluxo"></canvas>
+      <!-- Quantidade de Alunos Presentes -->
+      <div class="card">
+        <i class="bi bi-people-fill"></i>
+        <h3>Alunos Presentes</h3>
+        <p id="quantidade-alunos">Carregando...</p>
       </div>
-      <!-- Importando a tabela no JavaScript-->
-      <script src="../js/gerente/fluxo_diario.js"></script>
+
+      <!-- Gráfico de Fluxo Diário -->
+      <div class="chart-options">
+        <label for="intervalo">Intervalo:</label>
+        <select id="intervalo">
+          <option value="semana">Última Semana</option>
+          <option value="mes">Último Mês</option>
+        </select>
+      </div>
+      <div class="chart-container">
+        <canvas id="graficoFluxo" aria-label="Gráfico de Fluxo Diário de Alunos"></canvas>
+      </div>
+
+      <!-- Últimas Matrículas Realizadas -->
       <div class="conteudo_lista">
         <div class="lista_alunos">
           <div class="lista_header">
-            <h1>Ultimas Matriculas Realizadas</h1>
+            <h1>Últimas Matrículas Realizadas</h1>
           </div>
-        </div>
-        <div class="lista_principal">
-
+          <div class="lista_principal">
+            <?php
+            include '../php/conexao.php';
+            $query = "SELECT nome, data_inicio FROM assinatura INNER JOIN aluno ON assinatura.Aluno_id = aluno.id ORDER BY data_inicio DESC LIMIT 3";
+            $result = $conn->query($query);
+            while ($row = $result->fetch_assoc()) {
+              echo "<div class='aluno-item'>";
+              echo "<p><strong>Nome:</strong> {$row['nome']}</p>";
+              echo "<p><strong>Data de Matrícula:</strong> " . date('d/m/Y', strtotime($row['data_inicio'])) . "</p>";
+              echo "</div>";
+            }
+            ?>
+          </div>
         </div>
       </div>
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
+  <!-- Campo oculto para o ID da academia -->
+  <!-- Campo oculto para o ID da academia -->
+  <input type="hidden" id="academiaId" value="<?= isset($_SESSION['Academia_id']) ? htmlspecialchars($_SESSION['Academia_id']) : '' ?>">
+
+  <script src="../js/graficos/fluxo_diario.js"></script>
 </body>
 
 </html>

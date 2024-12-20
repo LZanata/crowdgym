@@ -4,10 +4,11 @@ try {
     include '../conexao.php';
 
     $academia_id = intval($_GET['academia_id'] ?? 0);
-    $dias = intval($_GET['intervalo'] ?? 7);
+    $intervalo = $_GET['intervalo'] ?? 'semana'; // Valor padrão 'semana'
+    $intervaloDias = ($intervalo == 'mes') ? 30 : 7; // Definindo o intervalo em dias (7 dias para semana, 30 para mês)
 
-    if (!$academia_id || $dias <= 0) {
-        throw new Exception("Parâmetros inválidos.");
+    if (!$academia_id) {
+        throw new Exception("Academia não informada.");
     }
 
     $query = $conn->prepare("
@@ -23,7 +24,7 @@ try {
         ORDER BY 
             dia;
     ");
-    $query->bind_param("ii", $academia_id, $dias);
+    $query->bind_param("ii", $academia_id, $intervaloDias);
     $query->execute();
 
     $resultado = $query->get_result();

@@ -1,8 +1,16 @@
 let graficoFluxo;
 
 function carregarGraficoFluxo() {
-    const intervalo = document.getElementById("intervaloFluxo").value;
-    const academiaId = document.getElementById("academiaId").value;
+    const intervalo = document.getElementById("intervalo").value;
+
+    // Verificar se o elemento academiaId existe
+    const academiaIdElement = document.getElementById("academiaId");
+    if (!academiaIdElement) {
+        console.error("Elemento 'academiaId' não encontrado!");
+        return;
+    }
+    
+    const academiaId = academiaIdElement.value;
 
     fetch(`../php/graficos/obter_fluxo_diario.php?academia_id=${academiaId}&intervalo=${intervalo}`)
         .then(response => response.json())
@@ -43,4 +51,12 @@ function atualizarGrafico(labels, values) {
 }
 
 // Carrega o gráfico na inicialização
-document.addEventListener('DOMContentLoaded', carregarGraficoFluxo);
+document.addEventListener('DOMContentLoaded', function() {
+    // Adiciona o ouvinte de evento para a alteração do intervalo
+    document.getElementById("intervalo").addEventListener('change', function() {
+        carregarGraficoFluxo();
+    });
+
+    // Inicializa o gráfico com os valores padrão ao carregar a página
+    carregarGraficoFluxo();
+});
