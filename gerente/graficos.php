@@ -144,7 +144,7 @@
           <h1>Faixa Etária dos Alunos</h1>
         </div>
         <div class="container_content">
-          <canvas id="faixaEtaria"></canvas>
+          <canvas id="graficoFaixaEtaria"></canvas>
         </div>
       </div>
     </div>
