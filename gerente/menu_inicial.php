@@ -1,4 +1,14 @@
-<?php include '../php/cadastro_login/check_login_gerente.php'; ?>
+<?php include '../php/cadastro_login/check_login_gerente.php';
+include '../php/conexao.php';
+
+// Consulta para obter o número de alunos treinando ao vivo
+$queryFluxo = $conn->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
+$queryFluxo->bind_param("i", $_SESSION['Academia_id']);
+$queryFluxo->execute();
+$resultadoFluxo = $queryFluxo->get_result();
+$rowFluxo = $resultadoFluxo->fetch_assoc();
+$alunosTreinando = $rowFluxo['total'];
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,8 +33,8 @@
       <!-- Quantidade de Alunos Presentes -->
       <div class="card">
         <i class="bi bi-people-fill"></i>
-        <h3>Alunos Presentes</h3>
-        <p id="quantidade-alunos">Carregando...</p>
+        <h3>Quantidade de Alunos Presentes:</h3>
+        <p><strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
       </div>
 
       <!-- Gráfico de Fluxo Diário -->
@@ -66,7 +76,7 @@
   <!-- Campo oculto para o ID da academia -->
   <!-- Campo oculto para o ID da academia -->
   <input type="hidden" id="academiaId" value="<?= isset($_SESSION['Academia_id']) ? htmlspecialchars($_SESSION['Academia_id']) : '' ?>">
-
+  <script src="../js/fluxo/atualizar_fluxo.js"></script>
   <script src="../js/graficos/fluxo_diario.js"></script>
 </body>
 

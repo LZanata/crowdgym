@@ -35,7 +35,7 @@ $alunosTreinando = $rowFluxo['total'];
 
             <div class="fluxo">
                 <h1>Fluxo AO VIVO</h1>
-                <p>Alunos treinando agora: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
+                <p>Quantidade de Alunos Presentes: <strong id="contadorFluxo"><?= htmlspecialchars($alunosTreinando) ?></strong></p>
             </div>
         </div>
     </main>
