@@ -110,7 +110,7 @@
         <div class="container_header">
           <h1>Alunos Ativos vs. Inativos</h1>
         </div>
-        <div class="container_content">
+        <div class="pizza_content">
           <label for="intervaloAlunosAtivos">Selecione o intervalo de tempo:</label>
           <select id="intervaloAlunosAtivos" onchange="carregarAlunosAtivosInativos()">
             <option value="7">Últimos 7 dias</option>
@@ -143,7 +143,7 @@
         <div class="container_header">
           <h1>Faixa Etária dos Alunos</h1>
         </div>
-        <div class="container_content">
+        <div class="pizza_content">
           <canvas id="graficoFaixaEtaria"></canvas>
         </div>
       </div>

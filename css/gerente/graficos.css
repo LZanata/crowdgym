@@ -51,10 +51,10 @@ main{
 
 .container_content{
     height: 20rem;
-    margin: 1rem 10% 0 10%;
+    margin: 1rem 10% 0 10%;   
 }
 
-.faixa_main{
+.pizza_content{
     height: 20rem;
-    margin: 1rem 30% 0 30%
+    margin: 1rem 30% 0 30%;   
 }
