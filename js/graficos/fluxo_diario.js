@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         carregarGraficoFluxo();
     });
 
+    // Atualizar o gráfico a cada 5 segundos
+    setInterval(carregarGraficoFluxo, 5000);
+
     // Inicializa o gráfico com os valores padrão ao carregar a página
     carregarGraficoFluxo();
 });

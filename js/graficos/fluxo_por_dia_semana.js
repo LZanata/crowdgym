@@ -62,5 +62,8 @@ function carregarFluxoPorDiaSemana() {
         });
 }
 
+// Atualizar o gráfico a cada 5 segundos
+setInterval(carregarFluxoPorDiaSemana, 5000);
+
 // Carregar o gráfico ao carregar a página
 document.addEventListener("DOMContentLoaded", carregarFluxoPorDiaSemana);
