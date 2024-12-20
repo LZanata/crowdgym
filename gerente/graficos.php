@@ -151,7 +151,7 @@
   </main>
 
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
-  <script src="../js/graficos/fluxo_diario.js"></script>
+  <script src="../js/graficos/quantidade_alunos.js"></script>
   <script src="../js/graficos/fluxo_por_hora.js"></script>
   <script src="../js/graficos/alunos_matriculados.js"></script>
   <script src="../js/graficos/taxa_renovacao.js"></script>
