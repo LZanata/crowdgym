@@ -64,7 +64,7 @@ nav li a:hover {
 /*Alterações do usuario*/
 .user {
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 /*Personaliza oque está no a do user*/
