@@ -10,7 +10,7 @@ if (isset($_POST['SendRecupSenha'])) {
         $expiry = date("Y-m-d H:i:s", time() + 60 * 30); // Token válido por 30 minutos
 
         // Inclui a conexão com o banco de dados
-        $mysqli = require __DIR__ . "/../php/conexao.php";
+        $conn = require __DIR__ . "/../php/conexao.php";
 
         // Array com as tabelas de usuários
         $tables = ['administrador', 'aluno', 'funcionarios'];
@@ -22,20 +22,20 @@ if (isset($_POST['SendRecupSenha'])) {
                     SET reset_token_hash = ?, reset_token_expires_at = ?
                     WHERE email = ?";
 
-            $stmt = $mysqli->prepare($sql);
+            $stmt = $conn->prepare($sql);
 
             if ($stmt) {
                 $stmt->bind_param("sss", $token_hash, $expiry, $email);
                 $stmt->execute();
 
                 // Verifica se o e-mail foi encontrado
-                if ($mysqli->affected_rows) {
+                if ($conn->affected_rows) {
                     $emailFound = true;
                     break; // Sai do loop se o e-mail for encontrado
                 }
                 $stmt->close();
             } else {
-                echo "Erro ao preparar a consulta para a tabela $table: " . $mysqli->error;
+                echo "Erro ao preparar a consulta para a tabela $table: " . $conn->error;
             }
         }
 
@@ -45,7 +45,7 @@ if (isset($_POST['SendRecupSenha'])) {
 
             $mail->setFrom("crowdgym21@gmail.com");
             $mail->addAddress($email);
-            $mail->Subject = "Crowd Gym - Alterar Senha ";
+            $mail->Subject = "Crowd Gym - Alterar Senha";
             $mail->Body = <<<END
 Clique <a href="http://localhost/Projeto_CrowdGym/cadastro_login/redefinir_senha.php?token=$token">aqui</a> 
 para alterar a sua senha.
