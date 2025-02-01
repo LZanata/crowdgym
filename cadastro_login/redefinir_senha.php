@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($updateStmt->affected_rows > 0) {
                 echo "Senha alterada com sucesso. Você pode fazer login com sua nova senha.";
-                header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.php");
+                header("Location: http://localhost/Projeto_CrowdGym/index.php");
                 exit;
             } else {
                 echo "Erro ao atualizar a senha. Por favor, tente novamente.";

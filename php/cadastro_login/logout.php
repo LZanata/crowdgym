@@ -6,6 +6,6 @@ session_unset();
 // Destruir a sessão
 session_destroy();
 
-header("Location: http://localhost/Projeto_CrowdGym/tela_inicio.php");
+header("Location: http://localhost/Projeto_CrowdGym/index.php");
 exit;
 ?>
