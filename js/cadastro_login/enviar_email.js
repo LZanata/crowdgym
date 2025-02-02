@@ -1,4 +1,7 @@
 function sendEmail() {
+    const sendButton = document.getElementById("enviarEmail"); // Pegando o botão de envio
+    sendButton.disabled = true; // Desabilita o botão para evitar duplo clique
+
     const templateParams = {
         nomeAcademia: document.getElementById("nomeAcademia").value,
         nomeGerente: document.getElementById("nomeGerente").value,
@@ -20,8 +23,10 @@ function sendEmail() {
     emailjs.send('service_zzwirtl', 'template_y90vtvb', templateParams)
         .then(function(response) {
             alert('E-mail enviado com sucesso!');
-            window.location.href = 'tela_inicio.html';
-        }, function(error) {
+            window.location.href = '../index.php';
+        })
+        .catch(function(error) {
             alert('Falha ao enviar e-mail: ' + error.text);
+            sendButton.disabled = false; // Habilita o botão novamente em caso de erro
         });
 }

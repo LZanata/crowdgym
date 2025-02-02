@@ -231,7 +231,7 @@
             </div>
 
             <div class="register-button">
-               <input type="submit" value="Enviar Formulário">
+               <input type="submit" id="enviarEmail" value="Enviar Formulário">
               </div>
           </form>
          </div>
