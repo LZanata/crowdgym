@@ -9,13 +9,13 @@ function carregarFluxoPorDiaSemana() {
             return response.json();
         })
         .then(data => {
-            console.log('Dados recebidos:', data);
-
-            if (!Array.isArray(data)) {
-                console.error('Resposta inesperada do servidor:', data);
-                alert('Erro: resposta inesperada do servidor.');
+            if (data.erro) {
+                console.error('Erro:', data.erro);
+                exibirMensagemErro(data.erro);
                 return;
             }
+
+            console.log('Dados recebidos:', data);
 
             // Mapeando os dias da semana (1=Domingo, 7=Sábado)
             const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
@@ -60,6 +60,18 @@ function carregarFluxoPorDiaSemana() {
             console.error('Erro ao carregar os dados do gráfico:', error);
             alert('Erro ao carregar os dados. Consulte o console para mais detalhes.');
         });
+}
+
+function exibirMensagemErro(mensagem) {
+    const ctx = document.getElementById('graficoFluxoPorDiaSemana').getContext('2d');
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);  // Limpa o gráfico anterior
+
+    // Exibe a mensagem de erro
+    ctx.fillStyle = "red";
+    ctx.font = "16px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(mensagem, ctx.canvas.width / 2, ctx.canvas.height / 2);
 }
 
 // Atualizar o gráfico a cada 5 segundos

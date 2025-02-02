@@ -34,7 +34,12 @@ try {
         $dados['values'][] = $row['total_alunos'];
     }
 
-    echo json_encode($dados);
+    // Verifique se temos dados suficientes
+    if (empty($dados['labels']) || empty($dados['values'])) {
+        echo json_encode(['erro' => 'Não há dados suficientes para gerar o gráfico.']);
+    } else {
+        echo json_encode($dados);
+    }
 } catch (Exception $e) {
     echo json_encode(['erro' => $e->getMessage()]);
 }

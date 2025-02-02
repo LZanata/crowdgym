@@ -157,7 +157,7 @@
   <script src="../js/graficos/taxa_renovacao.js"></script>
   <script src="../js/graficos/distribuicao_plano.js"></script>
   <script src="../js/graficos/receita_mensal.js"></script>
-  <script src="../js/graficos/aulos_ativos_inativos.js"></script>
+  <script src="../js/graficos/alunos_ativos_inativos.js"></script>
   <script src="../js/graficos/fluxo_receita_mensal.js"></script>
   <script src="../js/graficos/fluxo_por_dia_semana.js"></script>
   <script src="../js/graficos/faixa_etaria.js"></script>

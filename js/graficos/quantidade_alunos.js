@@ -9,6 +9,7 @@ function carregarGraficoFluxo() {
         .then(data => {
             if (data.erro) {
                 console.error("Erro ao carregar gráfico:", data.erro);
+                exibirMensagemErro(data.erro);
                 return;
             }
             atualizarGrafico(data.labels, data.values);
@@ -40,6 +41,18 @@ function atualizarGrafico(labels, values) {
             }
         });
     }
+}
+
+function exibirMensagemErro(mensagem) {
+    const ctx = document.getElementById("graficoFluxo").getContext("2d");
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Limpa o gráfico anterior
+
+    // Exibe a mensagem de erro
+    ctx.fillStyle = "red";
+    ctx.font = "16px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(mensagem, ctx.canvas.width / 2, ctx.canvas.height / 2);
 }
 
 // Carrega o gráfico na inicialização

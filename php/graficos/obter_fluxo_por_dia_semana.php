@@ -57,7 +57,7 @@ try {
 
     // Verificar se há resultados
     if (empty($data)) {
-        echo json_encode(['error' => 'Nenhum dado encontrado.']);
+        echo json_encode(['erro' => 'Nenhum dado encontrado para este período.']);
     } else {
         // Retorna os dados em formato JSON
         echo json_encode($data);
@@ -65,6 +65,6 @@ try {
 
 } catch (Exception $e) {
     // Retorna o erro em formato JSON
-    echo json_encode(['error' => $e->getMessage()]);
+    echo json_encode(['erro' => $e->getMessage()]);
 }
 ?>
