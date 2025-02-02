@@ -1,5 +1,15 @@
-<?php include '../php/cadastro_login/check_login_gerente.php';
+<?php
+session_start();
+//echo "Academia_id na sessão: " . ($_SESSION['Academia_id'] ?? 'Não definido');
+
+include '../php/cadastro_login/check_login_gerente.php';
 include '../php/conexao.php';
+
+// Verifique se a variável de sessão 'Academia_id' está definida
+if (!isset($_SESSION['Academia_id'])) {
+  // Redirecionar ou exibir uma mensagem de erro, se não estiver definido
+  die("Erro: Academia não associada à sua conta.");
+}
 
 // Consulta para obter o número de alunos treinando ao vivo
 $queryFluxo = $conn->prepare("SELECT COUNT(*) AS total FROM entrada_saida WHERE Academia_id = ? AND data_saida IS NULL");
@@ -19,10 +29,7 @@ $alunosTreinando = $rowFluxo['total'];
   <title>Menu Inicial Gerente</title>
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/gerente/menu_inicial.css">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <!-- Importando a biblioteca Chart.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -57,9 +64,17 @@ $alunosTreinando = $rowFluxo['total'];
           </div>
           <div class="lista_principal">
             <?php
-            include '../php/conexao.php';
-            $query = "SELECT nome, data_inicio FROM assinatura INNER JOIN aluno ON assinatura.Aluno_id = aluno.id ORDER BY data_inicio DESC LIMIT 3";
-            $result = $conn->query($query);
+            $query = "SELECT aluno.nome, assinatura.data_inicio 
+            FROM assinatura
+            INNER JOIN aluno ON assinatura.Aluno_id = aluno.id
+            INNER JOIN planos ON assinatura.Planos_id = planos.id
+            WHERE planos.Academia_id = ? 
+            ORDER BY assinatura.data_inicio DESC 
+            LIMIT 3";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $_SESSION['Academia_id']);
+            $stmt->execute();
+            $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()) {
               echo "<div class='aluno-item'>";
               echo "<p><strong>Nome:</strong> {$row['nome']}</p>";
@@ -73,8 +88,6 @@ $alunosTreinando = $rowFluxo['total'];
     </section>
   </main>
   <?php include '../partials/footer.php'; ?> <!-- Inclui o rodapé -->
-  <!-- Campo oculto para o ID da academia -->
-  <!-- Campo oculto para o ID da academia -->
   <input type="hidden" id="academiaId" value="<?= isset($_SESSION['Academia_id']) ? htmlspecialchars($_SESSION['Academia_id']) : '' ?>">
   <script src="../js/fluxo/atualizar_fluxo.js"></script>
   <script src="../js/graficos/fluxo_diario.js"></script>
