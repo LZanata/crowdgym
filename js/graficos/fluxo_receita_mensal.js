@@ -1,5 +1,8 @@
 function carregarFluxoReceitaMensal() {
-    fetch('../php/graficos/obter_fluxo_receita_mensal.php')
+    // Defina o ID da academia de forma dinâmica ou estática
+    const academiaId = document.getElementById("academiaId").value; 
+
+    fetch(`../php/graficos/obter_fluxo_receita_mensal.php?academiaId=${academiaId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro do servidor: ${response.statusText}`);
