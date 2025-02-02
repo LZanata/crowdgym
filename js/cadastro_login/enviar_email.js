@@ -8,6 +8,7 @@ function sendEmail() {
         telefoneAcademia: document.getElementById("telefoneAcademia").value,
         telefoneGerente: document.getElementById("telefoneGerente").value,
         email: document.getElementById("email").value,
+        cpf: document.getElementById("cpf").value,
         cep: document.getElementById("cep").value,
         estado: document.getElementById("estado").value,
         cidade: document.getElementById("cidade").value,
