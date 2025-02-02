@@ -73,10 +73,14 @@ END;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/cadastro_login/recuperar_senha.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Recuperar Senha</title>
 </head>
 
 <body>
+    <div class="back-button">
+        <a href="../index.php"><i class="bi bi-arrow-left-circle"></i></a>
+    </div>
     <!--Tela de Recuperação de Senha-->
     <div class="page">
         <form method="POST" action="" class="formLogin">

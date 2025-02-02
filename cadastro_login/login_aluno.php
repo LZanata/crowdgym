@@ -52,12 +52,17 @@ mysqli_close($conn);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/cadastro_login/login_aluno.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="../js/cadastro_login/ocultar_mensagem.js"></script>
   <title>Login aluno</title>
 </head>
 
 <body onload="ocultarMensagem()">
   <main>
+    <div class="back-button">
+      <a href="../index.php"><i class="bi bi-arrow-left-circle"></i></a>
+    </div>
     <div class="container">
       <div class="form">
         <form

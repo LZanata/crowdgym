@@ -32,6 +32,9 @@
   </head>
   <body>
     <main>
+    <div class="back-button">
+    <a href="login_academia.php"><i class="bi bi-arrow-left-circle"></i></a>
+    </div>
     <div class="conteiner">
          <div class="form-academia">
           <form onsubmit="sendEmail(); return false;">

@@ -113,3 +113,18 @@ footer {
     padding: 1.5rem;
     font-weight: 100;
 }
+
+.back-button{
+    position: absolute;
+    left: 3rem;
+    top: 3rem;
+}
+
+.back-button a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.back-button i{
+    font-size: 2rem;
+}
