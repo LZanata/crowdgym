@@ -93,7 +93,7 @@
         </div>
       </div>
       <?php
-      include '../php/conn.php';
+      include '../php/conexao.php';
 
       // Verifica se o ID foi enviado na URL
       if (isset($_GET['id'])) {
