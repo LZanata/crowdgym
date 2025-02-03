@@ -197,7 +197,7 @@
     // Confirmação de remoção de funcionário
     function confirmarRemocao(id) {
       if (confirm("Tem certeza que deseja remover este funcionário?")) {
-        window.location.href = '../php/gerente/remover_funcionario.php?id=' + id;
+        window.location.href = '../php/gerente/remover_func.php?id=' + id;
       }
     }
   </script>

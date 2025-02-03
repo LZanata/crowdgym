@@ -29,7 +29,7 @@ include '../php/conexao.php';
             <div class="userlist">
                 <div class="userlist-header">
                     <div class="userlist-title">
-                        <h1>Funcionários Cadastrados</h1>
+                        <h1>Planos Cadastrados</h1>
                     </div>
                     <div class="search-form">
                         <form method="GET" action="">
