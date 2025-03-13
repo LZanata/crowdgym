@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `academia` (
   `cidade` varchar(50) NOT NULL,
   `estado` char(2) NOT NULL,
   `cep` char(9) NOT NULL,
+  `capacidade_maxima` int DEFAULT '50',
   PRIMARY KEY (`id`)
 );
 
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
+  `reset_token_hash` varchar(255) DEFAULT NULL,
+  `reset_token_expires_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`)
 );
@@ -38,6 +41,9 @@ CREATE TABLE IF NOT EXISTS `aluno` (
   `genero` enum('masculino','feminino','outro') NOT NULL,
   `data_nascimento` date NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
+  `reset_token_hash` varchar(255) DEFAULT NULL,
+  `reset_token_expires_at` datetime DEFAULT NULL,
+  `status` enum('ativo','inativo') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`)
 );
@@ -60,25 +66,19 @@ CREATE TABLE IF NOT EXISTS `assinatura` (
   `data_inicio` date NOT NULL,
   `data_fim` date NOT NULL,
   `metodo_pagamento` enum('Cartão de Crédito','Cartão de Débito','Boleto','Pix') NOT NULL,
-  `data_pagamento` date NOT NULL,
+  `data_pagamento` date DEFAULT NULL,
   `valor_pago` decimal(10,2) NOT NULL,
   `Planos_id` int NOT NULL,
   `Aluno_id` int NOT NULL,
+  `numero_cartao` varchar(20) DEFAULT NULL,
+  `nome_titular` varchar(100) DEFAULT NULL,
+  `validade_cartao` date DEFAULT NULL,
+  `codigo_seguranca` varchar(4) DEFAULT NULL,
+  `cpf_titular` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Assinatura_Planos1_idx` (`Planos_id`),
-  KEY `fk_Assinatura_Aluno1_idx` (`Aluno_id`),
-  CONSTRAINT `fk_Assinatura_Planos`
-      FOREIGN KEY (`Planos_id`)
-      REFERENCES `planos` (`id`)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE,
-  CONSTRAINT `fk_Assinatura_Aluno`
-      FOREIGN KEY (`Aluno_id`)
-      REFERENCES `aluno` (`id`)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE
+  KEY `fk_Assinatura_Aluno1_idx` (`Aluno_id`)
 );
-
 
 CREATE TABLE IF NOT EXISTS `entrada_saida` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -114,4 +114,4 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
       ON UPDATE CASCADE
 );
 
-INSERT INTO `administrador`(`id`, `cpf`, `nome`, `email`, `senha`, `reset_token_hash`, `reset_token_expires_at`) VALUES ('','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]');
+INSERT INTO `administrador`(`id`, `cpf`, `nome`, `email`, `senha`, `reset_token_hash`, `reset_token_expires_at`) VALUES ('','[value-cpf]','[value-nome]','[value-email]','123456','','');
