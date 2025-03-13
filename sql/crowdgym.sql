@@ -42,6 +42,18 @@ CREATE TABLE IF NOT EXISTS `aluno` (
   UNIQUE KEY `cpf` (`cpf`)
 );
 
+CREATE TABLE IF NOT EXISTS `planos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` decimal(10,2) NOT NULL,
+  `duracao` int NOT NULL,
+  `tipo` enum('Principal','Adicional') NOT NULL,
+  `Academia_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Plano_Academia1_idx` (`Academia_id`)
+);
+
 CREATE TABLE IF NOT EXISTS `assinatura` (
   `id` int NOT NULL AUTO_INCREMENT,
   `status` enum('ativo','inativo') NOT NULL,
@@ -102,14 +114,4 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
       ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS `planos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `descricao` varchar(255) NOT NULL,
-  `valor` decimal(10,2) NOT NULL,
-  `duracao` int NOT NULL,
-  `tipo` enum('Principal','Adicional') NOT NULL,
-  `Academia_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Plano_Academia1_idx` (`Academia_id`)
-);
+INSERT INTO `administrador`(`id`, `cpf`, `nome`, `email`, `senha`, `reset_token_hash`, `reset_token_expires_at`) VALUES ('','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]');
