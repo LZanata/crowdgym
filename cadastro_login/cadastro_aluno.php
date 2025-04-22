@@ -52,7 +52,6 @@ mysqli_close($conn);
   <link rel="stylesheet" href="../css/cadastro_login/cadastro_aluno.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="../js/cadastro_login/validar_senha.js"></script>
-  <script src="../js/aluno/formatocpf.js"></script>
   <script src="../js/aluno/validarsenha.js"></script>
 </head>
 
@@ -98,11 +97,10 @@ mysqli_close($conn);
             <div class="input-box">
               <label for="cpf">CPF*</label>
               <input
-                type="text" id="cpf" name="cpf" placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                oninput="formatCPF(this)"
-                maxlength="14"
-                required>
+                type="text" id="cpf" name="cpf" placeholder="00000000000"
+                maxlength="11"
+                required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             <div class="input-box">
               <label for="data_nascimento">Data de Nascimento*</label>

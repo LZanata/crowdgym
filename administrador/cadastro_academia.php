@@ -1,32 +1,32 @@
-<?php 
+<?php
 include '../php/cadastro_login/check_login_admin.php';
 include '../php/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['nome'];
-    $telefone = $_POST['telefone'];
-    $rua = $_POST['rua'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $cep = $_POST['cep'];
-    $dia_semana = $_POST['dia_semana'];
-    $abertura = $_POST['abertura'];
-    $fechamento = $_POST['fechamento'];
+  $nome = $_POST['nome'];
+  $telefone = $_POST['telefone'];
+  $rua = $_POST['rua'];
+  $numero = $_POST['numero'];
+  $complemento = $_POST['complemento'];
+  $bairro = $_POST['bairro'];
+  $cidade = $_POST['cidade'];
+  $estado = $_POST['estado'];
+  $cep = $_POST['cep'];
+  $dia_semana = $_POST['dia_semana'];
+  $abertura = $_POST['abertura'];
+  $fechamento = $_POST['fechamento'];
 
-    // Inserir os dados no banco de dados
-    $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
+  // Inserir os dados no banco de dados
+  $query = "INSERT INTO academia (nome, telefone, rua, numero, complemento, bairro, cidade, estado, cep, dia_semana, abertura, fechamento) VALUES ('$nome','$telefone', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$cep', '$dia_semana', '$abertura', '$fechamento')";
 
-    if (mysqli_query($conn, $query)) {
-        echo "Usuário cadastrado com sucesso!";
-        // Redirecionar para outra página
-        header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_gerente.php");
-        exit();
-    } else {
-        echo "Erro ao cadastrar o usuário: " . mysqli_error($conn);
-    }
+  if (mysqli_query($conn, $query)) {
+    echo "Usuário cadastrado com sucesso!";
+    // Redirecionar para outra página
+    header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_gerente.php");
+    exit();
+  } else {
+    echo "Erro ao cadastrar o usuário: " . mysqli_error($conn);
+  }
 }
 
 ?>
@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <script src="../js/admin/atualizarcidade.js"></script>
   <script src="../js/admin/formatotelefone.js"></script>
-  <script src="../js/admin/formatocpf.js"></script>
 </head>
 
 <body>
@@ -82,14 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="input-box" id="cep-box">
               <label for="cep">CEP*</label>
-              <input
-                type="text"
-                id="cep"
-                name="cep"
-                maxlength="9"
-                oninput="aplicarMascaraCEP(this)"
-                placeholder="00000-000"
-                required />
+              <input type="text" id="cep" name="cep" maxlength="8" placeholder="00000000" required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             <div class="input-box">
               <label for="estado">Estado*</label>

@@ -1,42 +1,42 @@
-<?php 
+<?php
 include '../php/cadastro_login/check_login_admin.php';
 include '../php/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cpf = $_POST['cpf'];
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $senha = $_POST['senha'];
-    $confirma_senha = $_POST['confirma_senha'];
-    $Academia_id = $_POST['Academia_id'];
-    $tipo = 'gerente'; // Define o tipo como 'gerente'
+  $cpf = $_POST['cpf'];
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $telefone = $_POST['telefone'];
+  $senha = $_POST['senha'];
+  $confirma_senha = $_POST['confirma_senha'];
+  $Academia_id = $_POST['Academia_id'];
+  $tipo = 'gerente'; // Define o tipo como 'gerente'
 
-    // Verifica se as senhas coincidem
-    if ($senha !== $confirma_senha) {
-        echo "Erro: As senhas não coincidem. Tente novamente.";
-        exit; // Interrompe a execução se as senhas não coincidirem
-    }
+  // Verifica se as senhas coincidem
+  if ($senha !== $confirma_senha) {
+    echo "Erro: As senhas não coincidem. Tente novamente.";
+    exit; // Interrompe a execução se as senhas não coincidirem
+  }
 
-    // Hash da senha
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+  // Hash da senha
+  $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Inserir os dados no banco de dados
-    $query = "INSERT INTO funcionarios (cpf, nome, email, telefone, senha, tipo, Academia_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ssssssi', $cpf, $nome, $email, $telefone, $senha_hash, $tipo, $Academia_id);
+  // Inserir os dados no banco de dados
+  $query = "INSERT INTO funcionarios (cpf, nome, email, telefone, senha, tipo, Academia_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  $stmt = mysqli_prepare($conn, $query);
+  mysqli_stmt_bind_param($stmt, 'ssssssi', $cpf, $nome, $email, $telefone, $senha_hash, $tipo, $Academia_id);
 
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Gerente cadastrado com sucesso!";
-        // Redirecionar para outra página
-        header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_academia.php");
-        exit();
-    } else {
-        echo "Erro ao cadastrar o gerente: " . mysqli_error($conn);
-    }
+  if (mysqli_stmt_execute($stmt)) {
+    echo "Gerente cadastrado com sucesso!";
+    // Redirecionar para outra página
+    header("Location: http://localhost/Projeto_CrowdGym/administrador/cadastro_academia.php");
+    exit();
+  } else {
+    echo "Erro ao cadastrar o gerente: " . mysqli_error($conn);
+  }
 
-    // Fecha o statement
-    mysqli_stmt_close($stmt);
+  // Fecha o statement
+  mysqli_stmt_close($stmt);
 }
 
 // Fecha a conexão
@@ -58,7 +58,6 @@ mysqli_close($conn);
   <script src="../js/admin/validarsenha.js"></script>
   <script src="../js/admin/atualizarcidade.js"></script>
   <script src="../js/admin/formatotelefone.js"></script>
-  <script src="../js/admin/formatocpf.js"></script>
 </head>
 
 <body>
@@ -94,11 +93,10 @@ mysqli_close($conn);
             <div class="input-box">
               <label for="cpf">CPF*</label>
               <input
-                type="text" id="cpf" name="cpf" placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                oninput="formatCPF(this)"
-                maxlength="14"
-                required>
+                type="text" id="cpf" name="cpf" placeholder="00000000000"
+                maxlength="11"
+                required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             <div class="input-box">
               <label for="telefone">Telefone*</label>
