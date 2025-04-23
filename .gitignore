@@ -1,6 +1,1 @@
 .env
-/vendor/
-*.log
-.DS_Store
-Thumbs.db
-mailer.php
