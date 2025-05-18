@@ -12,7 +12,7 @@ if (isset($_POST['id'], $_POST['nome'], $_POST['email'])) {
     $genero = $_POST['genero'];
 
     // Atualiza os dados do funcionário no banco de dados
-    $query = "UPDATE funcionario SET nome = ?, email = ?, cpf = ?, cargo = ?, data_contrat = ?, genero = ? WHERE id = ?";
+    $query = "UPDATE funcionarios SET nome = ?, email = ?, cpf = ?, cargo = ?, data_contrat = ?, genero = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $email, $cpf, $cargo, $data_contrat, $genero, $id);
 
